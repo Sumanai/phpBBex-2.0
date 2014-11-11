@@ -6,3 +6,6 @@ CREATE TABLE phpbb_user_confirm_keys (
 	PRIMARY KEY  (confirm_key),
 	KEY user_id (user_id)
 ) CHARACTER SET `utf8` COLLATE `utf8_bin`;
+
+-- New phpBBex options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');

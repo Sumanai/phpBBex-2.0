@@ -277,6 +277,10 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', '3.1.1')
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_expire_days', '90');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '14400');
 
+# New phpBBex options
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+
+# Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cron_lock', '0', 1);
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('database_last_gc', '0', 1);
