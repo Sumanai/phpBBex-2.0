@@ -1,0 +1,9 @@
+regexp:^cache/(?!(\.htaccess|index\.htm)).+
+regexp:^ext/(?!(phpBBex|index\.htm)).+
+regexp:^files/(?!(\.htaccess|index\.htm)).+
+regexp:^images/avatars/(upload|gallery)/(?!(\.htaccess|index\.htm)).+
+regexp:^store/(?!(\.htaccess|index\.htm)).+
+regexp:^config\.php$
+regexp:^work/
+regexp:^.idea/
+regexp:~$

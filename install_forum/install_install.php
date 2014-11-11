@@ -1938,7 +1938,7 @@ class install_install extends module
 				'user_colour'			=> '9E8DA7',
 				'user_email'			=> '',
 				'user_lang'				=> $data['default_lang'],
-				'user_style'			=> 1,
+				'user_style'			=> 2,
 				'user_timezone'			=> 'UTC',
 				'user_dateformat'		=> $lang['default_dateformat'],
 				'user_allow_massemail'	=> 0,
