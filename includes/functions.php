@@ -2666,20 +2666,35 @@ function confirm_box($check, $title = '', $hidden = '', $html_body = 'confirm_bo
 
 	$confirm = ($user->lang['YES'] === $request->variable('confirm', '', true, \phpbb\request\request_interface::POST));
 
+	// Delete old confirm keys
+
+	$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . " 
+		WHERE confirm_time < " . (time() - 900);
+	$db->sql_query($sql);
+
 	if ($check && $confirm)
 	{
 		$user_id = request_var('confirm_uid', 0);
 		$session_id = request_var('sess', '');
 		$confirm_key = request_var('confirm_key', '');
 
-		if ($user_id != $user->data['user_id'] || $session_id != $user->session_id || !$confirm_key || !$user->data['user_last_confirm_key'] || $confirm_key != $user->data['user_last_confirm_key'])
+		if ($user_id != $user->data['user_id'] || $session_id != $user->session_id || !$confirm_key)
 		{
 			return false;
 		}
 
-		// Reset user_last_confirm_key
-		$sql = 'UPDATE ' . USERS_TABLE . " SET user_last_confirm_key = ''
-			WHERE user_id = " . $user->data['user_id'];
+		// Checking confirm key
+		$sql = "SELECT * FROM " . USER_CONFIRM_KEYS_TABLE . " 
+			WHERE user_id = " . $user->data['user_id'] . " AND confirm_key = '" . $db->sql_escape($confirm_key) . "'";
+		$result = $db->sql_query($sql);
+		if(!$db->sql_fetchrow($result))
+		{
+			return false;
+		}
+
+		// Delete used confirm key
+		$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . " 
+			WHERE user_id = " . $user->data['user_id'] . " AND confirm_key = '" . $db->sql_escape($confirm_key) . "'";
 		$db->sql_query($sql);
 
 		return true;
@@ -2733,8 +2748,15 @@ function confirm_box($check, $title = '', $hidden = '', $html_body = 'confirm_bo
 		'S_AJAX_REQUEST'	=> $request->is_ajax(),
 	));
 
-	$sql = 'UPDATE ' . USERS_TABLE . " SET user_last_confirm_key = '" . $db->sql_escape($confirm_key) . "'
-		WHERE user_id = " . $user->data['user_id'];
+	// Save new confirm key
+	$data = array(
+		'confirm_key'	=> $confirm_key,
+		'user_id'		=> (int) $user->data['user_id'],
+		'confirm_time'	=> (int) time(),
+	);
+	$sql = 'INSERT INTO ' . USER_CONFIRM_KEYS_TABLE . ' ' . $db->sql_build_array('INSERT', $data);
+
+
 	$db->sql_query($sql);
 
 	if ($request->is_ajax())

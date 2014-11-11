@@ -3352,5 +3352,28 @@
             "user_id",
             "zebra_id"
         ]
+    },
+    "phpbb_user_confirm_keys": {
+        "COLUMNS": {
+            "confirm_key": [
+                "VCHAR:10",
+                ""
+            ],
+            "user_id": [
+                "UINT",
+                0
+            ],
+            "confirm_time": [
+                "TIMESTAMP",
+                0
+            ]
+        },
+        "PRIMARY_KEY": "confirm_key",
+        "KEYS": {
+            "user_id": [
+                "INDEX",
+                "user_id"
+            ]
+        }
     }
 }

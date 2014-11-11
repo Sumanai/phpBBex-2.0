@@ -294,4 +294,7 @@ define('WARNINGS_TABLE',			$table_prefix . 'warnings');
 define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
+// phpBBex tables
+define('USER_CONFIRM_KEYS_TABLE',		$table_prefix . 'user_confirm_keys');
+
 // Additional tables

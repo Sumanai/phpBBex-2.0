@@ -1,1 +1,8 @@
-
+-- General scheme updates
+CREATE TABLE phpbb_user_confirm_keys (
+	confirm_key varchar(10) NOT NULL,
+	user_id mediumint(8) UNSIGNED NOT NULL,
+	confirm_time int(11) UNSIGNED NOT NULL,
+	PRIMARY KEY  (confirm_key),
+	KEY user_id (user_id)
+) CHARACTER SET `utf8` COLLATE `utf8_bin`;
