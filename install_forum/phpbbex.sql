@@ -28,5 +28,15 @@ UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';
 DELETE FROM phpbb_users WHERE username='Aport [Bot]';
 DELETE FROM phpbb_bots WHERE bot_name='Aport [Bot]';
 
+-- Reset CAPTCHA options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_plugin', 'phpbb_captcha_nogd');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_foreground_noise', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_x_grid', '25');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_y_grid', '25');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_wave', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_3d_noise', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_fonts', '1');
+
  -- phpBBex extension
 REPLACE INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');
