@@ -32,6 +32,7 @@ class acp_icons
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		global $request, $phpbb_container;
 
+		$user->add_lang('posting');
 		$user->add_lang('acp/posting');
 
 		// Set up general vars
@@ -925,7 +926,7 @@ class acp_icons
 				'WIDTH'			=> $row[$fields . '_width'],
 				'HEIGHT'		=> $row[$fields . '_height'],
 				'CODE'			=> (isset($row['code'])) ? $row['code'] : '',
-				'EMOTION'		=> (isset($row['emotion'])) ? $row['emotion'] : '',
+				'EMOTION'		=> (isset($row['emotion'])) ? $user->lang($row['emotion']) : '',
 				'U_EDIT'		=> $this->u_action . '&amp;action=edit&amp;id=' . $row[$fields . '_id'],
 				'U_DELETE'		=> $this->u_action . '&amp;action=delete&amp;id=' . $row[$fields . '_id'],
 				'U_MOVE_UP'		=> $this->u_action . '&amp;action=move_up&amp;id=' . $row[$fields . '_id'] . '&amp;start=' . $pagination_start,
