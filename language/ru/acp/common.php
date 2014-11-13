@@ -697,7 +697,7 @@ $lang = array_merge($lang, array(
 	'LOG_REASON_REMOVED'	=> '<strong>Удалена причина жалобы/отклонения</strong><br />» %s',
 	'LOG_REASON_UPDATED'	=> '<strong>Обновлена причина жалобы/отклонения</strong><br />» %s',
 
-	'LOG_REFERER_INVALID'		=> '<strong>Проверка рефёрера не удалась </strong><br />»Рефёрер: “<em>%1$s</em>”. Запрос был отклонён, сессия удалена.',
+	'LOG_REFERER_INVALID'		=> '<strong>Проверка реферера не удалась </strong><br />»Реферер: “<em>%1$s</em>”. Запрос был отклонён, сессия удалена.',
 	'LOG_RESET_DATE'			=> '<strong>Сброшена дата запуска конференции</strong>',
 	'LOG_RESET_ONLINE'			=> '<strong>Сброшен рекорд посещаемости</strong>',
 	'LOG_RESYNC_FILES_STATS'	=> '<strong>Синхронизирована статистика вложений</strong>',
