@@ -8,6 +8,8 @@ CREATE TABLE phpbb_user_confirm_keys (
 ) CHARACTER SET `utf8` COLLATE `utf8_bin`;
 
 -- New phpBBex options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 

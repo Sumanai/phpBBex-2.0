@@ -45,7 +45,7 @@ $lang = array_merge($lang, array(
 	'ALREADY_DELETED'			=> 'Sorry but this message is already deleted.',
 	'ATTACH_DISK_FULL'			=> 'There is not enough free disk space to post this attachment.',
 	'ATTACH_QUOTA_REACHED'		=> 'Sorry, the board attachment quota has been reached.',
-	'ATTACH_SIG'				=> 'Attach a signature (signatures can be altered via the UCP)',
+	'ATTACH_SIG'				=> 'Attach a signature',
 
 	'BBCODE_A_HELP'				=> 'Inline uploaded attachment: [attachment=]filename.ext[/attachment]',
 	'BBCODE_B_HELP'				=> 'Bold text: [b]text[/b]',
@@ -249,6 +249,7 @@ $lang = array_merge($lang, array(
 	'TOO_MANY_CHARS_LIMIT'		=> array(
 		2	=> 'The maximum number of allowed characters is %1$d.',
 	),
+	'TOO_MANY_IMGS'				=> 'Your message contains too many images. The maximum number of images allowed is %d.',
 	'TOO_MANY_POLL_OPTIONS'		=> 'You have tried to enter too many poll options.',
 	'TOO_MANY_SMILIES'			=> 'Your message contains too many smilies. The maximum number of smilies allowed is %d.',
 	'TOO_MANY_URLS'				=> 'Your message contains too many URLs. The maximum number of URLs allowed is %d.',

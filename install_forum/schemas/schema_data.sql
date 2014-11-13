@@ -280,6 +280,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '144
 # New phpBBex options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 
 # Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);
