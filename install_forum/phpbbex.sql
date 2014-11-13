@@ -11,5 +11,10 @@ CREATE TABLE phpbb_user_confirm_keys (
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
+-- Update YandexBot UA and remove Aport [Bot]
+UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';
+DELETE FROM phpbb_users WHERE username='Aport [Bot]';
+DELETE FROM phpbb_bots WHERE bot_name='Aport [Bot]';
+
  -- phpBBex extension
 REPLACE INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');
