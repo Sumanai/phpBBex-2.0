@@ -281,15 +281,6 @@ a:hover	{ color: #D31141; }
 	background-color: transparent;
 }
 
-/* Back to top of page */
-a.top {
-	background-image: url("./images/icon_back_top.gif");
-}
-
-a.top2 {
-	background-image: url("./images/icon_back_top.gif");
-}
-
 /* Arrow links  */
 a.arrow-up			{ background-image: url("./images/arrow_up.gif"); }
 a.arrow-down		{ background-image: url("./images/arrow_down.gif"); }

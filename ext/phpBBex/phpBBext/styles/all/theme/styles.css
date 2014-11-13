@@ -1,0 +1,14 @@
+/* Hide back to top buttons
+----------------------------------------*/
+.back2top, a.top, a.top2 {
+	display: none;
+}
+
+ .content dl.faq {
+	margin: 1em;
+ }
+
+ .postprofile {
+	margin: 0;
+	padding: 5px 0;
+}
