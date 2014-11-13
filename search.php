@@ -1017,7 +1017,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					'POST_AUTHOR'			=> get_username_string('username', $row['poster_id'], $row['username'], $row['user_colour'], $row['post_username']),
 					'U_POST_AUTHOR'			=> get_username_string('profile', $row['poster_id'], $row['username'], $row['user_colour'], $row['post_username']),
 
-					'POST_SUBJECT'		=> $row['post_subject'],
+					'POST_SUBJECT'		=> (!empty($row['post_subject'])) ? $row['post_subject'] : 'Re: ' . $topic_title,
 					'POST_DATE'			=> (!empty($row['post_time'])) ? $user->format_date($row['post_time']) : '',
 					'MESSAGE'			=> $row['post_text']
 				);
