@@ -818,6 +818,7 @@ if (!empty($topic_data['poll_start']))
 					'topic_id'			=> (int) $topic_id,
 					'poll_option_id'	=> (int) $option,
 					'vote_user_id'		=> (int) $user->data['user_id'],
+					'vote_time'			=> (int) time(),
 					'vote_user_ip'		=> (string) $user->ip,
 				);
 
@@ -901,9 +902,53 @@ if (!empty($topic_data['poll_start']))
 
 	$topic_data['poll_title'] = generate_text_for_display($topic_data['poll_title'], $poll_info[0]['bbcode_uid'], $poll_info[0]['bbcode_bitfield'], $parse_flags, true);
 
+	// Get poll voters
+	if($topic_data['poll_show_voters'])
+	{
+		$sql = '
+			SELECT u.user_id, u.username, u.user_colour, pv.poll_option_id, pv.vote_time
+			FROM ' . POLL_VOTES_TABLE . ' pv, ' . USERS_TABLE . ' u
+			WHERE pv.topic_id = ' . $topic_id . '
+				AND pv.vote_user_id = u.user_id
+			ORDER BY pv.vote_time ASC, pv.vote_user_id ASC';
+		$result = $db->sql_query($sql);
+
+		$voters = array();
+		$votes = array();
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$voters[(int)$row['user_id']] = true;
+			$votes[(int)$row['poll_option_id']][] = $row;
+		}
+		$voters_total = count($voters);
+		unset($voters);
+		$db->sql_freeresult($result);
+
+		foreach ($poll_info as &$option)
+		{
+			$option['poll_option_voters'] = '';
+			if (empty($votes[(int)$option['poll_option_id']])) continue;
+			foreach ($votes[(int)$option['poll_option_id']] as $vote)
+			{
+				$option['poll_option_voters'] .= ', ' . get_username_string('full', $vote['user_id'], $vote['username'], $vote['user_colour'], $vote['username'], false, $vote['vote_time'] ? $user->format_date($vote['vote_time']) : '');
+			}
+			$option['poll_option_voters'] = ltrim($option['poll_option_voters'], ', ');
+		}
+		unset($option);
+	}
+	else
+	{
+		$sql = 'SELECT COUNT(DISTINCT vote_user_id) as count
+			FROM ' . POLL_VOTES_TABLE . '
+			WHERE topic_id = ' . $topic_id;
+		$result = $db->sql_query($sql);
+		$voters_total = (int) $db->sql_fetchfield('count');
+		$db->sql_freeresult($result);
+	}
+
 	foreach ($poll_info as $poll_option)
 	{
-		$option_pct = ($poll_total > 0) ? $poll_option['poll_option_total'] / $poll_total : 0;
+		$option_pct = ($voters_total > 0) ? $poll_option['poll_option_total'] / $voters_total : 0;
 		$option_pct_txt = sprintf("%.1d%%", round($option_pct * 100));
 		$option_pct_rel = ($poll_most > 0) ? $poll_option['poll_option_total'] / $poll_most : 0;
 		$option_pct_rel_txt = sprintf("%.1d%%", round($option_pct_rel * 100));
@@ -917,6 +962,7 @@ if (!empty($topic_data['poll_start']))
 			'POLL_OPTION_PERCENT_REL' 	=> $option_pct_rel_txt,
 			'POLL_OPTION_PCT'			=> round($option_pct * 100),
 			'POLL_OPTION_WIDTH'     	=> round($option_pct * 250),
+			'POLL_OPTION_VOTERS' 	=> isset($poll_option['poll_option_voters']) ? $poll_option['poll_option_voters'] : '',
 			'POLL_OPTION_VOTED'			=> (in_array($poll_option['poll_option_id'], $cur_voted_id)) ? true : false,
 			'POLL_OPTION_MOST_VOTES'	=> $option_most_votes,
 		));
@@ -927,6 +973,7 @@ if (!empty($topic_data['poll_start']))
 	$template->assign_vars(array(
 		'POLL_QUESTION'		=> $topic_data['poll_title'],
 		'TOTAL_VOTES' 		=> $poll_total,
+		'TOTAL_VOTERS' 		=> $voters_total,
 		'POLL_LEFT_CAP_IMG'	=> $user->img('poll_left'),
 		'POLL_RIGHT_CAP_IMG'=> $user->img('poll_right'),
 
@@ -938,6 +985,7 @@ if (!empty($topic_data['poll_start']))
 		'S_DISPLAY_RESULTS'	=> $s_display_results,
 		'S_IS_MULTI_CHOICE'	=> ($topic_data['poll_max_options'] > 1) ? true : false,
 		'S_POLL_ACTION'		=> $viewtopic_url,
+		'S_SHOW_VOTERS'		=> ($topic_data['poll_show_voters']) ? true : false,
 
 		'U_VIEW_RESULTS'	=> $viewtopic_url . '&amp;view=viewpoll',
 	));

@@ -11,6 +11,12 @@ CREATE TABLE phpbb_user_confirm_keys (
 ALTER TABLE phpbb_bbcodes
 	ADD COLUMN bbcode_order smallint(4) DEFAULT '0' NOT NULL AFTER bbcode_id;
 
+ALTER TABLE phpbb_poll_votes
+	ADD COLUMN vote_time int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER vote_user_id;
+
+ALTER TABLE phpbb_topics
+	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change;
+
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');

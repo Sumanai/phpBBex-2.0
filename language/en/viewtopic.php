@@ -108,6 +108,7 @@ $lang = array_merge($lang, array(
 
 	'TOPIC_TOOLS'			=> 'Topic tools',
 	'TOTAL_VOTES'			=> 'Total votes',
+	'TOTAL_VOTERS'			=> 'Total voters',
 
 	'UNLOCK_TOPIC'			=> 'Unlock topic',
 

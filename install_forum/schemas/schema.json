@@ -1545,6 +1545,10 @@
                 "UINT",
                 0
             ],
+            "vote_time": [
+                "TIMESTAMP",
+                0
+            ],
             "vote_user_ip": [
                 "VCHAR:40",
                 ""
@@ -2784,6 +2788,10 @@
                 0
             ],
             "poll_vote_change": [
+                "BOOL",
+                0
+            ],
+            "poll_show_voters": [
                 "BOOL",
                 0
             ],

@@ -110,6 +110,7 @@ $lang = array_merge($lang, array(
 
 	'TOPIC_TOOLS'			=> 'Управление темой',
 	'TOTAL_VOTES'			=> 'Всего голосов',
+	'TOTAL_VOTERS'			=> 'Всего проголосовавших',
 
 	'UNLOCK_TOPIC'			=> 'Открыть тему',
 
