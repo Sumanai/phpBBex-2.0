@@ -11,9 +11,9 @@ span.imageset {
 
 /* Global imageset items */
 .imageset.site_logo {
-	background-image: url("./images/site_logo.gif");
-	padding-left: 149px;
-	padding-top: 52px;
+	background-image: url("./images/site_logo.png");
+	padding-left: 224px;
+	padding-top: 67px;
 }
 .imageset.forum_link {
 	background-image: url("./images/forum_link.gif");

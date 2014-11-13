@@ -205,7 +205,6 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 .logo {
 	float: left;
 	width: auto;
-	padding: 10px 13px 0 10px;
 }
 
 .logo:hover {
