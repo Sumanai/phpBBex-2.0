@@ -204,6 +204,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_num_search_key
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_pass_chars', '100');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_poll_options', '10');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_chars', '60000');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_font_size', '200');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_img_height', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_img_width', '0');
@@ -212,7 +213,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_urls', '0
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_quote_depth', '3');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_reg_attempts', '5');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_chars', '255');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '200');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_img_height', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_img_width', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_smilies', '0');

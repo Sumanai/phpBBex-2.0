@@ -21,6 +21,10 @@ ALTER TABLE phpbb_topics
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_font_size', '200');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
 -- Update YandexBot UA and remove Aport [Bot]

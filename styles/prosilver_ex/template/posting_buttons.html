@@ -55,17 +55,15 @@
 	<!-- IF S_BBCODE_FLASH -->
 		<input type="button" class="button2 bbcode-flash" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
 	<!-- ENDIF -->
-	<select name="addbbcode20" class="bbcode-size" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
-		<option value="50">{L_FONT_TINY}</option>
-		<option value="85">{L_FONT_SMALL}</option>
-		<option value="100" selected="selected">{L_FONT_NORMAL}</option>
-		<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 -->
-			<option value="150">{L_FONT_LARGE}</option>
-			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 -->
-				<option value="200">{L_FONT_HUGE}</option>
-			<!-- ENDIF -->
-		<!-- ENDIF -->
-	</select>
+	<!-- IF MIN_FONT_SIZE != 100 or MAX_FONT_SIZE != 100 -->
+		<select name="addbbcode20" class="bbcode-size" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
+			<!-- IF not MIN_FONT_SIZE or MIN_FONT_SIZE <= 50 --><option value="50">{L_FONT_TINY}</option><!-- ENDIF -->
+			<!-- IF not MIN_FONT_SIZE or MIN_FONT_SIZE <= 85 --><option value="85">{L_FONT_SMALL}</option><!-- ENDIF -->
+			<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 --><option value="150">{L_FONT_LARGE}</option><!-- ENDIF -->
+			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 --><option value="200">{L_FONT_HUGE}</option><!-- ENDIF -->
+		</select>
+	<!-- ENDIF -->
 	<input type="button" class="button2 bbcode-color" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
 	<!-- BEGIN custom_tags -->
 		<input type="button" class="button2 bbcode-{custom_tags.BBCODE_TAG_CLEAN}" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
