@@ -279,6 +279,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '144
 
 # New phpBBex options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
 # Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);
@@ -716,6 +717,9 @@ INSERT INTO phpbb_reports_reasons (reason_title, reason_description, reason_orde
 INSERT INTO phpbb_reports_reasons (reason_title, reason_description, reason_order) VALUES ('spam', '{L_REPORT_SPAM}', 2);
 INSERT INTO phpbb_reports_reasons (reason_title, reason_description, reason_order) VALUES ('off_topic', '{L_REPORT_OFF_TOPIC}', 3);
 INSERT INTO phpbb_reports_reasons (reason_title, reason_description, reason_order) VALUES ('other', '{L_REPORT_OTHER}', 4);
+
+# -- phpBBex extension
+INSERT INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');
 
 # -- extension_groups
 INSERT INTO phpbb_extension_groups (group_name, cat_id, allow_group, download_mode, upload_icon, max_filesize, allowed_forums) VALUES ('IMAGES', 1, 1, 1, '', 0, '');

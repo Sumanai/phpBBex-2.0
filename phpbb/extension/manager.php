@@ -595,4 +595,15 @@ class manager
 		}
 		return $finder;
 	}
+
+	/**
+	* Getting the style name of the last user
+	* phpBBex
+	*
+	* @return string
+	*/
+	public function get_style_name()
+	{
+		return $this->user->style['style_name'];
+	}
 }

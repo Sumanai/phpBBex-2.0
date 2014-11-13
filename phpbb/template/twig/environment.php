@@ -202,4 +202,15 @@ class environment extends \Twig_Environment
 			return parent::getLoader()->getCacheKey($name);
 		}
 	}
+
+	/**
+	* Getting the style name of the last user
+	* phpBBex
+	*
+	* @return string
+	*/
+	public function get_style_name()
+	{
+		return $this->extension_manager->get_style_name();
+	}
 }

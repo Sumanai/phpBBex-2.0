@@ -1,0 +1,26 @@
+{
+    "name": "phpBBex/phpBBext",
+    "type": "phpbb-extension",
+    "description": "Adding support for third party styles in the phpBBex",
+    "homepage": "http://phpbbex.com/",
+    "version": "1.0.0",
+    "keywords": ["phpBBex"],
+    "time": "2014-11-11",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Sumanai",
+            "homepage": "http://phpbbex.com/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "extra": {
+        "display-name": "phpBBext",
+        "soft-require": {
+		    "phpbb/phpbb": "3.1.*"
+        }
+    }
+}

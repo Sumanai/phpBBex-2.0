@@ -9,3 +9,7 @@ CREATE TABLE phpbb_user_confirm_keys (
 
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
+
+ -- phpBBex extension
+REPLACE INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');

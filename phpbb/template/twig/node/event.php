@@ -47,6 +47,11 @@ class event extends \Twig_Node
 		{
 			$ext_namespace = str_replace('/', '_', $ext_namespace);
 
+			if ($this->environment->get_style_name() === 'prosilverEx' and $ext_namespace === 'phpBBex_phpBBext')
+			{
+				 continue;
+			}
+
 			if (defined('DEBUG'))
 			{
 				// If debug mode is enabled, lets check for new/removed EVENT
