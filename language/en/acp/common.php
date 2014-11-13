@@ -793,3 +793,9 @@ $lang = array_merge($lang, array(
 	'LOG_EXT_DISABLE'	=> '<strong>Extension disabled</strong><br />» %s',
 	'LOG_EXT_PURGE'		=> '<strong>Extension’s data deleted</strong><br />» %s',
 ));
+
+// Custom BBCode Sorting
+$lang = array_merge($lang, array(
+	'SHOW_BUTTON'		=> 'Button',
+));
+

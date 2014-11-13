@@ -334,6 +334,10 @@
                 "USINT",
                 0
             ],
+            "bbcode_order": [
+                "TINT:4",
+                0
+            ],
             "bbcode_tag": [
                 "VCHAR:16",
                 ""

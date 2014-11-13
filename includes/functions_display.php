@@ -1009,7 +1009,7 @@ function display_custom_bbcodes()
 		'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline',
 		'FROM'		=> array(BBCODES_TABLE => 'b'),
 		'WHERE'		=> 'b.display_on_posting = 1',
-		'ORDER_BY'	=> 'b.bbcode_tag',
+		'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_tag',
 	);
 
 	/**

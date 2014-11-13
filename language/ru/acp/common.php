@@ -795,3 +795,8 @@ $lang = array_merge($lang, array(
 	'LOG_EXT_DISABLE'	=> '<strong>Расширение отключено</strong><br />» %s',
 	'LOG_EXT_PURGE'		=> '<strong>Удалены данные расширения</strong><br />» %s',
 ));
+
+// Custom BBCode Sorting
+$lang = array_merge($lang, array(
+	'SHOW_BUTTON'		=> 'Кнопка',
+));

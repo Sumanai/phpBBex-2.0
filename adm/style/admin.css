@@ -880,9 +880,13 @@ table.forums td.folder {
 
 table td.actions {
 	vertical-align: middle;
-	width: 100px;
+	width: 120px;
 	text-align: center;
 	white-space: nowrap;
+}
+
+table td.on-posting {
+	width: 100px;
 }
 
 table tr:first-child td.actions .up, table tr:last-child td.actions .down {
