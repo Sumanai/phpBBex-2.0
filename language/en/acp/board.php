@@ -79,6 +79,9 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
 
+	'STYLE_SETTINGS_MINIPROFILE'		=> 'Mini profile',
+	'STYLE_MP_ON_LEFT'					=> 'Profiles on left',
+
 	'AUTO'								=> 'Auto',
 	'ON_LEFT'							=> 'On Left',
 	'ON_RIGHT'							=> 'On Right',

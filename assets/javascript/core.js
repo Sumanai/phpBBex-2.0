@@ -944,6 +944,7 @@ phpbb.addAjaxCallback('alt_text', function() {
 phpbb.addAjaxCallback('toggle_link', function() {
 	var $anchor,
 		updateAll = $(this).data('update-all') ,
+		runsFunc = $(this).data('runs-func'),
 		toggleText,
 		toggleUrl,
 		toggleClass;
@@ -952,6 +953,10 @@ phpbb.addAjaxCallback('toggle_link', function() {
 		$anchor = $(updateAll);
 	} else {
 		$anchor = $(this);
+	}
+
+	if (runsFunc !== undefined  && runsFunc.length) {
+		RunsFuncByName(runsFunc);
 	}
 
 	$anchor.each(function() {
@@ -974,6 +979,30 @@ phpbb.addAjaxCallback('toggle_link', function() {
 		$this.parent().attr('class', toggleClass);
 	});
 });
+
+/**
+*Safely perform strictly defined functions by name
+*/
+var RunsFuncByName = function () {
+	var Library = {
+		// Switches mini profiles left or right
+		switchMP: function () {
+			var page_body = $('#page-body');
+			var mp_on_left = page_body.hasClass('mp-on-left');
+			if(mp_on_left) {
+				page_body.removeClass('mp-on-left');
+			} else {
+				page_body.addClass('mp-on-left');
+			}
+		},
+	};
+
+	return function (Name, Params) {
+		if (typeof (Library[Name]) == 'function') {
+			return Library[Name](Params);
+		};
+	};
+}();
 
 /**
 * Automatically resize textarea

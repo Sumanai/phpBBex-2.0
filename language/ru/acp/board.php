@@ -79,6 +79,10 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
 
+	'STYLE_SETTINGS_MINIPROFILE'		=> 'Минипрофиль',
+	'STYLE_MP_ON_LEFT'					=> 'Минипрофили по умолчанию слева',
+	'STYLE_MP_ON_LEFT_EXPLAIN'					=> 'Пользователи смогут выбрать для себя предпочитаемый способ отображения.',
+
 	'AUTO'								=> 'Авто',
 	'ON_LEFT'							=> 'Слева',
 	'ON_RIGHT'							=> 'Справа',

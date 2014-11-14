@@ -279,10 +279,13 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', '3.1.1')
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_expire_days', '90');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '14400');
 
-# New phpBBex options
+# New style options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
+
+# New phpBBex options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');

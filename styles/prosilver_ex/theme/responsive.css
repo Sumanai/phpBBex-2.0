@@ -433,12 +433,13 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 	position: inherit;
 }
 
-.postprofile, .postbody, .search .postbody {
+.postprofile, .postbody, .search .postbody, .mp-on-left .postprofile, .mp-on-left .postbody, .mp-on-left .search .postbody {
 	display: block;
 	width: auto;
 	float: none;
 	padding: 0;
 	min-height: 0;
+	position: inherit;
 }
 
 .post .postprofile {
@@ -489,8 +490,13 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 	top: 15px;
 }
 
-.online {
-	background-size: 40px;
+
+.online .postprofile:after, .mp-on-left .online .postprofile:after {
+	background-size: 40px auto;
+	height: 40px;
+	width: 40px;
+	top: 0;
+	right: 0;
 }
 
 /* Misc stuff

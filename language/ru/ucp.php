@@ -662,4 +662,7 @@ $lang = array_merge($lang, array(
 	'NO_MEMBER'		=> 'Нет членов группы',
 	'NO_PENDING'	=> 'Нет кандидатов в члены группы',
 	'NO_NONMEMBER'	=> 'Нет пустых групп',
+
+	'VIEW_MP_ON_LEFT'	=> 'Показывать минипрофили слева',
+	'MP_DEFAULT'	=> 'По умолчанию',
 ));

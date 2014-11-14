@@ -32,22 +32,25 @@ ALTER TABLE phpbb_topics
 
 ALTER TABLE phpbb_users
 	ADD COLUMN user_last_ip varchar(40) DEFAULT '' NOT NULL AFTER user_ip,
-	ADD COLUMN user_browser varchar(150) DEFAULT '' NOT NULL AFTER user_last_ip;
+	ADD COLUMN user_browser varchar(150) DEFAULT '' NOT NULL AFTER user_last_ip,
+	ADD COLUMN mp_on_left tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER user_post_sortby_dir;
 
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
-REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_font_size', '200');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
-REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
 -- Style options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
+
+-- Replace default phpBB config
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 
 -- Update YandexBot UA and remove Aport [Bot]
 UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';

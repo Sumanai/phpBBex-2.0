@@ -232,6 +232,7 @@ class ucp_prefs
 					'smilies'		=> request_var('smilies', (bool) $user->optionget('viewsmilies')),
 					'sigs'			=> request_var('sigs', (bool) $user->optionget('viewsigs')),
 					'avatars'		=> request_var('avatars', (bool) $user->optionget('viewavatars')),
+					'mp_on_left'		=> request_var('mp_on_left', (int) $user->data['mp_on_left']),
 					'wordcensor'	=> request_var('wordcensor', (bool) $user->optionget('viewcensors')),
 				);
 
@@ -268,6 +269,10 @@ class ucp_prefs
 							array('string', false, 1, 1),
 							array('match', false, '#(a|d)#'),
 						),
+						'mp_on_left'	=> array(
+							array('string', false, 1, 1),
+							array('match', false, '#(0|1|2)#'),
+						),
 					));
 
 					if (!check_form_key('ucp_prefs_view'))
@@ -295,6 +300,8 @@ class ucp_prefs
 							'user_topic_sortby_dir'		=> $data['topic_sd'],
 							'user_post_sortby_dir'		=> $data['post_sd'],
 
+							'mp_on_left'		=> $data['mp_on_left'],
+
 							'user_topic_show_days'	=> $data['topic_st'],
 							'user_post_show_days'	=> $data['post_st'],
 						);
@@ -315,7 +322,7 @@ class ucp_prefs
 							WHERE user_id = ' . $user->data['user_id'];
 						$db->sql_query($sql);
 
-						meta_refresh(3, $this->u_action);
+						meta_refresh(999, $this->u_action);
 						$message = $user->lang['PREFERENCES_UPDATED'] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
 						trigger_error($message);
 					}
@@ -374,6 +381,7 @@ class ucp_prefs
 					'S_SMILIES'			=> $data['smilies'],
 					'S_SIGS'			=> $data['sigs'],
 					'S_AVATARS'			=> $data['avatars'],
+					'S_MP_ON_LEFT'			=> $data['mp_on_left'],
 					'S_DISABLE_CENSORS'	=> $data['wordcensor'],
 
 					'S_CHANGE_CENSORS'		=> ($auth->acl_get('u_chgcensors') && $config['allow_nocensors']) ? true : false,

@@ -56,3 +56,46 @@
 	height: auto;
 	bottom: 0px;
 }
+
+/* Switch miniprofile
+---------------------------------------- */
+.icon-switch-mp-on-left { background-image: url("./../../../../../../styles/prosilver_ex/theme/images/icon_profiles_left.png"); }
+.icon-switch-mp-on-right { background-image: url("./../../../../../../styles/prosilver_ex/theme/images/icon_profiles_right.png"); }
+
+.mp-on-left div.postbody {
+	float: right;
+	width: 79%;
+}
+.mp-on-left .postprofile {
+	float: left;
+	width: 20%;
+	border-left: none;
+	border-right: 1px solid #FFF;
+}
+.mp-on-left .pm .postprofile {
+	border-left: none;
+	border-right: 1px solid #DDD;
+}
+.mp-on-left .postprofile dd, .mp-on-left .postprofile dt {
+	margin: 0 12px 0 0;
+}
+.mp-on-left .post.online {
+	background-image: none;
+}
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+	.mp-on-left div.postbody {
+		float: none;
+		width: auto;
+	}
+	.mp-on-left .postprofile {
+		float: none;
+		width: auto;
+		border-right: none;
+	}
+	.mp-on-left .pm .postprofile {
+		border-right: none;
+	}
+	.mp-on-left .postprofile dd, .mp-on-left .postprofile dt {
+		margin: 0;
+	}
+}

@@ -503,6 +503,27 @@ if ($config['allow_bookmarks'] && $user->data['is_registered'] && request_var('b
 	trigger_error($message);
 }
 
+// Profile side switch
+$mp_switch = (($user->data['mp_on_left'] == 0) ? $config['style_mp_on_left'] : (($user->data['mp_on_left'] == 1) ? 1:0));
+
+if ($user->data['is_registered'] && $request->is_set('mp_switch'))
+{
+	$mp_on_left = request_var('mp_switch', 0);
+	$sql = 'UPDATE ' . USERS_TABLE . ' SET mp_on_left = ' . (int) (($mp_on_left < 3)? $mp_on_left : 0) . ' WHERE user_id = ' . (int) $user->data['user_id'];
+	$db->sql_query($sql);
+
+	$message = ($mp_switch? $user->lang['MP_ON_RIGHT'] : $user->lang['MP_ON_LEFT']);
+
+	if (!$request->is_ajax())
+	{
+		$message .= '<br /><br />' . $user->lang('RETURN_TOPIC', '<a href="' . $viewtopic_url . '">', '</a>');
+	}
+
+	meta_refresh(3, $viewtopic_url);
+
+	trigger_error($message);
+}
+
 // Grab ranks
 $ranks = $cache->obtain_ranks();
 
@@ -709,8 +730,13 @@ $template->assign_vars(array(
 
 	'U_POST_NEW_TOPIC' 		=> ($auth->acl_get('f_post', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=post&amp;f=$forum_id") : '',
 	'U_POST_REPLY_TOPIC' 	=> ($auth->acl_get('f_reply', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id") : '',
-	'U_BUMP_TOPIC'			=> (bump_topic_allowed($forum_id, $topic_data['topic_bumped'], $topic_data['topic_last_post_time'], $topic_data['topic_poster'], $topic_data['topic_last_poster_id'])) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=bump&amp;f=$forum_id&amp;t=$topic_id&amp;hash=" . generate_link_hash("topic_$topic_id")) : '')
-);
+	'U_BUMP_TOPIC'			=> (bump_topic_allowed($forum_id, $topic_data['topic_bumped'], $topic_data['topic_last_post_time'], $topic_data['topic_poster'], $topic_data['topic_last_poster_id'])) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=bump&amp;f=$forum_id&amp;t=$topic_id&amp;hash=" . generate_link_hash("topic_$topic_id")) : '',
+
+	'U_SWITCH_MP'							=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch='  . ($mp_switch?'2' : '1')),
+	'U_SWITCH_MP_TOGGLE'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch=' . (($mp_switch)?'1':'2')),
+	'S_SWITCH_MP'							=> ($mp_switch)?$user->lang['MP_ON_RIGHT']:$user->lang['MP_ON_LEFT'],
+	'S_SWITCH_MP_TOGGLE'		=> ($mp_switch)?$user->lang['MP_ON_LEFT']:$user->lang['MP_ON_RIGHT'],
+));
 
 // Does this topic contain a poll?
 if (!empty($topic_data['poll_start']))
@@ -2177,6 +2203,8 @@ $page_title = $topic_data['topic_title'] . ($start ? ' - ' . sprintf($user->lang
 */
 $vars = array('page_title', 'topic_data', 'forum_id', 'start', 'post_list');
 extract($phpbb_dispatcher->trigger_event('core.viewtopic_modify_page_title', compact($vars)));
+
+
 
 // Output the page
 page_header($page_title, true, $forum_id);

@@ -111,6 +111,14 @@
 		<dd><label><input type="radio" class="radio" name="view_avatars" value="1"<!-- IF VIEW_AVATARS --> id="view_avatars" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 			<label><input type="radio" class="radio" name="view_avatars" value="0"<!-- IF not VIEW_AVATARS --> id="view_avatars" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
 	</dl>
+	<dl>
+		<dt><label for="mp_on_left0">{L_VIEW_MP_ON_LEFT}{L_COLON}</label></dt>
+		<dd>
+			<label for="mp_on_left1"><input type="radio" name="mp_on_left" id="mp_on_left1" value="1"<!-- IF S_MP_ON_LEFT == 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="mp_on_left2"><input type="radio" name="mp_on_left" id="mp_on_left2" value="2"<!-- IF S_MP_ON_LEFT == 2 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label for="mp_on_left0"><input type="radio" name="mp_on_left" id="mp_on_left0" value="0"<!-- IF S_MP_ON_LEFT == 0 --> checked="checked"<!-- ENDIF --> /> {L_MP_DEFAULT}</label>
+		</dd>
+	</dl>
 	<dl> 
 		<dt><label for="view_wordcensor">{L_DISABLE_CENSORS}{L_COLON}</label></dt>
 		<dd><label><input type="radio" class="radio" name="view_wordcensor" value="1"<!-- IF VIEW_WORDCENSOR --> id="view_wordcensor" checked="checked"<!-- ENDIF --> /> {L_YES}</label>

@@ -698,6 +698,7 @@ fieldset.polls dd div {
 	width: 22%;
 	float: right;
 	display: inline;
+	position: relative;
 }
 
 .postprofile dd, .postprofile dt {
@@ -760,11 +761,20 @@ dd.profile-contact {
 	margin-right: -14px;
 }
 
-.online {
-	background-image: none;
-	background-position: 100% 0;
-	background-repeat: no-repeat;
+.online .postprofile:after {
+	content: '';
+	background-image: url("./en/icon_user_online.gif");
+	position: absolute;
+	right: -10px;
+	top: -5px;
+	height: 58px;
+	width: 58px;
 }
+
+html[lang="ru"] .online .postprofile:after {
+	background-image: url("./ru/icon_user_online.gif");
+}
+
 
 /* Poster profile used by search*/
 .search .postprofile {
@@ -841,4 +851,35 @@ table.fixed-width-table {
 .postbody .content::-webkit-scrollbar-thumb, #topicreview::-webkit-scrollbar-thumb, #post_details::-webkit-scrollbar-thumb, .codebox code::-webkit-scrollbar-thumb, .attachbox dd::-webkit-scrollbar-thumb, .attach-image::-webkit-scrollbar-thumb, .dropdown-extended ul::-webkit-scrollbar-thumb {
 	background: rgba(0, 0, 0, .3);
 	border-radius: 3px;
+}
+
+/* Profiles on left
+---------------------------------------- */
+.mp-on-left .attachbox {
+	clear: right;
+}
+
+.mp-on-left .postbody {
+	float: right;
+}
+
+.mp-on-left .postprofile {
+	border-right: 1px solid #FFFFFF;
+	border-left: 0;
+	float: left;
+}
+
+.mp-on-left .pm .postprofile
+{
+	border-right: 1px solid #DDDDDD;
+	border-left: 0;
+}
+
+.mp-on-left .postprofile dd, .mp-on-left .postprofile dt {
+	margin-left: 0;
+}
+
+.mp-on-left .online .postprofile:after {
+	right: 0;
+	top: -5px;
 }

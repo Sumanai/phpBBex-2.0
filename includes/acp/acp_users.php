@@ -1477,6 +1477,7 @@ class acp_users
 					'view_smilies'		=> request_var('view_smilies', $this->optionget($user_row, 'viewsmilies')),
 					'view_sigs'			=> request_var('view_sigs', $this->optionget($user_row, 'viewsigs')),
 					'view_avatars'		=> request_var('view_avatars', $this->optionget($user_row, 'viewavatars')),
+					'mp_on_left'		=> request_var('mp_on_left', (int) $user_row['mp_on_left']),
 					'view_wordcensor'	=> request_var('view_wordcensor', $this->optionget($user_row, 'viewcensors')),
 
 					'bbcode'	=> request_var('bbcode', $this->optionget($user_row, 'bbcode')),
@@ -1545,6 +1546,8 @@ class acp_users
 							'user_post_sortby_type'		=> $data['post_sk'],
 							'user_topic_sortby_dir'		=> $data['topic_sd'],
 							'user_post_sortby_dir'		=> $data['post_sd'],
+
+							'mp_on_left'						=> $data['mp_on_left'],
 
 							'user_topic_show_days'	=> $data['topic_st'],
 							'user_post_show_days'	=> $data['post_st'],
@@ -1692,6 +1695,7 @@ class acp_users
 					'S_POST_SORT_KEY'		=> $s_sort_post_key,
 					'S_POST_SORT_DIR'		=> $s_sort_post_dir,
 
+					'S_MP_ON_LEFT'			=> $data['mp_on_left'],
 					'DATE_FORMAT'			=> $data['dateformat'],
 					'S_DATEFORMAT_OPTIONS'	=> $dateformat_options,
 					'S_CUSTOM_DATEFORMAT'	=> $s_custom,

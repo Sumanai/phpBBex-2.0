@@ -124,4 +124,6 @@ $lang = array_merge($lang, array(
 	'VOTE_SUBMITTED'		=> 'Your vote has been cast.',
 	'VOTE_CONVERTED'		=> 'Changing votes is not supported for converted polls.',
 
+	'MP_ON_LEFT'		=> 'Profiles on left',
+	'MP_ON_RIGHT'		=> 'Profiles on right',
 ));

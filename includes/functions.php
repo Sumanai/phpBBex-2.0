@@ -5131,6 +5131,10 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		$template->assign_var(strtoupper($setting), !empty($config[$setting]) ? $config[$setting] : false);
 	}
 
+	$template->assign_vars(array(
+		'STYLE_MP_ON_LEFT'				=> (($user->data['mp_on_left'] == 0) ? $config['style_mp_on_left'] : (($user->data['mp_on_left'] == 1) ? 1:0)),
+	));
+
 	// An array of http headers that phpbb will set. The following event may override these.
 	$http_headers = array(
 		// application/xhtml+xml not used because of IE
