@@ -1609,6 +1609,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'poster_id'			=> (int) $user->data['user_id'],
 				'icon_id'			=> $data['icon_id'],
 				'poster_ip'			=> $user->ip,
+				'poster_browser_id'	=> request_var($config['cookie_name'] . '_bid', '', false, true),
 				'post_time'			=> $current_time,
 				'post_visibility'	=> $post_visibility,
 				'enable_bbcode'		=> $data['enable_bbcode'],

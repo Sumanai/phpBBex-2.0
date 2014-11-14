@@ -1596,6 +1596,10 @@
                 "VCHAR:40",
                 ""
             ],
+            "poster_browser_id": [
+                "CHAR:32",
+                ""
+            ],
             "post_time": [
                 "TIMESTAMP",
                 0
@@ -3395,5 +3399,41 @@
                 "user_id"
             ]
         }
+    },
+    "phpbb_user_browser_ids": {
+        "COLUMNS": {
+            "browser_id": [
+                "CHAR:32",
+                ""
+            ],
+            "user_id": [
+                "UINT",
+                0
+            ],
+            "created": [
+                "TIMESTAMP",
+                0
+            ],
+            "last_visit": [
+                "TIMESTAMP",
+                0
+            ],
+            "visits": [
+                "TIMESTAMP",
+                0
+            ],
+            "agent": [
+                "VCHAR:150",
+                ""
+            ],
+            "last_ip": [
+                "VCHAR:40",
+                ""
+            ]
+        },
+        "PRIMARY_KEY": [
+            "browser_id",
+            "user_id"
+        ]
     }
 }

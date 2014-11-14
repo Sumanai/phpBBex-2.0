@@ -7,12 +7,25 @@ CREATE TABLE phpbb_user_confirm_keys (
 	KEY user_id (user_id)
 ) CHARACTER SET `utf8` COLLATE `utf8_bin`;
 
+CREATE TABLE phpbb_user_browser_ids (
+	browser_id char(32) DEFAULT '' NOT NULL,
+	user_id mediumint(8) UNSIGNED NOT NULL,
+	created int(11) UNSIGNED DEFAULT '0' NOT NULL,
+	last_visit int(11) UNSIGNED DEFAULT '0' NOT NULL,
+	visits int(11) UNSIGNED DEFAULT '0' NOT NULL,
+	agent varchar(150) DEFAULT '' NOT NULL,
+	last_ip varchar(40) DEFAULT '' NOT NULL,
+	PRIMARY KEY (browser_id,user_id)
+) CHARACTER SET `utf8` COLLATE `utf8_bin`;
 
 ALTER TABLE phpbb_bbcodes
 	ADD COLUMN bbcode_order smallint(4) DEFAULT '0' NOT NULL AFTER bbcode_id;
 
 ALTER TABLE phpbb_poll_votes
 	ADD COLUMN vote_time int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER vote_user_id;
+
+ALTER TABLE phpbb_posts
+	ADD COLUMN poster_browser_id char(32) DEFAULT '' NOT NULL AFTER poster_ip;
 
 ALTER TABLE phpbb_topics
 	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change;
