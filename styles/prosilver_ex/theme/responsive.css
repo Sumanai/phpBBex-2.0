@@ -51,7 +51,8 @@ body {
 	padding: 10px;
 }
 
-#site-description h1, #site-description p {
+#site-description h1 {
+	display: block;
 	text-align: inherit;
 	float: none;
 	margin: 5px;

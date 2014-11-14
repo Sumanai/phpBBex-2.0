@@ -44,6 +44,9 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
+-- Style options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
+
 -- Update YandexBot UA and remove Aport [Bot]
 UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';
 DELETE FROM phpbb_users WHERE username='Aport [Bot]';

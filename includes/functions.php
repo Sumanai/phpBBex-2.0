@@ -5118,6 +5118,17 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'SITE_LOGO_IMG'			=> $user->img('site_logo'),
 	));
 
+	// Style settings
+	$settings = array(
+		// general
+		'style_show_sitename_in_headerbar',
+	);
+
+	foreach ($settings as $setting)
+	{
+		$template->assign_var(strtoupper($setting), !empty($config[$setting]) ? $config[$setting] : false);
+	}
+
 	// An array of http headers that phpbb will set. The following event may override these.
 	$http_headers = array(
 		// application/xhtml+xml not used because of IE

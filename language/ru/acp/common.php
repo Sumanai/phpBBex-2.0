@@ -175,6 +175,7 @@ $lang = array_merge($lang, array(
 	'ACP_SIGNATURE_SETTINGS'	=> 'Подписи',
 	'ACP_SMILIES'				=> 'Смайлики',
 	'ACP_STYLE_MANAGEMENT'		=> 'Управление стилями',
+	'ACP_STYLE_SETTINGS'		=> 'Настройки отображения',
 	'ACP_STYLES'				=> 'Стили',
 	'ACP_STYLES_CACHE'			=> 'Очистить кэш',
 	'ACP_STYLES_INSTALL'		=> 'Установить стили',

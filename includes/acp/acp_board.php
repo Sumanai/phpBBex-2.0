@@ -115,6 +115,17 @@ class acp_board
 				);
 			break;
 
+			case 'style':
+				$display_vars = array(
+					'title'	=> 'ACP_STYLE_SETTINGS',
+					'vars'	=> array(
+						'legend1'							=> 'STYLE_SETTINGS_GENERAL',
+						'style_show_sitename_in_headerbar'	=> array('lang' => 'STYLE_SHOW_SITENAME_IN_HEADERBAR',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'legend2'							=> 'ACP_SUBMIT_CHANGES',
+					)
+				);
+			break;
+
 			case 'avatar':
 				$phpbb_avatar_manager = $phpbb_container->get('avatar.manager');
 				$avatar_drivers = $phpbb_avatar_manager->get_all_drivers();

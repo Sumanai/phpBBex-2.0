@@ -69,6 +69,15 @@ $lang = array_merge($lang, array(
 	'WARNINGS_EXPIRE_EXPLAIN'		=> 'Количество дней, по истечении которых выданное пользователю предупреждение будет автоматически снято. Установите 0, чтобы сделать предупреждения бессрочными.',
 ));
 
+// Style Settings
+$lang = array_merge($lang, array(
+	'ACP_STYLE_SETTINGS_EXPLAIN'		=> 'Здесь вы можете настроить отображение различных блоков. Некоторые параметры могут не поддерживаться вашим шаблоном.',
+
+	'STYLE_SETTINGS_GENERAL'			=> 'Общие настройки',
+	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
+	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
+));
+
 // Board Features
 $lang = array_merge($lang, array(
 	'ACP_BOARD_FEATURES_EXPLAIN'	=> 'Здесь вы можете включать и отключать некоторые функциональные возможности конференции.',

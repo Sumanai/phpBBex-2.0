@@ -174,6 +174,7 @@ $lang = array_merge($lang, array(
 	'ACP_SIGNATURE_SETTINGS'	=> 'Signature settings',
 	'ACP_SMILIES'				=> 'Smilies',
 	'ACP_STYLE_MANAGEMENT'		=> 'Style management',
+	'ACP_STYLE_SETTINGS'		=> 'Display settings',
 	'ACP_STYLES'				=> 'Styles',
 	'ACP_STYLES_CACHE'			=> 'Purge Cache',
 	'ACP_STYLES_INSTALL'		=> 'Install Styles',

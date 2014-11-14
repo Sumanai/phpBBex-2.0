@@ -323,12 +323,6 @@ li.breadcrumbs span:first-child > a {
 	padding-right: 15px;
 }
 
-.rtl .skiplink {
-	/* invisible skip link, used for accessibility  */
-	left: 0;
-	right: -999px;
-}
-
 .rtl a.feed-icon-forum {
 	float: left;
 }

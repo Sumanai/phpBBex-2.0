@@ -66,9 +66,8 @@
 
 			<div id="site-description">
 				<a id="logo" class="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->">{SITE_LOGO_IMG}</a>
-				<h1>{SITENAME}</h1>
-				<p>{SITE_DESCRIPTION}</p>
-				<p class="skiplink"><a href="#start_here">{L_SKIP}</a></p>
+				<h1<!-- IF not STYLE_SHOW_SITENAME_IN_HEADERBAR --> class="hide-sitename"<!-- ENDIF -->>{SITENAME}</h1>
+				<!-- IF STYLE_SHOW_SITENAME_IN_HEADERBAR and SITE_DESCRIPTION --><p>{SITE_DESCRIPTION}</p><!-- ENDIF -->
 			</div>
 
 			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
