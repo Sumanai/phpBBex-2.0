@@ -3036,6 +3036,14 @@
                 "VCHAR:40",
                 ""
             ],
+            "user_last_ip": [
+                "VCHAR:40",
+                ""
+            ],
+            "user_browser": [
+                "VCHAR:150",
+                ""
+            ],
             "user_regdate": [
                 "TIMESTAMP",
                 0

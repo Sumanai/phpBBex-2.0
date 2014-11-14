@@ -60,7 +60,7 @@
 <div class="panel bg2">
 	<div class="inner">
 
-	<div class="column1">
+	<div class="column2">
 		<h3>{L_CONTACT_USER}</h3>
 
 		<dl class="details">
@@ -81,10 +81,17 @@
 			<!-- NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
 			<dt>{PROFILE_FIELD1_NAME}{L_COLON}</dt> <dd>{PROFILE_FIELD1_VALUE}</dd>
 		<!-- ENDIF -->
+		<!-- IF USER_AGENT and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_AGENT}:</dt> <dd>{USER_AGENT}</dd><!-- ENDIF -->
+		<!-- IF USER_LAST_IP and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_LAST_IP}:</dt> <dd>{USER_LAST_IP}</dd><!-- ENDIF -->
 		</dl>
+
+		<!-- IF SIGNATURE -->
+		<h3>{L_SIGNATURE}</h3>
+		<div class="postbody"><div class="signature" style="border-top:none; margin-top: 0;">{SIGNATURE}</div></div>
+		<!-- ENDIF -->
 	</div>
 
-	<div class="column2">
+	<div class="column1">
 		<h3>{L_USER_FORUM}</h3>
 		<dl class="details">
 			<!-- EVENT memberlist_view_user_statistics_before -->
@@ -110,18 +117,6 @@
 	</div>
 </div>
 <!-- EVENT memberlist_view_contact_after -->
-
-<!-- IF SIGNATURE -->
-<div class="panel bg1">
-	<div class="inner">
-
-		<h3>{L_SIGNATURE}</h3>
-
-		<div class="postbody"><div class="signature standalone">{SIGNATURE}</div></div>
-
-	</div>
-</div>
-<!-- ENDIF -->
 
 </form>
 

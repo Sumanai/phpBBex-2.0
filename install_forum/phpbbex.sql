@@ -17,6 +17,10 @@ ALTER TABLE phpbb_poll_votes
 ALTER TABLE phpbb_topics
 	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change;
 
+ALTER TABLE phpbb_users
+	ADD COLUMN user_last_ip varchar(40) DEFAULT '' NOT NULL AFTER user_ip,
+	ADD COLUMN user_browser varchar(150) DEFAULT '' NOT NULL AFTER user_last_ip;
+
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');

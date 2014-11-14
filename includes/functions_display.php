@@ -1611,6 +1611,9 @@ function phpbb_show_profile($data, $user_notes_enabled = false, $warn_user_enabl
 		'USER_JABBER'		=> $data['user_jabber'],
 		'USER_JABBER_IMG'	=> ($data['user_jabber']) ? $user->img('icon_contact_jabber', $data['user_jabber']) : '',
 
+		'USER_AGENT'		=> ($data['user_browser']) ? $data['user_browser'] : '',
+		'USER_LAST_IP'		=> ($data['user_last_ip']) ? $data['user_last_ip'] : '',
+
 		'L_SEND_EMAIL_USER' => $user->lang('SEND_EMAIL_USER', $username),
 		'L_CONTACT_USER'	=> $user->lang('CONTACT_USER', $username),
 		'L_VIEWING_PROFILE' => $user->lang('VIEWING_PROFILE', $username),
