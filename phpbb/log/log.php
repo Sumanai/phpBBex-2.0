@@ -273,6 +273,12 @@ class log implements \phpbb\log\log_interface
 					'log_type'		=> LOG_CRITICAL,
 					'log_data'		=> (!empty($additional_data)) ? serialize($additional_data) : '',
 				);
+
+			case 'register':
+				$sql_ary += array(
+					'log_type'		=> LOG_REGISTER,
+					'log_data'		=> (!empty($additional_data)) ? serialize($additional_data) : '',
+				);
 			break;
 		}
 
@@ -458,6 +464,11 @@ class log implements \phpbb\log\log_interface
 
 			case 'critical':
 				$log_type = LOG_CRITICAL;
+				$sql_additional = '';
+			break;
+
+			case 'register':
+				$log_type = LOG_REGISTER;
 				$sql_additional = '';
 			break;
 

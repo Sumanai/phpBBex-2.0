@@ -3248,6 +3248,7 @@ function add_log()
 	{
 		case 'admin':
 		case 'critical':
+		case 'register':
 		break;
 		case 'mod':
 			$additional_data['forum_id'] = array_shift($args);

@@ -157,6 +157,7 @@ $lang = array_merge($lang, array(
 	'ACP_RANKS'					=> 'Звания',
 	'ACP_REASONS'				=> 'Управление жалобами',
 	'ACP_REGISTER_SETTINGS'		=> 'Регистрация пользователей',
+	'ACP_REGISTER_LOGS'			=> 'Лог регистраций',
 
 	'ACP_RESTORE'				=> 'Восстановление',
 
@@ -254,7 +255,7 @@ $lang = array_merge($lang, array(
 	'GLOBAL_MASK'			=> 'Глобальная маска доступа',
 
 	'INSTALL'				=> 'Установить',
-	'IP'					=> 'IP-адрес пользователя',
+	'IP'					=> 'IP-адрес',
 	'IP_HOSTNAME'			=> 'IP-адреса или хосты',
 
 	'LOAD_NOTIFICATIONS'			=> 'Показывать уведомления',
@@ -327,6 +328,7 @@ $lang = array_merge($lang, array(
 	'ACP_CRITICAL_LOGS_EXPLAIN'	=> 'Это список действий, выполненных самой конференцией. Этот журнал предоставляет информацию, которую можно использовать для решения некоторых проблем. Например, с доставкой электронных сообщений. Вы можете сортировать список по имени пользователя, дате, IP-адресу или по действию. При наличии необходимых прав вы можете удалить отдельные записи или очистить весь лог целиком.',
 	'ACP_MOD_LOGS_EXPLAIN'		=> 'Это список всех действий, выполненных модераторами в форумах, темах и сообщениях. Вы можете сортировать список по имени пользователя, дате, IP-адресу или по действию. При наличии необходимых прав вы можете удалить отдельные записи или очистить весь лог целиком.',
 	'ACP_USERS_LOGS_EXPLAIN'	=> 'Это список действий, выполненных пользователями или над пользователями (жалобы, предупреждения и заметки о пользователях).',
+	'ACP_REGISTER_LOGS_EXPLAIN'	=> 'Это список всех попыток регистраций пользователей.',
 	'ALL_ENTRIES'				=> 'Все записи',
 
 	'DISPLAY_LOG'	=> 'Показать записи за',
@@ -530,6 +532,7 @@ $lang = array_merge($lang, array(
 	'LOG_CLEAR_MOD'			=> '<strong>Очищен лог модератора</strong>',
 	'LOG_CLEAR_USER'		=> '<strong>Очищен лог пользователя</strong><br />» %s',
 	'LOG_CLEAR_USERS'		=> '<strong>Очищены логи пользователей</strong>',
+	'LOG_CLEAR_REGISTER'	=> '<strong>Очищен лог регистраций</strong>',
 
 	'LOG_CONFIG_ATTACH'			=> '<strong>Изменены настройки вложений</strong>',
 	'LOG_CONFIG_AUTH'			=> '<strong>Изменены настройки аутентификации</strong>',
@@ -794,6 +797,10 @@ $lang = array_merge($lang, array(
 	'LOG_EXT_ENABLE'	=> '<strong>Расширение включено</strong><br />» %s',
 	'LOG_EXT_DISABLE'	=> '<strong>Расширение отключено</strong><br />» %s',
 	'LOG_EXT_PURGE'		=> '<strong>Удалены данные расширения</strong><br />» %s',
+
+	'LOG_REGISTER_OK'				=> '<strong style="color: green;">Пользователь зарегистрирован</strong><br /><strong>Имя:</strong> %1$s<br /><strong>Email:</strong> %2$s<br /><strong>User Agent:</strong> %5$s<br /><strong>ID браузера:</strong> %4$s<br /><strong>Первый запрос:</strong> %6$s секунд назад<br /><strong>Запрошено:</strong> %7$s страниц',
+	'LOG_REGISTER_REJECTED_BOT'		=> '<strong style="color: orange;">Регистрация бота отклонена</strong><br /><strong>Имя:</strong> %1$s<br /><strong>Email:</strong> %2$s<br /><strong>User Agent:</strong> %5$s<br /><strong>ID браузера:</strong> %4$s<br /><strong>Первый запрос:</strong> %6$s секунд назад<br /><strong>Запрошено:</strong> %7$s страниц<br /><strong>Ошибки:</strong><br />%3$s',
+	'LOG_REGISTER_REJECTED_USER'	=> '<strong style="color: red;">Регистрация пользователя отклонена</strong><br /><strong>Имя:</strong> %1$s<br /><strong>Email:</strong> %2$s<br /><strong>User Agent:</strong> %5$s<br /><strong>ID браузера:</strong> %4$s<br /><strong>Первый запрос:</strong> %6$s секунд назад<br /><strong>Запрошено:</strong> %7$s страниц<br /><strong>Ошибки:</strong><br />%3$s',
 ));
 
 // Custom BBCode Sorting
