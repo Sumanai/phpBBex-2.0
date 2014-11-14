@@ -75,6 +75,7 @@ $lang = array_merge($lang, array(
 
 	'STYLE_SETTINGS_GENERAL'			=> 'General',
 	'STYLE_BACK_TO_TOP'					=> '"Back to top" button',
+	'STYLE_MAX_WIDTH'					=> 'Maximum page width',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
 

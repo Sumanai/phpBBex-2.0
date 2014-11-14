@@ -75,6 +75,7 @@ $lang = array_merge($lang, array(
 
 	'STYLE_SETTINGS_GENERAL'			=> 'Общие настройки',
 	'STYLE_BACK_TO_TOP'					=> 'Кнопка «В начало страницы»',
+	'STYLE_MAX_WIDTH'					=> 'Максимальная ширина страницы',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
 
