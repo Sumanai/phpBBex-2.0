@@ -74,8 +74,13 @@ $lang = array_merge($lang, array(
 	'ACP_STYLE_SETTINGS_EXPLAIN'		=> 'Здесь вы можете настроить отображение различных блоков. Некоторые параметры могут не поддерживаться вашим шаблоном.',
 
 	'STYLE_SETTINGS_GENERAL'			=> 'Общие настройки',
+	'STYLE_BACK_TO_TOP'					=> 'Кнопка «В начало страницы»',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
+
+	'AUTO'								=> 'Авто',
+	'ON_LEFT'							=> 'Слева',
+	'ON_RIGHT'							=> 'Справа',
 ));
 
 // Board Features

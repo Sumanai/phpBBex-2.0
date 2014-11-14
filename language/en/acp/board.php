@@ -74,8 +74,13 @@ $lang = array_merge($lang, array(
 	'ACP_STYLE_SETTINGS_EXPLAIN'		=> 'Here you can enable/disable several style features.',
 
 	'STYLE_SETTINGS_GENERAL'			=> 'General',
+	'STYLE_BACK_TO_TOP'					=> '"Back to top" button',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
+
+	'AUTO'								=> 'Auto',
+	'ON_LEFT'							=> 'On Left',
+	'ON_RIGHT'							=> 'On Right',
 ));
 
 // Board Features

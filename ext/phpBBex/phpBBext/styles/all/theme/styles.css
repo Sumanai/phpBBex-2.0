@@ -16,3 +16,43 @@
  #format-buttons {
 	margin: 5px 0 2px;
  }
+
+/* Global back to top of page
+---------------------------------------- */
+#back-to-top {
+	display: none;
+	z-index: 10;
+	position: fixed;
+	top: 0;
+	margin: 15px;
+	padding: 0;
+	width: 24px;
+	height: 24px;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAZlBMVEUAAACEiY2SmJ2epKmjqq+lrLGor7SosLWpsbaqsbaqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbersrettLm6wMTDyc3O09bZ3d/q6+3x8vP5+fr8/f1nT312AAAAF3RSTlMAGiEnNEFPYGpxeoeUnqm1vdLk7vP4+0kZka8AAACySURBVHgBddDxboYgDATwAx36qVPBQZ3TMd7/JbcQSpDM359ccyVFIl+rJqeXXqLUvBOzUxEpS4VNIXnRnevSPNXcW1zLPYVNAMh7SyPQOGLXRcxKDMSOEL6I9Vgp2X0I/pOSGSYXhT+5TMPmoujgf3Gwf4fI7xQZrjpDcnLVQpHn4IeXD/SvvroI+xDA9HASyO3hiFCOKrZF1FWJVUjUrc20yMRk8/goUBLdrI3Rs+LnX+9DKZ4DVjilAAAAAElFTkSuQmCC") no-repeat;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+#back-to-top.on-left {
+	left: 0;
+}
+
+#back-to-top.on-right {
+	right: 0;
+}
+
+#back-to-top:hover {
+	opacity: 1.0;
+}
+
+#back-to-top.tower:hover {
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+#back-to-top.tower {
+	margin: 0;
+	padding: 15px;
+	background-position: center 15px;
+	height: auto;
+	bottom: 0px;
+}

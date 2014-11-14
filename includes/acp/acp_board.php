@@ -120,6 +120,7 @@ class acp_board
 					'title'	=> 'ACP_STYLE_SETTINGS',
 					'vars'	=> array(
 						'legend1'							=> 'STYLE_SETTINGS_GENERAL',
+						'style_back_to_top'					=> array('lang' => 'STYLE_BACK_TO_TOP',					'validate' => 'int',	'type' => 'custom', 'function' => 'h_radio', 'params' => array('config[style_back_to_top]', array(1 => 'ON_LEFT', 2 => 'ON_RIGHT', 0 => 'NO'), '{CONFIG_VALUE}', '{KEY}'), 'explain' => false),
 						'style_show_sitename_in_headerbar'	=> array('lang' => 'STYLE_SHOW_SITENAME_IN_HEADERBAR',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'legend2'							=> 'ACP_SUBMIT_CHANGES',
 					)
