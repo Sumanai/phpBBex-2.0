@@ -360,6 +360,12 @@ if (isset($_GET['e']) && $user->data['user_id'] == ANONYMOUS)
 	login_box(build_url('e') . '#unread', $user->lang['LOGIN_NOTIFY_TOPIC']);
 }
 
+// Recalc start position, should be after $user->setup()
+if ($start)
+{
+	$start = floor($start / $config['posts_per_page']) * $config['posts_per_page'];
+}
+
 // What is start equal to?
 if ($post_id)
 {

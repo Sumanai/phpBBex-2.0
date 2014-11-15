@@ -85,6 +85,12 @@ if (isset($_GET['e']) && !$user->data['is_registered'])
 	login_box('', $user->lang['LOGIN_NOTIFY_FORUM']);
 }
 
+// Recalc start position, should be after $user->setup()
+if ($start)
+{
+	$start = floor($start / $config['topics_per_page']) * $config['topics_per_page'];
+}
+
 // Permissions check
 if (!$auth->acl_gets('f_list', 'f_read', $forum_id) || ($forum_data['forum_type'] == FORUM_LINK && $forum_data['forum_link'] && !$auth->acl_get('f_read', $forum_id)))
 {
