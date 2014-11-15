@@ -94,7 +94,7 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 			$edit_user_info = get_user_information($message_row['message_edit_user'], false);
 			$display_username = get_username_string('full', $message_row['message_edit_user'], $edit_user_info['username'], $edit_user_info['user_colour']);
 		}
-		$l_edited_by = '<br /><br />' . $user->lang('EDITED_TIMES_TOTAL', (int) $message_row['message_edit_count'], $display_username, $user->format_date($message_row['message_edit_time'], false, true));
+		$l_edited_by = $user->lang('EDITED_TIMES_TOTAL', (int) $message_row['message_edit_count'], $display_username, $user->format_date($message_row['message_edit_time'], false, true));
 	}
 	else
 	{
