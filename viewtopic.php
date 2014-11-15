@@ -1760,7 +1760,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	$force_edit_allowed = $force_delete_allowed = false;
 
 	$s_cannot_edit = !$auth->acl_get('f_edit', $forum_id) || $user->data['user_id'] != $poster_id;
-	$s_cannot_edit_time = $config['edit_time'] && $row['post_time'] <= time() - ($config['edit_time'] * 60);
+	$s_cannot_edit_time = !$auth->acl_get('u_ignoreedittime') && !($topic_data['topic_first_post_id'] == $row['post_id'] && $auth->acl_get('u_ignorefpedittime')) && $config['edit_time'] && $row['post_time'] <= time() - ($config['edit_time'] * 60);
 	$s_cannot_edit_locked = $topic_data['topic_status'] == ITEM_LOCKED || $row['post_edit_locked'];
 
 	$s_cannot_delete = $user->data['user_id'] != $poster_id || (

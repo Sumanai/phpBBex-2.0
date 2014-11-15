@@ -212,6 +212,8 @@ class permissions
 		'u_savedrafts'	=> array('lang' => 'ACL_U_SAVEDRAFTS', 'cat' => 'post'),
 		'u_chgcensors'	=> array('lang' => 'ACL_U_CHGCENSORS', 'cat' => 'post'),
 		'u_sig'			=> array('lang' => 'ACL_U_SIG', 'cat' => 'post'),
+		'u_ignorefpedittime'	=> array('lang' => 'ACL_U_IGNOREFPEDITTIME', 'cat' => 'post'),
+		'u_ignoreedittime'	=> array('lang' => 'ACL_U_IGNOREEDITTIME', 'cat' => 'post'),
 
 		'u_sendpm'		=> array('lang' => 'ACL_U_SENDPM', 'cat' => 'pm'),
 		'u_masspm'		=> array('lang' => 'ACL_U_MASSPM', 'cat' => 'pm'),

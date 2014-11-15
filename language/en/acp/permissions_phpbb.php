@@ -79,6 +79,8 @@ $lang = array_merge($lang, array(
 	'ACL_U_SAVEDRAFTS'	=> 'Can save drafts',
 	'ACL_U_CHGCENSORS'	=> 'Can disable word censors',
 	'ACL_U_SIG'			=> 'Can use signature',
+	'ACL_U_IGNOREFPEDITTIME' 	=> 'Can ignore edit time limit for first posts',
+	'ACL_U_IGNOREEDITTIME' 		=> 'Can ignore edit time limit',
 
 	'ACL_U_SENDPM'		=> 'Can send private messages',
 	'ACL_U_MASSPM'		=> 'Can send messages to multiple users',
