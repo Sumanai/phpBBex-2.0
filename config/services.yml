@@ -118,6 +118,7 @@ services:
         class: phpbb\log\log
         arguments:
             - @dbal.conn
+            - @config
             - @user
             - @auth
             - @dispatcher

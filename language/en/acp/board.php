@@ -69,6 +69,16 @@ $lang = array_merge($lang, array(
 	'WARNINGS_EXPIRE_EXPLAIN'		=> 'Number of days that will elapse before a warning will automatically expire from a user’s record. Set this value to 0 to make warnings permanent.',
 ));
 
+// Logging settings
+$lang = array_merge($lang, array(
+	'ACP_LOGGING_SETTINGS_EXPLAIN'	=> 'Here you can determine logging settings of your board.',
+	'KEEP_ADMIN_LOGS_DAYS'			=> 'Keep administrator logs for',
+	'KEEP_MOD_LOGS_DAYS'			=> 'Keep moderator logs for',
+	'KEEP_CRITICAL_LOGS_DAYS'		=> 'Keep error logs for',
+	'KEEP_USER_LOGS_DAYS'			=> 'Keep user logs for',
+	'KEEP_REGISTER_LOGS_DAYS'		=> 'Keep registration logs for',
+));
+
 // Style Settings
 $lang = array_merge($lang, array(
 	'ACP_STYLE_SETTINGS_EXPLAIN'		=> 'Here you can enable/disable several style features.',

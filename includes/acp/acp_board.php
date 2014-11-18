@@ -115,6 +115,22 @@ class acp_board
 				);
 			break;
 
+			case 'logs':
+				$display_vars = array(
+					'title'	=> 'ACP_LOGGING_SETTINGS',
+					'vars'	=> array(
+						'legend1'					=> 'ACP_LOGGING_SETTINGS',
+						'keep_admin_logs_days'		=> array('lang' => 'KEEP_ADMIN_LOGS_DAYS',		'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => false),
+						'keep_mod_logs_days'		=> array('lang' => 'KEEP_MOD_LOGS_DAYS',		'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => false),
+						'keep_critical_logs_days'	=> array('lang' => 'KEEP_CRITICAL_LOGS_DAYS',	'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => false),
+						'keep_user_logs_days'		=> array('lang' => 'KEEP_USER_LOGS_DAYS',		'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => false),
+						'keep_register_logs_days'	=> array('lang' => 'KEEP_REGISTER_LOGS_DAYS',	'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => false),
+
+						'legend2'					=> 'ACP_SUBMIT_CHANGES',
+					)
+				);
+			break;
+
 			case 'style':
 				$display_vars = array(
 					'title'	=> 'ACP_STYLE_SETTINGS',
@@ -830,6 +846,25 @@ class acp_board
 		{
 			$selected = ($selected_value == $value) ? ' selected="selected"' : '';
 			$act_options .= '<option value="' . $value . '"' . $selected . '>' . $user->lang[$key] . '</option>';
+		}
+
+		return $act_options;
+	}
+
+	/**
+	* Select days
+	*/
+	function select_days($value, $key, $zero)
+	{
+		global $user, $config;
+
+		$limit_days = array(0 => $user->lang['ALL_DAYS'], 1 => $user->lang['1_DAY'], 7 => $user->lang['7_DAYS'], 14 => $user->lang['2_WEEKS'], 30 => $user->lang['1_MONTH'], 90 => $user->lang['3_MONTHS'], 180 => $user->lang['6_MONTHS'], 365 => $user->lang['1_YEAR']);
+		if (!$zero) unset($limit_days[0]);
+		$act_options = '';
+		foreach ($limit_days as $days => $title)
+		{
+			$selected = ($value == $days) ? ' selected="selected"' : '';
+			$act_options .= '<option value="' . $days . '"' . $selected . '>' . $title . '</option>';
 		}
 
 		return $act_options;

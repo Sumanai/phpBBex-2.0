@@ -59,6 +59,7 @@ $lang = array_merge($lang, array(
 	'3_MONTHS'		=> '3 months',
 	'6_MONTHS'		=> '6 months',
 	'7_DAYS'		=> '7 days',
+	'ALL_DAYS'		=> 'All days',
 
 	'ACCOUNT_ALREADY_ACTIVATED'		=> 'Your account has already been activated.',
 	'ACCOUNT_DEACTIVATED'			=> 'Your account has been manually deactivated and is only able to be reactivated by an administrator.',

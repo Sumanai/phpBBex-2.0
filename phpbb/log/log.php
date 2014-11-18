@@ -57,6 +57,12 @@ class log implements \phpbb\log\log_interface
 	protected $db;
 
 	/**
+	* Config object
+	* @var \phpbb\config\config
+	*/
+	protected $config;
+
+	/**
 	* User object
 	* @var \phpbb\user
 	*/
@@ -96,6 +102,7 @@ class log implements \phpbb\log\log_interface
 	* Constructor
 	*
 	* @param	\phpbb\db\driver\driver_interface	$db		Database object
+	* @param	\phpbb\config\config 		$config		Config object
 	* @param	\phpbb\user		$user	User object
 	* @param	\phpbb\auth\auth		$auth	Auth object
 	* @param	\phpbb\event\dispatcher_interface	$phpbb_dispatcher	Event dispatcher
@@ -104,9 +111,10 @@ class log implements \phpbb\log\log_interface
 	* @param	string		$php_ext			PHP Extension
 	* @param	string		$log_table		Name of the table we use to store our logs
 	*/
-	public function __construct($db, $user, $auth, $phpbb_dispatcher, $phpbb_root_path, $relative_admin_path, $php_ext, $log_table)
+	public function __construct($db, $config, $user, $auth, $phpbb_dispatcher, $phpbb_root_path, $relative_admin_path, $php_ext, $log_table)
 	{
 		$this->db = $db;
+		$this->config = $config;
 		$this->user = $user;
 		$this->auth = $auth;
 		$this->dispatcher = $phpbb_dispatcher;
@@ -318,6 +326,11 @@ class log implements \phpbb\log\log_interface
 		}
 
 		$this->db->sql_query('INSERT INTO ' . $this->log_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary));
+
+		if ( !empty($this->config['keep_'.$mode.'_logs_days']) && mt_rand(0, 30) === 0)
+		{
+			$this->db->sql_query('DELETE FROM ' . LOG_TABLE . ' WHERE log_type = ' . $sql_ary['log_type'] . ' AND log_time < ' . (time() - $this->config['keep_'.$mode.'_logs_days'] * 86400));
+		}
 
 		return $this->db->sql_nextid();
 	}

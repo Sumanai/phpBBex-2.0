@@ -37,6 +37,11 @@ ALTER TABLE phpbb_users
 	ADD COLUMN mp_on_left tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER user_post_sortby_dir;
 
 -- New phpBBex options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_admin_logs_days', '365');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_mod_logs_days', '365');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_critical_logs_days', '365');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_user_logs_days', '365');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_register_logs_days', '30');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
