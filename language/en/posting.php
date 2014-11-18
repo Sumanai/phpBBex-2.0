@@ -297,6 +297,10 @@ $lang = array_merge($lang, array(
 	'WRONG_FILESIZE'			=> 'The file is too big, maximum allowed size is %1$d %2$s.',
 	'WRONG_SIZE'				=> 'The image must be at least %1$s wide, %2$s high and at most %3$s wide and %4$s high. The submitted image is %5$s wide and %6$s high.',
 
+	// Additional strings
+	'FIRST_POST_SHOW'			=> 'Show on top of every page',
+	'FIRST_POST_SHOW_EXPLAIN'	=> 'Show on top of every page',
+
 	// Smiles
 	'SMILE_HI'					=> 'Hi!',
 	'SMILE_CLASSIC'				=> 'Smile',

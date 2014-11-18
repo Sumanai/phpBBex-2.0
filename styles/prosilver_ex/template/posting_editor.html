@@ -124,6 +124,9 @@
 
 		<fieldset class="fields1">
 			<!-- EVENT posting_editor_options_prepend -->
+			<!-- IF S_FIRST_POST_SHOW_ALLOWED -->
+				<div><label for="topic_first_post_show" title="{L_FIRST_POST_SHOW_EXPLAIN}"><input type="checkbox" name="topic_first_post_show" id="topic_first_post_show"{S_FIRST_POST_SHOW_CHECKED} /> {L_FIRST_POST_SHOW}</label></div>
+			<!-- ENDIF -->
 			<!-- IF S_BBCODE_ALLOWED -->
 				<div><label for="disable_bbcode"><input type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} /> {L_DISABLE_BBCODE}</label></div>
 			<!-- ENDIF -->

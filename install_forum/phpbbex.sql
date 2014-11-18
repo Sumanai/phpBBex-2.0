@@ -28,7 +28,8 @@ ALTER TABLE phpbb_posts
 	ADD COLUMN poster_browser_id char(32) DEFAULT '' NOT NULL AFTER poster_ip;
 
 ALTER TABLE phpbb_topics
-	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change;
+	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change,
+	ADD COLUMN topic_first_post_show tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_show_voters;
 
 ALTER TABLE phpbb_users
 	ADD COLUMN user_last_ip varchar(40) DEFAULT '' NOT NULL AFTER user_ip,

@@ -1060,7 +1060,6 @@ else
 $post_list = $user_cache = $id_cache = $attachments = $attach_list = $rowset = $update_count = $post_edit_list = $post_delete_list = array();
 $has_unapproved_attachments = $has_approved_attachments = $display_notice = false;
 $bbcode_bitfield = '';
-$i = $i_total = 0;
 
 // Go ahead and pull all data for this topic
 $sql = 'SELECT p.post_id
@@ -1072,13 +1071,28 @@ $sql = 'SELECT p.post_id
 	ORDER BY $sql_sort_order";
 $result = $db->sql_query_limit($sql, $sql_limit, $sql_start);
 
-$i = ($store_reverse) ? $sql_limit - 1 : 0;
 while ($row = $db->sql_fetchrow($result))
 {
-	$post_list[$i] = (int) $row['post_id'];
-	($store_reverse) ? $i-- : $i++;
+	if ($topic_data['topic_first_post_show'] && $row['post_id'] == $topic_data['topic_first_post_id'])
+	{
+		// Skip first post if it is pinned
+		continue;
+	}
+	$post_list[] = (int) $row['post_id'];
 }
 $db->sql_freeresult($result);
+
+// If reversed order is used for storing
+if ($store_reverse)
+{
+	$post_list = array_reverse($post_list);
+}
+
+// Show first post on every page if needed
+if ($topic_data['topic_first_post_show'])
+{
+	array_unshift($post_list, (int) $topic_data['topic_first_post_id']);
+}
 
 if (!sizeof($post_list))
 {
