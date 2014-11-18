@@ -44,22 +44,134 @@ function initInsertions() {
 /**
 * bbstyle
 */
-function bbstyle(bbnumber) {
-	if (bbnumber !== -1) {
-		bbfontstyle(bbtags[bbnumber], bbtags[bbnumber+1]);
+function bbstyle(bbnumber, event)
+{
+	event = event || '';
+	var textarea = document.forms[form_name].elements[text_name];
+	if (bbnumber != -1)
+	{
+		bbfontstyle(bbtags[bbnumber], bbtags[bbnumber+1], event);
 	} else {
+ 		insert_text('[*]');
+ 	}
+	textarea.focus();
+}
+
+function insert_listitem()
+{
+	var textarea = document.forms[form_name].elements[text_name];
+	if (!textarea.selectionEnd || (textarea.selectionEnd - textarea.selectionStart == 0))
+	{
 		insert_text('[*]');
-		document.forms[form_name].elements[text_name].focus();
 	}
+	else
+	{
+		// Automatic [*] for each line
+		var selLength = (typeof(textarea.textLength) == 'undefined') ? textarea.value.length : textarea.textLength;
+		var selStart = textarea.selectionStart;
+		var selEnd = textarea.selectionEnd;
+		var scrollTop = textarea.scrollTop;
+
+		if (selEnd == 1 || selEnd == 2) 
+		{
+			selEnd = selLength;
+		}
+
+		var before = (textarea.value).substring(0,selStart);
+		var selected = (textarea.value).substring(selStart, selEnd);
+		var after = (textarea.value).substring(selEnd, selLength);
+
+		var parts = selected.match(/^(\s*\[list[\w\d=]*\])((?:.|[\r\n])*)(\[\/list\]\s*)$/i);
+		if (parts)
+		{
+			before += parts[1];
+			selected = parts[2];
+			after = parts[3] + after;
+		}
+
+		var items = selected.split(/\r\n|\r|\n/);
+		selected = '';
+		var is_first = true;
+		jQuery.each(items, function(index, value)
+		{
+			if (!is_first) selected += '\n';
+			is_first = false;
+			value = jQuery.trim(value);
+			if (!value) return true;
+			if (value.indexOf('[*]') !== 0) selected += '[*]';
+			selected += value;
+		});
+
+		textarea.value = before + selected + after;
+		textarea.selectionStart = before.length;
+		textarea.selectionEnd = before.length + selected.length;
+		textarea.scrollTop = scrollTop;
+	}
+	textarea.focus();
+}
+
+ /**
+* Prepare URL for [url] and [img] bbcodes
+*/
+function prepare_url(url)
+{
+	if (!url) return '';
+	url = url.replace('[', '%5B').replace(']', '%5D');
+	if (url.charAt(0) == '/' && url.charAt(1) == '/') return 'http:' + url;
+	if (url.match(/^[\w\d]+(\.php|\/|$)/i)) return './' + url;
+	if (!url.match(/^[\w\d]+:/i) && !url.match(/^[.]?\//i)) return 'http://' + url;
+	return url;
 }
 
 /**
 * Apply bbcodes
 */
-function bbfontstyle(bbopen, bbclose) {
+function bbfontstyle(bbopen, bbclose, event) {
 	theSelection = false;
 
 	var textarea = document.forms[form_name].elements[text_name];
+	var bbname = bbopen.match(/^\[([\w\d]+)/i);
+	if (bbname) bbname = bbname[1].toLowerCase();
+	var bbtext = '';
+	var selected = jQuery.trim((textarea.value).substring(textarea.selectionStart, textarea.selectionEnd));
+
+	switch (bbname)
+	{
+		case 'url':
+			var url = selected.match(/^((https?|ftp):\/\/[\w\d].*|[-\w\d]+(\.[-\w\d]+)+)$/i) ? selected : prompt(lang.enter_link_url, '');
+			if (url === null) return;
+			if (url)
+			{
+				url = prepare_url(url);
+				bbopen = '[url=' + url + ']';
+				bbtext = (url.match(/^https?:\/\/[^\/]+\/?$/i)) ? url.replace(/(https?:|\/)/ig, '') : url;
+			}
+		break;
+		case 'quote':
+			if (event.ctrlKey)
+			{
+				var name = prompt(lang.enter_quote_name, '');
+				if (name === null) return;
+				if (name) bbopen = '[quote="' + name + '"]';
+			}
+		break;
+		case 'spoiler':
+			if (event.ctrlKey)
+			{
+				var title = prompt(lang.enter_title, '');
+				if (title === null) return;
+				if (title) bbopen = '[spoiler="' + title + '"]';
+			}
+		break;
+		case 'list':
+			if (event.ctrlKey)
+			{
+				var start = prompt(lang.enter_list_start, '1');
+				if (start === null) return;
+				bbopen = '[list=' + start + ']';
+			}
+		break;
+	}
 
 	textarea.focus();
 
@@ -81,23 +193,37 @@ function bbfontstyle(bbopen, bbclose) {
 		return;
 	}
 
+	var sel_after = false;
+	switch (bbname)
+	{
+		case 'img':
+			bbtext = prompt(lang.enter_image_url, '');
+			if (bbtext === null) return;
+			bbtext = prepare_url(bbtext);
+			sel_after = true;
+		break;
+	}
+	if (!bbtext) bbtext = '';
+
 	//The new position for the cursor after adding the bbcode
 	var caret_pos = getCaretPosition(textarea).start;
-	var new_pos = caret_pos + bbopen.length;
+	var start_pos = caret_pos + bbopen.length;
+	var end_pos = caret_pos + bbopen.length + bbtext.length;
+	var after_pos = caret_pos + bbopen.length + bbtext.length + bbclose.length;
 
 	// Open tag
-	insert_text(bbopen + bbclose);
+	insert_text(bbopen + bbtext + bbclose);
 
 	// Center the cursor when we don't have a selection
 	// Gecko and proper browsers
 	if (!isNaN(textarea.selectionStart)) {
-		textarea.selectionStart = new_pos;
-		textarea.selectionEnd = new_pos;
+		textarea.selectionStart = sel_after ? after_pos : start_pos;
+		textarea.selectionEnd = sel_after ? after_pos : end_pos;
 	}
 	// IE
 	else if (document.selection) {
 		var range = textarea.createTextRange(); 
-		range.move("character", new_pos); 
+		range.move("character", sel_after ? after_pos : end_pos); 
 		range.select();
 		storeCaret(textarea);
 	}
@@ -114,6 +240,13 @@ function insert_text(text, spaces, popup) {
 
 	if (!popup) {
 		textarea = document.forms[form_name].elements[text_name];
+		var textarea_pos = parseInt(jQuery(textarea).position().top);
+		var visible_from = jQuery(document).scrollTop();
+		var visible_to = visible_from + jQuery(window).height();
+		if (textarea_pos < visible_from || textarea_pos > (visible_to - 20))
+		{
+			jQuery(document).scrollTop(textarea_pos);
+		}
 	} else {
 		textarea = opener.document.forms[form_name].elements[text_name];
 	}
@@ -203,9 +336,10 @@ function addquote(post_id, username, l_wrote) {
 		}
 	}
 
+	theSelection = jQuery.trim(theSelection);
 	if (theSelection) {
 		if (bbcodeEnabled) {
-			insert_text('[quote="' + username + '"]' + theSelection + '[/quote]');
+			insert_text('[quote="' + username + '"]' + theSelection + '[/quote]\n');
 		} else {
 			insert_text(username + ' ' + l_wrote + ':' + '\n');
 			var lines = split_lines(theSelection);

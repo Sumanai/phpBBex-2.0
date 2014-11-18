@@ -342,7 +342,7 @@ $lang = array_merge($lang, array(
 
 	'JABBER'				=> 'Jabber',
 	'JOINED'				=> 'Joined',
-	'JUMP_PAGE'				=> 'Enter the page number you wish to go to',
+	'JUMP_PAGE'				=> 'Enter the page number',
 	'JUMP_TO'				=> 'Jump to',
 	'JUMP_TO_PAGE'			=> 'Jump to page',
 	'JUMP_TO_PAGE_CLICK'	=> 'Click to jump to page…',
@@ -1413,4 +1413,6 @@ $lang = array_merge($lang, array(
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'	=> 'D M d, Y g:i a', // Mon Jan 01, 2007 1:37 pm
 
+	// Other
+	'SPOILER'				=> 'Spoiler',
 ));

@@ -2,7 +2,7 @@
 <!-- BEGIN ulist_open_default --><ul><!-- END ulist_open_default -->
 <!-- BEGIN ulist_close --></ul><!-- END ulist_close -->
 
-<!-- BEGIN olist_open --><ol style="list-style-type: {LIST_TYPE}"><!-- END olist_open -->
+<!-- BEGIN olist_open --><ol style="list-style-type: {LIST_TYPE}" start="{LIST_START}"><!-- END olist_open -->
 <!-- BEGIN olist_close --></ol><!-- END olist_close -->
 
 <!-- BEGIN listitem --><li><!-- END listitem -->
@@ -11,6 +11,10 @@
 <!-- BEGIN quote_username_open --><blockquote><div><cite>{USERNAME} {L_WROTE}{L_COLON}</cite><!-- END quote_username_open -->
 <!-- BEGIN quote_open --><blockquote class="uncited"><div><!-- END quote_open -->
 <!-- BEGIN quote_close --></div></blockquote><!-- END quote_close -->
+
+<!-- BEGIN spoiler_title_open --><dl class="spoilerbox"><dt>{TITLE}</dt><dd><!-- END quote_username_open -->
+<!-- BEGIN spoiler_open --><dl class="spoilerbox"><dt>{L_SPOILER}</dt><dd><!-- END quote_open -->
+<!-- BEGIN spoiler_close --></dd></dl><!-- END quote_close -->
 
 <!-- BEGIN code_open --><div class="codebox"><p>{L_CODE}{L_COLON} <a href="#" onclick="selectCode(this); return false;">{L_SELECT_ALL_CODE}</a></p><code><!-- END code_open -->
 <!-- BEGIN code_close --></code></div><!-- END code_close -->

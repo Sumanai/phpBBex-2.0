@@ -39,6 +39,7 @@ ALTER TABLE phpbb_users
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_spoiler_depth', '2');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
@@ -55,6 +56,15 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size
 -- New phpBBex ACL rights
 REPLACE INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_ignoreedittime', 1);
 REPLACE INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_ignorefpedittime', 1);
+
+-- Resolve conflicts with the new system bbcodes
+DELETE FROM phpbb_bbcodes WHERE bbcode_tag IN ('s', 'tt', 'spoiler', 'spoiler=');
+SELECT (@new_bbcode_id:=GREATEST(MAX(bbcode_id)+1, 17)) FROM phpbb_bbcodes;
+UPDATE phpbb_bbcodes SET bbcode_id=@new_bbcode_id WHERE bbcode_id = 13;
+SELECT (@new_bbcode_id:=GREATEST(MAX(bbcode_id)+1, 17)) FROM phpbb_bbcodes;
+UPDATE phpbb_bbcodes SET bbcode_id=@new_bbcode_id WHERE bbcode_id = 14;
+SELECT (@new_bbcode_id:=GREATEST(MAX(bbcode_id)+1, 17)) FROM phpbb_bbcodes;
+UPDATE phpbb_bbcodes SET bbcode_id=@new_bbcode_id WHERE bbcode_id = 15;
 
 -- Update YandexBot UA and remove Aport [Bot]
 UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';

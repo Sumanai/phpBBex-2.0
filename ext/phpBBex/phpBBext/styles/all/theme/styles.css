@@ -86,6 +86,57 @@
 	margin-left: 30%;
 }
 
+/* Inline code block */
+code.tt {
+	background-color: #FFFFFF;
+	border: 1px solid #c9d2d8;
+	color: #2e8b57;
+	display: inline;
+	font: 0.9em "Courier New", Courier, monospace;
+	line-height: 1.3em;
+	padding: 0 3px;
+}
+
+/* Spoiler block */
+dl.spoilerbox {
+	margin: 0.25em 0;
+	padding: 3px;
+	background-color: #FFFFFF;
+	border: 1px solid #d8d8d8;
+	font-size: 1em;
+}
+
+dl.spoilerbox > dt {
+	background: url('data:image/gif;base64,R0lGODlhCgAKAKIAADMzM//M/7u7u2ZmZt3d3f///wAAAAAAACH5BAEHAAEALAAAAAAKAAoAAAMVGLrM0+7BMIpsg1iYBeDeNHwTOUEJADs=') no-repeat 4px 4px;
+	padding: 4px 5px 4px 18px;
+	font-size: 0.9em;
+	line-height: 0.9em;
+	display: block;
+	cursor: pointer;
+	color: #105289;
+	width: auto;
+}
+
+dl.spoilerbox > dt:hover {
+	color: #D31141;
+	text-decoration: underline;
+}
+
+dl.spoilerbox > dd {
+	margin-top: 3px;
+	border-top: 1px solid #CCCCCC;
+	padding: 3px 3px 0 3px;
+	display: none;
+}
+
+dl.spoilerbox.spoilerbox-on > dt {
+	background-image: url('data:image/gif;base64,R0lGODlhCgAKAKIAADMzM//M/2ZmZt3d3f///wAAAAAAAAAAACH5BAEHAAEALAAAAAAKAAoAAAMUGLrc/rCJSecCJBPQwBicA4RRuSQAOw==');
+}
+
+dl.spoilerbox.spoilerbox-on > dd {
+	display: block;
+}
+
 /* Responsive
 ---------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {

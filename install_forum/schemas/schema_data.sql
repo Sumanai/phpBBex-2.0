@@ -210,7 +210,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_img_heigh
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_img_width', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_smilies', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_urls', '0');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_quote_depth', '3');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_quote_depth', '2');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_spoiler_depth', '2');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_reg_attempts', '5');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_chars', '255');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');

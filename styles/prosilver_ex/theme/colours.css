@@ -1002,22 +1002,25 @@ fieldset.quick-login input.inputbox {
 /* Form button styles
 ---------------------------------------- */
 
-a.button1, input.button1, input.button3, a.button2, input.button2 {
+a.button1, input.button1, a.button2, input.button2, button {
 	color: #000;
-	background-color: #FAFAFA;
-	background-image: url("./images/bg_button.gif");
+	background: #e6e6e6 url("data:image/gif;base64,R0lGODlhBgAYALIAANXV1OPk5O7u7t3d3f///wAAAAAAAAAAACH5BAQAAAAALAAAAAAGABgAAAMYSLrQ/tCNSau9NOjNu99CKI5kaZ5oqpYJADs=");
+}
+
+a.button1.sending, input.button1.sending, a.button2.sending, input.button2.sending, button.sending {
+	color: #666666 !important;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	cursor: default !important;
+	border-color: #666666 !important;
+	background-image: url("data:image/gif;base64,R0lGODlhBgAYAMMHAL6+vtbW1szMzePj5MTEw93d3e7u7v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQIAAAfACwAAAAABgAYAAAEMPCMeQ64IWMNcrhFSIwiWQhoiArTgLbvFLvxOhiegWf63vM64C4QBOaGP2IxmVTmIgAh+QQIAAAfACwAAAAABgAYAAAEMfCcQU8AONys+SVFSIDiGApoMaACxVJr68oxzBqGFuA6r+G5nQ/48wl7wWMxSBQyjREAIfkECAAAHwAsAAAAAAYAGAAABDHwyEFDANhioLMlRCGCYkGKQkqlwqoOLAW3rpwauBXkFr8bOhzwNxT2fMjhL8gzEi0RACH5BAgAAB8ALAAAAAAGABgAAAQycJw5RrggYx0yuERYjCIpjIUgVIO6tmrlyjHNCoGhX7px5T5eEPjrCYNG4HAnLC6ZxggAIfkECAAAHwAsAAAAAAYAGAAABDFwjEMHCBjcrPktRFiA4igIY3FKwyqdwuvCcixhRo7rQW5gvd8OyAsKfbtjcSkMEnMRACH5BAgAAB8ALAAAAAAGABgAAAQwcMhDAQjY4qCzLQUhgiIBCihYoNLASq/7ogL8bkaO5cauBzxczycUDoPAHzJZ9EUAADs=");
 }
 
 a.button1, input.button1 {
 	border-color: #666666;
 }
 
-input.button3 {
-	background-image: none;
-}
-
 /* Alternative button */
-a.button2, input.button2, input.button3 {
+a.button2, input.button2, button {
 	border-color: #666666;
 }
 
@@ -1027,13 +1030,13 @@ a.button1, a.button2 {
 }
 
 /* Hover states */
-a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
+a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, button:hover {
 	border-color: #BC2A4D;
 	color: #BC2A4D;
 }
 
 /* Focus states */
-input.button1:focus, input.button2:focus, input.button3:focus {
+input.button1:focus, input.button2:focus {
 	border-color: #11A3EA;
 	color: #0F4987;
 }

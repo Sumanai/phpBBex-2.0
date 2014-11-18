@@ -1000,10 +1000,15 @@ function topic_status(&$topic_row, $replies, $unread_topic, &$folder_img, &$fold
 */
 function display_custom_bbcodes()
 {
-	global $db, $template, $user, $phpbb_dispatcher;
+	global $db, $template, $user, $phpbb_dispatcher, $config;
 
-	// Start counting from 22 for the bbcode ids (every bbcode takes two ids - opening/closing)
-	$num_predefined_bbcodes = 22;
+	// Start counting from 26 for the bbcode ids (every bbcode takes two ids - opening/closing)
+	$num_predefined_bbcodes = 26;
+
+	if ($user->style['style_name'] !== 'prosilverEx')
+	{
+		$num_predefined_bbcodes -= 4;
+	}
 
 	$sql_ary = array(
 		'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline',
@@ -1027,6 +1032,45 @@ function display_custom_bbcodes()
 	$result = $db->sql_query($db->sql_build_query('SELECT', $sql_ary));
 
 	$i = 0;
+
+	if ($user->style['style_name'] !== 'prosilverEx' && $config['allow_bbcode'])
+	{
+		if (isset($config['max_spoiler_depth']) && $config['max_spoiler_depth'] >= 0)
+		{
+			$phpbbex_tags = array(
+				'BBCODE_NAME'		=> "'[spoiler]','[/spoiler]'",
+				'BBCODE_ID'			=> $num_predefined_bbcodes + (($i) * 2),
+				'BBCODE_TAG'		=> 'Spoiler',
+				'BBCODE_TAG_CLEAN'	=> 'Spoiler',
+				'BBCODE_HELPLINE'	=> $user->lang['BBCODE_SPOILER_HELP'],
+				'A_BBCODE_HELPLINE'	=> str_replace(array('&amp;', '&quot;', "'", '&lt;', '&gt;'), array('&', '"', "\'", '<', '>'), $user->lang['BBCODE_SPOILER_HELP']),
+			);
+			$template->assign_block_vars('custom_tags', $phpbbex_tags);
+			$i++;
+		}
+		$phpbbex_tags = array(
+			'BBCODE_NAME'		=> "'[tt]','[/tt]'",
+			'BBCODE_ID'			=> $num_predefined_bbcodes + (($i) * 2),
+			'BBCODE_TAG'		=> 'tt',
+			'BBCODE_TAG_CLEAN'	=> 'tt',
+			'BBCODE_HELPLINE'	=> $user->lang['BBCODE_TT_HELP'],
+			'A_BBCODE_HELPLINE'	=> str_replace(array('&amp;', '&quot;', "'", '&lt;', '&gt;'), array('&', '"', "\'", '<', '>'), $user->lang['BBCODE_TT_HELP']),
+		);
+		$template->assign_block_vars('custom_tags', $phpbbex_tags);
+		$i++;
+
+		$phpbbex_tags = array(
+			'BBCODE_NAME'		=> "'[s]','[/s]'",
+			'BBCODE_ID'			=> $num_predefined_bbcodes + (($i) * 2),
+			'BBCODE_TAG'		=> 's',
+			'BBCODE_TAG_CLEAN'	=> 's',
+			'BBCODE_HELPLINE'	=> $user->lang['BBCODE_STRIKE_HELP'],
+			'A_BBCODE_HELPLINE'	=> str_replace(array('&amp;', '&quot;', "'", '&lt;', '&gt;'), array('&', '"', "\'", '<', '>'), $user->lang['BBCODE_STRIKE_HELP']),
+		);
+		$template->assign_block_vars('custom_tags', $phpbbex_tags);
+		$i++;
+	}
+
 	while ($row = $db->sql_fetchrow($result))
 	{
 		// If the helpline is defined within the language file, we will use the localised version, else just use the database entry...

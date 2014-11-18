@@ -333,6 +333,36 @@ class bbcode
 					);
 				break;
 
+				case 13:
+					$this->bbcode_cache[$bbcode_id] = array(
+						'str' => array(
+							'[s:$uid]'	=> $this->bbcode_tpl('s_open', $bbcode_id),
+							'[/s:$uid]'	=> $this->bbcode_tpl('s_close', $bbcode_id),
+						)
+					);
+				break;
+
+				case 14:
+					$this->bbcode_cache[$bbcode_id] = array(
+						'str' => array(
+							'[tt:$uid]'	=> $this->bbcode_tpl('tt_open', $bbcode_id),
+							'[/tt:$uid]'	=> $this->bbcode_tpl('tt_close', $bbcode_id),
+						)
+					);
+				break;
+
+				case 15:
+					$this->bbcode_cache[$bbcode_id] = array(
+						'str' => array(
+							"[/spoiler:\$uid]\n"	=> $this->bbcode_tpl('spoiler_close', $bbcode_id),
+							'[/spoiler:$uid]'		=> $this->bbcode_tpl('spoiler_close', $bbcode_id)
+						),
+						'preg' => array(
+							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#ise'	=> "\$this->bbcode_second_pass_spoiler('\$1', '\$2')"
+						)
+					);
+				break;
+
 				default:
 					if (isset($rowset[$bbcode_id]))
 					{
@@ -407,10 +437,17 @@ class bbcode
 				'i_close'	=> '</span>',
 				'u_open'	=> '<span style="text-decoration: underline">',
 				'u_close'	=> '</span>',
+				's_open'	=> '<span style="text-decoration: line-through">',
+				's_close'	=> '</span>',
+				'tt_open'	=> '<code class="tt">',
+				'tt_close'	=> '</code>',
 				'img'		=> '<img src="$1" class="postimage" alt="' . $user->lang['IMAGE'] . '" />',
 				'size'		=> '<span style="font-size: $1%; line-height: normal">$2</span>',
 				'color'		=> '<span style="color: $1">$2</span>',
-				'email'		=> '<a href="mailto:$1">$2</a>'
+				'email'		=> '<a href="mailto:$1">$2</a>',
+				'spoiler_title_open'	=> '<dl class="spoilerbox"><dt>$1</dt><dd>',
+				'spoiler_open'			=> '<dl class="spoilerbox"><dt>' . $user->lang['SPOILER'] . '</dt><dd>',
+				'spoiler_close'			=> '</dd></dl>',
 			);
 		}
 
@@ -461,6 +498,7 @@ class bbcode
 
 		static $replacements = array(
 			'quote_username_open'	=> array('{USERNAME}'	=> '$1'),
+			'spoiler_title_open'	=> array('{TITLE}'		=> '$1'),
 			'color'					=> array('{COLOR}'		=> '$1', '{TEXT}'			=> '$2'),
 			'size'					=> array('{SIZE}'		=> '$1', '{TEXT}'			=> '$2'),
 			'img'					=> array('{URL}'		=> '$1'),
@@ -484,6 +522,7 @@ class bbcode
 	*/
 	function bbcode_list($type)
 	{
+		$start = 1;
 		if ($type == '')
 		{
 			$tpl = 'ulist_open_default';
@@ -506,16 +545,19 @@ class bbcode
 		}
 		else if (preg_match('#^[a-z]$#', $type))
 		{
+			$start = (int)(ord($type) - ord('a') + 1);
 			$tpl = 'olist_open';
 			$type = 'lower-alpha';
 		}
 		else if (preg_match('#[A-Z]#', $type))
 		{
+			$start = (int)(ord($type) - ord('A') + 1);
 			$tpl = 'olist_open';
 			$type = 'upper-alpha';
 		}
 		else if (is_numeric($type))
 		{
+			$start = (int) $type;
 			$tpl = 'olist_open';
 			$type = 'decimal';
 		}
@@ -525,7 +567,7 @@ class bbcode
 			$type = 'decimal';
 		}
 
-		return str_replace('{LIST_TYPE}', $type, $this->bbcode_tpl($tpl));
+		return strtr($this->bbcode_tpl($tpl), array('{LIST_TYPE}' => $type, '{LIST_START}' => $start));
 	}
 
 	/**
@@ -547,6 +589,27 @@ class bbcode
 		$quote = (($username) ? str_replace('$1', $username, $this->bbcode_tpl('quote_username_open')) : $this->bbcode_tpl('quote_open')) . $quote;
 
 		return $quote;
+	}
+
+ 	/**
+	* Second parse spoiler tag
+	*/
+	function bbcode_second_pass_spoiler($title, $text)
+	{
+		// when using the /e modifier, preg_replace slashes double-quotes but does not
+		// seem to slash anything else
+		$text = str_replace('\"', '"', $text);
+		$title = str_replace('\"', '"', $title);
+
+		// remove newline at the beginning
+		if ($text == "\n")
+		{
+			$text = '';
+		}
+
+		$text = (($title) ? str_replace('$1', $title, $this->bbcode_tpl('spoiler_title_open', 15)) : $this->bbcode_tpl('spoiler_open', 15)) . $text;
+
+		return $text;
 	}
 
 	/**

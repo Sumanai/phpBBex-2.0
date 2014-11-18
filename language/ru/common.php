@@ -360,7 +360,7 @@ $lang = array_merge($lang, array(
 
 	'JABBER'				=> 'Jabber',
 	'JOINED'				=> 'Зарегистрирован',
-	'JUMP_PAGE'				=> 'Введите номер страницы, на которую хотите перейти',
+	'JUMP_PAGE'				=> 'Введите номер страницы',
 	'JUMP_TO'				=> 'Перейти',
 	'JUMP_TO_PAGE'			=> 'Перейти на страницу',
 	'JUMP_TO_PAGE_CLICK'	=> 'Щёлкните для перехода на страницу…',
@@ -1460,4 +1460,6 @@ $lang = array_merge($lang, array(
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'	=>'|d M Y|, H:i', // Сегодня, 13:37 / 01 Янв 2007, 13:37
 
+	// Other
+	'SPOILER'				=> 'Спойлер',
 ));
