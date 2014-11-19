@@ -21,6 +21,11 @@ CREATE TABLE phpbb_user_browser_ids (
 ALTER TABLE phpbb_bbcodes
 	ADD COLUMN bbcode_order smallint(4) DEFAULT '0' NOT NULL AFTER bbcode_id;
 
+ALTER TABLE phpbb_forums
+	ADD COLUMN forum_topic_show_days smallint(4) UNSIGNED DEFAULT '0' NOT NULL AFTER forum_rules_uid,
+	ADD COLUMN forum_topic_sortby_type varchar(1) DEFAULT '' NOT NULL AFTER forum_topic_show_days,
+	ADD COLUMN forum_topic_sortby_dir varchar(1) DEFAULT '' NOT NULL AFTER forum_topic_sortby_type;
+
 ALTER TABLE phpbb_poll_votes
 	ADD COLUMN vote_time int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER vote_user_id;
 

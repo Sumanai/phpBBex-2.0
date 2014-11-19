@@ -724,6 +724,18 @@
                 "VCHAR:8",
                 ""
             ],
+            "forum_topic_show_days": [
+                "TINT:4",
+                0
+            ],
+            "forum_topic_sortby_type": [
+                "VCHAR:1",
+                "t"
+            ],
+            "forum_topic_sortby_dir": [
+                "VCHAR:1",
+                "d"
+            ],
             "forum_topics_per_page": [
                 "TINT:4",
                 0

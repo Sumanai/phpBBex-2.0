@@ -116,7 +116,7 @@ $lang = array_merge($lang, array(
 	'SORT_DESCENDING'			=> 'по убыванию',
 	'SORT_FORUM'				=> 'Форум',
 	'SORT_POST_SUBJECT'			=> 'Заголовок сообщения',
-	'SORT_TIME'					=> 'Время размещения',
+	'SORT_TIME'					=> 'Время ответа',
 	'SPHINX_SEARCH_FAILED'		=> 'Ошибка поиска: %s',
 	'SPHINX_SEARCH_FAILED_LOG'	=> 'К сожалению, поиск не может быть выполнен. Дополнительная информация содержится в журнале ошибок.',
 

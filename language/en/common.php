@@ -176,10 +176,12 @@ $lang = array_merge($lang, array(
 	'CONTACT_USER'			=> 'Contact %s',
 	'CONTACT_US'			=> 'Contact us',
 	'COOKIES_DELETED'		=> 'All board cookies successfully deleted.',
+	'CREATION_TIME'			=> 'Creation time',
 	'CURRENT_TIME'			=> 'It is currently %s',
 
 	'DAY'					=> 'Day',
 	'DAYS'					=> 'Days',
+	'DEFAULT'				=> 'Default',
 	'DELETE'				=> 'Delete',
 	'DELETE_ALL'			=> 'Delete all',
 	'DELETE_COOKIES'		=> 'Delete all board cookies',

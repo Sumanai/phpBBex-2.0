@@ -29,14 +29,6 @@ $forum_id	= request_var('f', 0);
 $mark_read	= request_var('mark', '');
 $start		= request_var('start', 0);
 
-$default_sort_days	= (!empty($user->data['user_topic_show_days'])) ? $user->data['user_topic_show_days'] : 0;
-$default_sort_key	= (!empty($user->data['user_topic_sortby_type'])) ? $user->data['user_topic_sortby_type'] : 't';
-$default_sort_dir	= (!empty($user->data['user_topic_sortby_dir'])) ? $user->data['user_topic_sortby_dir'] : 'd';
-
-$sort_days	= request_var('st', $default_sort_days);
-$sort_key	= request_var('sk', $default_sort_key);
-$sort_dir	= request_var('sd', $default_sort_dir);
-
 $pagination = $phpbb_container->get('pagination');
 
 // Check if the user has actually sent a forum ID with his/her request
@@ -75,6 +67,13 @@ if (!$forum_data)
 	trigger_error('NO_FORUM');
 }
 
+$default_sort_days	= (!empty($forum_data['forum_topic_show_days']))	? $forum_data['forum_topic_show_days']	: ((!empty($user->data['user_topic_show_days']))	? $user->data['user_topic_show_days']	: 0);
+$default_sort_key	= (!empty($forum_data['forum_topic_sortby_type']))	? $forum_data['forum_topic_sortby_type']: ((!empty($user->data['user_topic_sortby_type']))	? $user->data['user_topic_sortby_type']	: 't');
+$default_sort_dir	= (!empty($forum_data['forum_topic_sortby_dir']))	? $forum_data['forum_topic_sortby_dir']	: ((!empty($user->data['user_topic_sortby_dir']))	? $user->data['user_topic_sortby_dir']	: 'd');
+
+$sort_days	= request_var('st', $default_sort_days);
+$sort_key	= request_var('sk', $default_sort_key);
+$sort_dir	= request_var('sd', $default_sort_dir);
 
 // Configure style, language, etc.
 $user->setup('viewforum', $forum_data['forum_style']);
@@ -269,8 +268,8 @@ gen_forum_auth_level('forum', $forum_id, $forum_data['forum_status']);
 // Topic ordering options
 $limit_days = array(0 => $user->lang['ALL_TOPICS'], 1 => $user->lang['1_DAY'], 7 => $user->lang['7_DAYS'], 14 => $user->lang['2_WEEKS'], 30 => $user->lang['1_MONTH'], 90 => $user->lang['3_MONTHS'], 180 => $user->lang['6_MONTHS'], 365 => $user->lang['1_YEAR']);
 
-$sort_by_text = array('a' => $user->lang['AUTHOR'], 't' => $user->lang['POST_TIME'], 'r' => $user->lang['REPLIES'], 's' => $user->lang['SUBJECT'], 'v' => $user->lang['VIEWS']);
-$sort_by_sql = array('a' => 't.topic_first_poster_name', 't' => array('t.topic_last_post_time', 't.topic_last_post_id'), 'r' => (($auth->acl_get('m_approve', $forum_id)) ? 't.topic_posts_approved + t.topic_posts_unapproved + t.topic_posts_softdeleted' : 't.topic_posts_approved'), 's' => 't.topic_title', 'v' => 't.topic_views');
+$sort_by_text = array('t' => $user->lang['POST_TIME'], 'c' => $user->lang['CREATION_TIME'], 'r' => $user->lang['REPLIES'], 'v' => $user->lang['VIEWS'], 'a' => $user->lang['AUTHOR'], 's' => $user->lang['SUBJECT']);
+$sort_by_sql = array('t' => array('t.topic_last_post_time', 't.topic_last_post_id'), 'c' => 't.topic_time', 'r' => (($auth->acl_get('m_approve', $forum_id)) ? 't.topic_posts_approved + t.topic_posts_unapproved + t.topic_posts_softdeleted' : 't.topic_posts_approved'), 'v' => 't.topic_views', 'a' => 't.topic_first_poster_name', 's' => 't.topic_title');
 
 $s_limit_days = $s_sort_key = $s_sort_dir = $u_sort_param = '';
 gen_sort_selects($limit_days, $sort_by_text, $sort_days, $sort_key, $sort_dir, $s_limit_days, $s_sort_key, $s_sort_dir, $u_sort_param, $default_sort_days, $default_sort_key, $default_sort_dir);
