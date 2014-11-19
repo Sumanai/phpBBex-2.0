@@ -189,6 +189,7 @@ class bbcode
 				case 0:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'str' => array(
+							"[/quote:\$uid]\n"	=> $this->bbcode_tpl('quote_close', $bbcode_id),
 							'[/quote:$uid]'	=> $this->bbcode_tpl('quote_close', $bbcode_id)
 						),
 						'preg' => array(
@@ -271,7 +272,7 @@ class bbcode
 				case 8:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\]#ise'	=> "\$this->bbcode_second_pass_code('\$1', '\$2')",
+							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\][\n]?#ise'	=> "\$this->bbcode_second_pass_code('\$1', '\$2')",
 						)
 					);
 				break;
