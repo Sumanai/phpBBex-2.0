@@ -140,10 +140,13 @@ class acp_board
 						'style_max_width'					=> array('lang' => 'STYLE_MAX_WIDTH',					'validate' => 'int:400:9999',	'type' => 'number:400:9999', 'explain' => false, 'append' => ' ' . $user->lang['PIXEL']),
 						'style_show_sitename_in_headerbar'	=> array('lang' => 'STYLE_SHOW_SITENAME_IN_HEADERBAR',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend2'							=> 'STYLE_SETTINGS_MINIPROFILE',
+						'legend2'							=> 'STYLE_SETTINGS_VIEWTOPIC',
+						'style_vt_show_post_numbers'		=> array('lang' => 'STYLE_VT_SHOW_POST_NUMBERS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+
+						'legend3'							=> 'STYLE_SETTINGS_MINIPROFILE',
 						'style_mp_on_left'					=> array('lang' => 'STYLE_MP_ON_LEFT',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend3'							=> 'ACP_SUBMIT_CHANGES',
+						'legend4'							=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;

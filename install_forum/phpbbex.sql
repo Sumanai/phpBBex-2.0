@@ -55,6 +55,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post_numbers', '0');
 
 -- Replace default phpBB config
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');

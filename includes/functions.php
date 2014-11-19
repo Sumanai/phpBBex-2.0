@@ -5124,6 +5124,9 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_back_to_top',
 		'style_max_width',
 		'style_show_sitename_in_headerbar',
+
+		// viewtopic
+		'style_vt_show_post_numbers',
 	);
 
 	foreach ($settings as $setting)
