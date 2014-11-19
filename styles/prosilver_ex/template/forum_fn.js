@@ -216,64 +216,6 @@ function play_qt_file(obj) {
 	obj.Play();
 }
 
-var inAutocomplete = false;
-var lastKeyEntered = '';
-
-/**
-* Check event key
-*/
-function phpbbCheckKey(event) {
-	'use strict';
-
-	// Keycode is array down or up?
-	if (event.keyCode && (event.keyCode === 40 || event.keyCode === 38)) {
-		inAutocomplete = true;
-	}
-
-	// Make sure we are not within an "autocompletion" field
-	if (inAutocomplete) {
-		// If return pressed and key changed we reset the autocompletion
-		if (!lastKeyEntered || lastKeyEntered === event.which) {
-			inAutocomplete = false;
-			return true;
-		}
-	}
-
-	// Keycode is not return, then return. ;)
-	if (event.which !== 13) {
-		lastKeyEntered = event.which;
-		return true;
-	}
-
-	return false;
-}
-
-/**
-* Apply onkeypress event for forcing default submit button on ENTER key press
-*/
-jQuery(function($) {
-	'use strict';
-
-	$('form input[type=text], form input[type=password]').on('keypress', function (e) {
-		var defaultButton = $(this).parents('form').find('input[type=submit].default-submit-action');
-
-		if (!defaultButton || defaultButton.length <= 0) {
-			return true;
-		}
-
-		if (phpbbCheckKey(e)) {
-			return true;
-		}
-
-		if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
-			defaultButton.click();
-			return false;
-		}
-
-		return true;
-	});
-});
-
 /**
 * Functions for user search popup
 */
