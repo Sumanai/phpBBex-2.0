@@ -4,8 +4,7 @@
 
 <!-- IF S_EDIT_FORUM -->
 
-	<script type="text/javascript">
-	// <![CDATA[
+	<script>
 		/**
 		* Handle displaying/hiding several options based on the forum type
 		*/
@@ -93,8 +92,6 @@
 			phpbb.toggleDisplay('forum_rules_options', -1);
 			<!-- ENDIF -->
 		}
-
-	// ]]>
 	</script>
 
 	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
@@ -318,7 +315,7 @@
 		</dl>
 		<dl>
 			<dt><label for="topics_per_page">{L_FORUM_TOPICS_PAGE}:</label><br /><span>{L_FORUM_TOPICS_PAGE_EXPLAIN}</span></dt>
-			<dd><input type="text" id="topics_per_page" name="topics_per_page" value="{TOPICS_PER_PAGE}" size="4" maxlength="4" /></dd>
+			<dd><input type="number" id="topics_per_page" name="topics_per_page" value="{TOPICS_PER_PAGE}" maxlength="4" size="4" min="0" max="9999" /></dd>
 		</dl>
 		<dl>
 			<dt><label for="topic_show_days">{L_FORUM_TOPICS_DAYS}:</label></dt>
@@ -417,12 +414,10 @@
 
 <!-- ELSEIF S_CONTINUE_SYNC -->
 
-	<script type="text/javascript">
-	// <![CDATA[
+	<script>
 		var close_waitscreen = 0;
 		// no scrollbars...
 		popup('{UA_PROGRESS_BAR}', 400, 240, '_sync');
-	// ]]>
 	</script>
 
 	<h1>{L_FORUM_ADMIN}</h1>
@@ -433,8 +428,7 @@
 
 <!-- ELSE -->
 
-	<script type="text/javascript">
-	// <![CDATA[
+	<script>
 		/**
 		* Popup search progress bar
 		*/
@@ -444,7 +438,6 @@
 			// no scrollbars...
 			popup('{UA_PROGRESS_BAR}', 400, 240, '_sync');
 		}
-	// ]]>
 	</script>
 
 	<h1>{L_FORUM_ADMIN}</h1>
@@ -459,10 +452,8 @@
 	<!-- ENDIF -->
 
 	<!-- IF S_RESYNCED -->
-		<script type="text/javascript">
-		// <![CDATA[
+		<script>
 			var close_waitscreen = 1;
-		// ]]>
 		</script>
 
 		<div class="successbox">

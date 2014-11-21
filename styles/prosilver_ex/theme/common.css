@@ -1087,7 +1087,8 @@ ul.linklist:after,
 .tabs-container:after,
 #tabs > ul:after,
 #minitabs > ul:after,
-.postprofile .avatar-container:after {
+.postprofile .avatar-container:after,
+#top-menu:after {
 	clear: both;
 	content: '';
 	display: block;
@@ -1298,4 +1299,39 @@ ul.linklist:after,
 
 .dropdown .clone.hidden + li {
 	border-top: none;
+}
+
+/* Top menu (C)VEG
+--------------------------------------------- */
+
+#top-links {
+	float: left;
+	margin: 5px 0;
+}
+
+
+#top-links ul {
+	list-style: none;
+	overflow: auto;
+}
+
+#top-links li {
+	float: left;
+	border-right: 1px solid #828282;
+	font-size: 1.1em;
+}
+
+#top-links ul li:last-child {
+	border-right: 0;
+}
+
+#top-links ul li a {
+	padding: 2px 10px;
+	display: block;
+	text-decoration: none;
+}
+
+#search-box.search-top {
+	float: right;
+	margin: 2px 0;
 }

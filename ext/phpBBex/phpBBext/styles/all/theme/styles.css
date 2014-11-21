@@ -137,6 +137,45 @@ dl.spoilerbox.spoilerbox-on > dd {
 	display: block;
 }
 
+/* Top menu */
+#top-menu {
+	margin: 0 auto;
+	padding: 0 30px;
+	max-width: 1152px
+}
+
+#top-links {
+	float: left;
+	margin: 8px 0;
+}
+
+
+#top-links ul {
+	list-style: none;
+	overflow: auto;
+}
+
+#top-links li {
+	float: left;
+	border-right: 1px solid #828282;
+	font-size: 1.1em;
+}
+
+#top-links ul li:last-child {
+	border-right: 0;
+}
+
+#top-links ul li a {
+	padding: 2px 10px;
+	display: block;
+	text-decoration: none;
+}
+
+.search-top {
+	float: right;
+	margin: 5px 0;
+}
+
 /* Responsive
 ---------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
@@ -160,5 +199,10 @@ dl.spoilerbox.spoilerbox-on > dd {
 	/* Poll option voters */
 	.poll_option_voters {
 		margin-left: 20px;
+	}
+
+	/* Top menu */
+	#top-menu {
+		padding: 0;
 	}
 }

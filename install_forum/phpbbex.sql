@@ -55,6 +55,8 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_siz
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
+REPLACE INTO phpbb_config_text (config_name, config_value) VALUES ('toplinks', '');
+
 -- Style options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');

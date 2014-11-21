@@ -805,6 +805,23 @@ $lang = array_merge($lang, array(
 	'LOG_REGISTER_REJECTED_USER'	=> '<strong style="color: red;">Регистрация пользователя отклонена</strong><br /><strong>Имя:</strong> %1$s<br /><strong>Email:</strong> %2$s<br /><strong>User Agent:</strong> %5$s<br /><strong>ID браузера:</strong> %4$s<br /><strong>Первый запрос:</strong> %6$s секунд назад<br /><strong>Запрошено:</strong> %7$s страниц<br /><strong>Ошибки:</strong><br />%3$s',
 ));
 
+// Top links
+$lang = array_merge($lang, array(
+	'ACP_TOP_LINKS'			=> 'Верхние ссылки',
+	'ACP_TOP_LINKS_EXPLAIN'	=> 'С помощью этой панели вы можете добавлять, удалять и изменять ссылки в верхнем меню.',
+	'TITLE'					=> 'Название',
+	'LINK'					=> 'Ссылка',
+	'ADD_LINK'				=> 'Добавить ссылку',
+	'EDIT_LINK'				=> 'Изменение ссылки',
+	'LINK_ADDED'			=> 'Ссылка успешно добавлена.',
+	'LINK_UPDATED'			=> 'Выбранная ссылка успешно обновлена.',
+	'LINK_REMOVED'			=> 'Выбранная ссылка успешно удалена.',
+	'LINK_NOFOLLOW'			=> 'No follow',
+	'LINK_NOFOLLOW_EXPLAIN'	=> 'Для поисковых роботов',
+	'LINK_NEWWINDOW'		=> 'Новое окно',
+	'LINK_NEWWINDOW_EXPLAIN'=> 'Открывать в новом окне',
+));
+
 // Custom BBCode Sorting
 $lang = array_merge($lang, array(
 	'SHOW_BUTTON'		=> 'Кнопка',

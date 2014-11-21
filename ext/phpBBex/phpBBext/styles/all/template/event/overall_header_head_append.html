@@ -1,6 +1,20 @@
 <!-- IF SITE_KEYWORDS --><meta name="keywords" content="{SITE_KEYWORDS}" /><!-- ENDIF -->
 <!-- IF SITE_DESCRIPTION --><meta name="description" content="{SITE_DESCRIPTION}" /><!-- ENDIF -->
 <!-- INCLUDECSS ../theme/styles.css -->
+<!-- IF STYLE_MAX_WIDTH or S_TOP_LINKS -->
+<style type="text/css" media="screen, projection">
 <!-- IF STYLE_MAX_WIDTH -->
-<style type="text/css" media="screen, projection">#wrap{max-width: {STYLE_MAX_WIDTH}px;}</style>
+	#wrap, body #top-menu {
+		max-width: {STYLE_MAX_WIDTH}px;
+	}
+<!-- ENDIF -->
+<!-- IF S_TOP_LINKS -->
+	#wrap {
+		padding-top: 30px;
+	}
+	#search-box {
+		display:none;
+	}
+<!-- ENDIF -->
+</style>
 <!-- ENDIF -->

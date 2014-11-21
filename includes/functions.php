@@ -5138,6 +5138,22 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'STYLE_MP_ON_LEFT'				=> (($user->data['mp_on_left'] == 0) ? $config['style_mp_on_left'] : (($user->data['mp_on_left'] == 1) ? 1:0)),
 	));
 
+	// Top links
+	$config_text = $phpbb_container->get('config_text');
+	$toplinks = $config_text->get('toplinks');
+	$toplinks = empty($toplinks) ? array() : explode("\n", $toplinks);
+	$template->assign_var('S_TOP_LINKS', !empty($toplinks));
+	foreach ($toplinks as $row)
+	{
+		$row = explode("\t", $row);
+		$template->assign_block_vars('toplinks', array(
+			'TITLE'		=> !empty($row[0]) ? $row[0] : '',
+			'URL'		=> !empty($row[1]) ? $row[1] : '',
+			'NOFOLLOW'	=> !empty($row[2]) && (intval($row[2]) & 0x1),
+			'NEWWINDOW'	=> !empty($row[2]) && (intval($row[2]) & 0x2),
+		));
+	}
+
 	// An array of http headers that phpbb will set. The following event may override these.
 	$http_headers = array(
 		// application/xhtml+xml not used because of IE

@@ -803,6 +803,23 @@ $lang = array_merge($lang, array(
 	'LOG_REGISTER_REJECTED_USER'	=> '<strong style="color: red;">An attempt to register a user was rejected</strong><br /><strong>Name:</strong> %1$s<br /><strong>Email:</strong> %2$s<br /><strong>User Agent:</strong> %5$s<br /><strong>Browser ID:</strong> %4$s<br /><strong>First request:</strong> %6$s seconds ago<br /><strong>Requested:</strong> %7$s pages<br /><strong>Errors:</strong><br />%3$s',
 ));
 
+// Top links
+$lang = array_merge($lang, array(
+	'ACP_TOP_LINKS'			=> 'Top links',
+	'ACP_TOP_LINKS_EXPLAIN'	=> 'From this control panel you can add, edit, and remove links in top menu.',
+	'TITLE'					=> 'Title',
+	'LINK'					=> 'URL',
+	'ADD_LINK'				=> 'Add link',
+	'EDIT_LINK'				=> 'Edit link',
+	'LINK_ADDED'			=> 'The link has been successfully added.',
+	'LINK_UPDATED'			=> 'The selected link has been successfully updated.',
+	'LINK_REMOVED'			=> 'The selected link has been successfully removed.',
+	'LINK_NOFOLLOW'			=> 'No follow',
+	'LINK_NOFOLLOW_EXPLAIN'	=> 'For search robots',
+	'LINK_NEWWINDOW'		=> 'New window',
+	'LINK_NEWWINDOW_EXPLAIN'=> 'Open in new window',
+));
+
 // Custom BBCode Sorting
 $lang = array_merge($lang, array(
 	'SHOW_BUTTON'		=> 'Button',
