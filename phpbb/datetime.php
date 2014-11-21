@@ -55,12 +55,13 @@ class datetime extends \DateTime
 	*
 	* @param string $format Optional format to use for output, defaults to users chosen format
 	* @param boolean $force_absolute Force output of a non relative date
+	* @param boolean $notime If true, the date format will be short
 	* @return string Formatted date time
 	*/
-	public function format($format = '', $force_absolute = false)
+	public function format($format = '', $force_absolute = false, $notime = false)
 	{
 		$format		= $format ? $format : $this->user->date_format;
-		$format		= self::format_cache($format, $this->user);
+		$format		= self::format_cache($format, $this->user, $notime);
 		$relative	= ($format['is_short'] && !$force_absolute);
 		$now		= new self($this->user, 'now', $this->user->timezone);
 
@@ -135,11 +136,23 @@ class datetime extends \DateTime
 	*
 	* @param string $format Output format
 	* @param user $user User object to use for localisation
+	* @param boolean $notime If true, the date format will be short
 	* @return array Processed date format
 	*/
-	static protected function format_cache($format, $user)
+	static protected function format_cache($format, $user, $notime)
 	{
 		$lang = $user->lang_name;
+
+		static $format_cached = array();
+
+		if (!isset($format_cached[$format]))
+		{
+			$format_cached[$format] = array(
+				'full'		=> str_replace(array('{', '}'), '', $format),
+				'notime'	=> str_replace(array('{', '}'), '', preg_replace('#{.*?}#i', '', $format)),
+			);
+		}
+		$format = $format_cached[$format][$notime?'notime':'full'];
 
 		if (!isset(self::$format_cache[$lang]))
 		{

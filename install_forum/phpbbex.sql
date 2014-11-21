@@ -71,6 +71,12 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size
 REPLACE INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_ignoreedittime', 1);
 REPLACE INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_ignorefpedittime', 1);
 
+-- Reset options for all users (new dateformat, enable quick reply, etc)
+UPDATE phpbb_users SET user_options = 233343, user_dateformat = '|d.m.Y|{, H:i}';
+
+-- Other options for robots
+UPDATE phpbb_users SET user_dateformat = 'd.m.Y{, H:i}' WHERE group_id = 6;
+
 -- Resolve conflicts with the new system bbcodes
 DELETE FROM phpbb_bbcodes WHERE bbcode_tag IN ('s', 'tt', 'spoiler', 'spoiler=');
 SELECT (@new_bbcode_id:=GREATEST(MAX(bbcode_id)+1, 17)) FROM phpbb_bbcodes;
@@ -84,6 +90,9 @@ UPDATE phpbb_bbcodes SET bbcode_id=@new_bbcode_id WHERE bbcode_id = 15;
 UPDATE phpbb_bots SET bot_agent = 'YandexBot/' WHERE bot_agent = 'Yandex/';
 DELETE FROM phpbb_users WHERE username='Aport [Bot]';
 DELETE FROM phpbb_bots WHERE bot_name='Aport [Bot]';
+
+-- Reset some other options to phpBBex defaults
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat', '|d.m.Y|{, H:i}');
 
 -- Reset CAPTCHA options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_plugin', 'phpbb_captcha_nogd');

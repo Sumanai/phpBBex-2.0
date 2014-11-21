@@ -1318,7 +1318,7 @@ while ($row = $db->sql_fetchrow($result))
 				'user_type'					=> $row['user_type'],
 				'user_inactive_reason'		=> $row['user_inactive_reason'],
 
-				'joined'		=> $user->format_date($row['user_regdate']),
+				'joined'		=> $user->format_date($row['user_regdate'], false, false, true),
 				'posts'			=> $row['user_posts'],
 				'warnings'		=> (isset($row['user_warnings'])) ? $row['user_warnings'] : 0,
 

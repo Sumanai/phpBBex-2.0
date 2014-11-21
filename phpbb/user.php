@@ -705,10 +705,11 @@ class user extends \phpbb\session
 	* @param int $gmepoch unix timestamp
 	* @param string $format date format in date() notation. | used to indicate relative dates, for example |d m Y|, h:i is translated to Today, h:i.
 	* @param bool $forcedate force non-relative date format.
+	* @param boolean $notime If true, the date format will be short
 	*
 	* @return mixed translated date
 	*/
-	function format_date($gmepoch, $format = false, $forcedate = false)
+	function format_date($gmepoch, $format = false, $forcedate = false, $notime = false)
 	{
 		static $utc;
 
@@ -720,7 +721,7 @@ class user extends \phpbb\session
 		$time = new $this->datetime($this, "@$gmepoch", $utc);
 		$time->setTimezone($this->timezone);
 
-		return $time->format($format, $forcedate);
+		return $time->format($format, $forcedate, $notime);
 	}
 
 	/**

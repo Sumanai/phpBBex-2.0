@@ -1450,18 +1450,18 @@ $lang = array_merge($lang, array(
 
 	// The value is only an example and will get replaced by the current time on view
 	'dateformats'	=> array(
-		'd M Y, H:i'			=> '10 янв 2005, 17:57',
-		'd M Y H:i'				=> '10 янв 2005 17:57',
-		'M j, \'y, H:i'			=> 'Янв 1, \'07, 13:37',
-		'D M d, Y g:i a'		=> 'Пн янв 10, 2005 5:57 pm',
-		'F j, Y, g:i a'			=> 'Январь 1, 2007, 1:37 pm',
-		'|d M Y|, H:i'			=> 'Сегодня, 13:37 / 01 Янв 2007, 13:37',
-		'|F j, Y|, g:i a'		=> 'Сегодня, 1:37 pm / Январь 1, 2007, 1:37 pm',
+		'|d.m.Y|{, H:i}'		=> 'Сегодня, 09:15 / 01.01.2012, 09:15',
+		'|j M Y|{, G:i}'		=> 'Сегодня, 9:15 / 1 янв 2012, 9:15',
+		'|D, j M Y|{, G:i}'		=> 'Сегодня, 9:15 / Вт, 1 янв 2012, 9:15',
+		'j M Y{, G:i}'			=> '1 янв 2012, 9:15',
+		'{H:i }d.m.Y'			=> '09:15 01.01.2012',
+		'd.m.Y{, H:i}'			=> '01.01.2012, 09:15',
+		'Y-m-d{ H:i}'			=> '2012-01-01 09:15',
 	),
 
 	// The default dateformat which will be used on new installs in this language
 	// Translators should change this if a the usual date format is different
-	'default_dateformat'	=>'|d M Y|, H:i', // Сегодня, 13:37 / 01 Янв 2007, 13:37
+	'default_dateformat'		=> '|d.m.Y|{, H:i}', // Сегодня, 10:06 / 24.04.2012, 10:06
 
 	// Other
 	'SPOILER'				=> 'Спойлер',
