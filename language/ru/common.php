@@ -1463,6 +1463,13 @@ $lang = array_merge($lang, array(
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'		=> '|d.m.Y|{, H:i}', // Сегодня, 10:06 / 24.04.2012, 10:06
 
+	// Genders
+	'GENDER'					=> 'Пол',
+	'GENDER_EXPLAIN'			=> 'Пожалуйста, укажите ваш пол.',
+	'GENDER_X'					=> 'Не указан',
+	'GENDER_M'					=> 'Мужской',
+	'GENDER_F'					=> 'Женский',
+
 	// Other
 	'SPOILER'				=> 'Спойлер',
 ));

@@ -1274,6 +1274,7 @@ while ($row = $db->sql_fetchrow($result))
 				'jabber'			=> '',
 				'search'			=> '',
 				'age'				=> '',
+				'gender'			=> 0,
 
 				'username'			=> $row['username'],
 				'user_colour'		=> $row['user_colour'],
@@ -1331,6 +1332,7 @@ while ($row = $db->sql_fetchrow($result))
 
 				'avatar'		=> ($user->optionget('viewavatars')) ? phpbb_get_user_avatar($row) : '',
 				'age'			=> '',
+				'gender'		=> (int)$row['user_gender'],
 
 				'rank_title'		=> '',
 				'rank_image'		=> '',
@@ -1876,6 +1878,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POSTER_WARNINGS'	=> $auth->acl_get('m_warn') ? $user_cache[$poster_id]['warnings'] : '',
 		'POSTER_AGE'		=> $user_cache[$poster_id]['age'],
 		'CONTACT_USER'		=> $user_cache[$poster_id]['contact_user'],
+
+		'S_POSTER_GENDER_X'	=> $user_cache[$poster_id]['gender'] == GENDER_X,
+		'S_POSTER_GENDER_M'	=> $user_cache[$poster_id]['gender'] == GENDER_M,
+		'S_POSTER_GENDER_F'	=> $user_cache[$poster_id]['gender'] == GENDER_F,
 
 		'POST_DATE'			=> $user->format_date($row['post_time'], false, ($view == 'print') ? true : false),
 		'POST_SUBJECT'		=> $row['post_subject'],

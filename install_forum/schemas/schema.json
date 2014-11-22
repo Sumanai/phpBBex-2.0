@@ -3096,6 +3096,10 @@
                 "VCHAR:10",
                 ""
             ],
+            "user_gender": [
+                "TINT:1",
+                0
+            ],
             "user_lastvisit": [
                 "TIMESTAMP",
                 0

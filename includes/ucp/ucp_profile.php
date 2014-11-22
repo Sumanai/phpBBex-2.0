@@ -268,6 +268,7 @@ class ucp_profile
 
 				$data = array(
 					'jabber'		=> utf8_normalize_nfc(request_var('jabber', $user->data['user_jabber'], true)),
+					'gender'		=> request_var('gender', $user->data['user_gender']),
 				);
 
 				if ($config['allow_birthdays'])
@@ -293,6 +294,7 @@ class ucp_profile
 						'jabber'		=> array(
 							array('string', true, 5, 255),
 							array('jabber')),
+						'gender'		=> array('num', true, 0, 2),
 					);
 
 					if ($config['allow_birthdays'])
@@ -334,6 +336,7 @@ class ucp_profile
 						$sql_ary = array(
 							'user_jabber'	=> $data['jabber'],
 							'user_notify_type'	=> $data['notify'],
+							'user_gender'	=> $data['gender'],
 						);
 
 						if ($config['allow_birthdays'])
@@ -396,6 +399,10 @@ class ucp_profile
 					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
 					'S_JABBER_ENABLED'	=> $config['jab_enable'],
 					'JABBER'			=> $data['jabber'],
+
+					'S_GENDER_X'	=> $data['gender'] == GENDER_X,
+					'S_GENDER_M'	=> $data['gender'] == GENDER_M,
+					'S_GENDER_F'	=> $data['gender'] == GENDER_F,
 				));
 
 				// Get additional profile fields and assign them to the template block var 'profile_fields'

@@ -20,6 +20,14 @@
 			</dd>
 		</dl>
 	<!-- ENDIF -->
+	<dl>
+		<dt><label for="gender_x">{L_GENDER}:</label><br /><span>{L_GENDER_EXPLAIN}</span></dt>
+		<dd>
+			<label for="gender_m"><input type="radio" name="gender" id="gender_m" value="1"<!-- IF S_GENDER_M --> checked="checked"<!-- ENDIF --> /> {L_GENDER_M}</label>
+			<label for="gender_f"><input type="radio" name="gender" id="gender_f" value="2"<!-- IF S_GENDER_F --> checked="checked"<!-- ENDIF --> /> {L_GENDER_F}</label>
+			<label for="gender_x"><input type="radio" name="gender" id="gender_x" value="0"<!-- IF S_GENDER_X --> checked="checked"<!-- ENDIF --> /> {L_GENDER_X}</label>
+		</dd>
+	</dl>
 	<!-- IF S_JABBER_ENABLED -->
 		<dl>
 			<dt><label for="jabber">{L_UCP_JABBER}{L_COLON}</label></dt>

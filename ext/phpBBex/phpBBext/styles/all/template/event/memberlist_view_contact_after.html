@@ -1,0 +1,15 @@
+<!-- IF GENDER or (USER_AGENT and (U_USER_ADMIN or U_USER_BAN)) or (USER_LAST_IP and (U_USER_ADMIN or U_USER_BAN)) -->
+<div class="panel bg1">
+	<div class="inner">
+	<div class="column1">
+		<h3>{L_MORE_INFO}</h3>
+		<dl class="details">
+			<!-- IF AGE and AGE < 65 and AGE > 10 --><dt>{L_AGE}{L_COLON}</dt> <dd>{AGE}</dd><!-- ENDIF -->
+			<dt>{L_GENDER}{L_COLON}</dt> <dd><!-- IF S_GENDER_M -->{L_GENDER_M}<!-- ELSEIF S_GENDER_F -->{L_GENDER_F}<!-- ELSE -->{L_GENDER_X}<!-- ENDIF --></dd>
+			<!-- IF USER_AGENT and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_AGENT}{L_COLON}</dt> <dd>{USER_AGENT}</dd><!-- ENDIF -->
+			<!-- IF USER_LAST_IP and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_LAST_IP}{L_COLON}</dt> <dd>{USER_LAST_IP}</dd><!-- ENDIF -->
+	</dl>
+	</div>
+	</div>
+</div>
+<!-- ENDIF -->

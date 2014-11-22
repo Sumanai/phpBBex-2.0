@@ -1636,6 +1636,10 @@ function phpbb_show_profile($data, $user_notes_enabled = false, $warn_user_enabl
 
 		'A_USERNAME'		=> addslashes(get_username_string('username', $user_id, $username, $data['user_colour'])),
 
+		'S_GENDER_X'		=> $data['user_gender'] == GENDER_X,
+		'S_GENDER_M'		=> $data['user_gender'] == GENDER_M,
+		'S_GENDER_F'		=> $data['user_gender'] == GENDER_F,
+
 		'AVATAR_IMG'		=> phpbb_get_user_avatar($data),
 		'ONLINE_IMG'		=> (!$config['load_onlinetrack']) ? '' : (($online) ? $user->img('icon_user_online', 'ONLINE') : $user->img('icon_user_offline', 'OFFLINE')),
 		'S_ONLINE'			=> ($config['load_onlinetrack'] && $online) ? true : false,

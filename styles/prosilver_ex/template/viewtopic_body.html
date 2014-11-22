@@ -138,11 +138,12 @@
 					<!-- ENDIF -->
 					<!-- EVENT viewtopic_body_avatar_after -->
 				</div>
-				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
+				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF --><!-- IF postrow.S_POSTER_GENDER_M --> <img src="{T_THEME_PATH}/images/icon_gender_m.gif" title="{L_GENDER}{L_COLON} {L_GENDER_M}" alt="M" /><!-- ELSEIF postrow.S_POSTER_GENDER_F --> <img src="{T_THEME_PATH}/images/icon_gender_f.gif" title="{L_GENDER}{L_COLON} {L_GENDER_F}" alt="F" /><!-- ENDIF -->
 			</dt>
 
 			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="profile-rank">{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
 
+		<!-- IF postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
 		<!-- IF postrow.POSTER_POSTS != '' --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF postrow.U_SEARCH !== '' --><a href="{postrow.U_SEARCH}"><!-- ENDIF -->{postrow.POSTER_POSTS}<!-- IF postrow.U_SEARCH !== '' --></a><!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF postrow.POSTER_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
 		<!-- IF postrow.POSTER_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {postrow.POSTER_WARNINGS}</dd><!-- ENDIF -->

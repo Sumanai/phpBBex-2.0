@@ -164,6 +164,32 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		$signature = generate_text_for_display($signature, $user_info['user_sig_bbcode_uid'], $user_info['user_sig_bbcode_bitfield'], $parse_flags, true);
 	}
 
+	// Author age
+	$age = '';
+
+	if ($config['allow_birthdays'] && $user_info['user_birthday'])
+	{
+		list($bday_day, $bday_month, $bday_year) = array_map('intval', explode('-', $user_info['user_birthday']));
+
+		if ($bday_year)
+		{
+			$now = $user->create_datetime();
+			$now = phpbb_gmgetdate($now->getTimestamp() + $now->getOffset());
+
+			$diff = $now['mon'] - $bday_month;
+			if ($diff == 0)
+			{
+				$diff = ($now['mday'] - $bday_day < 0) ? 1 : 0;
+			}
+			else
+			{
+				$diff = ($diff < 0) ? 1 : 0;
+			}
+
+			$age = max(0, (int) ($now['year'] - $bday_year - $diff));
+		}
+	}
+
 	$url = append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm');
 
 	// Number of "to" recipients
@@ -211,9 +237,15 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		'RANK_TITLE'		=> $user_info['rank_title'],
 		'RANK_IMG'			=> $user_info['rank_image'],
 		'AUTHOR_AVATAR'		=> (isset($user_info['avatar'])) ? $user_info['avatar'] : '',
-		'AUTHOR_JOINED'		=> $user->format_date($user_info['user_regdate']),
+		'AUTHOR_JOINED'		=> $user->format_date($user_info['user_regdate'], false, false, true),
 		'AUTHOR_POSTS'		=> (int) $user_info['user_posts'],
 		'CONTACT_USER'		=> $user->lang('CONTACT_USER', get_username_string('username', $author_id, $user_info['username'], $user_info['user_colour'], $user_info['username'])),
+
+		'AUTHOR_AGE'		=> $age,
+
+		'S_AUTHOR_GENDER_X'	=> $user_info['user_gender'] == GENDER_X,
+		'S_AUTHOR_GENDER_M'	=> $user_info['user_gender'] == GENDER_M,
+		'S_AUTHOR_GENDER_F'	=> $user_info['user_gender'] == GENDER_F,
 
 		'ONLINE_IMG'		=> (!$config['load_onlinetrack']) ? '' : ((isset($user_info['online']) && $user_info['online']) ? $user->img('icon_user_online', $user->lang['ONLINE']) : $user->img('icon_user_offline', $user->lang['OFFLINE'])),
 		'S_ONLINE'			=> (!$config['load_onlinetrack']) ? false : ((isset($user_info['online']) && $user_info['online']) ? true : false),

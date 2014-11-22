@@ -39,6 +39,7 @@ ALTER TABLE phpbb_topics
 ALTER TABLE phpbb_users
 	ADD COLUMN user_last_ip varchar(40) DEFAULT '' NOT NULL AFTER user_ip,
 	ADD COLUMN user_browser varchar(150) DEFAULT '' NOT NULL AFTER user_last_ip,
+	ADD COLUMN user_gender tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER user_birthday,
 	ADD COLUMN mp_on_left tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER user_post_sortby_dir;
 
 -- New phpBBex options
