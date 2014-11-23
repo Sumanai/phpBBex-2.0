@@ -81,7 +81,7 @@ class ucp_main
 						FROM $sql_from
 						WHERE t.topic_type = " . POST_GLOBAL . '
 							AND ' . $db->sql_in_set('t.forum_id', $forum_ary) . '
-						ORDER BY t.topic_last_post_time DESC, t.topic_last_post_id DESC';
+						ORDER BY t.topic_priority DESC, t.topic_last_post_time DESC, t.topic_last_post_id DESC';
 					$result = $db->sql_query($sql);
 
 					while ($row = $db->sql_fetchrow($result))

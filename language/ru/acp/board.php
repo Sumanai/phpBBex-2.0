@@ -89,6 +89,11 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
 
+	'STYLE_SETTINGS_INDEX'				=> 'Главная страница',
+	'ANNOUNCE_INDEX'				=> 'Показывать важные объявления',
+	'ACTIVE_TOPICS_ON_INDEX'		=> 'Показывать активные темы',
+	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'=> 'Введите количество отображаемых активных тем или 0 для отключения функции.',
+
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'Просмотр темы',
 	'STYLE_VT_SHOW_POST_NUMBERS'		=> 'Отображать номера сообщений',
 

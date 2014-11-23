@@ -140,13 +140,19 @@ class acp_board
 						'style_max_width'					=> array('lang' => 'STYLE_MAX_WIDTH',					'validate' => 'int:400:9999',	'type' => 'number:400:9999', 'explain' => false, 'append' => ' ' . $user->lang['PIXEL']),
 						'style_show_sitename_in_headerbar'	=> array('lang' => 'STYLE_SHOW_SITENAME_IN_HEADERBAR',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend2'							=> 'STYLE_SETTINGS_VIEWTOPIC',
+						'legend2'							=> 'STYLE_SETTINGS_INDEX',
+						'announce_index'					=> array('lang'	=> 'ANNOUNCE_INDEX',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'active_topics_on_index'			=> array('lang' => 'ACTIVE_TOPICS_ON_INDEX',			'validate' => 'int:0:100',	'type' => 'number:0:100', 'explain' => true),
+						'load_birthdays'					=> array('lang' => 'YES_BIRTHDAYS',						'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'load_moderators'					=> array('lang' => 'YES_MODERATORS',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+
+						'legend3'							=> 'STYLE_SETTINGS_VIEWTOPIC',
 						'style_vt_show_post_numbers'		=> array('lang' => 'STYLE_VT_SHOW_POST_NUMBERS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
-						'legend3'							=> 'STYLE_SETTINGS_MINIPROFILE',
+						'legend4'							=> 'STYLE_SETTINGS_MINIPROFILE',
 						'style_mp_on_left'					=> array('lang' => 'STYLE_MP_ON_LEFT',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend4'							=> 'ACP_SUBMIT_CHANGES',
+						'legend5'							=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;

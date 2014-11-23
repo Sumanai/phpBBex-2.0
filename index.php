@@ -161,6 +161,28 @@ if ($config['load_birthdays'] && $config['allow_birthdays'] && $auth->acl_gets('
 	$db->sql_freeresult($result);
 }
 
+// Images for display topic rows
+$template->assign_vars(array(
+	'NEWEST_POST_IMG'                      => $user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
+	'LAST_POST_IMG'                        => $user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
+	'POLL_IMG'                             => $user->img('icon_topic_poll', 'TOPIC_POLL'),
+	'DELETED_IMG'				=> $user->img('icon_topic_deleted', 'TOPIC_DELETED'),
+));
+
+// Global announcements
+$template->assign_var('S_ANNOUNCE_INDEX', !empty($config['announce_index']));
+if (!empty($config['announce_index']))
+{
+	display_global_announcements('announcetopic');
+}
+
+// Last active topics
+$template->assign_var('S_ACTIVE_TOPICS_ON_INDEX', !empty($config['active_topics_on_index']));
+if (!empty($config['active_topics_on_index']))
+{
+	display_active_topics('activetopic', $config['active_topics_on_index']);
+}
+
 // Assign index specific vars
 $template->assign_vars(array(
 	'TOTAL_POSTS'	=> $user->lang('TOTAL_POSTS_COUNT', (int) $config['num_posts']),

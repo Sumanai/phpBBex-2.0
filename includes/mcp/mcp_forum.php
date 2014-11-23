@@ -164,7 +164,7 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 		WHERE t.forum_id = ' . $forum_id . '
 			AND ' . $phpbb_content_visibility->get_visibility_sql('topic', $forum_id, 't.') . "
 			$limit_time_sql
-		ORDER BY t.topic_type DESC, $sort_order_sql";
+		ORDER BY t.topic_type DESC, t.topic_priority DESC, $sort_order_sql";
 	$result = $db->sql_query_limit($sql, $topics_per_page, $start);
 
 	$topic_list = $topic_tracking_info = array();

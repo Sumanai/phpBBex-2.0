@@ -293,6 +293,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitenam
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post_numbers', '0');
 
 # New phpBBex options
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');

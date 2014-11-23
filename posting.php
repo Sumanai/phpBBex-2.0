@@ -483,6 +483,7 @@ $post_data['post_edit_locked']	= (isset($post_data['post_edit_locked'])) ? (int)
 $post_data['post_subject_md5']	= (isset($post_data['post_subject']) && $mode == 'edit') ? md5($post_data['post_subject']) : '';
 $post_data['post_subject']		= (in_array($mode, array('quote', 'edit'))) ? $post_data['post_subject'] : ((isset($post_data['topic_title'])) ? $post_data['topic_title'] : '');
 $post_data['topic_time_limit']	= (isset($post_data['topic_time_limit'])) ? (($post_data['topic_time_limit']) ? (int) $post_data['topic_time_limit'] / 86400 : (int) $post_data['topic_time_limit']) : 0;
+$post_data['topic_priority']	= (isset($post_data['topic_priority'])) ? (int) $post_data['topic_priority'] : 0;
 $post_data['poll_length']		= (!empty($post_data['poll_length'])) ? (int) $post_data['poll_length'] / 86400 : 0;
 $post_data['poll_start']		= (!empty($post_data['poll_start'])) ? (int) $post_data['poll_start'] : 0;
 $post_data['icon_id']			= (!isset($post_data['icon_id']) || in_array($mode, array('quote', 'reply'))) ? 0 : (int) $post_data['icon_id'];
@@ -685,6 +686,7 @@ if ($save && $user->data['is_registered'] && $auth->acl_get('u_savedrafts') && (
 
 				'topic_type'		=> POST_NORMAL,
 				'topic_time_limit'	=> 0,
+				'topic_priority'	=> 0,
 
 				'poll_title'		=> '',
 				'poll_option_text'	=> '',
@@ -776,6 +778,7 @@ if ($submit || $preview || $refresh)
 	$post_data['orig_topic_type']	= $post_data['topic_type'];
 	$post_data['topic_type']		= request_var('topic_type', (($mode != 'post') ? (int) $post_data['topic_type'] : POST_NORMAL));
 	$post_data['topic_time_limit']	= request_var('topic_time_limit', (($mode != 'post') ? (int) $post_data['topic_time_limit'] : 0));
+	$post_data['topic_priority']	= request_var('topic_priority', (($mode != 'post') ? (int) $post_data['topic_priority'] : 0));
 
 	if ($post_data['enable_icons'] && $auth->acl_get('f_icons', $forum_id))
 	{
@@ -1236,6 +1239,7 @@ if ($submit || $preview || $refresh)
 				'topic_first_post_id'	=> (isset($post_data['topic_first_post_id'])) ? (int) $post_data['topic_first_post_id'] : 0,
 				'topic_last_post_id'	=> (isset($post_data['topic_last_post_id'])) ? (int) $post_data['topic_last_post_id'] : 0,
 				'topic_time_limit'		=> (int) $post_data['topic_time_limit'],
+				'topic_priority'		=> (int) $post_data['topic_priority'],
 				'topic_attachment'		=> (isset($post_data['topic_attachment'])) ? (int) $post_data['topic_attachment'] : 0,
 				'post_id'				=> (int) $post_id,
 				'topic_id'				=> (int) $topic_id,
@@ -1686,6 +1690,7 @@ $page_data = array(
 	'POST_DATE'				=> ($post_data['post_time']) ? $user->format_date($post_data['post_time']) : '',
 	'ERROR'					=> (sizeof($error)) ? implode('<br />', $error) : '',
 	'TOPIC_TIME_LIMIT'		=> (int) $post_data['topic_time_limit'],
+	'TOPIC_PRIORITY'		=> (int) $post_data['topic_priority'],
 	'EDIT_REASON'			=> $request->variable('edit_reason', ''),
 	'SHOW_PANEL'			=> $request->variable('show_panel', ''),
 	'U_VIEW_FORUM'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx", "f=$forum_id"),

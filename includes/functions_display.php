@@ -995,6 +995,246 @@ function topic_status(&$topic_row, $replies, $unread_topic, &$folder_img, &$fold
 }
 
 /**
+* Display topic rows
+*/
+function display_topic_rows($tpl_loopname, $topic_ids)
+{
+	global $auth, $cache, $config, $db, $phpbb_container, $template, $user;
+	global $phpbb_root_path, $phpEx;
+
+	// No topics to display
+	if (empty($topic_ids))
+	{
+		return;
+	}
+
+	// Grab icons
+	$icons = $cache->obtain_icons();
+
+	// Now only pull the data of the requested topics
+	$sql = 'SELECT t.*, i.icons_url, i.icons_width, i.icons_height, tp.topic_posted, f.forum_name
+		FROM ' . TOPICS_TABLE . ' t
+		LEFT JOIN ' . TOPICS_POSTED_TABLE . ' tp
+			ON (t.topic_id = tp.topic_id
+				AND tp.user_id = ' . $user->data['user_id'] . ')
+		LEFT JOIN ' . FORUMS_TABLE . ' f
+			ON f.forum_id = t.forum_id
+		LEFT JOIN ' . ICONS_TABLE . ' i
+			ON t.icon_id = i.icons_id
+		WHERE ' . $db->sql_in_set('t.topic_id', $topic_ids);
+	$result = $db->sql_query($sql);
+
+	$forums = $topic_rows = $topic_icons = array();
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$topic_id = $row['topic_id'];
+		$forum_id = $row['forum_id'];
+		$topic_rows[$topic_id] = $row;
+		$forums[$forum_id][] = $topic_id;
+	}
+	$db->sql_freeresult($result);
+
+	foreach ($forums as $forum_id => $forum_topic_ids)
+	{
+		$topic_tracking_info[$forum_id] = get_complete_topic_tracking($forum_id, $forum_topic_ids);
+	}
+
+	$pagination = $phpbb_container->get('pagination');
+	$phpbb_content_visibility = $phpbb_container->get('content.visibility');
+
+	foreach ($topic_ids as $topic_id)
+	{
+		if (empty($topic_rows[$topic_id])) continue;
+		$row = $topic_rows[$topic_id];
+		$forum_id = $row['forum_id'];
+
+		$replies = $phpbb_content_visibility->get_count('topic_posts', $row, $forum_id) - 1;
+		$unread_topic = (isset($topic_tracking_info[$forum_id][$topic_id]) && $row['topic_last_post_time'] > $topic_tracking_info[$forum_id][$topic_id]) ? true : false;
+
+		$folder_img = $folder_alt = $topic_type = '';
+		topic_status($row, $replies, $unread_topic, $folder_img, $folder_alt, $topic_type);
+
+		if (!empty($icons[$row['icon_id']]))
+		{
+			$topic_icons[] = $topic_id;
+		}
+
+		// Generate all the URIs ...
+		$view_topic_url_params = 'f=' . $row['forum_id'] . '&amp;t=' . $topic_id;
+		$view_topic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params);
+		$view_forum_url = append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $forum_id);
+
+		$topic_unapproved = (($row['topic_visibility'] == ITEM_UNAPPROVED || $row['topic_visibility'] == ITEM_REAPPROVE) && $auth->acl_get('m_approve', $row['forum_id']));
+		$posts_unapproved = ($row['topic_visibility'] == ITEM_APPROVED && $row['topic_posts_unapproved'] && $auth->acl_get('m_approve', $row['forum_id']));
+		$topic_deleted = $row['topic_visibility'] == ITEM_DELETED;
+
+		$u_mcp_queue = ($topic_unapproved || $posts_unapproved) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=queue&amp;mode=' . (($topic_unapproved) ? 'approve_details' : 'unapproved_posts') . "&amp;t=$topic_id", true, $user->session_id) : '';
+		$u_mcp_queue = (!$u_mcp_queue && $topic_deleted) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=queue&amp;mode=deleted_topics&amp;t=' . $topic_id, true, $user->session_id) : $u_mcp_queue;
+
+		$template->assign_block_vars($tpl_loopname, array(
+			'FORUM_ID'					=> $forum_id,
+			'TOPIC_ID'					=> $topic_id,
+			'TOPIC_AUTHOR'				=> get_username_string('username', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
+			'TOPIC_AUTHOR_COLOUR'		=> get_username_string('colour', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
+			'TOPIC_AUTHOR_FULL'			=> get_username_string('full', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
+			'FIRST_POST_TIME'			=> $user->format_date($row['topic_time']),
+			'LAST_POST_SUBJECT'			=> censor_text($row['topic_last_post_subject']),
+			'LAST_POST_TIME'			=> $user->format_date($row['topic_last_post_time']),
+			'LAST_VIEW_TIME'			=> $user->format_date($row['topic_last_view_time']),
+			'LAST_POST_AUTHOR'			=> get_username_string('username', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
+			'LAST_POST_AUTHOR_COLOUR'	=> get_username_string('colour', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
+			'LAST_POST_AUTHOR_FULL'		=> get_username_string('full', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
+
+			'REPLIES'					=> $replies,
+			'VIEWS'						=> $row['topic_views'],
+			'TOPIC_TITLE'				=> censor_text($row['topic_title']),
+			'TOPIC_TYPE'			=> $topic_type,
+			'FORUM_NAME'				=> $row['forum_name'],
+
+			'TOPIC_IMG_STYLE'			=> $folder_img,
+			'TOPIC_FOLDER_IMG'		=> $user->img($folder_img, $folder_alt),
+			'TOPIC_FOLDER_IMG_ALT'	=> $user->lang[$folder_alt],
+
+			'TOPIC_ICON_IMG'		=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['img'] : '',
+			'TOPIC_ICON_IMG_WIDTH'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['width'] : '',
+			'TOPIC_ICON_IMG_HEIGHT'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['height'] : '',
+			'UNAPPROVED_IMG'		=> ($topic_unapproved || $posts_unapproved) ? $user->img('icon_topic_unapproved', ($topic_unapproved) ? 'TOPIC_UNAPPROVED' : 'POSTS_UNAPPROVED') : '',
+			'REPORTED_IMG'			=> ($row['topic_reported'] && $auth->acl_get('m_report', $forum_id)) ? $user->img('icon_topic_reported', 'TOPIC_REPORTED') : '',
+
+			'S_TOPIC_TYPE'			=> $row['topic_type'],
+			'S_USER_POSTED'			=> (isset($row['topic_posted']) && $row['topic_posted']) ? true : false,
+			'S_UNREAD_TOPIC'		=> $unread_topic,
+			'S_TOPIC_REPORTED'		=> ($row['topic_reported'] && $auth->acl_get('m_report', $forum_id)) ? true : false,
+			'S_TOPIC_UNAPPROVED'	=> $topic_unapproved,
+			'S_POSTS_UNAPPROVED'	=> $posts_unapproved,
+			'S_TOPIC_DELETED'		=> $topic_deleted,
+			'S_HAS_POLL'			=> ($row['poll_start']) ? true : false,
+			'S_POST_ANNOUNCE'		=> ($row['topic_type'] == POST_ANNOUNCE) ? true : false,
+			'S_POST_GLOBAL'			=> ($row['topic_type'] == POST_GLOBAL) ? true : false,
+			'S_POST_STICKY'			=> ($row['topic_type'] == POST_STICKY) ? true : false,
+			'S_TOPIC_LOCKED'		=> ($row['topic_status'] == ITEM_LOCKED) ? true : false,
+			'S_TOPIC_MOVED'			=> ($row['topic_status'] == ITEM_MOVED) ? true : false,
+
+			'U_NEWEST_POST'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params . '&amp;view=unread') . '#unread',
+			'U_LAST_POST'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", $view_topic_url_params . '&amp;p=' . $row['topic_last_post_id']) . '#p' . $row['topic_last_post_id'],
+			'U_LAST_POST_AUTHOR'	=> get_username_string('profile', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
+			'U_TOPIC_AUTHOR'		=> get_username_string('profile', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
+			'U_VIEW_TOPIC'			=> $view_topic_url,
+			'U_VIEW_FORUM'			=> $view_forum_url,
+			'U_MCP_REPORT'			=> append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=reports&amp;mode=reports&amp;f=' . $forum_id . '&amp;t=' . $topic_id, true, $user->session_id),
+			'U_MCP_QUEUE'			=> $u_mcp_queue,
+		));
+
+		$pagination->generate_template_pagination($view_topic_url, $tpl_loopname . '.pagination', 'start', $replies + 1, $config['posts_per_page'], 1, true, true);
+	}
+}
+
+/**
+* Display global announcements
+*/
+function display_global_announcements($tpl_loopname)
+{
+	global $auth, $db;
+
+	$forum_ary = $auth->acl_getf('f_read', true);
+	$forum_ary = array_unique(array_keys($forum_ary));
+
+	if (!sizeof($forum_ary))
+	{
+		return;
+	}
+
+	$sql = 'SELECT t.forum_id, t.topic_id
+		FROM ' . TOPICS_TABLE . ' t
+		WHERE ' . $db->sql_in_set('t.forum_id', $forum_ary) . "
+			AND t.topic_type = " . POST_GLOBAL . '
+		ORDER BY t.topic_priority DESC, t.topic_time DESC';
+	$result = $db->sql_query($sql);
+
+	$topic_ids = array();
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$topic_ids[] = $row['topic_id'];
+	}
+	$db->sql_freeresult($result);
+
+	display_topic_rows($tpl_loopname, $topic_ids);
+}
+
+/**
+* Display last active topics
+*/
+function display_active_topics($tpl_loopname, $total_limit)
+{
+	global $auth, $db, $phpbb_container;
+	/**
+	* Set some internal needed variables
+	*/
+	$excluded_topic_ids = array('');
+
+	/**
+	* Get the forums we take our topics from
+	*/
+	// Get the allowed forums
+	$forum_ary = array();
+	$forum_read_ary = $auth->acl_getf('f_read');
+	foreach ($forum_read_ary as $forum_id => $allowed)
+	{
+		if ($allowed['f_read'])
+		{
+			$forum_ary[] = (int) $forum_id;
+		}
+	}
+	$forum_ids = array_unique($forum_ary);
+
+	if (!sizeof($forum_ids))
+	{
+		// No forums with f_read
+		return;
+	}
+
+	$sql = 'SELECT forum_id
+		FROM ' . FORUMS_TABLE . '
+		WHERE ' . $db->sql_in_set('forum_id', $forum_ids) . '
+			AND forum_flags & ' . FORUM_FLAG_ACTIVE_TOPICS;
+	$result = $db->sql_query($sql);
+
+	$forum_ids = array();
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$forum_ids[] = $row['forum_id'];
+	}
+	$db->sql_freeresult($result);
+
+	// No forums with f_read
+	if (!sizeof($forum_ids))
+	{
+		return;
+	}
+
+	$phpbb_content_visibility = $phpbb_container->get('content.visibility');
+
+	// Get the allowed topics
+	$sql = 'SELECT forum_id, topic_id, topic_type
+		FROM ' . TOPICS_TABLE . '
+		WHERE ' . $db->sql_in_set('topic_id', $excluded_topic_ids, true) . '
+			AND ' . $phpbb_content_visibility->get_forums_visibility_sql('topic', $forum_ids) . '
+			AND topic_type <> ' . POST_GLOBAL . '
+			AND topic_status <> ' . ITEM_MOVED . '
+		ORDER BY topic_last_post_time DESC';
+	$result = $db->sql_query_limit($sql, $total_limit);
+
+	$topic_ids = array();
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$topic_ids[] = $row['topic_id'];
+	}
+	$db->sql_freeresult($result);
+
+	display_topic_rows($tpl_loopname, $topic_ids);
+}
+
+/**
 * Assign/Build custom bbcodes for display in screens supporting using of bbcodes
 * The custom bbcodes buttons will be placed within the template block 'custom_tags'
 */

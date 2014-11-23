@@ -36,6 +36,10 @@ ALTER TABLE phpbb_topics
 	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change,
 	ADD COLUMN topic_first_post_show tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_show_voters;
 
+ALTER TABLE phpbb_topics
+	ADD COLUMN topic_priority mediumint(8) DEFAULT '0' NOT NULL AFTER topic_type,
+	ADD INDEX topic_priority (topic_priority);
+
 ALTER TABLE phpbb_users
 	ADD COLUMN user_last_ip varchar(40) DEFAULT '' NOT NULL AFTER user_ip,
 	ADD COLUMN user_browser varchar(150) DEFAULT '' NOT NULL AFTER user_last_ip,
@@ -43,6 +47,8 @@ ALTER TABLE phpbb_users
 	ADD COLUMN mp_on_left tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER user_post_sortby_dir;
 
 -- New phpBBex options
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_admin_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_mod_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_critical_logs_days', '365');

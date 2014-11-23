@@ -379,8 +379,8 @@ function posting_gen_topic_types($forum_id, $cur_topic_type = POST_NORMAL)
 
 		$template->assign_vars(array(
 			'S_TOPIC_TYPE_STICKY'	=> ($auth->acl_get('f_sticky', $forum_id)),
-			'S_TOPIC_TYPE_ANNOUNCE'	=> ($auth->acl_get('f_announce', $forum_id)))
-		);
+			'S_TOPIC_TYPE_ANNOUNCE'	=> ($auth->acl_get('f_announce', $forum_id)),
+		));
 	}
 
 	return $toggle;
@@ -1720,7 +1720,8 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_first_poster_name'	=> (!$user->data['is_registered'] && $username) ? $username : (($user->data['user_id'] != ANONYMOUS) ? $user->data['username'] : ''),
 				'topic_first_poster_colour'	=> $user->data['user_colour'],
 				'topic_type'				=> $topic_type,
-				'topic_time_limit'			=> ($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE) ? ($data['topic_time_limit'] * 86400) : 0,
+				'topic_time_limit'		=> ($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE || $topic_type == POST_GLOBAL)  ? ($data['topic_time_limit'] * 86400) : 0,
+				'topic_priority'			=> (($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE || $topic_type == POST_GLOBAL) && isset($data['topic_priority'])) ? intval($data['topic_priority']) : 0,
 				'topic_attachment'			=> (!empty($data['attachment_data'])) ? 1 : 0,
 			);
 
@@ -1815,7 +1816,8 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_title'				=> $subject,
 				'topic_first_poster_name'	=> $username,
 				'topic_type'				=> $topic_type,
-				'topic_time_limit'			=> ($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE) ? ($data['topic_time_limit'] * 86400) : 0,
+				'topic_time_limit'		=> ($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE || $topic_type == POST_GLOBAL) ? ($data['topic_time_limit'] * 86400) : 0,
+				'topic_priority'			=> (($topic_type == POST_STICKY || $topic_type == POST_ANNOUNCE || $topic_type == POST_GLOBAL) && isset($data['topic_priority'])) ? intval($data['topic_priority']) : 0,
 				'poll_title'				=> (isset($poll['poll_options'])) ? $poll['poll_title'] : '',
 				'poll_start'				=> (isset($poll['poll_options'])) ? $poll_start : 0,
 				'poll_max_options'			=> (isset($poll['poll_options'])) ? $poll['poll_max_options'] : 1,

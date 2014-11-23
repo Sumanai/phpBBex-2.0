@@ -2730,6 +2730,10 @@
                 "TINT:3",
                 0
             ],
+            "topic_priority": [
+                "UINT",
+                0
+            ],
             "topic_first_post_id": [
                 "UINT",
                 0
@@ -2860,6 +2864,10 @@
             "last_post_time": [
                 "INDEX",
                 "topic_last_post_time"
+            ],
+            "topic_priority": [
+                "INDEX",
+                "topic_priority"
             ],
             "fid_time_moved": [
                 "INDEX",

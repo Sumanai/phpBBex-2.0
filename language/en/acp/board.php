@@ -89,8 +89,13 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
 
+	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
+	'ANNOUNCE_INDEX'				=> 'Display global annoucements',
+	'ACTIVE_TOPICS_ON_INDEX'		=> 'Display active topics',
+
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'View Topic',
 	'STYLE_VT_SHOW_POST_NUMBERS'		=> 'Display post numbers',
+	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'=> 'Leave empty or 0 to disable active topics on index.',
 
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Mini profile',
 	'STYLE_MP_ON_LEFT'					=> 'Profiles on left',

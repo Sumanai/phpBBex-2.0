@@ -452,7 +452,7 @@ if ($forum_data['forum_type'] == FORUM_POST)
 			(' . $db->sql_in_set('t.forum_id', $g_forum_ary) . '
 				AND t.topic_type = ' . POST_GLOBAL . ')',
 
-		'ORDER_BY'	=> 't.topic_time DESC',
+		'ORDER_BY'	=> 't.topic_priority DESC, t.topic_time DESC',
 	);
 	$sql = $db->sql_build_query('SELECT', $sql_ary);
 	$result = $db->sql_query($sql);
@@ -552,7 +552,7 @@ $sql_ary = array(
 		AND t.topic_type IN (" . POST_NORMAL . ', ' . POST_STICKY . ")
 		$sql_approved
 		$sql_limit_time",
-	'ORDER_BY'	=> 't.topic_type ' . ((!$store_reverse) ? 'DESC' : 'ASC') . ', ' . $sql_sort_order,
+	'ORDER_BY'	=> 't.topic_type ' . ((!$store_reverse) ? 'DESC' : 'ASC') . ', t.topic_priority ' . ((!$store_reverse) ? 'DESC' : 'ASC') . ', ' . $sql_sort_order,
 );
 
 /**
