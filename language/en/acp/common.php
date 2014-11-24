@@ -825,3 +825,11 @@ $lang = array_merge($lang, array(
 	'SHOW_BUTTON'		=> 'Button',
 ));
 
+// Login via E-Mail
+$lang = array_merge($lang, array(
+	'LOGIN_VIA_EMAIL_ENABLE'			=> 'Login via E-Mail',
+	'LOGIN_VIA_EMAIL_ENABLE_EXPLAIN'	=> 'Allow users to login using either their username or e-mail address. With the silent option, there will be no text indicating that this is possible. Warning! In E-Mail only mode needs some editing styles, not adapted for phpBBex!',
+	'LOGIN_VIA_EMAIL_SILENT'			=> 'Yes, silently',
+	'LOGIN_VIA_EMAIL_ONLY'				=> 'E-Mail only',
+	'EMAIL_REUSE_DISABLED'				=> 'This is disabled while <em>Login via Email</em> is enabled.',
+));

@@ -2937,7 +2937,7 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 				$err = $user->lang[$result['error_msg']];
 
 				// Assign admin contact to some error messages
-				if ($result['error_msg'] == 'LOGIN_ERROR_USERNAME' || $result['error_msg'] == 'LOGIN_ERROR_PASSWORD')
+				if ($result['error_msg'] == 'LOGIN_ERROR_USERNAME_OR_EMAIL' || $result['error_msg'] == 'LOGIN_ERROR_USERNAME' || $result['error_msg'] == 'LOGIN_ERROR_EMAIL' || $result['error_msg'] == 'LOGIN_ERROR_PASSWORD')
 				{
 					$err = sprintf($user->lang[$result['error_msg']], '<a href="' . append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=contactadmin') . '">', '</a>');
 				}
@@ -5152,6 +5152,20 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 			'NOFOLLOW'	=> !empty($row[2]) && (intval($row[2]) & 0x1),
 			'NEWWINDOW'	=> !empty($row[2]) && (intval($row[2]) & 0x2),
 		));
+	}
+
+	// Login via E-Mail
+	switch ($config['login_via_email_enable'])
+	{
+		case LOGIN_VIA_EMAIL_YES:
+			$template->assign_var('L_LOGIN_NAME', $user->lang['USERNAME_OR_EMAIL']);
+		break;
+		case LOGIN_VIA_EMAIL_ONLY:
+			$template->assign_var('L_LOGIN_NAME', $user->lang['EMAIL']);
+		break;
+		default:
+			$template->assign_var('L_LOGIN_NAME', $user->lang['USERNAME']);
+		break;
 	}
 
 	// An array of http headers that phpbb will set. The following event may override these.

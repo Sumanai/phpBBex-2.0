@@ -89,7 +89,22 @@ class db extends \phpbb\auth\provider\base
 
 		$sql = 'SELECT user_id, username, user_password, user_passchg, user_email, user_type, user_login_attempts
 			FROM ' . USERS_TABLE . "
-			WHERE username_clean = '" . $this->db->sql_escape($username_clean) . "'";
+			WHERE ";
+		$where_username = "username_clean = '" . $this->db->sql_escape($username_clean) . "'";
+		$where_email = "user_email = '" . $this->db->sql_escape(strtolower($username)) . "'";
+		switch ($this->config['login_via_email_enable'])
+		{
+			case LOGIN_VIA_EMAIL_SILENT:
+			case LOGIN_VIA_EMAIL_YES:
+				$sql .= $where_username . ' OR ' . $where_email;
+			break;
+			case LOGIN_VIA_EMAIL_ONLY:
+				$sql .= $where_email;
+			break;
+			default:
+				$sql .= $where_username;
+			break;
+		}
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -141,9 +156,22 @@ class db extends \phpbb\auth\provider\base
 				);
 			}
 
+			switch ($this->config['login_via_email_enable'])
+			{
+				case LOGIN_VIA_EMAIL_YES:
+					$error_msg = 'LOGIN_ERROR_USERNAME_OR_EMAIL';
+				break;
+				case LOGIN_VIA_EMAIL_ONLY:
+					$error_msg = 'LOGIN_ERROR_EMAIL';
+				break;
+				default:
+					$error_msg = 'LOGIN_ERROR_USERNAME';
+				break;
+			}
+
 			return array(
 				'status'	=> LOGIN_ERROR_USERNAME,
-				'error_msg'	=> 'LOGIN_ERROR_USERNAME',
+				'error_msg'	=> $error_msg,
 				'user_row'	=> array('user_id' => ANONYMOUS),
 			);
 		}

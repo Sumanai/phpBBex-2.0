@@ -98,6 +98,7 @@ class acp_board
 						'allow_nocensors'		=> array('lang' => 'ALLOW_NO_CENSORS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'allow_bookmarks'		=> array('lang' => 'ALLOW_BOOKMARKS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'allow_birthdays'		=> array('lang' => 'ALLOW_BIRTHDAYS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'login_via_email_enable'=> array('lang' => 'LOGIN_VIA_EMAIL_ENABLE', 'validate' => 'int',	'type' => 'custom', 'method' => 'login_via_email_options', 'explain' => true),
 						'display_last_subject'	=> array('lang' => 'DISPLAY_LAST_SUBJECT',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'allow_quick_reply'		=> array('lang' => 'ALLOW_QUICK_REPLY',		'validate' => 'bool',	'type' => 'custom', 'method' => 'quick_reply', 'explain' => true),
 
@@ -877,6 +878,23 @@ class acp_board
 		}
 
 		return $act_options;
+	}
+
+	/**
+	* Login via E-Mail options
+	*/
+	function login_via_email_options($value, $key = '')
+	{
+		global $config, $user;
+
+		$radio_ary = array(
+			LOGIN_VIA_EMAIL_YES		=> 'YES',
+			LOGIN_VIA_EMAIL_NO		=> 'NO',
+			LOGIN_VIA_EMAIL_SILENT	=> 'LOGIN_VIA_EMAIL_SILENT',
+			LOGIN_VIA_EMAIL_ONLY	=> 'LOGIN_VIA_EMAIL_ONLY',
+		);
+
+		return h_radio('config[login_via_email_enable]', $radio_ary, $value, $key);
 	}
 
 	/**
