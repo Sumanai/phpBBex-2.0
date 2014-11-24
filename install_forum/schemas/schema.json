@@ -3216,6 +3216,10 @@
                 "VCHAR:1",
                 "d"
             ],
+            "user_topics_per_page": [
+                "UINT:8",
+                0
+            ],
             "user_post_show_days": [
                 "USINT",
                 0
@@ -3227,6 +3231,10 @@
             "user_post_sortby_dir": [
                 "VCHAR:1",
                 "a"
+            ],
+            "user_posts_per_page": [
+                "UINT:8",
+                0
             ],
             "mp_on_left": [
                 "TINT:1",

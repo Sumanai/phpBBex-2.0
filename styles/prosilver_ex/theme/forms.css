@@ -271,6 +271,7 @@ input.inputbox	{ width: 85%; }
 input.medium	{ width: 50%; }
 input.narrow	{ width: 25%; }
 input.tiny	{ width: 150px; }
+input.nano	{ width: 50px; }
 
 textarea.inputbox {
 	width: 85%;
