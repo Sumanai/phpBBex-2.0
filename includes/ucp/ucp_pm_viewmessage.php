@@ -223,7 +223,7 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		$u_pm = append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;mode=compose&amp;u=' . $author_id);
 	}
 
-	if ($user_info['user_jabber'] && $auth->acl_get('u_sendim'))
+	if ($config['jab_enable'] && $user_info['user_jabber'] && $auth->acl_get('u_sendim'))
 	{
 		$u_jabber = append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=contact&amp;action=jabber&amp;u=' . $author_id);
 	}
@@ -239,6 +239,7 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		'AUTHOR_AVATAR'		=> (isset($user_info['avatar'])) ? $user_info['avatar'] : '',
 		'AUTHOR_JOINED'		=> $user->format_date($user_info['user_regdate'], false, false, true),
 		'AUTHOR_POSTS'		=> (int) $user_info['user_posts'],
+		'U_AUTHOR_POSTS'	=> ($config['load_search'] && $auth->acl_get('u_search')) ? append_sid("{$phpbb_root_path}search.$phpEx", "author_id=$author_id&amp;sr=posts") : '',
 		'CONTACT_USER'		=> $user->lang('CONTACT_USER', get_username_string('username', $author_id, $user_info['username'], $user_info['user_colour'], $user_info['username'])),
 
 		'AUTHOR_AGE'		=> $age,
