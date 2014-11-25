@@ -68,6 +68,7 @@ $lang = array_merge($lang, array(
 	'STYLE_ERR_INVALID_PARENT'	=> 'Родительский стиль неверен.',
 	'STYLE_ERR_NAME_EXIST'		=> 'Стиль с таким именем уже существует.',
 	'STYLE_ERR_STYLE_NAME'		=> 'Вы должны задать имя для этого стиля.',
+	'STYLE_NAME_RESERVED'		=> 'Стиль «%s» не может быть установлен, так как данное имя является зарезервированным.',
 	'STYLE_INSTALLED'			=> 'Стиль «%s» успешно установлен.',
 	'STYLE_INSTALLED_RETURN_INSTALLED_STYLES'	=> 'Вернуться к списку установленных стилей.',
 	'STYLE_INSTALLED_RETURN_UNINSTALLED_STYLES'	=> 'Установить другие стили.',
