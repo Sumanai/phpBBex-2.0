@@ -51,6 +51,7 @@ ALTER TABLE phpbb_users
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_admin_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_mod_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_critical_logs_days', '365');
@@ -65,6 +66,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
 REPLACE INTO phpbb_config_text (config_name, config_value) VALUES ('toplinks', '');

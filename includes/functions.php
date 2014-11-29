@@ -4961,7 +4961,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		$user_lang = substr($user_lang, 0, strpos($user_lang, '-x-'));
 	}
 
-	$s_search_hidden_fields = array();
+	$s_search_hidden_fields = empty($config['default_search_titleonly']) ? array() : array('sf' => 'titleonly', 'sr' => 'topics');
 	if ($_SID)
 	{
 		$s_search_hidden_fields['sid'] = $_SID;
