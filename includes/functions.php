@@ -4731,9 +4731,7 @@ function phpbb_get_group_avatar($user_row, $alt = 'GROUP_AVATAR', $ignore_config
 */
 function phpbb_get_avatar($row, $alt, $ignore_config = false)
 {
-	global $user, $config, $cache, $phpbb_root_path, $phpEx;
-	global $request;
-	global $phpbb_container;
+	global $user, $config, $phpbb_container;
 
 	if (!$config['allow_avatar'] && !$ignore_config)
 	{
@@ -4765,11 +4763,32 @@ function phpbb_get_avatar($row, $alt, $ignore_config = false)
 		$avatar_data['src'] = '';
 	}
 
+	$avatar_width = $row['avatar_width'];
+	$avatar_height = $row['avatar_height'];
+
+	if (!$ignore_config)
+	{
+		if ($row['avatar_width'] > $config['avatar_max_width'] && $row['avatar_width'] && $row['avatar_height'])
+		{
+			$avatar_height = round($config['avatar_max_width']*($row['avatar_height']/$row['avatar_width']));
+			$avatar_width = $config['avatar_max_width'];
+		}
+		if ($row['avatar_height'] > $config['avatar_max_height'] && $row['avatar_width'] && $row['avatar_height'])
+		{
+			$avatar_width = round($config['avatar_max_height']*($row['avatar_width']/$row['avatar_height']));
+			$avatar_height = $config['avatar_max_height'];
+		}
+		if (!$avatar_width || !$avatar_height)
+		{
+			return '';
+		}
+	}
+
 	if (!empty($avatar_data['src']))
 	{
 		$html = '<img src="' . $avatar_data['src'] . '" ' .
-			($avatar_data['width'] ? ('width="' . $avatar_data['width'] . '" ') : '') .
-			($avatar_data['height'] ? ('height="' . $avatar_data['height'] . '" ') : '') .
+			($avatar_width ? ('width="' . $avatar_width . '" ') : '') .
+			($avatar_height ? ('height="' . $avatar_height . '" ') : '') .
 			'alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 	}
 

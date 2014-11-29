@@ -49,7 +49,7 @@ class upload extends \phpbb\avatar\driver\driver
 	public function get_data($row, $ignore_config = false)
 	{
 		return array(
-			'src' => $this->path_helper->get_web_root_path() . 'download/file.' . $this->php_ext . '?avatar=' . $row['avatar'],
+			'src' => $this->path_helper->get_web_root_path() . $this->config['avatar_path'] . '/' . $row['avatar'],
 			'width' => $row['avatar_width'],
 			'height' => $row['avatar_height'],
 		);
@@ -132,8 +132,8 @@ class upload extends \phpbb\avatar\driver\driver
 			return false;
 		}
 
-		$prefix = $this->config['avatar_salt'] . '_';
-		$file->clean_filename('avatar', $prefix, $row['id']);
+		$now = time();
+		$file->clean_filename('avatar', '', $row['id'] . '_' . $now);
 
 		$destination = $this->config['avatar_path'];
 
@@ -159,8 +159,14 @@ class upload extends \phpbb\avatar\driver\driver
 			return false;
 		}
 
+		// Deleting old avatar
+		if ($row['avatar'] !== '')
+		{
+			$this->delete($row);
+		}
+
 		return array(
-			'avatar' => $row['id'] . '_' . time() . '.' . $file->get('extension'),
+			'avatar' => $row['id'] . '_' . $now . '.' . $file->get('extension'),
 			'avatar_width' => $file->get('width'),
 			'avatar_height' => $file->get('height'),
 		);
@@ -183,8 +189,7 @@ class upload extends \phpbb\avatar\driver\driver
 	*/
 	public function delete($row)
 	{
-		$ext = substr(strrchr($row['avatar'], '.'), 1);
-		$filename = $this->phpbb_root_path . $this->config['avatar_path'] . '/' . $this->config['avatar_salt'] . '_' . $row['id'] . '.' . $ext;
+		$filename = $this->phpbb_root_path . $this->config['avatar_path'] . '/' . $row['avatar'];
 
 		if (file_exists($filename))
 		{
