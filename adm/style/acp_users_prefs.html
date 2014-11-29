@@ -40,20 +40,33 @@
 		<dd><label><input type="radio" class="radio" name="notifypm" value="1"<!-- IF NOTIFY_PM --> id="notifypm" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 			<label><input type="radio" class="radio" name="notifypm" value="0"<!-- IF not NOTIFY_PM --> id="notifypm" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
 	</dl>
+
+	<!-- IF S_LANG_OPTIONS -->
 	<dl> 
 		<dt><label for="lang">{L_BOARD_LANGUAGE}{L_COLON}</label></dt>
 		<dd><select id="lang" name="lang">{S_LANG_OPTIONS}</select></dd>
 	</dl>
+	<!-- ENDIF -->
+
+	<!-- IF S_STYLE_OPTIONS -->
 	<dl> 
 		<dt><label for="style">{L_BOARD_STYLE}{L_COLON}</label></dt>
 		<dd><select id="style" name="style">{S_STYLE_OPTIONS}</select></dd>
 	</dl>
+	<!-- ENDIF -->
+
+	<!-- IF S_TZ_OPTIONS -->
 	<!-- INCLUDE timezone_option.html -->
+	<!-- ENDIF -->
+
+	<!-- IF S_DATEFORMAT_OPTIONS -->
 	<dl> 
 		<dt><label for="dateoptions">{L_BOARD_DATE_FORMAT}{L_COLON}</label><br /><span>{L_BOARD_DATE_FORMAT_EXPLAIN}</span></dt>
 		<dd><select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){phpbb.toggleDisplay('custom_date',1);}else{phpbb.toggleDisplay('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">{S_DATEFORMAT_OPTIONS}</select></dd>
 		<dd><div id="custom_date"<!-- IF not S_CUSTOM_DATEFORMAT --> style="display:none;"<!-- ENDIF -->><input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="30" /></div></dd>
 	</dl>
+	<!-- ENDIF -->
+
 	<!-- EVENT acp_users_prefs_personal_append -->
 	</fieldset>
 

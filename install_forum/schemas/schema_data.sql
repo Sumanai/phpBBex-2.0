@@ -300,6 +300,9 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
 
 # Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);

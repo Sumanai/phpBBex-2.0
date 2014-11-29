@@ -143,7 +143,7 @@ class ucp_register
 				unset($now);
 
 				$template->assign_vars(array(
-					'S_LANG_OPTIONS'	=> (sizeof($lang_row) > 1) ? language_select($user_lang) : '',
+					'S_LANG_OPTIONS'	=> (sizeof($lang_row) == 1 || $config['override_user_lang']) ? '' : language_select($user_lang),
 					'L_COPPA_NO'		=> sprintf($user->lang['UCP_COPPA_BEFORE'], $coppa_birthday),
 					'L_COPPA_YES'		=> sprintf($user->lang['UCP_COPPA_ON_AFTER'], $coppa_birthday),
 
@@ -161,7 +161,7 @@ class ucp_register
 			else
 			{
 				$template->assign_vars(array(
-					'S_LANG_OPTIONS'	=> (sizeof($lang_row) > 1) ? language_select($user_lang) : '',
+					'S_LANG_OPTIONS'	=> (sizeof($lang_row) == 1 || $config['override_user_lang']) ? '' : language_select($user_lang),
 					'L_TERMS_OF_USE'	=> sprintf($user->lang['TERMS_OF_USE_CONTENT'], $config['sitename'], generate_board_url()),
 
 					'S_SHOW_COPPA'		=> false,
@@ -201,6 +201,9 @@ class ucp_register
 		// Check and initialize some variables if needed
 		if ($submit)
 		{
+			$data['lang']		= ($config['override_user_lang'])		? $config['default_lang']		: $data['lang'];
+			$data['tz']			= ($config['override_user_timezone'])	? $config['board_timezone']		: $data['tz'];
+
 			$error_type = array(
 				'generic' => false,
 				'token' => false,
@@ -514,7 +517,8 @@ class ucp_register
 			'L_USERNAME_EXPLAIN'		=> $user->lang($config['allow_name_chars'] . '_EXPLAIN', $user->lang('CHARACTERS', (int) $config['min_name_chars']), $user->lang('CHARACTERS', (int) $config['max_name_chars'])),
 			'L_PASSWORD_EXPLAIN'		=> $user->lang($config['pass_complex'] . '_EXPLAIN', $user->lang('CHARACTERS', (int) $config['min_pass_chars']), $user->lang('CHARACTERS', (int) $config['max_pass_chars'])),
 
-			'S_LANG_OPTIONS'	=> language_select($data['lang']),
+			'S_LANG_OPTIONS'	=> ($config['override_user_lang']) ? '' : language_select($data['lang']),
+			'S_TZ_OPTIONS'		=> ($config['override_user_timezone']) ? false : true,
 			'S_TZ_PRESELECT'	=> !$submit,
 			'S_CONFIRM_REFRESH'	=> ($config['enable_confirm'] && $config['confirm_refresh']) ? true : false,
 			'S_REGISTRATION'	=> true,

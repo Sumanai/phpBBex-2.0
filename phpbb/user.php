@@ -83,9 +83,10 @@ class user extends \phpbb\session
 
 		if ($this->data['user_id'] != ANONYMOUS)
 		{
-			$user_lang_name = (file_exists($this->lang_path . $this->data['user_lang'] . "/common.$phpEx")) ? $this->data['user_lang'] : basename($config['default_lang']);
-			$user_date_format = $this->data['user_dateformat'];
-			$user_timezone = $this->data['user_timezone'];
+			$user_lang_name = (!$config['override_user_lang'] && file_exists($this->lang_path . $this->data['user_lang'] . "/common.$phpEx")) ? $this->data['user_lang'] : basename($config['default_lang']);
+ 
+			$user_date_format = ($config['override_user_dateformat']) ? $config['default_dateformat'] : $this->data['user_dateformat'];
+			$user_timezone = ($config['override_user_timezone'] ? $config['board_timezone'] : $this->data['user_timezone']) * 3600;
 		}
 		else
 		{

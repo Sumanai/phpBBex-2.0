@@ -1,0 +1,26 @@
+<!-- IF not S_TZ_OPTIONS or not S_LANG_OPTIONS -->
+<script>
+	function addListener(obj, type, listener) {
+		if (obj.addEventListener) {
+			obj.addEventListener(type, listener, false);
+			return true;
+		} else if(obj.attachEvent) {
+			obj.attachEvent('on' + type, listener);
+			return true;
+		}
+		return false;
+	}
+
+	<!-- IF not S_TZ_OPTIONS -->
+	addListener(window, 'load', function() {
+		$("#tz_select_date").parent("dl").remove();
+	});
+	<!-- ENDIF -->
+
+	<!-- IF not S_LANG_OPTIONS -->
+	addListener(window, 'load', function() {
+		$("#lang").parents("dl").remove();
+	});
+	<!-- ENDIF -->
+</script>
+<!-- ENDIF -->

@@ -62,6 +62,9 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_spoiler_depth', '2');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
 REPLACE INTO phpbb_config_text (config_name, config_value) VALUES ('toplinks', '');
