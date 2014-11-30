@@ -1,4 +1,4 @@
-<!-- IF not S_TZ_OPTIONS or not S_DATEFORMAT_OPTIONS -->
+<!-- IF not S_TZ_OPTIONS or not S_DATEFORMAT_OPTIONS or S_HIDE_ALL_EMAILS -->
 <script>
 	function addListener(obj, type, listener) {
 		if (obj.addEventListener) {
@@ -20,6 +20,12 @@
 	<!-- IF not S_DATEFORMAT_OPTIONS -->
 	addListener(window, 'load', function() {
 		$("#custom_date").parent("dl").hide();
+	});
+	<!-- ENDIF -->
+
+	<!-- IF S_HIDE_ALL_EMAILS -->
+	addListener(window, 'load', function() {
+		$("#viewemail0").parents("dl").remove();
 	});
 	<!-- ENDIF -->
 </script>

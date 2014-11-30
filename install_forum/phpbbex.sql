@@ -80,6 +80,8 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_pos
 
 -- Replace default phpBB config
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('board_hide_emails', '0');
+UPDATE phpbb_users SET user_allow_viewemail = 0;
 
 -- New phpBBex ACL rights
 REPLACE INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_ignoreedittime', 1);
