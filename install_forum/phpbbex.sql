@@ -57,6 +57,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_mod_logs_day
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_critical_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_user_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_register_logs_days', '30');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
@@ -69,7 +70,9 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_tim
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 
-REPLACE INTO phpbb_config_text (config_name, config_value) VALUES ('toplinks', '');
+REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('copyright_notice', '', '0');
+REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('toplinks', '', '0');
+REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('style_counters_html', '', '0');
 
 -- Style options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
@@ -122,3 +125,11 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_fonts'
 
  -- phpBBex extension
 REPLACE INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');
+
+-- Removing outdated options from 1.x versions
+DELETE FROM phpbb_config WHERE config_name='style_counters_html_1';
+DELETE FROM phpbb_config WHERE config_name='style_counters_html_2';
+DELETE FROM phpbb_config WHERE config_name='style_counters_html_3';
+DELETE FROM phpbb_config WHERE config_name='style_counters_html_4';
+DELETE FROM phpbb_config WHERE config_name='style_counters_html_5';
+DELETE FROM phpbb_config WHERE config_name='style_min_width';

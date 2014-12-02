@@ -18,6 +18,9 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
+// Powered by ...
+define('POWERED_BY', '<a href="http://phpbbex.com/">phpBBex</a> &copy; 2014 <a href="https://phpbb.com/">phpBB</a> Limited, <a href="http://vegalogic.com/">Vegalogic</a> Software');
+
 // Report all errors, except notices and deprecation messages
 if (!defined('E_DEPRECATED'))
 {

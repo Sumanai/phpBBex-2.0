@@ -106,6 +106,12 @@ $lang = array_merge($lang, array(
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Mini profile',
 	'STYLE_MP_ON_LEFT'					=> 'Profiles on left',
 
+	'STYLE_SETTINGS_FOOTER'				=> 'Page footer',
+	'COPYRIGHT_NOTICE'					=> 'Copyrights (HTML)',
+	'COPYRIGHT_NOTICE_EXPLAIN'			=> 'You have to use {POWERED_BY} placeholder or write custom phpBBex copyrights.',
+	'STYLE_COUNTERS_HTML'				=> 'Counters code (HTML)',
+	'STYLE_COUNTERS_HTML_EXPLAIN'				=> 'Use class .counter-block to prevent moving of the block elements on a new line.',
+
 	'AUTO'								=> 'Auto',
 	'ON_LEFT'							=> 'On Left',
 	'ON_RIGHT'							=> 'On Right',

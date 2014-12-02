@@ -107,6 +107,12 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_ON_LEFT'					=> 'Минипрофили по умолчанию слева',
 	'STYLE_MP_ON_LEFT_EXPLAIN'					=> 'Пользователи смогут выбрать для себя предпочитаемый способ отображения.',
 
+	'STYLE_SETTINGS_FOOTER'				=> 'Нижняя часть страницы',
+	'COPYRIGHT_NOTICE'					=> 'Авторские права (HTML)',
+	'COPYRIGHT_NOTICE_EXPLAIN'			=> 'Не забудьте вставить метку {POWERED_BY} либо указать информацию о phpBBex.',
+	'STYLE_COUNTERS_HTML'				=> 'Коды счётчиков (HTML)',
+	'STYLE_COUNTERS_HTML_EXPLAIN'				=> 'Используйте класс .counter-block для предотвращения переноса блочных элементов на новую строку.',
+
 	'AUTO'								=> 'Авто',
 	'ON_LEFT'							=> 'Слева',
 	'ON_RIGHT'							=> 'Справа',

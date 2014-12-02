@@ -136,6 +136,7 @@ class acp_board
 			break;
 
 			case 'style':
+
 				$display_vars = array(
 					'title'	=> 'ACP_STYLE_SETTINGS',
 					'vars'	=> array(
@@ -156,7 +157,11 @@ class acp_board
 						'legend4'							=> 'STYLE_SETTINGS_MINIPROFILE',
 						'style_mp_on_left'					=> array('lang' => 'STYLE_MP_ON_LEFT',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend5'							=> 'ACP_SUBMIT_CHANGES',
+						'legend5'							=> 'STYLE_SETTINGS_FOOTER',
+						'copyright_notice'					=> array('lang' => 'COPYRIGHT_NOTICE',					'validate' => 'long_string',	'type' => 'htmlarea:2:800', 'explain' => true),
+						'style_counters_html'				=> array('lang' => 'STYLE_COUNTERS_HTML',				'validate' => 'long_string',	'type' => 'htmlarea:8:25000', 'explain' => true),
+
+						'legend6'							=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;
@@ -535,9 +540,42 @@ class acp_board
 			$user->add_lang($display_vars['lang']);
 		}
 
+		// Text variables
+		if ($mode == 'style')
+		{
+			$config_text = $phpbb_container->get('config_text');
+
+			$style_config_text	= $config_text->get_array(array(
+				'copyright_notice',
+				'style_counters_html',
+			));
+
+			foreach ($style_config_text as $config_name => $config_value)
+			{
+				$config[$config_name] = $config_value;
+			}
+		}
+
 		$this->new_config = $config;
-		$cfg_array = (isset($_REQUEST['config'])) ? utf8_normalize_nfc(request_var('config', array('' => ''), true)) : $this->new_config;
 		$error = array();
+
+		// Get configuration values and decode HTML special chars if type of value is HTML
+		$cfg_array = array();
+		if (!isset($_REQUEST['config']))
+		{
+			$cfg_array = $config;
+		}
+		else
+		{
+			$cfg_array = utf8_normalize_nfc(request_var('config', array('' => ''), true));
+			foreach ($display_vars['vars'] as $config_name => $config_vars)
+			{
+				if (isset($cfg_array[$config_name]) && strpos($config_vars['type'], 'html') === 0)
+				{
+					$cfg_array[$config_name] = htmlspecialchars_decode($cfg_array[$config_name]);
+				}
+			}
+		}
 
 		// We validate the complete config if wished
 		validate_config_vars($display_vars['vars'], $cfg_array, $error);
@@ -584,13 +622,25 @@ class acp_board
 
 			if ($submit)
 			{
-				set_config($config_name, $config_value);
+				if (array_key_exists($config_name, $style_config_text))
+				{
+					$style_config_text[$config_name] = $config_value;
+				}
+				else
+				{
+					set_config($config_name, $config_value);
+				}
 
 				if ($config_name == 'allow_quick_reply' && isset($_POST['allow_quick_reply_enable']))
 				{
 					enable_bitfield_column_flag(FORUMS_TABLE, 'forum_flags', log(FORUM_FLAG_QUICK_REPLY, 2));
 				}
 			}
+		}
+
+		if ($mode == 'style' && $submit)
+		{
+			$config_text->set_array($style_config_text, true);
 		}
 
 		// Store news and exclude ids

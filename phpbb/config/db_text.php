@@ -33,13 +33,20 @@ class db_text
 	protected $table;
 
 	/**
+	* phpBB configuration
+	* @var \phpbb\config\config
+	*/
+	protected $config;
+
+	/**
 	* @param \phpbb\db\driver\driver_interface $db        Database connection
 	* @param string          $table     Table name
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, $table)
+	public function __construct(\phpbb\db\driver\driver_interface $db, $table, \phpbb\config\config $config)
 	{
 		$this->db = $db;
 		$this->table = $this->db->sql_escape($table);
+		$this->config = $config;
 	}
 
 	/**
@@ -50,9 +57,9 @@ class db_text
 	*
 	* @return null
 	*/
-	public function set($key, $value)
+	public function set($key, $value, $use_cache = false)
 	{
-		$this->set_array(array($key => $value));
+		$this->set_array(array($key => $value), $use_cache);
 	}
 
 	/**
@@ -91,7 +98,7 @@ class db_text
 	*
 	* @return null
 	*/
-	public function set_array(array $map)
+	public function set_array(array $map, $use_cache = false)
 	{
 		$this->db->sql_transaction('begin');
 
@@ -107,6 +114,7 @@ class db_text
 				$sql = 'INSERT INTO ' . $this->table . ' ' . $this->db->sql_build_array('INSERT', array(
 					'config_name'	=> (string) $key,
 					'config_value'	=> (string) $value,
+					'is_dynamic'	=> ($use_cache) ? 0 : 1,
 				));
 				$this->db->sql_query($sql);
 			}
@@ -127,12 +135,29 @@ class db_text
 	*/
 	public function get_array(array $keys)
 	{
+		$map = array();
+
+		// Get cached values
+		foreach ($keys as $key => $config_name)
+		{
+			if (isset($this->config[$config_name]))
+			{
+				$map[$config_name] = $this->config[$config_name];
+				unset($keys[$key]);
+			}
+		}
+
+		if (empty($keys))
+		{
+			// All values cached
+			return $map;
+		}
+
 		$sql = 'SELECT *
 			FROM ' . $this->table . '
 			WHERE ' . $this->db->sql_in_set('config_name', $keys, false, true);
 		$result = $this->db->sql_query($sql);
 
-		$map = array();
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$map[$row['config_name']] = $row['config_value'];

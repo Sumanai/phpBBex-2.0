@@ -81,6 +81,19 @@ class db extends \phpbb\config\config
 			}
 			$this->db->sql_freeresult($result);
 
+			// Cache static config_text
+			$sql = 'SELECT config_name, config_value
+				FROM ' .$this->table . '_text
+				WHERE is_dynamic = 0';
+			$result = $this->db->sql_query($sql);
+
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$cached_config[$row['config_name']] = $row['config_value'];
+				$config[$row['config_name']] = $row['config_value'];
+			}
+			$this->db->sql_freeresult($result);
+
 			$cache->put('config', $cached_config);
 		}
 

@@ -655,7 +655,7 @@ class module
 		echo '		</div>';
 		echo '	</div>';
 		echo '	<div id="page-footer">';
-		echo '		Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited';
+		echo '		Powered by ' . POWERED_BY;
 		echo '	</div>';
 		echo '</div>';
 		echo '</body>';

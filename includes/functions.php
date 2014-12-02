@@ -3970,7 +3970,7 @@ function msg_handler($errno, $msg_text, $errfile, $errline)
 			echo '	</div>';
 			echo '	</div>';
 			echo '	<div id="page-footer">';
-			echo '		Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited';
+			echo '		Powered by ' . POWERED_BY;
 			echo '	</div>';
 			echo '</div>';
 			echo '</body>';
@@ -5146,6 +5146,9 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 
 		// viewtopic
 		'style_vt_show_post_numbers',
+
+		// counters
+		'style_counters_html',
 	);
 
 	foreach ($settings as $setting)
@@ -5158,9 +5161,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	));
 
 	// Top links
-	$config_text = $phpbb_container->get('config_text');
-	$toplinks = $config_text->get('toplinks');
-	$toplinks = empty($toplinks) ? array() : explode("\n", $toplinks);
+	$toplinks = empty($config['toplinks']) ? array() : explode("\n", $config['toplinks']);
 	$template->assign_var('S_TOP_LINKS', !empty($toplinks));
 	foreach ($toplinks as $row)
 	{
@@ -5337,10 +5338,21 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 
 	phpbb_check_and_display_sql_report($request, $auth, $db);
 
+	$copyright = $config['copyright_notice'];
+	$powered_by = defined('POWERED_BY_ALT') ? POWERED_BY_ALT : POWERED_BY;
+	if (strpos($copyright, '{POWERED_BY}') === false && stripos($copyright, 'phpBBex') === false)
+	{
+		$copyright .= "\n" . $user->lang('POWERED_BY', $powered_by);
+	}
+	else
+	{
+		$copyright = str_replace('{POWERED_BY}', $powered_by, $copyright);
+	}
+
 	$template->assign_vars(array(
 		'DEBUG_OUTPUT'			=> phpbb_generate_debug_output($db, $config, $auth, $user, $phpbb_dispatcher),
 		'TRANSLATION_INFO'		=> (!empty($user->lang['TRANSLATION_INFO'])) ? $user->lang['TRANSLATION_INFO'] : '',
-		'CREDIT_LINE'			=> $user->lang('POWERED_BY', '<a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited'),
+		'CREDIT_LINE'			=> nl2br(trim($copyright)),
 
 		'U_ACP' => ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_admin_path}index.$phpEx", false, true, $user->session_id) : '')
 	);

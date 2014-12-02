@@ -6,13 +6,12 @@
 
 	<div id="page-footer">
 		<div class="copyright">
-			<!-- IF S_COPYRIGHT_HTML -->
+			<!-- IF CREDIT_LINE -->
 				{CREDIT_LINE}
-				<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
 			<!-- ENDIF -->
 
 			<!-- IF DEBUG_OUTPUT -->
-				<!-- IF S_COPYRIGHT_HTML --><br /><!-- ENDIF -->
+				<!-- IF CREDIT_LINE --><br /><!-- ENDIF -->
 				{DEBUG_OUTPUT}
 			<!-- ENDIF -->
 		</div>
@@ -33,9 +32,9 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}" type="text/javascript"%3E%3C/script%3E'));</script><!-- ENDIF -->
-<script type="text/javascript" src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+<script src="{T_JQUERY_LINK}"></script>
+<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write(unescape('%3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}"%3E%3C/script%3E'));</script><!-- ENDIF -->
+<script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS ajax.js -->
 <!-- INCLUDEJS admin.js -->
 

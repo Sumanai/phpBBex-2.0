@@ -169,8 +169,7 @@ function adm_page_footer($copyright_html = true)
 	$template->assign_vars(array(
 		'DEBUG_OUTPUT'		=> phpbb_generate_debug_output($db, $config, $auth, $user, $phpbb_dispatcher),
 		'TRANSLATION_INFO'	=> (!empty($user->lang['TRANSLATION_INFO'])) ? $user->lang['TRANSLATION_INFO'] : '',
-		'S_COPYRIGHT_HTML'	=> $copyright_html,
-		'CREDIT_LINE'		=> $user->lang('POWERED_BY', '<a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited'),
+		'CREDIT_LINE'		=> $copyright_html ? $user->lang('POWERED_BY', POWERED_BY) : '',
 		'T_JQUERY_LINK'		=> !empty($config['allow_cdn']) && !empty($config['load_jquery_url']) ? $config['load_jquery_url'] : "{$phpbb_root_path}assets/javascript/jquery.min.js",
 		'S_ALLOW_CDN'		=> !empty($config['allow_cdn']),
 		'VERSION'			=> $config['version'])
@@ -245,6 +244,8 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 
 	switch ($tpl_type[0])
 	{
+		case 'html':
+			$new[$config_key] = htmlspecialchars($new[$config_key]);
 		case 'text':
 		case 'password':
 		case 'url':
@@ -291,6 +292,8 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 			$tpl = '<input id="' . $key . '" type="number"' . (( $size != '' ) ? ' size="' . $size . '"' : '') . ' maxlength="' . (($maxlength != '') ? $maxlength : 255) . '"' . (( $min !== '' ) ? ' min="' . $min . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="config[' . $config_key . '_width]" value="' . $new[$config_key . '_width'] . '" /> x <input type="number"' . (( $size != '' ) ? ' size="' . $size . '"' : '') . ' maxlength="' . (($maxlength != '') ? $maxlength : 255) . '"' . (( $min !== '' ) ? ' min="' . $min . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="config[' . $config_key . '_height]" value="' . $new[$config_key . '_height'] . '" />';
 		break;
 
+		case 'htmlarea':
+			$new[$config_key] = htmlspecialchars($new[$config_key]);
 		case 'textarea':
 			$rows = (int) $tpl_type[1];
 			$cols = (int) $tpl_type[2];
@@ -334,7 +337,7 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 				$args = array();
 				foreach ($vars['params'] as $value)
 				{
-					switch ($value)
+					if (is_string($value)) switch ($value)
 					{
 						case '{CONFIG_VALUE}':
 							$value = $new[$config_key];
@@ -433,6 +436,22 @@ function validate_config_vars($config_vars, &$cfg_array, &$error)
 
 				// the column is a VARCHAR
 				$validator[$max] = (isset($validator[$max])) ? min(255, $validator[$max]) : 255;
+
+				if (isset($validator[$min]) && $length < $validator[$min])
+				{
+					$error[] = sprintf($user->lang['SETTING_TOO_SHORT'], $user->lang[$config_definition['lang']], $validator[$min]);
+				}
+				else if (isset($validator[$max]) && $length > $validator[2])
+				{
+					$error[] = sprintf($user->lang['SETTING_TOO_LONG'], $user->lang[$config_definition['lang']], $validator[$max]);
+				}
+			break;
+
+			case 'long_string':
+				$length = utf8_strlen($cfg_array[$config_name]);
+
+				// the column is a MEDIUMTEXT
+				$validator[$max] = (isset($validator[$max])) ? min(65536, $validator[$max]) : 65536;
 
 				if (isset($validator[$min]) && $length < $validator[$min])
 				{

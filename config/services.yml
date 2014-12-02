@@ -65,6 +65,7 @@ services:
         arguments:
             - @dbal.conn
             - %tables.config_text%
+            - @config
 
     controller.helper:
         class: phpbb\controller\helper

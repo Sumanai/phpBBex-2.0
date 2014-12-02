@@ -41,7 +41,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'TRANSLATION_INFO'	=> '<a href=\'http://www.phpbbguru.net/\'>Русская поддержка phpBB</a>',
+	'TRANSLATION_INFO'	=> '',
 	'DIRECTION'			=> 'ltr',
 	'DATE_FORMAT'		=> '|d.m.Y|',	// 01 Jan 2007 (with Relative days enabled)
 	'DATETIME_FORMAT'	=> '|d M Y, H:i|',	// 01 Jan 2007, 13:37 (with Relative days enabled)

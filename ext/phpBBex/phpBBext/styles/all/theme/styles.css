@@ -178,6 +178,25 @@ dl.spoilerbox.spoilerbox-on > dd {
 
 input.nano	{ width: 50px; }
 
+/* Counters */
+.copyright_notice {
+	line-height: 1.1em;
+	text-align: left;
+}
+
+.counters {
+	float: right;
+	padding-left: 10px;
+}
+
+.counters img {
+	vertical-align: bottom;
+}
+
+.counter-block {
+	display: inline-block;
+}
+
 /* Responsive
 ---------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {

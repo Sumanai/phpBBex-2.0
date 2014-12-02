@@ -467,9 +467,19 @@
             "config_value": [
                 "MTEXT",
                 ""
+            ],
+            "is_dynamic": [
+                "BOOL",
+                1
             ]
         },
-        "PRIMARY_KEY": "config_name"
+        "PRIMARY_KEY": "config_name",
+        "KEYS": {
+            "is_dynamic": [
+                "INDEX",
+                "is_dynamic"
+            ]
+        }
     },
     "phpbb_confirm": {
         "COLUMNS": {
