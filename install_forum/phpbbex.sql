@@ -127,6 +127,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('captcha_gd_fonts'
 REPLACE INTO phpbb_ext (ext_name, ext_active, ext_state) VALUES ('phpBBex/phpBBext', 1, 'b:0;');
 
 -- Removing outdated options from 1.x versions
+DELETE FROM phpbb_config WHERE config_name='copyright_notice';
 DELETE FROM phpbb_config WHERE config_name='style_counters_html_1';
 DELETE FROM phpbb_config WHERE config_name='style_counters_html_2';
 DELETE FROM phpbb_config WHERE config_name='style_counters_html_3';
