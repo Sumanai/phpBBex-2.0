@@ -84,6 +84,8 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_pos
 -- Replace default phpBB config
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('board_hide_emails', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('posts_per_page', '20');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('topics_per_page', '50');
 UPDATE phpbb_users SET user_allow_viewemail = 0;
 
 -- New phpBBex ACL rights
