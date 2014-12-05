@@ -152,6 +152,7 @@ class acp_board
 						'load_moderators'					=> array('lang' => 'YES_MODERATORS',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
 						'legend3'							=> 'STYLE_SETTINGS_VIEWTOPIC',
+						'style_show_social_buttons'			=> array('lang' => 'STYLE_SHOW_SOCIAL_BUTTONS',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_vt_show_post_numbers'		=> array('lang' => 'STYLE_VT_SHOW_POST_NUMBERS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
 						'legend4'							=> 'STYLE_SETTINGS_MINIPROFILE',
@@ -541,6 +542,7 @@ class acp_board
 		}
 
 		// Text variables
+		$style_config_text = array();
 		if ($mode == 'style')
 		{
 			$config_text = $phpbb_container->get('config_text');

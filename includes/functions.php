@@ -5145,6 +5145,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_show_sitename_in_headerbar',
 
 		// viewtopic
+		'style_show_social_buttons',
 		'style_vt_show_post_numbers',
 
 		// counters

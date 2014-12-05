@@ -185,6 +185,7 @@ if (!empty($config['active_topics_on_index']))
 
 // Assign index specific vars
 $template->assign_vars(array(
+	'S_ON_INDEX'	=> true,
 	'TOTAL_POSTS'	=> $user->lang('TOTAL_POSTS_COUNT', (int) $config['num_posts']),
 	'TOTAL_TOPICS'	=> $user->lang('TOTAL_TOPICS', (int) $config['num_topics']),
 	'TOTAL_USERS'	=> $user->lang('TOTAL_USERS', (int) $config['num_users']),
@@ -207,7 +208,7 @@ $template->assign_vars(array(
 	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
 );
 
-$page_title = ($config['board_index_text'] !== '') ? $config['board_index_text'] : $user->lang['INDEX'];
+$page_title = ($config['site_desc'] !== '') ? $config['site_desc'] : $user->lang['INDEX'];
 
 /**
 * You can use this event to modify the page title and load data for the index

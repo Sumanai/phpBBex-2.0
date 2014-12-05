@@ -157,7 +157,7 @@ $phpbb_content_visibility = $phpbb_container->get('content.visibility');
 $topics_count = $phpbb_content_visibility->get_count('forum_topics', $forum_data, $forum_id);
 $start = $pagination->validate_start($start, $config['topics_per_page'], $topics_count);
 
-page_header($forum_data['forum_name'] . ($start ? ' - ' . $user->lang('PAGE_TITLE_NUMBER', $pagination->get_on_page($config['topics_per_page'], $start)) : ''), true, $forum_id);
+page_header($forum_data['forum_name'] . ($start ? ' - ' . $pagination->on_page($topics_count, $config['topics_per_page'], $start) : ''), true, $forum_id);
 
 $template->set_filenames(array(
 	'body' => 'viewforum_body.html')

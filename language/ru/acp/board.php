@@ -101,6 +101,7 @@ $lang = array_merge($lang, array(
 	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'=> 'Введите количество отображаемых активных тем или 0 для отключения функции.',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'Просмотр темы',
+	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Отображать кнопки социальных сетей',
 	'STYLE_VT_SHOW_POST_NUMBERS'		=> 'Отображать номера сообщений',
 
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Минипрофиль',

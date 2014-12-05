@@ -1353,3 +1353,48 @@ ul.linklist:after,
 	float: right;
 	margin: 2px 0;
 }
+
+/* Page title icons
+--------------------------------------------- */
+.header-icons
+{
+	margin: 0;
+	list-style: none;
+	float: right;
+}
+
+.header-icons li
+{
+	margin: 0 3px;
+	float: right;
+}
+
+a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus
+{
+	display: block;
+	overflow: hidden;
+	width: 26px;
+	height: 26px;
+	text-indent: -5000px;
+	text-align: left;
+	background-repeat: no-repeat;
+}
+
+a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus
+{
+	background-image: url("./images/social_icons.png");
+}
+
+a.icon-facebook { background-position: 0 -26px; }
+a.icon-vkontakte { background-position: 0 -52px; }
+a.icon-twitter { background-position: 0 -78px; }
+a.icon-google-plus { background-position: 0 -104px; }
+
+.header-icons .icons-divider
+{
+	background: #cccccc;
+	width: 1px;
+	height: 26px;
+	display: block;
+	overflow: hidden;
+}

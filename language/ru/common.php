@@ -579,7 +579,7 @@ $lang = array_merge($lang, array(
 	),
 	'OPTIONS'					=> 'Настройки',
 
-	'PAGE_OF'				=> 'Страница <strong>%1$d</strong> из <strong>%2$d</strong>',
+	'PAGE_OF'				=> 'Страница %1$d из %2$d',
 	'PAGE_TITLE_NUMBER'		=> 'Страница %s',
 	'PASSWORD'				=> 'Пароль',
  	'PIXEL'					=> 'пикс.',
@@ -1476,5 +1476,6 @@ $lang = array_merge($lang, array(
 	'LOGIN_ERROR_EMAIL'					=> 'Вы ввели неверный e-mail. Проверьте его и попробуйте ввести ещё раз. Если проблема со входом останется, то сообщите об этом %sадминистратору%s.',
 
 	// Other
+	'SOCIAL_SHARE_IN'		=> 'Поделиться в',
 	'SPOILER'				=> 'Спойлер',
 ));

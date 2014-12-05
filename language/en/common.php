@@ -548,7 +548,7 @@ $lang = array_merge($lang, array(
 	),
 	'OPTIONS'					=> 'Options',
 
-	'PAGE_OF'				=> 'Page <strong>%1$d</strong> of <strong>%2$d</strong>',
+	'PAGE_OF'				=> 'Page %1$d of %2$d',
 	'PAGE_TITLE_NUMBER'		=> 'Page %s',
 	'PASSWORD'				=> 'Password',
 	'PIXEL'					=> 'px',
@@ -1433,5 +1433,6 @@ $lang = array_merge($lang, array(
 	'LOGIN_ERROR_EMAIL'					=> 'You have specified an incorrect e-mail address. Please check your e-mail address and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
 
 	// Other
+	'SOCIAL_SHARE_IN'		=> 'Share in',
 	'SPOILER'				=> 'Spoiler',
 ));

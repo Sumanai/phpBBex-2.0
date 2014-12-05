@@ -290,6 +290,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top'
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_show_social_buttons', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post_numbers', '0');
 
 # New phpBBex options
