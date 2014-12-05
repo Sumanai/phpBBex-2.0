@@ -554,6 +554,28 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 	// Grab icons
 	$icons = $cache->obtain_icons();
 
+	if (empty($l_search_title) && ($author_id || $author))
+	{
+		if ($author_id)
+		{
+			// Get user...
+			$sql = 'SELECT username
+				FROM ' . USERS_TABLE . '
+				WHERE user_id = ' . intval($author_id);
+			$result = $db->sql_query($sql);
+			$member = $db->sql_fetchrow($result);
+			$db->sql_freeresult($result);
+			if ($member)
+			{
+				$author = $member['username'];
+			}
+		}
+		if ($author)
+		{
+			$l_search_title = ($show_results != 'posts' ? $user->lang['USER_TOPICS'] : $user->lang['USER_POSTS']) . ' ' . $author;
+		}
+	}
+
 	// define some vars for urls
 	// A single wildcard will make the search results look ugly
 	$hilit = phpbb_clean_search_string(str_replace(array('+', '-', '|', '(', ')', '&quot;'), ' ', $keywords));
