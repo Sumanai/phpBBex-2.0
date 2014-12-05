@@ -56,6 +56,7 @@ class overall extends \phpbb\feed\post_base
 		$this->sql = array(
 			'SELECT'	=>	'f.forum_id, f.forum_name, ' .
 							'p.post_id, p.topic_id, p.post_time, p.post_edit_time, p.post_visibility, p.post_subject, p.post_text, p.bbcode_bitfield, p.bbcode_uid, p.enable_bbcode, p.enable_smilies, p.enable_magic_url, p.post_attachment, ' .
+							't.topic_title, ' .
 							'u.username, u.user_id',
 			'FROM'		=> array(
 				USERS_TABLE		=> 'u',
@@ -65,6 +66,10 @@ class overall extends \phpbb\feed\post_base
 				array(
 					'FROM'	=> array(FORUMS_TABLE	=> 'f'),
 					'ON'	=> 'f.forum_id = p.forum_id',
+				),
+				array(
+					'FROM'	=> array(TOPICS_TABLE	=> 't'),
+					'ON'	=> 't.topic_id = p.topic_id',
 				),
 			),
 			'WHERE'		=> $this->db->sql_in_set('p.topic_id', $topic_ids) . '
