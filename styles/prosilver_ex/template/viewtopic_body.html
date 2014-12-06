@@ -308,7 +308,6 @@
 				</div>
 			<!-- ENDIF -->
 
-			<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
 			<!-- EVENT viewtopic_body_postrow_post_notices_after -->
 			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
 
@@ -321,8 +320,18 @@
 	</div>
 
 	<hr class="divider" />
+	<!-- IF postrow.S_ROW_COUNT is odd --><!-- DEFINE $NEXT_BG = 'bg2' --><!-- ELSE --><!-- DEFINE $NEXT_BG = 'bg1' --><!-- ENDIF -->
 	<!-- EVENT viewtopic_body_postrow_post_after -->
 <!-- END postrow -->
+
+<!-- IF BUMPED_MESSAGE -->
+	<div class="post {$NEXT_BG}">
+		<div class="inner">
+			{BUMPED_MESSAGE}
+		</div>
+	</div>
+	<hr class="divider" />
+<!-- ENDIF -->
 
 <!-- IF S_QUICK_REPLY -->
 	<!-- INCLUDE quickreply_editor.html -->
