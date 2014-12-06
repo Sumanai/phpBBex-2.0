@@ -2864,10 +2864,9 @@ function get_database_size()
 			{
 				$version = $row['mysql_version'];
 
-				if (preg_match('#(3\.23|[45]\.)#', $version))
+				if (preg_match('#(3\.23|[45]\.|10\..+Maria)#', $version))
 				{
-					$db_name = (preg_match('#^(?:3\.23\.(?:[6-9]|[1-9]{2}))|[45]\.#', $version)) ? "`{$db->get_db_name()}`" : $db->get_db_name();
-
+					$db_name = (preg_match('#^(?:3\.23\.(?:[6-9]|[1-9]{2}))|[45]\.|10\..+Maria#', $version)) ? "`{$db->get_db_name()}`" : $db->get_db_name();
 					$sql = 'SHOW TABLE STATUS
 						FROM ' . $db_name;
 					$result = $db->sql_query($sql, 7200);
