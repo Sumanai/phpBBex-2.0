@@ -306,6 +306,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('social_media_cover_url', '');
 
 # Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);

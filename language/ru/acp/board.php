@@ -94,6 +94,7 @@ $lang = array_merge($lang, array(
 	'STYLE_MAX_WIDTH'					=> 'Максимальная ширина страницы',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
+	'SOCIAL_MEDIA_COVER_URL'			=> 'Путь к обложке для социальных сетей',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Главная страница',
 	'ANNOUNCE_INDEX'				=> 'Показывать важные объявления',

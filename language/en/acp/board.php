@@ -94,6 +94,7 @@ $lang = array_merge($lang, array(
 	'STYLE_MAX_WIDTH'					=> 'Maximum page width',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
+	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to social media cover',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
 	'ANNOUNCE_INDEX'				=> 'Display global annoucements',

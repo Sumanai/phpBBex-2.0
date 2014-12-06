@@ -69,6 +69,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_dat
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('social_media_cover_url', '');
 
 REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('copyright_notice', '', '0');
 REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('toplinks', '', '0');
