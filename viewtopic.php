@@ -92,7 +92,7 @@ if ($view && !$post_id)
 			FROM ' . POSTS_TABLE . "
 			WHERE topic_id = $topic_id
 				AND " . $phpbb_content_visibility->get_visibility_sql('post', $forum_id) . "
-				AND post_time > $topic_last_read
+				AND (post_time > $topic_last_read OR post_merged > $topic_last_read)
 				AND forum_id = $forum_id
 			ORDER BY post_time ASC, post_id ASC";
 		$result = $db->sql_query_limit($sql, 1);
@@ -1174,7 +1174,7 @@ while ($row = $db->sql_fetchrow($result))
 	// Set max_post_time
 	if ($row['post_time'] > $max_post_time)
 	{
-		$max_post_time = $row['post_time'];
+		$max_post_time = max($row['post_time'], $row['post_merged']);
 	}
 
 	$poster_id = (int) $row['poster_id'];
@@ -1199,6 +1199,7 @@ while ($row = $db->sql_fetchrow($result))
 
 		'post_id'			=> $row['post_id'],
 		'post_time'			=> $row['post_time'],
+		'post_merged'		=> $row['post_merged'],
 		'user_id'			=> $row['user_id'],
 		'username'			=> $row['username'],
 		'user_colour'		=> $row['user_colour'],
@@ -1610,7 +1611,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	// Parse the message and subject
 	$parse_flags = ($row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0) | OPTION_FLAG_SMILIES;
-	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true);
+	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true, $row['post_time']);
 
 	if (!empty($attachments[$row['post_id']]))
 	{
@@ -1764,7 +1765,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		$cp_row = (isset($profile_fields_cache[$poster_id])) ? $cp->generate_profile_fields_template_data($profile_fields_cache[$poster_id]) : array();
 	}
 
-	$post_unread = (isset($topic_tracking_info[$topic_id]) && $row['post_time'] > $topic_tracking_info[$topic_id]) ? true : false;
+	$post_unread = (isset($topic_tracking_info[$topic_id]) && ($row['post_time'] > $topic_tracking_info[$topic_id] || $row['post_merged'] > $topic_tracking_info[$topic_id])) ? true : false;
 
 	$s_first_unread = false;
 	if (!$first_unread && $post_unread)
@@ -2106,6 +2107,12 @@ if (isset($user->data['session_page']) && !$user->data['is_bot'] && (strpos($use
 	}
 }
 
+$last_page = ((floor($start / $config['posts_per_page']) + 1) == max(ceil($total_posts / $config['posts_per_page']), 1)) ? true : false;
+if ($last_page)
+{
+	$max_post_time = max($topic_data['topic_last_post_time'], $max_post_time);
+}
+
 // Only mark topic if it's currently unread. Also make sure we do not set topic tracking back if earlier pages are viewed.
 if (isset($topic_tracking_info[$topic_id]) && $topic_data['topic_last_post_time'] > $topic_tracking_info[$topic_id] && $max_post_time > $topic_tracking_info[$topic_id])
 {
@@ -2138,8 +2145,6 @@ if ($all_marked_read)
 }
 else if (!$all_marked_read)
 {
-	$last_page = ((floor($start / $config['posts_per_page']) + 1) == max(ceil($total_posts / $config['posts_per_page']), 1)) ? true : false;
-
 	// What can happen is that we are at the last displayed page. If so, we also display the #unread link based in $post_unread
 	if ($last_page && $post_unread)
 	{
@@ -2230,8 +2235,6 @@ $page_title = $topic_data['topic_title'] . ' - ' . $topic_data['forum_name'] . (
 */
 $vars = array('page_title', 'topic_data', 'forum_id', 'start', 'post_list');
 extract($phpbb_dispatcher->trigger_event('core.viewtopic_modify_page_title', compact($vars)));
-
-
 
 // Output the page
 page_header($page_title, true, $forum_id);

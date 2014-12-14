@@ -178,4 +178,124 @@ class datetime extends \DateTime
 
 		return self::$format_cache[$lang][$format];
 	}
+
+	/**
+	* This and the following functions is based on Delta_Russian class created by Dmitry Koterov, http://forum.dklab.ru
+	* Makes the spellable phrase.
+	*
+	* @return string Formatted date time delta
+	*/
+	static public function get_verbal($first_time, $last_time, $accuracy = false, $max_parts = false, $keep_zeros = false)
+	{
+		global $user;
+
+		if ($first_time - $last_time === 0)
+		{
+			return $user->lang('D_SECONDS', 0);
+		}
+
+		// Solve data delta
+		$delta = self::getdelta($first_time, $last_time);
+		if (!$delta)
+		{
+			return false;
+		}
+
+		// Make spellable phrase.
+		$parts = array();
+		$parts_count = 0;
+		foreach (array_reverse($delta) as $measure => $value) 
+		{
+			if ($max_parts && $max_parts <= $parts_count)
+			{
+				break;
+			}
+			if (!$value && (!$keep_zeros || !$parts_count)) 
+			{
+				if ($measure !== $accuracy)
+				{
+					if ($parts_count) $parts_count++;
+					continue;
+				}
+				else if (count($parts))
+				{
+					break;
+				}
+			}
+			$parts_count++;
+			$parts[] = $user->lang('D_' . strtoupper($measure), $value);
+			if ($measure === $accuracy)
+			{
+				break;
+			}
+		}
+		return join(' ', $parts);
+	}
+
+	/**
+	* Returns the associative array with date deltas.
+	*
+	* @param integer $first First date
+	* @param integer $last Last date
+	* @return array Processed date deltas
+	*/
+	static private function getdelta($first, $last)
+	{
+		if ($last < $first) return false;
+
+		// Solve H:M:S part.
+		$hms = ($last - $first) % (3600 * 24);
+		$delta['seconds'] = $hms % 60;
+		$delta['minutes'] = floor($hms/60) % 60;
+		$delta['hours']   = floor($hms/3600) % 60;
+
+		// Now work only with date, delta time = 0.
+		$last -= $hms;
+		$f = getdate($first);
+		$l = getdate($last); // the same daytime as $first!
+
+		$dYear = $dMon = $dDay = 0;
+
+		// Delta day. Is negative, month overlapping.
+		$dDay += $l['mday'] - $f['mday'];
+		if ($dDay < 0) 
+		{
+			$monlen = self::monthlength(date("Y", $first), date("m", $first));
+			$dDay += $monlen;
+			$dMon--;
+		}
+		$delta['mday'] = $dDay;
+
+		// Delta month. If negative, year overlapping.
+		$dMon += $l['mon'] - $f['mon'];
+		if ($dMon < 0) 
+		{
+			$dMon += 12;
+			$dYear --;
+		}
+		$delta['mon'] = $dMon;
+
+		// Delta year.
+		$dYear += $l['year'] - $f['year'];
+		$delta['year'] = $dYear;
+		
+		return $delta;
+	}
+
+	/**
+	* Returns the length (in days) of the specified month.
+	*
+	* @param integer $year Year
+	* @param integer $mon Month
+	* @return integer Length of the month
+	*/
+	static private function monthlength($year, $mon)
+	{
+		$l = 28;
+		while (checkdate($mon, $l+1, $year))
+		{
+			$l++;
+		}
+		return $l;
+	}
 }

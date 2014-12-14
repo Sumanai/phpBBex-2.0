@@ -1626,6 +1626,10 @@
                 "TIMESTAMP",
                 0
             ],
+            "post_merged": [
+                "TIMESTAMP",
+                0
+            ],
             "post_reported": [
                 "BOOL",
                 0

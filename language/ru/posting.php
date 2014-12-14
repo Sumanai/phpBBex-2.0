@@ -334,4 +334,7 @@ $lang = array_merge($lang, array(
 	'SMILE_SHOCKED'				=> 'В шоке',
 	'SMILE_UBER_GEEK'			=> 'Мегаботан',
 	'SMILE_VERY_HAPPY'			=> 'Очень доволен',
+
+	// Posts merging
+	'DO_MERGE'					=> 'Склеить с предыдущим',
 ));

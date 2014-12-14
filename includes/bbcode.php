@@ -31,6 +31,8 @@ class bbcode
 
 	var $bbcodes = array();
 
+	var $post_time = 0;
+
 	var $template_bitfield;
 
 	/**
@@ -49,7 +51,7 @@ class bbcode
 	/**
 	* Second pass bbcodes
 	*/
-	function bbcode_second_pass(&$message, $bbcode_uid = '', $bbcode_bitfield = false)
+	function bbcode_second_pass(&$message, $bbcode_uid = '', $bbcode_bitfield = false, $post_time = 0)
 	{
 		if ($bbcode_uid)
 		{
@@ -74,6 +76,9 @@ class bbcode
 
 			return;
 		}
+
+		// Post time for the [upd] bbcode
+		$this->post_time = (int) $post_time;
 
 		$str = array('search' => array(), 'replace' => array());
 		$preg = array('search' => array(), 'replace' => array());
@@ -364,6 +369,14 @@ class bbcode
 					);
 				break;
 
+				case 16:
+					$this->bbcode_cache[$bbcode_id] = array(
+						'preg' => array(
+							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#e' => "\$this->bbcode_second_pass_upd('\$1', '\$2')",
+						)
+					);
+				break;
+
 				default:
 					if (isset($rowset[$bbcode_id]))
 					{
@@ -449,6 +462,8 @@ class bbcode
 				'spoiler_title_open'	=> '<dl class="spoilerbox"><dt>$1</dt><dd>',
 				'spoiler_open'			=> '<dl class="spoilerbox"><dt>' . $user->lang['SPOILER'] . '</dt><dd>',
 				'spoiler_close'			=> '</dd></dl>',
+				'upd_merged'			=> '<span style="font-size: 85%; line-height: normal; color: gray;">$1</span>',
+				'upd_subject'			=> '<br /><span style="font-weight: bold">$1</span>',
 			);
 		}
 
@@ -505,7 +520,9 @@ class bbcode
 			'img'					=> array('{URL}'		=> '$1'),
 			'flash'					=> array('{WIDTH}'		=> '$1', '{HEIGHT}'			=> '$2', '{URL}'	=> '$3'),
 			'url'					=> array('{URL}'		=> '$1', '{DESCRIPTION}'	=> '$2'),
-			'email'					=> array('{EMAIL}'		=> '$1', '{DESCRIPTION}'	=> '$2')
+			'email'					=> array('{EMAIL}'		=> '$1', '{DESCRIPTION}'	=> '$2'),
+			'upd_merged'			=> array('{MERGED}'		=> '$1'),
+			'upd_subject'			=> array('{SUBJECT}'	=> '$1'),
 		);
 
 		$tpl = preg_replace('/{L_([A-Z0-9_]+)}/e', "(!empty(\$user->lang['\$1'])) ? \$user->lang['\$1'] : ucwords(strtolower(str_replace('_', ' ', '\$1')))", $tpl);
@@ -569,6 +586,67 @@ class bbcode
 		}
 
 		return strtr($this->bbcode_tpl($tpl), array('{LIST_TYPE}' => $type, '{LIST_START}' => $start));
+	}
+
+	/**
+	* Second parse upd tag
+	*/
+	function bbcode_second_pass_upd($time, $subj)
+	{
+		global $user;
+
+		static $tpls = array();
+		if (empty($tpls))
+		{
+			$tpls = array(
+				'upd_merged'	=> $this->bbcode_tpl('upd_merged', 16),
+				'upd_subject'	=> $this->bbcode_tpl('upd_subject', 16),
+			);
+		}
+
+		// when using the /e modifier, preg_replace slashes double-quotes but does not
+		// seem to slash anything else
+		$time = str_replace('\"', '"', $time);
+		$subj = str_replace('\"', '"', $subj);
+		$result = '';
+
+		if ($time{0} !== '+')
+		{
+			$time = (int) $time;
+			if (!$this->post_time || $time - $this->post_time < 0)
+			{
+				$result = $user->format_date($time, false, true);
+				$result = str_replace('$1', $user->lang('UPD_MERGED', $result), $tpls['upd_merged']);
+			}
+			else
+			{
+				$result = \phpbb\datetime::get_verbal($this->post_time, $time, false, 2);
+				$result = str_replace('$1', $user->lang('UPD_MERGED_AFTER', $result), $tpls['upd_merged']);
+			}
+			$this->post_time = max($time, $this->post_time);
+		}
+		else
+		{
+			$parts = explode(':', $time);
+			$seconds = (int) array_pop($parts);
+			$seconds += array_pop($parts) * 60;
+			$seconds += array_pop($parts) * 3600;
+			$seconds += array_pop($parts) * 86400;
+
+			if ($this->post_time)
+			{
+				$this->post_time += $seconds;
+			}
+
+			$result = \phpbb\datetime::get_verbal(0, $seconds, false, 2);
+			$result = str_replace('$1', $user->lang('UPD_MERGED_AFTER', $result), $tpls['upd_merged']);
+		}
+
+		if (trim($subj))
+		{
+			$result .= str_replace('$1', $subj, $tpls['upd_subject']);
+		}
+		return $result;
 	}
 
 	/**

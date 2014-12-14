@@ -30,7 +30,13 @@ ALTER TABLE phpbb_poll_votes
 	ADD COLUMN vote_time int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER vote_user_id;
 
 ALTER TABLE phpbb_posts
-	ADD COLUMN poster_browser_id char(32) DEFAULT '' NOT NULL AFTER poster_ip;
+	ADD COLUMN poster_browser_id char(32) DEFAULT '' NOT NULL AFTER poster_ip,
+	ADD COLUMN post_merged int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER post_time;
+
+-- Only for converting old merging data to new storing format
+-- ALTER TABLE phpbb_posts ADD COLUMN post_merged int(11) UNSIGNED DEFAULT '0' NOT NULL AFTER post_time;
+-- UPDATE phpbb_posts SET post_merged = post_time, post_time=post_created WHERE post_created != 0 AND post_merged = 0;
+-- ALTER TABLE phpbb_posts DROP COLUMN post_created;
 
 ALTER TABLE phpbb_topics
 	ADD COLUMN poll_show_voters tinyint(1) UNSIGNED DEFAULT '0' NOT NULL AFTER poll_vote_change,
@@ -62,6 +68,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_spoiler_depth', '2');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('merge_interval', '18');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_post_font_size', '85');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('min_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');

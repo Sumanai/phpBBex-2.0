@@ -834,3 +834,9 @@ $lang = array_merge($lang, array(
 	'LOGIN_VIA_EMAIL_ONLY'				=> 'E-Mail only',
 	'EMAIL_REUSE_DISABLED'				=> 'This is disabled while <em>Login via Email</em> is enabled.',
 ));
+
+// Posts merging
+$lang = array_merge($lang, array(
+	'MERGE_INTERVAL'				=> 'Merging posts interval',
+	'MERGE_INTERVAL_EXPLAIN'		=> 'Number of hours a messages from the user will be merged with his topic last message. Leave empty or 0 to disable merging.',
+));

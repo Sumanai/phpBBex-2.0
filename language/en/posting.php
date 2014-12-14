@@ -357,4 +357,7 @@ $lang = array_merge($lang, array(
 	'SMILE_SHOCKED'				=> 'Shocked',
 	'SMILE_UBER_GEEK'			=> 'Uber Geek',
 	'SMILE_VERY_HAPPY'			=> 'Very Happy',
+
+	// Posts merging
+	'DO_MERGE'					=> 'Merge with the last message',
 ));

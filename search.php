@@ -1016,7 +1016,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				else
 				{
 					$parse_flags = ($row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0) | OPTION_FLAG_SMILIES;
-					$row['post_text'] = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, false);
+					$row['post_text'] = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, false, $row['post_time']););
 
 					if (!empty($attachments[$row['post_id']]))
 					{

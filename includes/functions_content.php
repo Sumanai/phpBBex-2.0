@@ -435,7 +435,7 @@ function strip_bbcode(&$text, $uid = '')
 * For display of custom parsed text on user-facing pages
 * Expects $text to be the value directly from the database (stored value)
 */
-function generate_text_for_display($text, $uid, $bitfield, $flags, $censor_text = true)
+function generate_text_for_display($text, $uid, $bitfield, $flags, $censor_text = true, $post_time = 0)
 {
 	static $bbcode;
 	global $phpbb_dispatcher;
@@ -482,7 +482,7 @@ function generate_text_for_display($text, $uid, $bitfield, $flags, $censor_text 
 			$bbcode->bbcode($bitfield);
 		}
 
-		$bbcode->bbcode_second_pass($text, $uid);
+		$bbcode->bbcode_second_pass($text, $uid, false, $post_time);
 	}
 
 	$text = bbcode_nl2br($text);

@@ -1433,6 +1433,36 @@ $lang = array_merge($lang, array(
 	'LOGIN_ERROR_USERNAME_OR_EMAIL'		=> 'You have specified an incorrect username or e-mail address. Please check your entry and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
 	'LOGIN_ERROR_EMAIL'					=> 'You have specified an incorrect e-mail address. Please check your e-mail address and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
 
+	// Posts merging
+	'UPD_MERGED_AFTER'			=> 'Added after %s:',
+	'UPD_MERGED'				=> 'Added %s:',
+
+	// Time delta
+	'D_SECONDS'  => array(
+		1	=> '%d second',
+		2	=> '%d seconds',
+	),
+	'D_MINUTES'  => array(
+		1	=> '%d minute',
+		2	=> '%d minutes',
+	),
+	'D_HOURS'    => array(
+		1	=> '%d hour',
+		2	=> '%d hours',
+	),
+	'D_MDAY'     => array(
+		1	=> '%d day',
+		2	=> '%d days',
+	),
+	'D_MON'      => array(
+		1	=> '%d month',
+		2	=> '%d months',
+	),
+	'D_YEAR'     => array(
+		1	=> '%d year',
+		2	=> '%d years',
+	),
+
 	// Other
 	'SOCIAL_SHARE_IN'		=> 'Share in',
 	'SPOILER'				=> 'Spoiler',

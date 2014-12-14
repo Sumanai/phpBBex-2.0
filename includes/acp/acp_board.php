@@ -260,6 +260,7 @@ class acp_board
 						'delete_time'			=> array('lang' => 'DELETE_TIME',			'validate' => 'int:0:99999',		'type' => 'number:0:99999', 'explain' => true, 'append' => ' ' . $user->lang['MINUTES']),
 						'display_last_edited'	=> array('lang' => 'DISPLAY_LAST_EDITED',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
 						'flood_interval'		=> array('lang' => 'FLOOD_INTERVAL',		'validate' => 'int:0:9999999999',		'type' => 'number:0:9999999999', 'explain' => true, 'append' => ' ' . $user->lang['SECONDS']),
+						'merge_interval'		=> array('lang' => 'MERGE_INTERVAL',		'validate' => 'int:0:999999',		'type' => 'number:0:999999', 'explain' => true, 'append' => ' ' . $user->lang['HOURS']),
 						'bump_interval'			=> array('lang' => 'BUMP_INTERVAL',			'validate' => 'int:0',		'type' => 'custom', 'method' => 'bump_interval', 'explain' => true),
 						'topics_per_page'		=> array('lang' => 'TOPICS_PER_PAGE',		'validate' => 'int:1:9999',		'type' => 'number:1:9999', 'explain' => false),
 						'posts_per_page'		=> array('lang' => 'POSTS_PER_PAGE',		'validate' => 'int:1:9999',		'type' => 'number:1:9999', 'explain' => false),

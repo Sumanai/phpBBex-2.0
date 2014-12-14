@@ -836,3 +836,9 @@ $lang = array_merge($lang, array(
 	'LOGIN_VIA_EMAIL_ONLY'				=> 'Только по e-mail',
 	'EMAIL_REUSE_DISABLED'				=> 'Заблокировано, поскольку включён <em>вход по e-mail</em>.',
 ));
+
+// Posts merging
+$lang = array_merge($lang, array(
+	'MERGE_INTERVAL'				=> 'Интервал склеивания сообщений',
+	'MERGE_INTERVAL_EXPLAIN'		=> 'Количество часов, в течение которого сообщения пользователя будут склеены с его последним сообщением темы. Оставьте поле пустым или установите 0 для отключения этой функции.',
+));

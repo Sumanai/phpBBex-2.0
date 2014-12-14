@@ -333,7 +333,7 @@ class mcp_warn
 		// We want to make the message available here as a reminder
 		// Parse the message and subject
 		$parse_flags = OPTION_FLAG_SMILIES | ($user_row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0);
-		$message = generate_text_for_display($user_row['post_text'], $user_row['bbcode_uid'], $user_row['bbcode_bitfield'], $parse_flags, true);
+		$message = generate_text_for_display($user_row['post_text'], $user_row['bbcode_uid'], $user_row['bbcode_bitfield'], $parse_flags, true, $user_row['post_time']);
 
 		// Generate the appropriate user information for the user we are looking at
 		if (!function_exists('phpbb_get_user_rank'))

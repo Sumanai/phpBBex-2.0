@@ -77,7 +77,7 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 
 	// Parse the message and subject
 	$parse_flags = ($message_row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0) | OPTION_FLAG_SMILIES;
-	$message = generate_text_for_display($message_row['message_text'], $message_row['bbcode_uid'], $message_row['bbcode_bitfield'], $parse_flags, true);
+	$message = generate_text_for_display($message_row['message_text'], $message_row['bbcode_uid'], $message_row['bbcode_bitfield'], $parse_flags, true, $message_row['message_time']);
 
 	// Replace naughty words such as farty pants
 	$message_row['message_subject'] = censor_text($message_row['message_subject']);

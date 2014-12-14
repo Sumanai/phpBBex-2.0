@@ -1874,7 +1874,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 			// 5: Retrieve last_post infos
 			if (sizeof($post_ids))
 			{
-				$sql = 'SELECT p.post_id, p.poster_id, p.post_subject, p.post_time, p.post_username, u.username, u.user_colour
+				$sql = 'SELECT p.post_id, p.poster_id, p.post_subject, p.post_time, p.post_merged, p.post_username, u.username, u.user_colour
 					FROM ' . POSTS_TABLE . ' p, ' . USERS_TABLE . ' u
 					WHERE ' . $db->sql_in_set('p.post_id', $post_ids) . '
 						AND p.poster_id = u.user_id';
@@ -1893,7 +1893,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 						if (isset($post_info[$data['last_post_id']]))
 						{
 							$forum_data[$forum_id]['last_post_subject'] = $post_info[$data['last_post_id']]['post_subject'];
-							$forum_data[$forum_id]['last_post_time'] = $post_info[$data['last_post_id']]['post_time'];
+							$forum_data[$forum_id]['last_post_time'] = max($post_info[$data['last_post_id']]['post_time'], $post_info[$data['last_post_id']]['post_merged']);
 							$forum_data[$forum_id]['last_poster_id'] = $post_info[$data['last_post_id']]['poster_id'];
 							$forum_data[$forum_id]['last_poster_name'] = ($post_info[$data['last_post_id']]['poster_id'] != ANONYMOUS) ? $post_info[$data['last_post_id']]['username'] : $post_info[$data['last_post_id']]['post_username'];
 							$forum_data[$forum_id]['last_poster_colour'] = $post_info[$data['last_post_id']]['user_colour'];
@@ -2089,7 +2089,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 				unset($delete_topics, $delete_topic_ids);
 			}
 
-			$sql = 'SELECT p.post_id, p.topic_id, p.post_visibility, p.poster_id, p.post_subject, p.post_username, p.post_time, u.username, u.user_colour
+			$sql = 'SELECT p.post_id, p.topic_id, p.post_visibility, p.poster_id, p.post_subject, p.post_username, p.post_time, p.post_merged , u.username, u.user_colour
 				FROM ' . POSTS_TABLE . ' p, ' . USERS_TABLE . ' u
 				WHERE ' . $db->sql_in_set('p.post_id', $post_ids) . '
 					AND u.user_id = p.poster_id';
@@ -2112,7 +2112,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 				{
 					$topic_data[$topic_id]['last_poster_id'] = $row['poster_id'];
 					$topic_data[$topic_id]['last_post_subject'] = $row['post_subject'];
-					$topic_data[$topic_id]['last_post_time'] = $row['post_time'];
+					$topic_data[$topic_id]['last_post_time'] = max($row['post_time'], $row['post_merged']);
 					$topic_data[$topic_id]['last_poster_name'] = ($row['poster_id'] == ANONYMOUS) ? $row['post_username'] : $row['username'];
 					$topic_data[$topic_id]['last_poster_colour'] = $row['user_colour'];
 				}
@@ -2162,7 +2162,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 				$sync_shadow_topics = array();
 				if (sizeof($post_ids))
 				{
-					$sql = 'SELECT p.post_id, p.topic_id, p.post_visibility, p.poster_id, p.post_subject, p.post_username, p.post_time, u.username, u.user_colour
+					$sql = 'SELECT p.post_id, p.topic_id, p.post_visibility, p.poster_id, p.post_subject, p.post_username, p.post_time, p.post_merged, u.username, u.user_colour
 						FROM ' . POSTS_TABLE . ' p, ' . USERS_TABLE . ' u
 						WHERE ' . $db->sql_in_set('p.post_id', $post_ids) . '
 							AND u.user_id = p.poster_id';
@@ -2203,7 +2203,7 @@ function sync($mode, $where_type = '', $where_ids = '', $resync_parents = false,
 
 								$sync_shadow_topics[$orig_topic_id]['topic_last_poster_id'] = $row['poster_id'];
 								$sync_shadow_topics[$orig_topic_id]['topic_last_post_subject'] = $row['post_subject'];
-								$sync_shadow_topics[$orig_topic_id]['topic_last_post_time'] = $row['post_time'];
+								$sync_shadow_topics[$orig_topic_id]['topic_last_post_time'] = max($row['post_time'], $row['post_merged']);
 								$sync_shadow_topics[$orig_topic_id]['topic_last_poster_name'] = ($row['poster_id'] == ANONYMOUS) ? $row['post_username'] : $row['username'];
 								$sync_shadow_topics[$orig_topic_id]['topic_last_poster_colour'] = $row['user_colour'];
 							}

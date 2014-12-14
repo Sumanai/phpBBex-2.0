@@ -1165,7 +1165,7 @@ function topic_review($topic_id, $forum_id, $mode = 'topic_review', $cur_post_id
 
 		$parse_flags = ($row['bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0);
 		$parse_flags |= ($row['enable_smilies'] ? OPTION_FLAG_SMILIES : 0);
-		$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true);
+		$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true, $row['post_time']);
 
 		if (!empty($attachments[$row['post_id']]))
 		{

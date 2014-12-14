@@ -299,6 +299,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('merge_interval', '18');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('site_keywords', '');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_post_imgs', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0');
@@ -507,11 +508,11 @@ INSERT INTO phpbb_acl_roles (role_name, role_description, role_type, role_order)
 # 24
 INSERT INTO phpbb_acl_roles (role_name, role_description, role_type, role_order) VALUES ('ROLE_FORUM_NEW_MEMBER', 'ROLE_DESCRIPTION_FORUM_NEW_MEMBER', 'f_', 10);
 
-# -- phpbb_styles
+# -- phpBB style (disabled)
 INSERT INTO phpbb_styles (style_name, style_copyright, style_active, style_path, bbcode_bitfield, style_parent_id, style_parent_tree) VALUES ('prosilver', '&copy; phpBB Limited', 0, 'prosilver', 'kNg=', 0, '');
 
-# -- phpbb_styles
-INSERT INTO phpbb_styles (style_name, style_copyright, style_active, style_path, bbcode_bitfield, style_parent_id, style_parent_tree) VALUES ('prosilverEx', '&copy; phpBB Limited, &copy; phpBBex 2014, Sumanai', 1, 'prosilver_ex', 'kNg=', 1, 'prosilver');
+# -- phpBBex style
+INSERT INTO phpbb_styles (style_name, style_copyright, style_active, style_path, bbcode_bitfield, style_parent_id, style_parent_tree) VALUES ('prosilverEx', '&copy; phpBB Limited, &copy; phpBBex 2014, Sumanai', 1, 'prosilver_ex', 'lNmA', 1, 'prosilver');
 
 # -- Forums
 INSERT INTO phpbb_forums (forum_name, forum_desc, left_id, right_id, parent_id, forum_type, forum_posts_approved, forum_posts_unapproved, forum_posts_softdeleted, forum_topics_approved, forum_topics_unapproved, forum_topics_softdeleted, forum_last_post_id, forum_last_poster_id, forum_last_poster_name, forum_last_poster_colour, forum_last_post_time, forum_link, forum_password, forum_image, forum_rules, forum_rules_link, forum_rules_uid, forum_desc_uid, prune_days, prune_viewed, forum_parents) VALUES ('{L_FORUMS_FIRST_CATEGORY}', '', 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 'Admin', 'AA0000', 972086460, '', '', '', '', '', '', '', 0, 0, '');

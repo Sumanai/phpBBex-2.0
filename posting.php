@@ -918,6 +918,9 @@ if ($submit || $preview || $refresh)
 	// Grab md5 'checksum' of new message
 	$message_md5 = md5($message_parser->message);
 
+	// Save message for posts merging
+	$addon_for_merge = $message_parser->message;
+
 	// If editing and checksum has changed we know the post was edited while we're editing
 	// Notify and show user the changed post
 	if ($mode == 'edit' && $post_data['forum_flags'] & FORUM_FLAG_POST_REVIEW)
@@ -1359,8 +1362,11 @@ if ($submit || $preview || $refresh)
 			);
 			extract($phpbb_dispatcher->trigger_event('core.posting_modify_submit_post_before', compact($vars)));
 
+			$update_search_index = ($update_message || $update_subject) ? true : false;
+			include($phpbb_root_path . 'includes/posts_merging.' . $phpEx);
+
 			// The last parameter tells submit_post if search indexer has to be run
-			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_author_name, $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);
+			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_author_name, $post_data['topic_type'], $poll, $data, $update_message, $update_search_index);
 
 			// Show/Unshow first post on every page
 			if ($mode == 'post' || ($mode == 'edit' && $post_id == $post_data['topic_first_post_id']))
@@ -1554,6 +1560,7 @@ if ($mode == 'quote' && !$submit && !$preview && !$refresh)
 {
 	if ($config['allow_bbcode'])
 	{
+		$message_parser->message = preg_replace('#\[upd(?:=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}))?\](?:(.*?)\[/upd\])?[\n]?#ui', '', $message_parser->message);
 		$message_parser->message = '[quote=&quot;' . $post_data['quote_username'] . '&quot;]' . censor_text(trim($message_parser->message)) . "[/quote]\n";
 	}
 	else
@@ -1701,6 +1708,8 @@ if (isset($captcha) && $captcha->is_solved() !== false)
 $form_enctype = (@ini_get('file_uploads') == '0' || strtolower(@ini_get('file_uploads')) == 'off' || !$config['allow_attachments'] || !$auth->acl_get('u_attach') || !$auth->acl_get('f_attach', $forum_id)) ? '' : ' enctype="multipart/form-data"';
 add_form_key('posting');
 
+$s_do_merge_allowed = $user->data['is_registered'] && ($mode == 'reply' || $mode == 'quote') && $post_data['topic_last_poster_id'] == $user->data['user_id'] && ($auth->acl_get('f_noapprove', $forum_id) || $auth->acl_get('m_approve', $forum_id));
+$s_do_merge_checked = $s_do_merge_allowed && (($current_time - $post_data['topic_last_post_time']) < intval($config['merge_interval']) * 3600);
 
 // Build array of variables for main posting page
 $page_data = array(
@@ -1763,6 +1772,9 @@ $page_data = array(
 	'S_SAVE_ALLOWED'			=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $mode != 'edit') ? true : false,
 	'S_HAS_DRAFTS'				=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $post_data['drafts']) ? true : false,
 	'S_FORM_ENCTYPE'			=> $form_enctype,
+
+	'S_DO_MERGE_ALLOWED'			=> $s_do_merge_allowed,
+	'S_DO_MERGE_CHECKED'			=> $s_do_merge_checked ? ' checked="checked"' : '',
 
 	'S_FIRST_POST_SHOW_ALLOWED'		=> $user->data['is_registered'] && ($mode == 'post' || ($mode == 'edit' && $post_id == $post_data['topic_first_post_id'])),
 	'S_FIRST_POST_SHOW_CHECKED'		=> ($first_post_show_checked) ? ' checked="checked"' : '',
