@@ -22,8 +22,8 @@ if (($mode != 'reply' && $mode != 'quote') || $post_need_approval) return;
 
 // Get merging data
 $sql_array = array(
-	'SELECT'	=> 'f.enable_indexing, f.forum_id, p.bbcode_bitfield, p.bbcode_uid,
-		p.enable_bbcode,  p.enable_magic_url, p.enable_smilies, p.poster_id, p.post_attachment,
+	'SELECT'	=> 'f.enable_indexing, f.forum_id, p.bbcode_bitfield, p.bbcode_uid, p.enable_bbcode, 
+		p.enable_magic_url, p.enable_smilies, p.poster_id, p.post_attachment, p.poster_browser_id,
 		p.post_edit_locked, p.post_id, p.post_subject, p.post_text, p.post_time, t.topic_attachment,
 		t.topic_last_post_time',
 	'FROM'		=> array(FORUMS_TABLE => 'f', POSTS_TABLE => 'p', TOPICS_TABLE => 't'),
@@ -73,10 +73,8 @@ $num_old_attach = (int) $db->sql_fetchfield('num_attach');
 
 $num_new_attach = count($data['attachment_data']);
 $total_attach_count = $num_old_attach + $num_new_attach;
-$data['post_id'] = (int) $merge_post_data['post_id'];
 $merge_post_data['post_attachment'] = ($total_attach_count) ? 1 : 0;
-
-$do_merge = $do_merge && (($total_attach_count <= $config['max_attachments']) && $auth->acl_get('a_') && $auth->acl_get('m_', (int) $data['forum_id']));
+$do_merge = $do_merge && ($total_attach_count <= $config['max_attachments']);
 
 if (!$do_merge) return;
 
@@ -288,6 +286,7 @@ if (($config['load_db_lastread'] && $user->data['is_registered']) || $config['lo
 
 // Send Notifications
 $notification_data = array_merge($data, array(
+	'post_id'		=> (int) $merge_post_data['post_id'],
 	'topic_title'		=> (isset($data['topic_title'])) ? $data['topic_title'] : $subject,
 	'post_username'		=> $username,
 	'poster_id'			=> (int) $data['poster_id'],
