@@ -31,7 +31,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_pm_report', 
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_post_flash', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_post_links', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_privmsg', '1');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply', '2');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_sig', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_sig_bbcode', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_sig_flash', '0');
@@ -295,6 +295,10 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post
 
 # New phpBBex options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_full_quote', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post_options', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply_options', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');

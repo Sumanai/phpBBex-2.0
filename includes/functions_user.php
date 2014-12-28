@@ -204,7 +204,7 @@ function user_add($user_row, $cp_data = false, $notifications_data = null)
 		'user_browser'		=> '',
 		'user_regdate'		=> time(),
 		'user_passchg'		=> time(),
-		'user_options'		=> 230271,
+		'user_options'		=> 233343,
 		// We do not set the new flag here - registration scripts need to specify it
 		'user_new'			=> 0,
 

@@ -51,5 +51,32 @@
 <!-- IF S_PLUPLOAD --><!-- INCLUDE plupload.html --><!-- ENDIF -->
 {$SCRIPTS}
 
+<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
+<script>
+jQuery(function($)
+{
+	var waiting = false;
+	$('#page-body').on('mouseup', 'div.postbody', function(event)
+	{
+		waiting = true;
+		var post = this;
+		setTimeout(function()
+		{
+			waiting = false;
+			$('.no-full-quote').hide();
+			if (get_selected_text() && event.which <= 1)
+			{
+				$('.no-full-quote', post).show();
+			}
+		}, 50);
+	});
+	$('body').on('mouseup', function(event)
+	{
+		if (!waiting) $('.no-full-quote').hide();
+	});
+});
+</script>
+<!-- ENDIF -->
+
 </body>
 </html>

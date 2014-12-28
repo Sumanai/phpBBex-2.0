@@ -1,1 +1,45 @@
 <!-- INCLUDEJS script.js -->
+
+<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
+<script>
+(function($)
+{
+	var post = $('div.post', '#page-body'),
+	author,
+	quoteButton;
+
+	post.each(function() {
+		author = $(this).find('p.author .responsive-hide a');
+		author.attr('onclick', "insert_text('[b]" + author.text() + "[/b], '); return false;");
+
+		quoteButton = $(this).find('a.button.quote-icon');
+		quoteButton.attr('onclick', "addquote(" + this.id.substr(1) + ",'" + author.text() + "'); return false;");
+
+		<!-- IF not S_QUICK_FULL_QUOTE -->
+			quoteButton.hide().addClass('no-full-quote');
+		<!-- ENDIF -->
+	});
+
+	var waiting = false;
+	$('#page-body').on('mouseup', 'div.postbody', function(event)
+	{
+		waiting = true;
+		var post = this;
+		setTimeout(function()
+		{
+			waiting = false;
+			$('.no-full-quote').hide();
+			if (get_selected_text() && event.which <= 1)
+			{
+				$('.no-full-quote', post).show();
+			}
+		}, 50);
+	});
+	$('body').on('mouseup', function(event)
+	{
+		if (!waiting) $('.no-full-quote').hide();
+	});
+})(jQuery);
+
+</script>
+<!-- ENDIF -->

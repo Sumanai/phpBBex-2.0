@@ -241,6 +241,10 @@ a.icon-google-plus { background-position: 0 -104px; }
 	overflow: hidden;
 }
 
+#message-box textarea {
+    height: 300px;
+}
+
 /* Responsive
 ---------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {

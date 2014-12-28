@@ -216,19 +216,9 @@
 			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
 				<ul class="post-buttons">
 					<!-- EVENT viewtopic_body_post_buttons_before -->
-					<!-- IF postrow.U_EDIT -->
+					<!-- IF postrow.U_INFO -->
 						<li>
-							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button icon-button edit-icon"><span>{L_BUTTON_EDIT}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_DELETE -->
-						<li>
-							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button icon-button delete-icon"><span>{L_DELETE_POST}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_REPORT -->
-						<li>
-							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button icon-button report-icon"><span>{L_REPORT_POST}</span></a>
+							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button icon-button info-icon"><span>{L_INFORMATION}</span></a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_WARN -->
@@ -236,14 +226,24 @@
 							<a href="{postrow.U_WARN}" title="{L_WARN_USER}" class="button icon-button warn-icon"><span>{L_WARN_USER}</span></a>
 						</li>
 					<!-- ENDIF -->
-					<!-- IF postrow.U_INFO -->
+					<!-- IF postrow.U_REPORT -->
 						<li>
-							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button icon-button info-icon"><span>{L_INFORMATION}</span></a>
+							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button icon-button report-icon"><span>{L_REPORT_POST}</span></a>
+						</li>
+					<!-- ENDIF -->
+					<!-- IF postrow.U_DELETE -->
+						<li>
+							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button icon-button delete-icon"><span>{L_DELETE_POST}</span></a>
+						</li>
+					<!-- ENDIF -->
+					<!-- IF postrow.U_EDIT -->
+						<li>
+							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button icon-button edit-icon"><span>{L_BUTTON_EDIT}</span></a>
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE -->
 						<li>
-							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button icon-button quote-icon"><span>{L_QUOTE}</span></a>
+							<a class="button icon-button quote-icon<!-- IF not S_QUICK_REPLY or postrow.DECODED_MESSAGE -->"<!-- ELSE --> no-full-quote" style="display: none;"<!-- ENDIF --><!-- IF not S_QUICK_REPLY --> href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span><!-- ELSE --> href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); return false;" title="{L_QUOTE_TEXT}"><span>{L_QUOTE}</span><!-- ENDIF --></a>
 						</li>
 					<!-- ENDIF -->
 					<!-- EVENT viewtopic_body_post_buttons_after -->
@@ -251,7 +251,7 @@
 			<!-- ENDIF -->
 		<!-- ENDIF -->
 
-			<p class="author"><!-- IF not S_IS_BOT --><a rel="nofollow" href="{postrow.U_MINI_POST}"><!-- ENDIF --><!-- IF STYLE_VT_SHOW_POST_NUMBERS -->#{postrow.POST_NUMBER}<!-- ELSE -->{postrow.MINI_POST_IMG}<!-- ENDIF --><!-- IF not S_IS_BOT --></a><!-- ENDIF --><span class="responsive-hide">{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; </span>{postrow.POST_DATE} </p>
+			<p class="author"><!-- IF not S_IS_BOT --><a rel="nofollow" href="{postrow.U_MINI_POST}"><!-- ENDIF --><!-- IF STYLE_VT_SHOW_POST_NUMBERS -->#{postrow.POST_NUMBER}<!-- ELSE -->{postrow.MINI_POST_IMG}<!-- ENDIF --><!-- IF not S_IS_BOT --></a><!-- ENDIF --><span class="responsive-hide">{L_POST_BY_AUTHOR} <strong><a href="{postrow.U_POST_AUTHOR}"<!-- IF S_QUICK_REPLY --> onclick="insert_text('[b]{postrow.POSTER_QUOTE}[/b], '); return false;"<!-- ENDIF --><!-- IF postrow.POST_AUTHOR_COLOUR --> style="color: {postrow.POST_AUTHOR_COLOUR};"<!-- ENDIF -->>{postrow.POST_AUTHOR}</a></strong> &raquo; </span>{postrow.POST_DATE} </p>
 
 			<!-- IF postrow.S_POST_UNAPPROVED -->
 			<form method="post" class="mcp_approve" action="{postrow.U_APPROVE_ACTION}">
@@ -282,6 +282,9 @@
 			<!-- ENDIF -->
 
 			<div class="content">{postrow.MESSAGE}</div>
+			<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE -->
+				<div id="message_{postrow.POST_ID}" style="display: none;">{postrow.DECODED_MESSAGE}</div>
+			<!-- ENDIF -->
 
 			<!-- IF postrow.S_HAS_ATTACHMENTS -->
 				<dl class="attachbox">
@@ -331,10 +334,6 @@
 		</div>
 	</div>
 	<hr class="divider" />
-<!-- ENDIF -->
-
-<!-- IF S_QUICK_REPLY -->
-	<!-- INCLUDE quickreply_editor.html -->
 <!-- ENDIF -->
 
 <!-- IF S_NUM_POSTS > 1 or .pagination -->
@@ -393,6 +392,10 @@
 	<!-- ENDIF -->
 	<div class="clear"></div>
 </div>
+
+<!-- IF S_QUICK_REPLY -->
+	<!-- INCLUDE quickreply_editor.html -->
+<!-- ENDIF -->
 
 <!-- EVENT viewtopic_body_footer_before -->
 <!-- INCLUDE jumpbox.html -->

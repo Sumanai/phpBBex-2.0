@@ -6,3 +6,28 @@
 		<label for="mp_on_left0"><input type="radio" name="mp_on_left" id="mp_on_left0" value="0"<!-- IF S_MP_ON_LEFT == 0 --> checked="checked"<!-- ENDIF --> /> {L_MP_DEFAULT}</label>
 	</dd>
 </dl>
+<!-- IF QUICK_REPLY -->
+<dl>
+	<dt><label for="quickreply1">{L_QUICK_REPLY_DISPLAY}{L_COLON}</label></dt>
+	<dd>
+		<label for="quickreply1"><input type="radio" name="quickreply" id="quickreply1" value="1"<!-- IF S_QUICKREPLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+		<label for="quickreply0"><input type="radio" name="quickreply" id="quickreply0" value="0"<!-- IF not S_QUICKREPLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+	</dd>
+</dl>
+<!-- ENDIF -->
+<!-- IF QUICK_POST -->
+<dl>
+	<dt><label for="quickpost1">{L_QUICK_POST_DISPLAY}{L_COLON}</label></dt>
+	<dd>
+		<label for="quickpost1"><input type="radio" name="quickpost" id="quickpost1" value="1"<!-- IF S_QUICKPOST --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+		<label for="quickpost0"><input type="radio" name="quickpost" id="quickpost0" value="0"<!-- IF not S_QUICKPOST --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+	</dd>
+</dl>
+<!-- ENDIF -->
+<dl>
+	<dt><label for="topicreview1">{L_TOPIC_REVIEW_DISPLAY}{L_COLON}</label></dt>
+	<dd>
+		<label for="topicreview1"><input type="radio" name="topicreview" id="topicreview1" value="1"<!-- IF S_TOPICREVIEW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+		<label for="topicreview0"><input type="radio" name="topicreview" id="topicreview0" value="0"<!-- IF not S_TOPICREVIEW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+	</dd>
+</dl>

@@ -57,6 +57,10 @@ ALTER TABLE phpbb_users
 -- New phpBBex options
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_full_quote', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post_options', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply_options', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_admin_logs_days', '365');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('keep_mod_logs_days', '365');
@@ -91,6 +95,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_social
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post_numbers', '0');
 
 -- Replace default phpBB config
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply', '2');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('max_sig_font_size', '100');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('board_hide_emails', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('posts_per_page', '20');

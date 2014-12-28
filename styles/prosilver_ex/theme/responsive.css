@@ -26,7 +26,7 @@ body {
 
 /* Common block wrappers
 ----------------------------------------*/
-.headerbar, .navbar, .forabg, .forumbg, .post, .panel {
+.headerbar, .navbar, .forabg, .forumbg, .post, .panel, div.rules {
 	border-radius: 0;
 	margin-left: -5px;
 	margin-right: -5px;

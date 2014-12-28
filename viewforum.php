@@ -325,6 +325,12 @@ if (!empty($_EXTRA_URL))
 	}
 }
 
+// Quick post
+if ($config['allow_quick_post'])
+{
+	include($phpbb_root_path . 'includes/quick_reply.' . $phpEx);
+}
+
 $template->assign_vars(array(
 	'MODERATORS'	=> (!empty($moderators[$forum_id])) ? implode($user->lang['COMMA_SEPARATOR'], $moderators[$forum_id]) : '',
 

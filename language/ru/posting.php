@@ -337,4 +337,9 @@ $lang = array_merge($lang, array(
 
 	// Posts merging
 	'DO_MERGE'					=> 'Склеить с предыдущим',
+
+	// Quick reply
+	'QUICK_REPLY'				=> 'Быстрый ответ',
+	'QUICK_POST'				=> 'Быстрая тема',
+	'QUOTE_TEXT'				=> 'Выделите текст в сообщении',
 ));

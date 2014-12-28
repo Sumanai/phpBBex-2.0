@@ -360,4 +360,9 @@ $lang = array_merge($lang, array(
 
 	// Posts merging
 	'DO_MERGE'					=> 'Merge with the last message',
+
+	// Quick reply
+	'QUICK_REPLY'				=> 'Quick reply',
+	'QUICK_POST'				=> 'Quick post',
+	'QUOTE_TEXT'				=> 'Select the text you want to quote',
 ));

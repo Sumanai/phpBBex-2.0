@@ -1626,8 +1626,6 @@ if ($mode == 'post' || ($mode == 'edit' && $post_id == $post_data['topic_first_p
 	$topic_type_toggle = posting_gen_topic_types($forum_id, $post_data['topic_type']);
 }
 
-
-
 $s_topic_icons = false;
 if ($post_data['enable_icons'] && $auth->acl_get('f_icons', $forum_id))
 {
@@ -1904,7 +1902,7 @@ $template->set_filenames(array(
 make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
 
 // Topic review
-if ($mode == 'reply' || $mode == 'quote')
+if (($mode == 'reply' || $mode == 'quote') && ((bool) $user->optionget('viewtopicreview')))
 {
 	if (topic_review($topic_id, $forum_id))
 	{

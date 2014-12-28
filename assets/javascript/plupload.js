@@ -33,6 +33,7 @@ phpbb.plupload.initialize = function() {
 		// Point out the drag-and-drop zone if it's supported.
 		if (uploader.features.dragdrop) {
 			$('#drag-n-drop-message').show();
+			$('#no-drag-n-drop-message').hide();
 		}
 
 		// Ensure "Add files" button position is correctly calculated.
