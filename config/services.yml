@@ -66,6 +66,7 @@ services:
             - @dbal.conn
             - %tables.config_text%
             - @config
+            - @cache.driver
 
     controller.helper:
         class: phpbb\controller\helper

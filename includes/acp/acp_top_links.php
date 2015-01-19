@@ -210,6 +210,6 @@ class acp_top_links
 		}
 
 		$toplinks = implode("\n", $toplinks);
-		$config_text->set('toplinks', $toplinks);
+		$config_text->set('toplinks', $toplinks, true);
 	}
 }

@@ -39,14 +39,21 @@ class db_text
 	protected $config;
 
 	/**
+	* Cache instance
+	* @var \phpbb\cache\driver\driver_interface
+	*/
+	protected $cache;
+
+	/**
 	* @param \phpbb\db\driver\driver_interface $db        Database connection
 	* @param string          $table     Table name
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, $table, \phpbb\config\config $config)
+	public function __construct(\phpbb\db\driver\driver_interface $db, $table, \phpbb\config\config $config, \phpbb\cache\driver\driver_interface $cache)
 	{
 		$this->db = $db;
 		$this->table = $this->db->sql_escape($table);
 		$this->config = $config;
+		$this->cache = $cache;
 	}
 
 	/**
@@ -84,9 +91,9 @@ class db_text
 	*
 	* @return null
 	*/
-	public function delete($key)
+	public function delete($key, $use_cache = false)
 	{
-		$this->delete_array(array($key));
+		$this->delete_array(array($key), $use_cache);
 	}
 
 	/**
@@ -121,6 +128,11 @@ class db_text
 		}
 
 		$this->db->sql_transaction('commit');
+
+		if ($use_cache)
+		{
+			$this->cache->destroy('config');
+		}
 	}
 
 	/**
@@ -174,11 +186,16 @@ class db_text
 	*
 	* @return null
 	*/
-	public function delete_array(array $keys)
+	public function delete_array(array $keys, $use_cache = false)
 	{
 		$sql = 'DELETE
 			FROM ' . $this->table . '
 			WHERE ' . $this->db->sql_in_set('config_name', $keys, false, true);
 		$result = $this->db->sql_query($sql);
+
+		if ($use_cache)
+		{
+			$this->cache->destroy('config');
+		}
 	}
 }
