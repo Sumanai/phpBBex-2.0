@@ -100,13 +100,7 @@ $lock_topic_checked	= (isset($main_data['topic_status']) && $main_data['topic_st
 // Check if user is watching this topic
 if ($mode != 'post' && $config['allow_topic_notify'] && $user->data['is_registered'])
 {
-	$sql = 'SELECT topic_id
-		FROM ' . TOPICS_WATCH_TABLE . '
-		WHERE topic_id = ' . $topic_id . '
-			AND user_id = ' . $user->data['user_id'];
-	$result = $db->sql_query($sql);
-	$main_data['notify_set'] = (int) $db->sql_fetchfield('topic_id');
-	$db->sql_freeresult($result);
+	$main_data['notify_set'] = $s_watching_topic['is_watching'];
 }
 
 // If the user is replying or posting and not already watching this topic but set to always being notified we need to overwrite this setting
@@ -181,13 +175,6 @@ $template->assign_vars(array(
 	'U_QR_ACTION'			=> $s_action . ($show_attach_box ? $form_enctype : ''),
 	'SUBJECT'				=> '',
 	'EXTRA_OPTIONS_DISPLAY'	=> ($config['allow_' . $mode . '_checkboxes']),
-
-	'SMILIES_STATUS'		=> ($smilies_status) ? $user->lang['SMILIES_ARE_ON'] : $user->lang['SMILIES_ARE_OFF'],
-	'BBCODE_STATUS'			=> ($bbcode_status) ? $user->lang('BBCODE_IS_ON', '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>') : $user->lang('BBCODE_IS_OFF', '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>'),
-	'IMG_STATUS'			=> ($img_status) ? $user->lang['IMAGES_ARE_ON'] : $user->lang['IMAGES_ARE_OFF'],
-	'FLASH_STATUS'			=> ($flash_status) ? $user->lang['FLASH_IS_ON'] : $user->lang['FLASH_IS_OFF'],
-	'SMILIES_STATUS'		=> ($smilies_status) ? $user->lang['SMILIES_ARE_ON'] : $user->lang['SMILIES_ARE_OFF'],
-	'URL_STATUS'			=> ($bbcode_status && $url_status) ? $user->lang['URL_IS_ON'] : $user->lang['URL_IS_OFF'],
 
 	'MAX_FONT_SIZE'			=> (int) $config['max_post_font_size'],
 	'MIN_FONT_SIZE'			=> (int) $config['min_post_font_size'],
