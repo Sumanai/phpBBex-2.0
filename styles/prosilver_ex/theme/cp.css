@@ -41,6 +41,7 @@ ul.cplist {
 
 .panel-container .panel li.header dd, .panel-container .panel li.header dt {
 	margin-bottom: 2px;
+	text-shadow: none;
 }
 
 .panel-container table.table1 {
@@ -51,6 +52,7 @@ ul.cplist {
 	font-weight: bold;
 	border-bottom: 1px solid transparent;
 	padding: 5px;
+	text-shadow: none;
 }
 
 .panel-container table.table1 tbody th {

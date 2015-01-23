@@ -91,9 +91,12 @@ $lang = array_merge($lang, array(
 
 	'STYLE_SETTINGS_GENERAL'			=> 'Общие настройки',
 	'STYLE_BACK_TO_TOP'					=> 'Кнопка «В начало страницы»',
+	'STYLE_ROUNDED_CORNERS'				=> 'Скруглять углы',
 	'STYLE_MAX_WIDTH'					=> 'Максимальная ширина страницы',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Отображать название и описание сайта в шапке',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Название сайта всё равно будет отображаться на маленьких экранах.',
+	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Отображать кнопки RSS в списке форумов',
+	'STYLE_NEW_YEAR'					=> 'Зимний стиль',
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Путь к обложке для социальных сетей',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Главная страница',
@@ -108,6 +111,12 @@ $lang = array_merge($lang, array(
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Минипрофиль',
 	'STYLE_MP_ON_LEFT'					=> 'Минипрофили по умолчанию слева',
 	'STYLE_MP_ON_LEFT_EXPLAIN'					=> 'Пользователи смогут выбрать для себя предпочитаемый способ отображения.',
+	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Отображать автора темы',
+	'STYLE_MP_SHOW_GENDER'				=> 'Отображать пол',
+	'STYLE_MP_SHOW_AGE'					=> 'Отображать возраст',
+	'STYLE_MP_SHOW_POSTS'				=> 'Отображать количество сообщений',
+	'STYLE_MP_SHOW_JOINED'				=> 'Отображать дату регистрации',
+	'STYLE_MP_SHOW_BUTTONS'				=> 'Отображать кнопки контактов',
 
 	'STYLE_SETTINGS_FOOTER'				=> 'Нижняя часть страницы',
 	'COPYRIGHT_NOTICE'					=> 'Авторские права (HTML)',

@@ -1,2 +1,2 @@
-<!-- IF AUTHOR_AGE --><dd class="profile-custom-field"><strong>{L_AGE}{L_COLON}</strong> {AUTHOR_AGE}</dd><!-- ENDIF -->
-<dd><strong>{L_GENDER}{L_COLON}</strong> <!-- IF S_AUTHOR_GENDER_M -->{L_GENDER_M}<!-- ELSEIF S_AUTHOR_GENDER_F -->{L_GENDER_F}<!-- ELSE -->{L_GENDER_X}<!-- ENDIF --></dd>
+<!-- IF STYLE_MP_SHOW_AGE and AUTHOR_AGE --><dd class="profile-custom-field"><strong>{L_AGE}{L_COLON}</strong> {AUTHOR_AGE}</dd><!-- ENDIF -->
+<!-- IF STYLE_MP_SHOW_GENDER and not S_AUTHOR_GENDER_X --><dd><strong>{L_GENDER}{L_COLON}</strong> <!-- IF S_AUTHOR_GENDER_M -->{L_GENDER_M}<!-- ELSE -->{L_GENDER_F}<!-- ENDIF --></dd><!-- ENDIF -->

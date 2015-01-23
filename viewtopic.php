@@ -582,6 +582,8 @@ $quickmod_array = array(
 	'topic_logs'			=> array('VIEW_TOPIC_LOGS', $auth->acl_get('m_', $forum_id)),
 );
 
+$mod_lock = ($quickmod_array['lock'][1]) ? 'lock' : (($quickmod_array['unlock'][1]) ? 'unlock' : false);
+
 foreach($quickmod_array as $option => $qm_ary)
 {
 	if (!empty($qm_ary[1]))
@@ -704,6 +706,7 @@ $template->assign_vars(array(
 	'S_SINGLE_MODERATOR'	=> (!empty($forum_moderators[$forum_id]) && sizeof($forum_moderators[$forum_id]) > 1) ? false : true,
 	'S_TOPIC_ACTION' 		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start")),
 	'S_MOD_ACTION' 			=> $s_quickmod_action,
+	'U_LOCK_TOPIC'			=> ($mod_lock ? ($s_quickmod_action . "&amp;action=" . $mod_lock) : false),
 
 	'L_RETURN_TO_FORUM'		=> $user->lang('RETURN_TO', $topic_data['forum_name']),
 	'S_VIEWTOPIC'			=> true,
@@ -1952,7 +1955,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'S_UNREAD_POST'		=> $post_unread,
 		'S_FIRST_UNREAD'	=> $s_first_unread,
 		'S_CUSTOM_FIELDS'	=> (isset($cp_row['row']) && sizeof($cp_row['row'])) ? true : false,
-		'S_TOPIC_POSTER'	=> ($topic_data['topic_poster'] == $poster_id) ? true : false,
+		'S_TOPIC_POSTER'	=> ($poster_id != ANONYMOUS ? ($topic_data['topic_poster'] == $poster_id) : (!empty($topic_data['topic_first_poster_name']) && $topic_data['topic_first_poster_name'] == $row['post_username'])),
 
 		'S_IGNORE_POST'		=> ($row['foe']) ? true : false,
 		'L_IGNORE_POST'		=> ($row['foe']) ? sprintf($user->lang['POST_BY_FOE'], get_username_string('full', $poster_id, $row['username'], $row['user_colour'], $row['post_username'])) : '',

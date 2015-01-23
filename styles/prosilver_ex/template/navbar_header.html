@@ -1,4 +1,4 @@
-<div class="navbar" role="navigation">
+<div id="main-menu" role="navigation">
 	<div class="inner">
 
 	<ul id="nav-main" class="linklist bulletin" role="menubar">
@@ -6,7 +6,6 @@
 		<li id="quick-links" class="small-icon responsive-menu dropdown-container<!-- IF not S_DISPLAY_QUICK_LINKS and not S_DISPLAY_SEARCH --> hidden<!-- ENDIF -->" data-skip-responsive="true">
 			<a href="#" class="responsive-menu-link dropdown-trigger">{L_QUICK_LINKS}</a>
 			<div class="dropdown hidden">
-				<div class="pointer"><div class="pointer-inner"></div></div>
 				<ul class="dropdown-contents" role="menu">
 					<!-- EVENT navbar_header_quick_links_before -->
 
@@ -51,7 +50,6 @@
 			<div class="header-profile dropdown-container">
 				<a href="{U_PROFILE}" class="header-avatar dropdown-trigger"><!-- IF CURRENT_USER_AVATAR -->{CURRENT_USER_AVATAR} <!-- ENDIF -->{CURRENT_USERNAME_SIMPLE}</a>
 				<div class="dropdown hidden">
-					<div class="pointer"><div class="pointer-inner"></div></div>
 					<ul class="dropdown-contents" role="menu">
 						<!-- IF U_RESTORE_PERMISSIONS --><li class="small-icon icon-restore-permissions"><a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a></li><!-- ENDIF -->
 	
@@ -87,27 +85,6 @@
 		<!-- ENDIF -->
 		<!-- EVENT navbar_header_logged_out_content -->
 	<!-- ENDIF -->
-	</ul>
-
-	<ul id="nav-breadcrumbs" class="linklist navlinks" role="menubar">
-		<!-- DEFINE $MICRODATA = ' itemtype="http://data-vocabulary.org/Breadcrumb" itemscope=""' -->
-		<!-- EVENT overall_header_breadcrumbs_before -->
-		<li class="small-icon icon-home breadcrumbs">
-			<!-- IF U_SITE_HOME --><span class="crumb"><a href="{U_SITE_HOME}"{$MICRODATA} data-navbar-reference="home">{L_SITE_HOME}</a></span><!-- ENDIF -->
-			<!-- EVENT overall_header_breadcrumb_prepend -->
-			<span class="crumb"><a href="{U_INDEX}" accesskey="h"{$MICRODATA} data-navbar-reference="index">{L_INDEX}</a></span>
-			<!-- BEGIN navlinks -->
-				<!-- EVENT overall_header_navlink_prepend -->
-				<span class="crumb"><a href="{navlinks.U_VIEW_FORUM}"{$MICRODATA}<!-- IF navlinks.MICRODATA --> {navlinks.MICRODATA}<!-- ENDIF -->>{navlinks.FORUM_NAME}</a></span>
-				<!-- EVENT overall_header_navlink_append -->
-			<!-- END navlinks -->
-			<!-- EVENT overall_header_breadcrumb_append -->
-		</li>
-		<!-- EVENT overall_header_breadcrumbs_after -->
-
-		<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
-			<li class="rightside responsive-search" style="display: none;"><a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}" role="menuitem">{L_SEARCH}</a></li>
-		<!-- ENDIF -->
 	</ul>
 
 	</div>

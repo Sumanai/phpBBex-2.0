@@ -5038,6 +5038,10 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'ROOT_PATH'			=> $web_path,
 		'BOARD_URL'			=> $board_url,
 
+		'CURRENT_DAY'		=> date('d'),
+		'CURRENT_MONTH'		=> date('m'),
+		'CURRENT_YEAR'		=> date('Y'),
+
 		'L_LOGIN_LOGOUT'	=> $l_login_logout,
 		'L_INDEX'			=> ($config['board_index_text'] !== '') ? $config['board_index_text'] : $user->lang['FORUM_INDEX'],
 		'L_SITE_HOME'		=> ($config['site_home_text'] !== '') ? $config['site_home_text'] : $user->lang['HOME'],
@@ -5142,12 +5146,25 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		// general
 		'style_back_to_top',
 		'style_max_width',
+		'style_new_year',
+		'style_rounded_corners',
+		'style_show_feeds_in_forumlist',
 		'style_show_sitename_in_headerbar',
 		'social_media_cover_url',
 
 		// viewtopic
 		'style_show_social_buttons',
 		'style_vt_show_post_numbers',
+
+		// miniprofile
+		'style_mp_show_topic_poster',
+		'style_mp_show_gender',
+		'style_mp_show_age',
+		'style_mp_show_from',
+		'style_mp_show_posts',
+		'style_mp_show_joined',
+		'style_mp_show_with_us',
+		'style_mp_show_buttons',
 
 		// counters
 		'style_counters_html',
@@ -5194,6 +5211,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	$http_headers = array(
 		// application/xhtml+xml not used because of IE
 		'Content-type' => 'text/html; charset=UTF-8',
+		'X-UA-Compatible' => 'IE=Edge,chrome=1',
 		'Cache-Control' => 'private, no-cache="set-cookie"',
 		'Expires' => gmdate('D, d M Y H:i:s', time()) . ' GMT',
 	);

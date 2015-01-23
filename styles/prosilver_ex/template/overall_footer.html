@@ -15,7 +15,7 @@
 		{CREDIT_LINE}
 		<!-- EVENT overall_footer_copyright_append -->
 		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
-		<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+		<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
 	</div>
 
 	<div id="darkenwrapper" data-ajax-error-title="{L_AJAX_ERROR_TITLE}" data-ajax-error-text="{L_AJAX_ERROR_TEXT}" data-ajax-error-text-abort="{L_AJAX_ERROR_TEXT_ABORT}" data-ajax-error-text-timeout="{L_AJAX_ERROR_TEXT_TIMEOUT}" data-ajax-error-text-parsererror="{L_AJAX_ERROR_TEXT_PARSERERROR}">
@@ -35,11 +35,6 @@
 
 </div>
 
-<div>
-	<a id="bottom" class="anchor" accesskey="z"></a>
-	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
-</div>
-
 <script src="{T_JQUERY_LINK}"></script>
 <!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write(unescape('%3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}"%3E%3C/script%3E'));</script><!-- ENDIF -->
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
@@ -51,8 +46,8 @@
 <!-- IF S_PLUPLOAD --><!-- INCLUDE plupload.html --><!-- ENDIF -->
 {$SCRIPTS}
 
-<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
 <script>
+<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
 jQuery(function($)
 {
 	var waiting = false;
@@ -75,8 +70,34 @@ jQuery(function($)
 		if (!waiting) $('.no-full-quote').hide();
 	});
 });
-</script>
 <!-- ENDIF -->
+
+<!-- IF S_SHOW_POLL_BOX -->
+jQuery(function($)
+{
+	$("#postform input[name=poll_title]").blur(function()
+	{
+		if ($(this).val() == "") $("#poll_hidden").hide(); else $("#poll_hidden").show();
+	});
+	$("#postform input[name=poll_title]").keyup(function()
+	{
+		if ($(this).val() != "") $("#poll_hidden").show();
+	});
+	$("#postform input[name=poll_title]").blur();
+});
+<!-- ENDIF -->
+
+<!-- IF S_TYPE_TOGGLE -->
+jQuery(function($)
+{
+	$("#postform input[name=topic_type]").change(function()
+	{
+		if ($(this).val() == 0) $(".only-for-announces").hide(); else $(".only-for-announces").show();
+	});
+	$("#postform input[name=topic_type]:checked").change();
+});
+<!-- ENDIF -->
+</script>
 
 </body>
 </html>

@@ -5,12 +5,6 @@
 <!-- IF IGNORED_WORDS --> <p>{L_IGNORED_TERMS}{L_COLON} <strong>{IGNORED_WORDS}</strong></p><!-- ENDIF -->
 <!-- IF PHRASE_SEARCH_DISABLED --> <p><strong>{L_PHRASE_SEARCH_DISABLED}</strong></p><!-- ENDIF -->
 
-<!-- IF SEARCH_TOPIC -->
-	<p><a class="arrow-{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH_TOPIC}">{L_RETURN_TO_TOPIC}</a></p>
-<!-- ELSE -->
-	<p><a class="arrow-{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH}" title="{L_SEARCH_ADV}">{L_GO_TO_SEARCH_ADV}</a></p>
-<!-- ENDIF -->
-
 <!-- IF .pagination or SEARCH_MATCHES or TOTAL_MATCHES or PAGE_NUMBER -->
 	<div class="action-bar top">
 
@@ -27,6 +21,7 @@
 	<!-- ENDIF -->
 
 		<div class="pagination">
+			<!-- IF U_MARK_FORUMS and S_SHOW_TOPICS --><a data-ajax="mark_forums_read" href="{U_MARK_FORUMS}" accesskey="m">{L_MARK_FORUMS_READ}</a> &bull; <!-- ENDIF -->
 			{SEARCH_MATCHES}
 			<!-- IF .pagination -->
 				<!-- INCLUDE pagination.html -->

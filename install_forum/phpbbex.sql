@@ -90,6 +90,16 @@ REPLACE INTO phpbb_config_text (config_name, config_value, is_dynamic) VALUES ('
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_topic_poster', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_gender', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_age', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_warnings', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_posts', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_joined', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_buttons', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_new_year', '-1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_rounded_corners', '1');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_feeds_in_forumlist', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_sitename_in_headerbar', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_show_social_buttons', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post_numbers', '0');

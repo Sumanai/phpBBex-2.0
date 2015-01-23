@@ -1,7 +1,7 @@
 <!-- INCLUDE overall_header.html -->
 
-<p class="{S_CONTENT_FLOW_END} responsive-center time<!-- IF S_USER_LOGGED_IN --> rightside<!-- ENDIF -->"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ELSE -->{CURRENT_TIME}<!-- ENDIF --></p>
-<!-- IF S_USER_LOGGED_IN --><p class="responsive-center time">{CURRENT_TIME}</p><!-- ENDIF -->
+<!-- IF S_USER_LOGGED_IN --><p class="responsive-center time rightside">{LAST_VISIT_DATE}</p><!-- ENDIF -->
+<p class="responsive-center time">{CURRENT_TIME}</p>
 
 <!-- IF S_ANNOUNCE_INDEX and .announcetopic -->
 <div class="forumbg announcement">
@@ -30,11 +30,11 @@
 						<!-- IF announcetopic.S_TOPIC_REPORTED --><a href="{announcetopic.U_MCP_REPORT}">{announcetopic.REPORTED_IMG}</a><!-- ENDIF --><br />
 
 						<!-- IF not S_IS_BOT -->
-						<div class="responsive-show" style="display: none;">
+						<div class="responsive-show">
 							{L_LAST_POST} {L_POST_BY_AUTHOR} {announcetopic.LAST_POST_AUTHOR_FULL} &laquo; <a rel="nofollow" href="{announcetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{announcetopic.LAST_POST_TIME}</a>
 							<!-- IF announcetopic.S_POST_GLOBAL and FORUM_ID != announcetopic.FORUM_ID --><br />{L_POSTED} {L_IN} <a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a><!-- ENDIF -->
 						</div>
-						<!-- IF announcetopic.REPLIES --><span class="responsive-show left-box" style="display: none;">{L_REPLIES}{L_COLON} <strong>{announcetopic.REPLIES}</strong></span><!-- ENDIF -->
+						<!-- IF announcetopic.REPLIES --><span class="responsive-show left-box">{L_REPLIES}{L_COLON} <strong>{announcetopic.REPLIES}</strong></span><!-- ENDIF -->
 						<!-- ENDIF -->
 
 						<!-- IF .announcetopic.pagination -->
@@ -54,11 +54,12 @@
 						<div class="responsive-hide">
 							<!-- IF announcetopic.S_HAS_POLL -->{POLL_IMG} <!-- ENDIF -->
 							{L_POST_BY_AUTHOR} {announcetopic.TOPIC_AUTHOR_FULL} &raquo; {announcetopic.FIRST_POST_TIME}
-							<!-- IF announcetopic.S_POST_GLOBAL and FORUM_ID != announcetopic.FORUM_ID --> &raquo; {L_IN} <a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a>
-							<!-- ELSEIF announcetopic.U_VIEW_FORUM and announcetopic.FORUM_NAME --> &raquo; {L_IN} <!-- BEGIN parent_forums --><a href="{announcetopic.parent_forums.U_VIEW_FORUM}">{announcetopic.parent_forums.FORUM_NAME}</a> &raquo; <!-- END parent_forums --><a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a><!-- ENDIF -->
+							<!-- IF announcetopic.S_POST_GLOBAL and FORUM_ID != announcetopic.FORUM_ID --> {L_IN} <a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a>
+							<!-- ELSEIF announcetopic.U_VIEW_FORUM and announcetopic.FORUM_NAME --> {L_IN} <!-- BEGIN parent_forums --><a href="{announcetopic.parent_forums.U_VIEW_FORUM}">{announcetopic.parent_forums.FORUM_NAME}</a> &raquo; <!-- END parent_forums --><a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a><!-- ENDIF -->
 						</div>
 
 						<!-- EVENT topiclist_row_append -->
+					</div>
 				</dt>
 				<dd class="posts">{announcetopic.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
 				<dd class="views">{announcetopic.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
@@ -100,11 +101,11 @@
 						<!-- IF activetopic.S_TOPIC_REPORTED --><a href="{activetopic.U_MCP_REPORT}">{activetopic.REPORTED_IMG}</a><!-- ENDIF --><br />
 
 						<!-- IF not S_IS_BOT -->
-						<div class="responsive-show" style="display: none;">
+						<div class="responsive-show">
 							{L_LAST_POST} {L_POST_BY_AUTHOR} {activetopic.LAST_POST_AUTHOR_FULL} &laquo; <a rel="nofollow" href="{activetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{activetopic.LAST_POST_TIME}</a>
 							<!-- IF activetopic.S_POST_GLOBAL and FORUM_ID != activetopic.FORUM_ID --><br />{L_POSTED} {L_IN} <a href="{activetopic.U_VIEW_FORUM}">{activetopic.FORUM_NAME}</a><!-- ENDIF -->
 						</div>
-						<!-- IF activetopic.REPLIES --><span class="responsive-show left-box" style="display: none;">{L_REPLIES}{L_COLON} <strong>{activetopic.REPLIES}</strong></span><!-- ENDIF -->
+						<!-- IF activetopic.REPLIES --><span class="responsive-show left-box">{L_REPLIES}{L_COLON} <strong>{activetopic.REPLIES}</strong></span><!-- ENDIF -->
 						<!-- ENDIF -->
 
 						<!-- IF .activetopic.pagination -->
@@ -128,6 +129,7 @@
 						</div>
 
 						<!-- EVENT topiclist_row_append -->
+					</div>
 				</dt>
 				<dd class="posts">{activetopic.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
 				<dd class="views">{activetopic.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
@@ -180,10 +182,10 @@
 
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 	<div class="stat-block online-list">
-		<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+		<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --> <span class="extra">({L_ONLINE_EXPLAIN})</span></h3>
 		<p>
 			<!-- EVENT index_body_block_online_prepend -->
-			{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+			{TOTAL_USERS_ONLINE}<br />{RECORD_USERS}<br />{LOGGED_IN_USER_LIST}
 			<!-- IF LEGEND --><br /><em>{L_LEGEND}{L_COLON} {LEGEND}</em><!-- ENDIF -->
 			<!-- EVENT index_body_block_online_append -->
 		</p>

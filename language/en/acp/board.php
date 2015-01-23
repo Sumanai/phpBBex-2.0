@@ -91,9 +91,12 @@ $lang = array_merge($lang, array(
 
 	'STYLE_SETTINGS_GENERAL'			=> 'General',
 	'STYLE_BACK_TO_TOP'					=> '"Back to top" button',
+	'STYLE_ROUNDED_CORNERS'				=> 'Rounded corners',
 	'STYLE_MAX_WIDTH'					=> 'Maximum page width',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
+	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
+	'STYLE_NEW_YEAR'					=> 'Winter-style headerbar',
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to social media cover',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
@@ -107,6 +110,12 @@ $lang = array_merge($lang, array(
 
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Mini profile',
 	'STYLE_MP_ON_LEFT'					=> 'Profiles on left',
+	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Display topic starter',
+	'STYLE_MP_SHOW_GENDER'				=> 'Display gender',
+	'STYLE_MP_SHOW_AGE'					=> 'Display age',
+	'STYLE_MP_SHOW_POSTS'				=> 'Display posts counter',
+	'STYLE_MP_SHOW_JOINED'				=> 'Display joined date',
+	'STYLE_MP_SHOW_BUTTONS'				=> 'Display contact buttons',
 
 	'STYLE_SETTINGS_FOOTER'				=> 'Page footer',
 	'COPYRIGHT_NOTICE'					=> 'Copyrights (HTML)',

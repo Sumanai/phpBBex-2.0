@@ -4,7 +4,8 @@
 	<h2 class="posting-title"><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></h2>
 <!-- ELSE -->
 	<h2 class="posting-title"><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
- <!-- ENDIF -->
+<!-- ENDIF -->
+<!-- INCLUDE header_path.html -->
 
 <!-- IF S_FORUM_RULES -->
 	<div class="rules<!-- IF U_FORUM_RULES --> rules-link<!-- ENDIF -->">
@@ -72,10 +73,6 @@
 	{S_FORM_TOKEN}
 	</div>
 </div>
-
-<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
-
-<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
 
 <!-- IF S_DISPLAY_REVIEW --><!-- INCLUDE posting_topic_review.html --><!-- ENDIF -->
 

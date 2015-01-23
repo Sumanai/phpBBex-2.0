@@ -305,32 +305,6 @@ function parseDocument($container) {
 	}
 
 	/**
-	* Resize navigation (breadcrumbs) block to keep all links on same line
-	*/
-	$container.find('.navlinks').each(function() {
-		var $this = $(this),
-			$left = $this.children().not('.rightside'),
-			$right = $this.children('.rightside');
-
-		if ($left.length !== 1 || !$right.length) {
-			return;
-		}
-
-		function resize() {
-			var width = 0,
-				diff = $left.outerWidth(true) - $left.width();
-
-			$right.each(function() {
-				width += $(this).outerWidth(true);
-			});
-			$left.css('max-width', Math.floor($this.width() - width - diff) + 'px');
-		}
-
-		resize();
-		$(window).resize(resize);
-	});
-
-	/**
 	* Makes breadcrumbs responsive
 	*/
 	$container.find('.breadcrumbs:not([data-skip-responsive])').each(function() {
@@ -399,16 +373,16 @@ function parseDocument($container) {
 	/**
 	* Responsive link lists
 	*/
-	$container.find('.linklist:not(.navlinks, [data-skip-responsive]), .postbody .post-buttons:not([data-skip-responsive])').each(function() {
+	$container.find('.linklist:not(.navlinks, [data-skip-responsive])').each(function() {
 		var $this = $(this),
 			filterSkip = '.breadcrumbs, [data-skip-responsive]',
-			filterLast = '.edit-icon, .quote-icon, [data-last-responsive]',
+			filterLast = '[data-last-responsive]',
 			$linksAll = $this.children(),
 			$linksNotSkip = $linksAll.not(filterSkip), // All items that can potentially be hidden
 			$linksFirst = $linksNotSkip.not(filterLast), // The items that will be hidden first
 			$linksLast = $linksNotSkip.filter(filterLast), // The items that will be hidden last
 			persistent = $this.attr('id') == 'nav-main', // Does this list already have a menu (such as quick-links)?
-			html = '<li class="responsive-menu hidden"><a href="javascript:void(0);" class="responsive-menu-link">&nbsp;</a><div class="dropdown hidden"><div class="pointer"><div class="pointer-inner" /></div><ul class="dropdown-contents" /></div></li>',
+			html = '<li class="responsive-menu hidden"><a href="javascript:void(0);" class="responsive-menu-link">&nbsp;</a><div class="dropdown hidden"><ul class="dropdown-contents" /></div></li>',
 			slack = 3; // Vertical slack space (in pixels). Determines how sensitive the script is in determining whether a line-break has occured.
 
 		// Add a hidden drop-down menu to each links list (except those that already have one)
@@ -495,11 +469,6 @@ function parseDocument($container) {
 			if (!copied1) {
 				var $clones1 = $linksFirst.clone();
 				$menuContents.prepend($clones1.addClass('clone clone-first').removeClass('leftside rightside'));
-
-				if ($this.hasClass('post-buttons')) {
-					$('.button', $menuContents).removeClass('button icon-button');
-					$('.responsive-menu-link', $menu).addClass('button icon-button').prepend('<span></span>');
-				}
 				copied1 = true;
 			}
 			if (!responsive1) {
@@ -592,7 +561,7 @@ function parseDocument($container) {
 
 		// Create block that is visible only on mobile devices
 		if (!$block.length) {
-			$this.find('dt > .list-inner').append('<div class="responsive-show" style="display:none;" />');
+			$this.find('dt > .list-inner').append('<div class="responsive-show" />');
 			$block = $this.find('dt .responsive-show:last-child');
 		} else {
 			first = ($.trim($block.text()).length === 0);
@@ -644,7 +613,7 @@ function parseDocument($container) {
 
 			// Create block that is visible only on mobile devices
 			if (!$block.length) {
-				$this.find('dt > .list-inner').append('<div class="responsive-show" style="display:none;" />');
+				$this.find('dt > .list-inner').append('<div class="responsive-show" />');
 				$block = $this.find('dt .responsive-show:last-child');
 			}
 			else {
@@ -761,7 +730,7 @@ function parseDocument($container) {
 			$ul = $this.children(),
 			$tabs = $ul.children().not('[data-skip-responsive]'),
 			$links = $tabs.children('a'),
-			$item = $ul.append('<li class="tab responsive-tab" style="display:none;"><a href="javascript:void(0);" class="responsive-tab-link">&nbsp;</a><div class="dropdown tab-dropdown" style="display: none;"><div class="pointer"><div class="pointer-inner" /></div><ul class="dropdown-contents" /></div></li>').find('li.responsive-tab'),
+			$item = $ul.append('<li class="tab responsive-tab" style="display:none;"><a href="javascript:void(0);" class="responsive-tab-link">&nbsp;</a><div class="dropdown tab-dropdown" style="display: none;"><ul class="dropdown-contents" /></div></li>').find('li.responsive-tab'),
 			$menu = $item.find('.dropdown-contents'),
 			maxHeight = 0,
 			lastWidth = false,
@@ -868,11 +837,6 @@ jQuery(function($) {
 	$('#phpbb.nojs').toggleClass('nojs hasjs');
 	$('#phpbb').toggleClass('hastouch', phpbb.isTouch);
 	$('#phpbb.hastouch').removeClass('notouch');
-
-	// Focus forms
-	$('form[data-focus]:first').each(function() {
-		$('#' + this.getAttribute('data-focus')).focus();
-	});
 
 	parseDocument($('body'));
 });

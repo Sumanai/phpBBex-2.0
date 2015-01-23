@@ -12,10 +12,6 @@ html {
 	height: auto;
 }
 
-body {
-	padding: 0;
-}
-
 #wrap {
 	border: none;
 	border-radius: 0;
@@ -26,10 +22,14 @@ body {
 
 /* Common block wrappers
 ----------------------------------------*/
-.headerbar, .navbar, .forabg, .forumbg, .post, .panel, div.rules {
+.headerbar, .navbar, .forabg, .forumbg, .post, .panel, div.rules, #main-menu {
 	border-radius: 0;
 	margin-left: -5px;
 	margin-right: -5px;
+}
+
+.headerbar .inner {
+	padding: 5px;
 }
 
 #cp-main .forabg, #cp-main .forumdb, #cp-main .post, #cp-main .panel {
@@ -65,24 +65,27 @@ body {
 	display: none;
 }
 
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px) {
+	.topic-title, .forum-title {
+		padding-top: .3em;
+		clear: both;
+	}
+
+	.header-icons {
+		float: left;
+	}
+
+	.header-icons:after {
+		clear: both;
+		content: "";
+		display: block;
+	}
+}
+
 /* Navigation
 ----------------------------------------*/
 .headerbar + .navbar {
 	margin-top: -5px;
-}
-
-/* Search
-----------------------------------------*/
-.responsive-search { display: block !important; }
-.responsive-search a {
-	display: block;
-	width: 16px;
-	height: 22px;
-	text-indent: 99px;
-	overflow: hidden;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	text-decoration: none;
 }
 
 /* .topiclist lists
@@ -195,14 +198,14 @@ ul.topiclist li.row dt a.subforum {
 	.dropdown-extended .dropdown-contents {
 		width: auto;
 	}
+
+	.header-icons > li {
+		margin: 0 2px;
+	}
 }
 
 /* Pagination
 ----------------------------------------*/
-.pagination > ul {
-	margin: 5px 0 0;
-}
-
 .row .pagination .ellipsis + li {
 	display: none !important;
 }
@@ -344,6 +347,21 @@ fieldset.quick-login label[for="autologin"] {
 }
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
+	.postprofile {
+		min-height: 55px;
+	}
+
+	.post-buttons > li {
+		display: block;
+		margin: 5px;
+		float: right;
+	}
+
+	.postbody .post-buttons {
+		max-width: 120px;
+		top: 0;
+	}
+
 	dd label {
 		white-space: normal;
 	}
@@ -429,49 +447,30 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 
 /* Post
 ----------------------------------------*/
-.postbody {
-	position: inherit;
-}
-
 .postprofile, .postbody, .search .postbody, .mp-on-left .postprofile, .mp-on-left .postbody, .mp-on-left .search .postbody {
-	display: block;
 	width: auto;
 	float: none;
 	padding: 0;
-	min-height: 0;
 	position: inherit;
 }
 
-.post .postprofile {
+.post .postprofile, .mp-on-left .post .postprofile {
 	width: auto;
 	border-width: 0 0 1px 0;
-	padding-bottom: 5px;
-	margin: 0;
 	margin-bottom: 5px;
-	min-height: 40px;
-	overflow: hidden;
+	padding: 0 5px 5px;
 }
 
 .postprofile dd {
-	display: none;
+	padding-right: 90px;
+	margin-left: 0;
 }
 
-.postprofile dt, .postprofile dd.profile-rank, .search .postprofile dd {
-	display: block;
-	margin: 0;
-}
-
-.postprofile .has-avatar .avatar-container {
-	margin: 0;
+.postprofile .avatar-container {
+	margin: 0 5px 0 0;
 	overflow: inherit;
-}
-
-.postprofile .avatar-container:after {
-	clear: none;
-}
-
-.postprofile .avatar {
-	margin-right: 5px;
+	float: left;
+	padding: 0;
 }
 
 .postprofile .avatar img {
@@ -480,31 +479,40 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 	max-height: 32px;
 }
 
-.has-profile .postbody h3 {
-	margin-left: 0 !important;
-	margin-right: 0 !important;
+.post-buttons {
+	float: none;
+	position: absolute;
+	right: 0;
+	top: 5px;
 }
-
-.has-profile .post-buttons {
-	right: 20px;
-	top: 15px;
-}
-
 
 .online .postprofile:after, .mp-on-left .online .postprofile:after {
-	background-size: 40px auto;
-	height: 40px;
-	width: 40px;
-	top: 0;
-	right: 0;
+	background-image: url("./en/icon_user_online_responsive.png");
+	top: 7px;
+	left: 0;
+	right: auto;
+	height: 56px;
+	width: 11px;
+}
+
+html[lang="ru"] .online .postprofile:after {
+	background-image: url("./ru/icon_user_online_responsive.png");
+}
+
+.postbody h3 {
+	display: none;
+}
+
+.author > a {
+	margin-right: 5px;
+}
+
+.content {
+	min-height: 2em;
 }
 
 /* Misc stuff
 ----------------------------------------*/
-h2 {
-	margin-top: .5em;
-}
-
 p {
 	margin-bottom: .5em;
 	overflow: hidden;
@@ -518,6 +526,10 @@ fieldset.display-options label {
 	display: block;
 	clear: both;
 	margin-bottom: 5px;
+}
+
+fieldset.display-options > label:last-of-type {
+	display: inline-block;
 }
 
 dl.mini dd.pm-legend {

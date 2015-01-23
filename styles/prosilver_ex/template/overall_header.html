@@ -58,19 +58,19 @@
 <!-- EVENT overall_header_stylesheets_after -->
 
 </head>
-<body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}">
+<body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}<!-- IF STYLE_NEW_YEAR == 1 or STYLE_NEW_YEAR == -1 and (CURRENT_MONTH == 12 or CURRENT_MONTH == 1 or CURRENT_MONTH == 2) --> new-year<!-- ENDIF --><!-- IF not STYLE_ROUNDED_CORNERS --> no-rounded-corners<!-- ENDIF -->">
 
 <!-- EVENT overall_header_body_before -->
 
 <div id="wrap">
-	<!-- IF STYLE_BACK_TO_TOP --><div id="back-to-top" title="{L_BACK_TO_TOP}" class="<!-- IF STYLE_BACK_TO_TOP == 2 -->on-right<!-- ELSE -->on-left<!-- ENDIF -->"></div><!-- ENDIF -->
+	<!-- IF STYLE_BACK_TO_TOP --><div id="back-to-top" title="{L_BACK_TO_TOP}" class="<!-- IF STYLE_BACK_TO_TOP == 2 -->on-right<!-- ENDIF -->"></div><!-- ENDIF -->
 	<!-- IF S_TOP_LINKS -->
 	<div id="top-menu">
-		<div id="top-links"><ul>
+		<ul id="top-links">
 		<!-- BEGIN toplinks -->
 			<li><a href="{toplinks.URL}"<!-- IF toplinks.NEWWINDOW --> target="_blank"<!-- ENDIF --><!-- IF toplinks.NOFOLLOW --> rel="nofollow"<!-- ENDIF -->>{toplinks.TITLE}</a></li>
 		<!-- END toplinks -->
-		</ul></div>
+		</ul>
 		<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
 		<div id="search-box" class="search-box search-top responsive-hide">
 			<form action="{U_SEARCH}" method="get" id="search">
@@ -91,7 +91,7 @@
 
 			<div id="site-description">
 				<a id="logo" class="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->">{SITE_LOGO_IMG}</a>
-				<h1<!-- IF not STYLE_SHOW_SITENAME_IN_HEADERBAR --> class="hidden"<!-- ENDIF -->>{SITENAME}</h1>
+				<h1<!-- IF not STYLE_SHOW_SITENAME_IN_HEADERBAR --> class="hidden"<!-- ENDIF -->><a href="{U_INDEX}">{SITENAME}</a></h1>
 				<!-- IF STYLE_SHOW_SITENAME_IN_HEADERBAR and SITE_DESCRIPTION --><p>{SITE_DESCRIPTION}</p><!-- ENDIF -->
 			</div>
 
@@ -116,7 +116,6 @@
 
 	<!-- EVENT overall_header_page_body_before -->
 
-	<a id="start_here" class="anchor"></a>
 	<div id="page-body"<!-- IF STYLE_MP_ON_LEFT --> class="mp-on-left"<!-- ENDIF -->>
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">

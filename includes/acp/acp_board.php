@@ -142,8 +142,11 @@ class acp_board
 					'vars'	=> array(
 						'legend1'							=> 'STYLE_SETTINGS_GENERAL',
 						'style_back_to_top'					=> array('lang' => 'STYLE_BACK_TO_TOP',					'validate' => 'int',	'type' => 'custom', 'function' => 'h_radio', 'params' => array('config[style_back_to_top]', array(1 => 'ON_LEFT', 2 => 'ON_RIGHT', 0 => 'NO'), '{CONFIG_VALUE}', '{KEY}'), 'explain' => false),
+						'style_rounded_corners'				=> array('lang' => 'STYLE_ROUNDED_CORNERS',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_max_width'					=> array('lang' => 'STYLE_MAX_WIDTH',					'validate' => 'int:400:9999',	'type' => 'number:400:9999', 'explain' => false, 'append' => ' ' . $user->lang['PIXEL']),
 						'style_show_sitename_in_headerbar'	=> array('lang' => 'STYLE_SHOW_SITENAME_IN_HEADERBAR',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'style_show_feeds_in_forumlist'		=> array('lang' => 'STYLE_SHOW_FEEDS_IN_FORUMLIST',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_new_year'					=> array('lang' => 'STYLE_NEW_YEAR',					'validate' => 'int',	'type' => 'custom', 'function' => 'h_radio', 'params' => array('config[style_new_year]', array(-1 => 'AUTO', 1 => 'YES', 0 => 'NO'), '{CONFIG_VALUE}', '{KEY}'), 'explain' => false),
 						'social_media_cover_url'			=> array('lang' => 'SOCIAL_MEDIA_COVER_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => false),
 
 						'legend2'							=> 'STYLE_SETTINGS_INDEX',
@@ -158,6 +161,12 @@ class acp_board
 
 						'legend4'							=> 'STYLE_SETTINGS_MINIPROFILE',
 						'style_mp_on_left'					=> array('lang' => 'STYLE_MP_ON_LEFT',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'style_mp_show_topic_poster'		=> array('lang' => 'STYLE_MP_SHOW_TOPIC_POSTER',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_gender'				=> array('lang' => 'STYLE_MP_SHOW_GENDER',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_age'					=> array('lang' => 'STYLE_MP_SHOW_AGE',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_posts'				=> array('lang' => 'STYLE_MP_SHOW_POSTS',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_joined'				=> array('lang' => 'STYLE_MP_SHOW_JOINED',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_buttons'				=> array('lang' => 'STYLE_MP_SHOW_BUTTONS',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
 						'legend5'							=> 'STYLE_SETTINGS_FOOTER',
 						'copyright_notice'					=> array('lang' => 'COPYRIGHT_NOTICE',					'validate' => 'long_string',	'type' => 'htmlarea:2:800', 'explain' => true),

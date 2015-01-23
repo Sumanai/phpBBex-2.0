@@ -1,8 +1,8 @@
 <!-- INCLUDE overall_header.html -->
 
-<h2 class="solo">{L_SEARCH}</h2>
+<h2>{L_SEARCH}</h2>
 
-<form method="get" action="{S_SEARCH_ACTION}" data-focus="keywords">
+<form method="get" action="{S_SEARCH_ACTION}">
 
 <div class="panel">
 	<div class="inner">
@@ -11,7 +11,7 @@
 	<fieldset>
 	<dl>
 		<dt><label for="keywords">{L_SEARCH_KEYWORDS}{L_COLON}</label><br /><span>{L_SEARCH_KEYWORDS_EXPLAIN}</span></dt>
-		<dd><input type="search" class="inputbox" name="keywords" id="keywords" size="40" title="{L_SEARCH_KEYWORDS}" /></dd>
+		<dd><input type="search" class="inputbox" name="keywords" id="keywords" size="40" title="{L_SEARCH_KEYWORDS}" autofocus /></dd>
 		<dd><label for="terms1"><input type="radio" name="terms" id="terms1" value="all" checked="checked" /> {L_SEARCH_ALL_TERMS}</label></dd>
 		<dd><label for="terms2"><input type="radio" name="terms" id="terms2" value="any" /> {L_SEARCH_ANY_TERMS}</label></dd>
 	</dl>

@@ -69,7 +69,6 @@ ul.topiclist.two-columns dt .list-inner {
 ul.topiclist dd {
 	border-left: 1px solid transparent;
 	padding: 4px 0;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -114,6 +113,7 @@ li.header dt, li.header dd {
 	font-size: 1em;
 	font-family: Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
+	text-shadow: 2px 2px 2px #000;
 }
 
 li.header dt {
@@ -128,7 +128,6 @@ li.header dt .list-inner {
 
 li.header dd {
 	padding-left: 1px;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -231,7 +230,8 @@ dd.option {
 .postbody {
 	padding: 0;
 	line-height: 1.48em;
-	width: 76%;
+	width: 79%;
+	width: calc(100% - 208px);
 	float: left;
 	position: relative;
 }
@@ -240,16 +240,11 @@ dd.option {
 	font-size: 1.1em;
 }
 
-.postbody h3.first {
-	/* The first post on the page uses this */
-	font-size: 1.7em;
-}
-
 .postbody h3 {
 	/* Postbody requires a different h3 format - so change it here */
-	float: left;
+	display: inline-block;
 	font-size: 1.5em;
-	padding: 2px 0 0 0;
+	padding: 0;
 	margin-top: 0 !important;
 	margin-bottom: 0.3em !important;
 	text-transform: none;
@@ -263,12 +258,6 @@ dd.option {
 	vertical-align: bottom;
 }
 
-.has-profile .postbody h3 {
-	/* If there is a post-profile, we position the post-buttons differently */
-	float: none !important;
-	margin-right: 180px;
-}
-
 .postbody .content {
 	font-size: 1.3em;
 	overflow-x: auto;
@@ -277,10 +266,7 @@ dd.option {
 .postbody img.postimage {
 	box-sizing: border-box;
 	max-width: 100%;
-}
-
-.search .postbody {
-	width: 68%
+	vertical-align: bottom;
 }
 
 /* Topic review panel
@@ -295,7 +281,7 @@ dd.option {
 	height: 300px;
 }
 
-#topicreview .postbody {
+#topicreview .postbody, #postreview .postbody {
 	width: auto;
 	float: none;
 	margin: 0;
@@ -391,19 +377,18 @@ dl.faq dt {
 
 /* Post author */
 p.author {
-	margin-bottom: 0.6em;
+	margin: 0.4em 0.4em 0.2em 0;
 	padding: 0 0 5px 0;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	line-height: 1.2em;
-	clear: both;
 }
 
 /* Post signature */
 .signature {
-	margin-top: 1.5em;
-	padding-top: 0.2em;
-	font-size: 1.1em;
+	margin-top: 0.4em;
+	padding: 0.4em 0;
+	font-size: 1em;
 	border-top: 1px solid transparent;
 	clear: left;
 	line-height: 140%;
@@ -580,7 +565,6 @@ dl.spoilerbox.spoilerbox-on > dd {
 	padding: 6px;
 	border: 1px dashed transparent;
 	clear: left;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -620,20 +604,28 @@ dl.spoilerbox.spoilerbox-on > dd {
 	max-width: 100%;
 }
 
-.attach-image img {
-	border: 1px solid transparent;
-/*	cursor: move; */
-	cursor: default;
+.attachbox .attach-image {
+	max-height: 400px;
+	overflow: auto;
 }
 
 /* Inline image thumbnails */
+div.inline-attachment {
+	display: inline-block;
+	max-width: 100%;
+}
+
 div.inline-attachment dl.thumbnail, div.inline-attachment dl.file {
 	display: block;
-	margin-bottom: 4px;
+	line-height: 1em;
 }
 
 div.inline-attachment p {
 	font-size: 100%;
+}
+
+div.inline-attachment .hide-in-inline {
+	display: none;
 }
 
 dl.file {
@@ -645,8 +637,16 @@ dl.file dt {
 	text-transform: none;
 	margin: 0;
 	padding: 0;
-	font-weight: bold;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.attachbox dl.file a {
+	font-weight: bold;
+}
+
+dl.file dt.attach-file {
+	background: url("./images/icon_topic_attach.gif") no-repeat 0px 3px;
+	padding-left: 8px;
 }
 
 dl.file dd {
@@ -741,14 +741,13 @@ fieldset.polls dd div {
 /* Poster profile block
 ----------------------------------------*/
 .postprofile {
-	/* Also see tweaks.css */
 	padding: 5px 0;
-	min-height: 80px;
+	min-height: 30px;
 	border: 1px solid transparent;
 	border-width: 0 0 0 1px;
-	width: 22%;
+	width: 20%;
+	width: calc(200px);
 	float: right;
-	display: inline;
 	position: relative;
 }
 
@@ -762,21 +761,22 @@ fieldset.polls dd div {
 	text-overflow: ellipsis;
 }
 
+.postprofile .username-coloured, .postprofile .username {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+
 .postprofile strong {
 	font-weight: normal;
 }
 
-.postprofile dt.no-profile-rank, .postprofile dd.profile-rank, .postprofile .search-result-date {
-	margin-bottom: 10px;
-}
-
-/* Post-profile avatars */
-.postprofile .has-avatar .avatar-container {
+.avatar-container {
 	margin-bottom: 3px;
-	overflow: hidden;
 }
 
 .postprofile .avatar {
+	margin: 2px 0;
 	display: block;
 	float: left;
 	max-width: 100%;
@@ -796,20 +796,8 @@ dd.profile-warnings {
 	font-weight: bold;
 }
 
-dd.profile-contact {
-	overflow: visible;
-}
-
-.profile-contact .dropdown-container {
-	display: inline-block;
-}
-
-.profile-contact .icon_contact {
-	vertical-align: middle;
-}
-
-.profile-contact .dropdown {
-	margin-right: -14px;
+.profile-contact {
+	clear: both;
 }
 
 .online .postprofile:after {
@@ -824,12 +812,6 @@ dd.profile-contact {
 
 html[lang="ru"] .online .postprofile:after {
 	background-image: url("./ru/icon_user_online.gif");
-}
-
-
-/* Poster profile used by search*/
-.search .postprofile {
-	width: 30%;
 }
 
 /* Profile used on view-profile */
@@ -918,6 +900,10 @@ table.fixed-width-table {
 	border-right: 1px solid #FFFFFF;
 	border-left: 0;
 	float: left;
+}
+
+.mp-on-left .avatar-container {
+	margin-right: 10px;
 }
 
 .mp-on-left .pm .postprofile

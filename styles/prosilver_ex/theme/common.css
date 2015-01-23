@@ -48,18 +48,17 @@ table {
 ---------------------------------------- */
 html {
 	font-size: 100%;
-	/* Always show a scrollbar for short pages - stops the jump when the scrollbar appears. non-IE browsers */
-	height: 101%;
+	height: 100%;
+	overflow-y: scroll;
 }
 
 body {
-	/* Text-Sizing with ems: http://www.clagnut.com/blog/348/ */
 	font-family: Verdana, Helvetica, Arial, sans-serif;
-	/*font-size: 62.5%;			 This sets the default font size to be equivalent to 10px */
 	font-size: 10px;
 	line-height: normal;
-	margin: 0;
-	padding: 12px 0;
+	color: #536482;
+	background-color: #EEEEE7;
+	height: 100%;
 	word-wrap: break-word;
 }
 
@@ -77,11 +76,7 @@ h2 {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	font-size: 2em;
-	margin: 0.8em 0 0.2em 0;
-}
-
-h2.solo {
-	margin-bottom: 1em;
+	margin: .5em 0 .3em;
 }
 
 h3 {
@@ -94,6 +89,14 @@ h3 {
 	padding-bottom: 2px;
 	font-size: 1.05em;
 	margin-top: 20px;
+}
+
+h3 .extra {
+	color: #CCC;
+	font-size: .9em;
+	text-transform: lowercase;
+	margin-top: 2px;
+	float: right;
 }
 
 h4 {
@@ -113,7 +116,6 @@ img {
 }
 
 hr {
-	/* Also see tweaks.css */
 	border: 0 solid transparent;
 	border-top-width: 1px;
 	height: 1px;
@@ -171,22 +173,23 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	list-style-type: square;
 }
 
+abbr[title], acronym[title] {
+	border-bottom: 1px dotted;
+}
+
+/* Hide responsive block for larger screens */
+.responsive-show {
+	display: none;
+}
 
 /* Main blocks
 ---------------------------------------- */
 #wrap {
-	border: 1px solid transparent;
-	border-radius: 8px;
 	margin: 0 auto;
+	padding: 0 20px;
+	min-height: 100%;
 	max-width: 1152px;
 	min-width: 625px;
-	padding: 15px;
-}
-
-@media only screen and (max-width: 1220px), only screen and (max-device-width: 1220px) {
-	#wrap {
-		margin: 0 12px;
-	}
 }
 
 #page-body {
@@ -215,40 +218,42 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 #site-description {
 	float: left;
 	width: 65%;
+	width: calc(100% - 230px);
 }
 
 #site-description h1 {
 	margin-right: 0;
 }
 
+#site-description h1 a {
+	text-decoration: none;
+	color: #FFF;
+}
+
 /* Round cornered boxes and backgrounds
 ---------------------------------------- */
 .headerbar {
-	background: transparent none repeat-x 0 0;
-	margin-bottom: 4px;
-	padding: 5px;
-	border-radius: 7px;
-}
+	border-radius: 7px 7px 0 0;
+ }
 
 .navbar {
-	padding: 3px 10px;
+	padding: 5px 10px;
 	border-radius: 7px;
 }
 
-.forabg {
-	background: transparent none repeat-x 0 0;
+.forabg, .forumbg {
 	margin-bottom: 4px;
-	padding: 5px;
 	clear: both;
 	border-radius: 7px;
 }
 
-.forumbg {
-	background: transparent none repeat-x 0 0;
-	margin-bottom: 4px;
+.headerbar .inner, .forabg .inner, .forumbg .inner {
 	padding: 5px;
-	clear: both;
 	border-radius: 7px;
+}
+
+.headerbar .inner {
+	padding: 5px 5px 0;
 }
 
 .panel {
@@ -260,22 +265,23 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 .post {
 	padding: 5px 10px;
 	margin-bottom: 4px;
-	background-repeat: no-repeat;
-	background-position: 100% 0;
 	border-radius: 7px;
 	position: relative;
 }
 
 .rowbg {
-	margin: 5px 5px 2px 5px;
+	margin: 5px 5px 2px;
+}
+
+/* No rounded corners */
+.no-rounded-corners .headerbar, .no-rounded-corners .navbar, .no-rounded-corners .forabg, .no-rounded-corners .forumbg, .no-rounded-corners .panel, .no-rounded-corners .post, .no-rounded-corners div.rules, .no-rounded-corners .pagination li > a, .no-rounded-corners .pagination li > span,
+.no-rounded-corners .button, .no-rounded-corners .search-box .inputbox, .no-rounded-corners .dropdown .dropdown-contents, .no-rounded-corners #tabs .tab > a, .no-rounded-corners #minitabs .tab > a, .no-rounded-corners .cp-mini, .no-rounded-corners #cp-main .forumdb, .no-rounded-corners #navigation li > a
+{
+	border-radius: 0 !important;
 }
 
 /* Horizontal lists
 ----------------------------------------*/
-.navbar ul.linklist {
-	padding: 2px 0;
-}
-
 ul.linklist {
 	display: block;
 	margin: 0;
@@ -285,14 +291,26 @@ ul.linklist {
 	padding: 5px 10px;
 }
 
+#nav-breadcrumbs {
+	border-top: 1px solid #CCC;
+	margin-bottom: 1em;
+}
+
 ul.linklist > li {
 	float: left;
 	font-size: 1.1em;
 	line-height: 2.2em;
 	list-style-type: none;
 	margin-right: 7px;
-	padding-top: 1px;
 	width: auto;
+}
+
+.linklist.navlinks > li {
+	margin: 0;
+}
+
+ul.linklist > li.crumb {
+	margin: 0;
 }
 
 ul.linklist > li.rightside, p.rightside, a.rightside {
@@ -479,49 +497,53 @@ ul.linklist.bulletin > li.no-bulletin:before {
 	bottom: 24px;
 }
 
-.dropdown .pointer, .dropdown .pointer-inner {
-	position: absolute;
-	width: 0;
+.dropdown:before, .dropdown:after {
+	content: "";
 	height: 0;
-	border-top-width: 0;
-	border-bottom: 10px solid transparent;
-	border-left: 10px dashed transparent;
-	border-right: 10px dashed transparent;
-	-webkit-transform: rotate(360deg); /* better anti-aliasing in webkit */
-	display: block;
-}
-
-.dropdown-up .pointer, .dropdown-up .pointer-inner {
-	border-bottom-width: 0;
-	border-top: 10px solid transparent;
-}
-
-.dropdown .pointer {
-	right: auto;
+	width: 0;
 	left: 10px;
+	position: absolute;
+	border-left: 10px dashed;
+	border-right: 10px dashed;
+	-webkit-transform: rotate(360deg); /* better anti-aliasing in webkit */
+}
+
+.dropdown:before {
+	top: -1px;
+	border-bottom: 10px solid;
+	border-color: #b9b9b9 transparent;
+}
+
+.dropdown:after {
 	top: 0;
-	z-index: 3;
+	border-bottom: 10px solid;
+	border-color: #fff transparent;
+	z-index: 5;
 }
 
-.dropdown-up .pointer {
-	bottom: 0;
-	top: auto;
-}
-
-.dropdown-left .dropdown .pointer, .nojs .rightside .dropdown .pointer {
+.dropdown-left .dropdown:before, .dropdown-left .dropdown:after, .nojs .rightside .dropdown:before, .nojs .rightside .dropdown:after {
 	left: auto;
 	right: 10px;
 }
 
-.dropdown .pointer-inner {
-	top: auto;
-	bottom: -11px;
-	left: -10px;
+.dropdown-extended.dropdown:after {
+	border-color: #f1f8ff transparent;
 }
 
-.dropdown-up .pointer-inner {
-	bottom: auto;
-	top: -11px;
+.dropdown-up .dropdown:before, .dropdown-up .dropdown:after {
+	top: auto;
+	border-bottom-width: 0;
+	border-top: 10px solid transparent;
+	border-color: #b9b9b9 transparent;
+}
+
+.dropdown-up .dropdown:before {
+	bottom: -1px;
+}
+
+.dropdown-up .dropdown:after {
+	bottom: 0;
+	border-color: #fff transparent;
 }
 
 .dropdown .dropdown-contents {
@@ -534,7 +556,6 @@ ul.linklist.bulletin > li.no-bulletin:before {
 	position: relative;
 	min-width: 40px;
 	max-height: 300px;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -545,7 +566,6 @@ ul.linklist.bulletin > li.no-bulletin:before {
 	line-height: normal !important;
 	font-size: 1em !important;
 	list-style: none;
-	margin: 0;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	white-space: nowrap;
@@ -600,9 +620,9 @@ ul.linklist.bulletin > li.no-bulletin:before {
 }
 
 .breadcrumbs .crumb:before {
-	content: '\2039';
+	content: '›';
 	font-weight: bold;
-	padding: 0 0.5em;
+	padding: 0 .5em;
 }
 
 .breadcrumbs .crumb:first-child:before {
@@ -643,6 +663,7 @@ table.table1 thead th {
 	line-height: 1.3em;
 	font-size: 1em;
 	padding: 0 0 4px 3px;
+	text-shadow: 2px 2px 2px #000;
 }
 
 table.table1 thead th span {
@@ -674,7 +695,7 @@ table.table1 .posts		{ text-align: center; width: 7%; }
 table.table1 .joined	{ text-align: left; width: 15%; }
 table.table1 .active	{ text-align: left; width: 15%; }
 table.table1 .mark		{ text-align: center; width: 7%; }
-table.table1 .info		{ text-align: left; width: 30%; }
+table.table1 .info		{ text-align: left; width: 25%; }
 table.table1 .info div	{ width: 100%; white-space: normal; overflow: hidden; }
 table.table1 .autocol	{ line-height: 2em; white-space: nowrap; }
 table.table1 thead .autocol { padding-left: 1em; }
@@ -710,8 +731,7 @@ table.info tbody th {
 
 /* Misc layout styles
 ---------------------------------------- */
-/* column[1-2] styles are containers for two column layouts
-   Also see tweaks.css */
+/* column[1-2] styles are containers for two column layouts */
 .column1 {
 	float: left;
 	clear: left;
@@ -800,7 +820,7 @@ fieldset.fields1 dl.pmlist dd.recipients {
 ---------------------------------------- */
 .action-bar {
 	font-size: 11px;
-	margin: 4px 0;
+	margin: 5px 0;
 }
 
 .forabg + .action-bar {
@@ -812,13 +832,16 @@ fieldset.fields1 dl.pmlist dd.recipients {
 .pagination {
 	float: right;
 	font-size: 11px;
-	margin-top: 3px;
 	text-align: right;
 	width: auto;
 }
 
 .action-bar.bottom .pagination {
 	margin-top: 0;
+}
+
+.action-bar .pagination {
+	line-height: 22px;
 }
 
 .pagination > ul {
@@ -839,11 +862,10 @@ fieldset.fields1 dl.pmlist dd.recipients {
 	border: 1px solid transparent;
 	border-radius: 2px;
 	display: block;
-	font-size: 0.9em;
-	font-weight: normal;
-	line-height: 13px;
-	min-width: 10px;
-	padding: 3px;
+	font-size: 1.2em;
+	line-height: 18px;
+	min-width: 11px;
+	padding: 2px 3px;
 	text-align: center;
 	text-decoration: none;
 }
@@ -860,26 +882,26 @@ fieldset.fields1 dl.pmlist dd.recipients {
 .pagination li.page-jump a, .pagination li.next a, .pagination li.previous a {
 	background-repeat: no-repeat;
 	font-size: 0;
-	height: 13px;
+	height: 18px;
 	width: 11px;
 }
 
 .pagination li.page-jump a {
-	background-position: 0 2px;
+	background-position: 0 4px;
 	width: 24px;
 }
 
 .pagination li.next a {
-	background-position: -50px 2px;
+	background-position: -50px 4px;
 }
 
 .pagination li.previous a {
-	background-position: -30px 2px;
+	background-position: -30px 4px;
 }
 
-.pagination li.page-jump a:hover, .pagination .dropdown-visible a.dropdown-trigger, .nojs .pagination .dropdown-container:hover a.dropdown-trigger { background-position: 0 -18px; }
-.pagination li.next a:hover { background-position: -50px -18px; }
-.pagination li.previous a:hover { background-position: -30px -18px; }
+.pagination li.page-jump a:hover, .pagination .dropdown-visible a.dropdown-trigger, .nojs .pagination .dropdown-container:hover a.dropdown-trigger { background-position: 0 -16px; }
+.pagination li.next a:hover { background-position: -50px -16px; }
+.pagination li.previous a:hover { background-position: -30px -16px; }
 
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
@@ -895,8 +917,9 @@ fieldset.fields1 dl.pmlist dd.recipients {
 }
 
 .row .pagination li a, .row .pagination li span {
-	border-radius: 1px;
+	border-radius: 0;
 	padding: 1px;
+	line-height: 1;
 }
 
 /* jQuery popups
@@ -1080,11 +1103,6 @@ form > p.post-notice strong {
 	clear: both;
 }
 
-#top {
-	position: absolute;
-	top: -20px;
-}
-
 .clear {
 	display: block;
 	clear: both;
@@ -1101,7 +1119,6 @@ ul.linklist:after,
 .tabs-container:after,
 #tabs > ul:after,
 #minitabs > ul:after,
-.postprofile .avatar-container:after,
 #top-menu:after {
 	clear: both;
 	content: '';
@@ -1114,10 +1131,6 @@ ul.linklist:after,
 
 .smilies {
 	vertical-align: text-bottom;
-}
-
-.icon-notification {
-	position: relative;
 }
 
 .member-search {
@@ -1295,14 +1308,6 @@ ul.linklist:after,
 	padding-left: 2px;
 }
 
-.dropdown-page-jump .dropdown {
-	top: 20px;
-}
-
-.dropdown-page-jump.dropdown-up .dropdown {
-	bottom: 20px;
-}
-
 .dropdown-page-jump input.tiny {
 	width: 50px;
 }
@@ -1321,25 +1326,21 @@ ul.linklist:after,
 #top-links {
 	float: left;
 	margin: 5px 0;
-}
-
-
-#top-links ul {
 	list-style: none;
 	overflow: auto;
 }
 
-#top-links li {
+#top-links > li {
 	float: left;
 	border-right: 1px solid #828282;
 	font-size: 1.1em;
 }
 
-#top-links ul li:last-child {
+#top-links > li:last-child {
 	border-right: 0;
 }
 
-#top-links ul li a {
+#top-links > li > a {
 	padding: 2px 10px;
 	display: block;
 	text-decoration: none;
@@ -1352,33 +1353,40 @@ ul.linklist:after,
 
 /* Page title icons
 --------------------------------------------- */
-.header-icons
-{
-	margin: 0;
+.header-icons {
 	list-style: none;
-	float: right;
 }
 
-.header-icons li
-{
+.header-icons > li {
+	background: none;
 	margin: 0 3px;
 	float: right;
 }
 
-a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus
+a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus,
+.header-icons .icon-bump > a, a.icon-header-sendemail, a.icon-header-print,
+.header-icons .icon-bookmark > a, .header-icons .icon-unbookmark > a, .header-icons .icon-subscribe > a, .header-icons .icon-unsubscribe > a,
+a.icon-header-lock, a.icon-header-unlock
 {
 	display: block;
 	overflow: hidden;
+	padding: 0;
 	width: 26px;
 	height: 26px;
-	text-indent: -5000px;
+	text-indent: -500px;
 	text-align: left;
 	background-repeat: no-repeat;
 }
 
-a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus
-{
+a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus {
 	background-image: url("./images/social_icons.png");
+}
+
+.header-icons .icon-bump > a, a.icon-header-sendemail, a.icon-header-print,
+.header-icons .icon-bookmark > a, .header-icons .icon-unbookmark > a, .header-icons .icon-subscribe > a, .header-icons .icon-unsubscribe > a,
+a.icon-header-lock, a.icon-header-unlock
+{
+	background-image: url("./images/header_icons.png");
 }
 
 a.icon-facebook { background-position: 0 -26px; }
@@ -1386,11 +1394,30 @@ a.icon-vkontakte { background-position: 0 -52px; }
 a.icon-twitter { background-position: 0 -78px; }
 a.icon-google-plus { background-position: 0 -104px; }
 
-.header-icons .icons-divider
-{
-	background: #cccccc;
-	width: 1px;
-	height: 26px;
-	display: block;
-	overflow: hidden;
+.header-icons .icon-bump > a { background-position: 0 -182px; }
+a.icon-header-sendemail { background-position: 0 -26px; }
+a.icon-header-print { background-position: 0 -52px; }
+
+.header-icons .icon-bookmark > a { background-position: 0 -78px; }
+.header-icons .icon-unbookmark > a { background-position: 0 -104px; }
+.header-icons .icon-subscribe > a { background-position: 0 -130px; }
+.header-icons .icon-unsubscribe > a { background-position: 0 -156px; }
+a.icon-header-lock { background-position: 0 -208px; }
+a.icon-header-unlock { background-position: 0 -234px; }
+
+.header-icons > .divider {
+	border-left: 1px solid #CCC;
+	padding-left: 5px;
+}
+
+/* Main menu
+--------------------------------------------- */
+#main-menu {
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	padding: 0 10px;
+}
+
+#nav-main > li {
+	padding-top: 0;
 }

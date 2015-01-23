@@ -2,7 +2,6 @@
 	<div class="dropdown-container dropdown-button-control topic-tools">
 		<span title="{L_TOPIC_TOOLS}" class="button icon-button tools-icon dropdown-trigger dropdown-select"></span>
 		<div class="dropdown hidden">
-			<div class="pointer"><div class="pointer-inner"></div></div>
 			<ul class="dropdown-contents">
 				<!-- EVENT viewtopic_topic_tools_before -->
 				<!-- IF U_WATCH_TOPIC -->
@@ -11,13 +10,13 @@
 					</li>
 				<!-- ENDIF -->
 				<!-- IF U_BOOKMARK_TOPIC -->
-					<li class="small-icon icon-bookmark">
-						<a href="{U_BOOKMARK_TOPIC}" class="bookmark-link" title="{L_BOOKMARK_TOPIC}" data-ajax="alt_text" data-alt-text="{S_BOOKMARK_TOGGLE}" data-update-all=".bookmark-link">{S_BOOKMARK_TOPIC}</a>
+					<li class="small-icon icon-<!-- IF S_BOOKMARKED_TOPIC -->unbookmark<!-- ELSE -->bookmark<!-- ENDIF -->">
+						<a href="{U_BOOKMARK_TOPIC}" class="bookmark-link" title="{L_BOOKMARK_TOPIC}" data-ajax="toggle_link" data-toggle-class="small-icon icon-<!-- IF not S_BOOKMARKED_TOPIC -->unbookmark<!-- ELSE -->bookmark<!-- ENDIF -->" data-toggle-text="{S_BOOKMARK_TOGGLE}" data-update-all=".bookmark-link">{S_BOOKMARK_TOPIC}</a>
 					</li>
 				<!-- ENDIF -->
-				<!-- IF U_BUMP_TOPIC --><li class="small-icon icon-bump"><a href="{U_BUMP_TOPIC}" class="bump-link" title="{L_BUMP_TOPIC}" data-ajax="toggle_link" data-toggle-class="hide" data-update-all=".bump-link">{L_BUMP_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_BUMP_TOPIC --><li class="small-icon icon-bump"><a href="{U_BUMP_TOPIC}" class="bump-link" title="{L_BUMP_TOPIC}" data-ajax="toggle_link" data-toggle-class="hidden" data-update-all=".bump-link">{L_BUMP_TOPIC}</a></li><!-- ENDIF -->
 				<!-- IF U_EMAIL_TOPIC --><li class="small-icon icon-sendemail"><a href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}">{L_EMAIL_TOPIC}</a></li><!-- ENDIF -->
-				<!-- IF U_PRINT_TOPIC --><li class="small-icon icon-print"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_PRINT_TOPIC --><li class="small-icon icon-print"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
 				<!-- IF S_USER_LOGGED_IN -->
 					<li class="small-icon icon-switch-mp-on-<!-- IF STYLE_MP_ON_LEFT -->right<!-- ELSE -->left<!-- ENDIF -->">
 						<a href="{U_SWITCH_MP}" class="switch-mp-link" data-ajax="toggle_link" data-toggle-class="small-icon icon-switch-mp-on-<!-- IF STYLE_MP_ON_LEFT -->left<!-- ELSE -->right<!-- ENDIF -->" data-toggle-text="{S_SWITCH_MP_TOGGLE}" data-toggle-url="{U_SWITCH_MP_TOGGLE}" data-update-all=".switch-mp-link" data-runs-func="switchMP">{S_SWITCH_MP}</a>

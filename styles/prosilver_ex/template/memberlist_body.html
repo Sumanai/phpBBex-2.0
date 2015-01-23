@@ -15,13 +15,8 @@
 	<!-- IF S_SHOW_GROUP -->
 		<h2 class="group-title"<!-- IF GROUP_COLOR --> style="color:#{GROUP_COLOR};"<!-- ENDIF -->>{GROUP_NAME}</h2>
 		<p>{GROUP_DESC} {GROUP_TYPE}</p>
-		<p>
-			<!-- IF AVATAR_IMG -->{AVATAR_IMG}<!-- ENDIF -->
-			<!-- IF RANK_IMG -->{RANK_IMG}<!-- ENDIF -->
-			<!-- IF GROUP_RANK -->{GROUP_RANK}<!-- ENDIF -->
-		</p>
 	<!-- ELSE -->
-		<h2 class="solo">{PAGE_TITLE}<!-- IF SEARCH_WORDS -->{L_COLON} <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
+		<h2>{PAGE_TITLE}<!-- IF SEARCH_WORDS -->{L_COLON} <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
 
 		<div class="action-bar top">
 			<div class="member-search panel">

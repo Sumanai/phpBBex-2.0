@@ -209,13 +209,13 @@ fieldset.forum-selection2 {
 fieldset.submit-buttons {
 	text-align: center;
 	vertical-align: middle;
-	margin: 5px 0;
 }
 
 fieldset.submit-buttons input {
 	vertical-align: middle;
 	padding-top: 3px;
 	padding-bottom: 3px;
+	margin: 5px 0;
 }
 
 /* Posting page styles
@@ -223,11 +223,14 @@ fieldset.submit-buttons input {
 
 /* Buttons used in the editor */
 #format-buttons {
-	margin: 5px 0 2px;
+	margin: 5px 0 0;
 }
 
 #format-buttons input, #format-buttons select, #format-buttons button {
 	vertical-align: middle;
+	margin-bottom: 5px;
+	white-space: nowrap;
+	word-wrap: normal;
 }
 
 /* Main message box */
@@ -251,8 +254,22 @@ fieldset.submit-buttons input {
 	float: right;
 }
 
-#smiley-box img {
-	margin: 3px;
+#smiley-box > img {
+	margin: 3px 2px;
+}
+
+#smiley-box > img:hover, #popup-smiley-box > img:hover {
+	cursor: pointer;
+}
+
+#smiley-box > a, #smiley-box > img {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+#smiley-box > label {
+	display: block;
+	margin-bottom: 3px;
 }
 
 /* Input field styles
@@ -312,7 +329,7 @@ a.button1, input.button1, a.button2, input.button2, button {
 }
 
 button {
-	padding: 2px 7px;
+	padding: 2px 5px;
 	cursor: pointer;
 }
 
@@ -364,7 +381,6 @@ input.button1:focus, input.button2:focus {
 	float: left;
 	height: 24px;
 	padding: 3px;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -392,11 +408,9 @@ input.button1:focus, input.button2:focus {
 /* Search box (header)
 --------------------------------------------- */
 .search-header {
-	border-radius: 4px;
 	display: block;
 	float: right;
-	margin-right: 5px;
-	margin-top: 30px;
+	margin: 25px 10px 0;
 }
 
 .search-header .inputbox { border: 0; }

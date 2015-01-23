@@ -355,12 +355,8 @@ li {
 
 #tabs .tab > a {
 	background: #D4D6DA;
-	background: -moz-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #CACBCF), color-stop(100%, #D4D6DA));
-	background: -webkit-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
-	background: -o-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
-	background: -ms-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
-	background: linear-gradient(to bottom, #CACBCF 0%, #D4D6DA 100%);
+	background: -webkit-linear-gradient(#CACBCF, #D4D6DA);
+	background: linear-gradient(#CACBCF, #D4D6DA);
 	border: 1px solid #BBB;
 	border-bottom-width: 0;
 	border-radius: 5px 5px 0 0;
@@ -385,12 +381,8 @@ li {
 #tabs .activetab > a,
 #tabs .activetab > a:hover {
 	background: #DCDEE2;
-	background: -moz-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F2F2F2), color-stop(100%, #DCDEE2));
-	background: -webkit-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
-	background: -o-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
-	background: -ms-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
-	background: linear-gradient(to bottom, #F2F2F2 0%, #DCDEE2 100%);
+	background: -webkit-linear-gradient(#F2F2F2, #DCDEE2);
+	background: linear-gradient(#F2F2F2, #DCDEE2);
 	border-color: #999;
 	border-bottom: 2px solid #DCDEE2;
 	box-shadow: 0 1px 1px #FFF inset;

@@ -19,6 +19,14 @@ dd label input { vertical-align: text-bottom\9; }
 /* IE8 often can't handle max-width in %, so we use px instead */
 .postprofile .avatar img { max-width: 150px\9; }
 
+/* IE8 not support opacity */
+#darken { filter: alpha(opacity=50)\9; }
+
+#back-to-top.tower:hover {
+	background-color: #FFF\9;
+	filter: alpha(opacity=60)\9;
+}
+
 
 /* IE 9 Tweaks
 ------------------------------------------------------------------------------*/

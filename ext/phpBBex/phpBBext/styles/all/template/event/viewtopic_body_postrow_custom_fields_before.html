@@ -1,2 +1,2 @@
-<!-- IF postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
-<dd><strong>{L_GENDER}{L_COLON}</strong> <!-- IF postrow.S_POSTER_GENDER_M -->{L_GENDER_M}<!-- ELSEIF postrow.S_POSTER_GENDER_F -->{L_GENDER_F}<!-- ELSE -->{L_GENDER_X}<!-- ENDIF --></dd>
+<!-- IF STYLE_MP_SHOW_AGE and postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
+<!-- IF STYLE_MP_SHOW_GENDER and not postrow.S_POSTER_GENDER_X --><dd><strong>{L_GENDER}{L_COLON}</strong> <!-- IF postrow.S_POSTER_GENDER_M -->{L_GENDER_M}<!-- ELSE -->{L_GENDER_F}<!-- ENDIF --></dd><!-- ENDIF -->

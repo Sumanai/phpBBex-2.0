@@ -122,7 +122,7 @@ $lang = array_merge($lang, array(
 	'AVATAR_WRONG_FILESIZE'			=> 'Размер файла аватары должен находиться в диапазоне от 0 до %1$d %2$s.',
 	'AVATAR_WRONG_SIZE'				=> 'Размеры отправленной аватары — %5$s×%6$s. Размеры аватары должны быть не менее %1$s×%2$s, но не более %3$s×%4$s.',
 
-	'BACK_TO_TOP'			=> 'Вернуться к началу',
+	'BACK_TO_TOP'			=> 'Наверх',
 	'BACK_TO_PREV'			=> 'Вернуться на предыдущую страницу',
 	'BAN_TRIGGERED_BY_EMAIL'=> 'Доступ к конференции закрыт для вашего адреса email.',
 	'BAN_TRIGGERED_BY_IP'	=> 'Доступ к конференции закрыт для вашего IP-адреса.',
@@ -712,7 +712,7 @@ $lang = array_merge($lang, array(
 	'SEARCH_SELF'				=> 'Ваши сообщения',
 	'SEARCH_TOPIC'				=> 'Поиск в теме…',
 	'SEARCH_UNANSWERED'			=> 'Сообщения без ответов',
-	'SEARCH_UNREAD'				=> 'Непрочитанные сообщения',
+	'SEARCH_UNREAD'				=> 'Непрочитанные темы',
 	'SEARCH_USER_POSTS'			=> 'Найти сообщения пользователя',
 	'SECONDS'					=> 'секунд',
 	'SEE_ALL'					=> 'Показать все',
@@ -797,6 +797,7 @@ $lang = array_merge($lang, array(
 	'TOPIC_LOCKED'		=> 'Эта тема закрыта, вы не можете редактировать и оставлять сообщения в ней.',
 	'TOPIC_LOCKED_SHORT'=> 'Закрыто',
 	'TOPIC_MOVED'		=> 'Перенесённая',
+	'TOPIC_POSTER'		=> 'Автор темы',
 	'TOPIC_REVIEW'		=> 'Обзор темы',
 	'TOPIC_TITLE'		=> 'Название темы',
 	'TOPIC_UNAPPROVED'	=> 'Данная тема не была одобрена.',
@@ -889,9 +890,9 @@ $lang = array_merge($lang, array(
 	'VIEW_NEWEST_POST'			=> 'Перейти к первому непрочитанному сообщению',
 	'VIEW_NOTES'				=> 'Заметки о пользователе',
 	'VIEW_ONLINE_TIMES'			=> array(
-		1	=> 'основано на активности пользователей за последнюю %d минуту',
-		2	=> 'основано на активности пользователей за последние %d минуты',
-		3	=> 'основано на активности пользователей за последние %d минут',
+		1	=> 'по активности за %d минуту',
+		2	=> 'по активности за %d минуты',
+		3	=> 'по активности за %d минут',
 	),
 	'VIEW_TOPIC'				=> 'Просмотр темы',
 	'VIEW_TOPIC_ANNOUNCEMENT'	=> 'Объявление: ',
@@ -1463,6 +1464,9 @@ $lang = array_merge($lang, array(
 	// The default dateformat which will be used on new installs in this language
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'		=> '|d.m.Y|{, H:i}', // Сегодня, 10:06 / 24.04.2012, 10:06
+
+	// Additional strings
+	'SEARCH_SELF_TOPICS'		=> 'Ваши темы',
 
 	// Genders
 	'GENDER'					=> 'Пол',

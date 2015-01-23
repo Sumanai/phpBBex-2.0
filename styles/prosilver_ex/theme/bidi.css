@@ -182,8 +182,7 @@
 
 /* Misc layout styles
 ---------------------------------------- */
-/* column[1-2] styles are containers for two column layouts
-   Also see tweaks.css */
+/* column[1-2] styles are containers for two column layouts */
 .rtl .column1 {
 	float: right;
 	clear: right;
@@ -989,10 +988,6 @@ li.breadcrumbs span:first-child > a {
 	padding-left: 0;
 }
 .rtl .imageset.subforum_read, .rtl .imageset.subforum_unread, .rtl .imageset.icon_post_target, .rtl .imageset.icon_post_target_unread, .rtl .imageset.icon_topic_latest, .rtl .imageset.icon_topic_newest {
-	padding-right: 11px;
-	padding-left: 0;
-}
-.rtl .imageset.icon_back_top {
 	padding-right: 11px;
 	padding-left: 0;
 }

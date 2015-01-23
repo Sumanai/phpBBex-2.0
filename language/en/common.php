@@ -762,6 +762,7 @@ $lang = array_merge($lang, array(
 	'TOPIC_LOCKED'		=> 'This topic is locked, you cannot edit posts or make further replies.',
 	'TOPIC_LOCKED_SHORT'=> 'Topic locked',
 	'TOPIC_MOVED'		=> 'Moved topic',
+	'TOPIC_POSTER'		=> 'Topic author',
 	'TOPIC_REVIEW'		=> 'Topic review',
 	'TOPIC_TITLE'		=> 'Topic title',
 	'TOPIC_UNAPPROVED'	=> 'This topic has not been approved.',
@@ -844,8 +845,8 @@ $lang = array_merge($lang, array(
 	'VIEW_NEWEST_POST'			=> 'View first unread post',
 	'VIEW_NOTES'				=> 'View user notes',
 	'VIEW_ONLINE_TIMES'			=> array(
-		1	=> 'based on users active over the past %d minute',
-		2	=> 'based on users active over the past %d minutes',
+		1	=> 'over the past %d minute',
+		2	=> 'over the past %d minutes',
 	),
 	'VIEW_TOPIC'				=> 'View topic',
 	'VIEW_TOPIC_ANNOUNCEMENT'	=> 'Announcement: ',
@@ -1420,6 +1421,9 @@ $lang = array_merge($lang, array(
 	// The default dateformat which will be used on new installs in this language
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'		=> '|d M Y|{, H:i}', // Today, 13:37 / 01 Jan 2007, 13:37
+
+	// Additional strings
+	'SEARCH_SELF_TOPICS'		=> 'View your topics',
 
 	// Genders
 	'GENDER'					=> 'Gender',

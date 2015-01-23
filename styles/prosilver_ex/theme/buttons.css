@@ -128,36 +128,24 @@ ul.linklist.bulletin > li.small-icon:before {
 
 /* Poster contact icons
 ----------------------------------------*/
-.contact-icons.dropdown-contents {
-	min-width: 0;
-	padding: 0;
-	font-size: 0;
+.contact-button {
+	width: 16px;
+	height: 16px;
+	margin: 5px 2px 0 0;
+	padding: 3px;
+}
+
+.hastouch .contact-button {
+	padding: 4px;
 }
 
 .contact-icon {
 	background-repeat: no-repeat;
 	display: block;
-	height: 16px;
-	width: 16px;
-}
-.contact-icons a {
-	border-bottom: 1px dotted;
-	border-right: 1px dotted;
-	display: block;
-	float: left;
-	padding: 8px;
-}
-
-.contact-icons .last-cell {
-	border-right: none;
-}
-
-.contact-icons div:last-child a {
-	border-bottom: none;
-}
-
-.contact-icons div {
-	clear: left;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	padding: 16px 0 0 16px;
 }
 
 /* Profile icons */
@@ -180,15 +168,10 @@ ul.linklist.bulletin > li.small-icon:before {
 .post-buttons {
 	float: right;
 	list-style: none;
-	margin-top: 2px;
 }
 
-.has-profile .post-buttons {
-	float: none;
-	position: absolute;
-	margin: 0;
-	right: 0;
-	top: 5px;
+h3 + .post-buttons {
+	margin-top: 4px;
 }
 
 .post-buttons > li {
@@ -204,7 +187,7 @@ ul.linklist.bulletin > li.small-icon:before {
 	padding: 2px 8px;
 }
 
-.post-buttons .icon-button span {
+.post-buttons .icon-button > span {
 	display: block;
 	height: 0;
 	overflow: hidden;
@@ -228,30 +211,12 @@ ul.linklist.bulletin > li.small-icon:before {
 .report-icon:hover:before					{ background-position: -165px -21px; }
 .info-icon:before							{ background-position: -175px 0; }
 .info-icon:hover:before						{ background-position: -175px -21px; }
-.button.responsive-menu-link:before			{ background-position: -191px 0; }
-.button.responsive-menu-link:hover:before	{ background-position: -191px -21px; }
-
-/* Responsive buttons in post body */
-.post-buttons .dropdown {
-	top: 18px;
-}
-
-.post-buttons .dropdown a {
-	display: block;
-	font-size: 1.2em;
-	text-align: right;
-}
-
-.hasjs .postbody .post-buttons {
-	max-width: 40%;
-}
 
 /* Browser-specific tweaks */
 button::-moz-focus-inner {
 	padding: 0;
 	border: 0
 }
-
 
 /* Global back to top of page
 ---------------------------------------- */
@@ -260,8 +225,8 @@ button::-moz-focus-inner {
 	z-index: 10;
 	position: fixed;
 	top: 0;
+	left: 0;
 	margin: 15px;
-	padding: 0;
 	width: 24px;
 	height: 24px;
 	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAZlBMVEUAAACEiY2SmJ2epKmjqq+lrLGor7SosLWpsbaqsbaqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbeqsbersrettLm6wMTDyc3O09bZ3d/q6+3x8vP5+fr8/f1nT312AAAAF3RSTlMAGiEnNEFPYGpxeoeUnqm1vdLk7vP4+0kZka8AAACySURBVHgBddDxboYgDATwAx36qVPBQZ3TMd7/JbcQSpDM359ccyVFIl+rJqeXXqLUvBOzUxEpS4VNIXnRnevSPNXcW1zLPYVNAMh7SyPQOGLXRcxKDMSOEL6I9Vgp2X0I/pOSGSYXhT+5TMPmoujgf3Gwf4fI7xQZrjpDcnLVQpHn4IeXD/SvvroI+xDA9HASyO3hiFCOKrZF1FWJVUjUrc20yMRk8/goUBLdrI3Rs+LnX+9DKZ4DVjilAAAAAElFTkSuQmCC") no-repeat;
@@ -269,12 +234,9 @@ button::-moz-focus-inner {
 	opacity: 0.6;
 }
 
-#back-to-top.on-left {
-	left: 0;
-}
-
 #back-to-top.on-right {
 	right: 0;
+	left: auto;
 }
 
 #back-to-top:hover {

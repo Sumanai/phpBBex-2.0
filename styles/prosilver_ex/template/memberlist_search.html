@@ -1,4 +1,4 @@
-<h2 class="solo">{L_FIND_USERNAME}</h2>
+<h2>{L_FIND_USERNAME}</h2>
 
 <form method="post" action="{S_MODE_ACTION}" id="search_memberlist">
 <div class="panel">
@@ -15,7 +15,6 @@
 			<input type="text" name="username" id="username" value="{USERNAME}" class="inputbox"<!-- IF U_LIVE_SEARCH --> autocomplete="off" data-filter="phpbb.search.filter" data-ajax="member_search" data-min-length="3" data-url="{U_LIVE_SEARCH}" data-results="#user-search" data-overlay="false"<!-- ENDIF --> />
 			<!-- IF U_LIVE_SEARCH -->
 				<div class="dropdown live-search hidden" id="user-search">
-					<div class="pointer"><div class="pointer-inner"></div></div>
 					<ul class="dropdown-contents search-results">
 						<li class="search-result-tpl"><span class="search-result"></span></li>
 					</ul>
