@@ -96,6 +96,7 @@ REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_age
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_warnings', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_posts', '0');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_joined', '0');
+REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_with_us', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_buttons', '1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_new_year', '-1');
 REPLACE INTO phpbb_config (config_name, config_value) VALUES ('style_rounded_corners', '1');

@@ -1470,4 +1470,5 @@ $lang = array_merge($lang, array(
 	// Other
 	'SOCIAL_SHARE_IN'		=> 'Share in',
 	'SPOILER'				=> 'Spoiler',
+	'USER_WITH_US'			=> 'With us',
 ));

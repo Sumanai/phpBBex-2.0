@@ -33,9 +33,10 @@
 		</dt>
 		<!-- IF RANK_TITLE --><dd class="profile-rank responsive-show">{RANK_TITLE}</dd><!-- ENDIF -->
 		<!-- IF RANK_IMG --><dd class="profile-rank responsive-show">{RANK_IMG}</dd><!-- ENDIF -->
-		<!-- IF STYLE_MP_SHOW_AGE and AUTHOR_AGE and AUTHOR_AGE < 65 and AUTHOR_AGE > 10 --><dd><strong>{L_AGE}{L_COLON}</strong> {AUTHOR_AGE}</dd><!-- ENDIF -->
+		<!-- IF STYLE_MP_SHOW_AGE and AUTHOR_AGE and AUTHOR_AGE < 65 and AUTHOR_AGE > 10 --><dd class="profile-age"><strong>{L_AGE}{L_COLON}</strong> {AUTHOR_AGE}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_POSTS --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF U_AUTHOR_POSTS != '' --><a href="{U_AUTHOR_POSTS}">{AUTHOR_POSTS}</a><!-- ELSE -->{AUTHOR_POSTS}<!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_JOINED and AUTHOR_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {AUTHOR_JOINED}</dd><!-- ENDIF -->
+		<!-- IF STYLE_MP_SHOW_WITH_US and AUTHOR_WITH_US --><dd class="profile-with_us"><strong>{L_USER_WITH_US}{L_COLON}</strong> {AUTHOR_WITH_US}</dd><!-- ENDIF -->
 
 		<!-- EVENT ucp_pm_viewmessage_custom_fields_before -->
 		<!-- BEGIN custom_fields -->

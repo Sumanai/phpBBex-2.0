@@ -155,6 +155,7 @@
 		<!-- IF STYLE_MP_SHOW_AGE and postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd class="profile-age"><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_POSTS and postrow.POSTER_POSTS != '' --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF postrow.U_SEARCH !== '' --><a href="{postrow.U_SEARCH}"><!-- ENDIF -->{postrow.POSTER_POSTS}<!-- IF postrow.U_SEARCH !== '' --></a><!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_JOINED and postrow.POSTER_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
+		<!-- IF STYLE_MP_SHOW_WITH_US and postrow.POSTER_WITH_US --><dd class="profile-with_us"><strong>{L_USER_WITH_US}{L_COLON}</strong> {postrow.POSTER_WITH_US}</dd><!-- ENDIF -->
 		<!-- IF postrow.POSTER_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {postrow.POSTER_WARNINGS}</dd><!-- ENDIF -->
 
 		<!-- IF postrow.S_PROFILE_FIELD1 -->

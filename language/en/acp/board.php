@@ -115,6 +115,7 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_SHOW_AGE'					=> 'Display age',
 	'STYLE_MP_SHOW_POSTS'				=> 'Display posts counter',
 	'STYLE_MP_SHOW_JOINED'				=> 'Display joined date',
+	'STYLE_MP_SHOW_WITH_US'				=> 'Display how long user is with us',
 	'STYLE_MP_SHOW_BUTTONS'				=> 'Display contact buttons',
 
 	'STYLE_SETTINGS_FOOTER'				=> 'Page footer',

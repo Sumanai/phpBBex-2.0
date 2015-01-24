@@ -1264,6 +1264,7 @@ while ($row = $db->sql_fetchrow($result))
 			$user_cache_data = array(
 				'user_type'		=> USER_IGNORE,
 				'joined'		=> '',
+				'with_us'		=> '',
 				'posts'			=> '',
 
 				'sig'					=> '',
@@ -1327,6 +1328,7 @@ while ($row = $db->sql_fetchrow($result))
 				'user_inactive_reason'		=> $row['user_inactive_reason'],
 
 				'joined'		=> $user->format_date($row['user_regdate'], false, false, true),
+				'with_us'		=> !empty($config['style_mp_show_with_us']) ? \phpbb\datetime::get_verbal($row['user_regdate'], time(), false, 2) : '',
 				'posts'			=> $row['user_posts'],
 				'warnings'		=> (isset($row['user_warnings'])) ? $row['user_warnings'] : 0,
 
@@ -1889,6 +1891,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'RANK_IMG'			=> $user_cache[$poster_id]['rank_image'],
 		'RANK_IMG_SRC'		=> $user_cache[$poster_id]['rank_image_src'],
 		'POSTER_JOINED'		=> $user_cache[$poster_id]['joined'],
+		'POSTER_WITH_US'	=> $user_cache[$poster_id]['with_us'],
 		'POSTER_POSTS'		=> $user_cache[$poster_id]['posts'],
 		'POSTER_AVATAR'		=> $user_cache[$poster_id]['avatar'],
 		'POSTER_WARNINGS'	=> $auth->acl_get('m_warn') ? $user_cache[$poster_id]['warnings'] : '',
