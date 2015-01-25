@@ -134,7 +134,7 @@ $sql_data[TOPICS_TABLE]['sql'] = array(
 
 $sql_data[FORUMS_TABLE]['sql'] = array(
 	'forum_last_post_id'		=> $merge_post_id,
-	'forum_last_post_subject'	=> utf8_normalize_nfc($merge_post_data['post_subject']),
+	'forum_last_post_subject'	=> utf8_normalize_nfc($merge_post_data['post_subject'] ? $merge_post_data['post_subject'] : $data['topic_title']),
 	'forum_last_post_time'		=> $current_time,
 	'forum_last_poster_id'		=> $poster_id,
 	'forum_last_poster_name'	=> $username,

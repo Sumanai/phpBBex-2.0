@@ -1888,7 +1888,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			set_config_count('num_posts', 1, true);
 
 			$sql_data[FORUMS_TABLE]['stat'][] = 'forum_last_post_id = ' . $data['post_id'];
-			$sql_data[FORUMS_TABLE]['stat'][] = "forum_last_post_subject = '" . $db->sql_escape($subject) . "'";
+			$sql_data[FORUMS_TABLE]['stat'][] = "forum_last_post_subject = '" . $db->sql_escape(($subject) ? $subject : $data['topic_title']) . "'";
 			$sql_data[FORUMS_TABLE]['stat'][] = 'forum_last_post_time = ' . $current_time;
 			$sql_data[FORUMS_TABLE]['stat'][] = 'forum_last_poster_id = ' . (int) $user->data['user_id'];
 			$sql_data[FORUMS_TABLE]['stat'][] = "forum_last_poster_name = '" . $db->sql_escape((!$user->data['is_registered'] && $username) ? $username : (($user->data['user_id'] != ANONYMOUS) ? $user->data['username'] : '')) . "'";
@@ -2109,12 +2109,12 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				$db->sql_freeresult($result);
 
 				// this post is the latest post in the forum, better update
-				if ($row['forum_last_post_id'] == $data['post_id'] && ($row['forum_last_post_subject'] !== $subject || $data['poster_id'] == ANONYMOUS))
+				if ($row['forum_last_post_id'] == $data['post_id'] && ($row['forum_last_post_subject'] !== (($subject) ? $subject : $data['topic_title']) || $data['poster_id'] == ANONYMOUS))
 				{
 					// the post's subject changed
-					if ($row['forum_last_post_subject'] !== $subject)
+					if ($row['forum_last_post_subject'] !== (($subject) ? $subject : $data['topic_title']))
 					{
-						$sql_data[FORUMS_TABLE]['stat'][] = "forum_last_post_subject = '" . $db->sql_escape($subject) . "'";
+						$sql_data[FORUMS_TABLE]['stat'][] = "forum_last_post_subject = '" . $db->sql_escape(($subject) ? $subject : $data['topic_title']) . "'";
 					}
 
 					// Update the user name if poster is anonymous... just in case a moderator changed it
