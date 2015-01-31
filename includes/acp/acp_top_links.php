@@ -32,7 +32,7 @@ class acp_top_links
 
 		// Page init
 		$this->tpl_name = 'acp_top_links';
-		$this->page_title = 'ACP_OUTLINKS';
+		$this->page_title = 'ACP_TOP_LINKS';
 		$form_name = 'acp_top_links';
 		add_form_key($form_name);
 

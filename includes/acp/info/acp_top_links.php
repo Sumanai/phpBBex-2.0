@@ -20,7 +20,7 @@ class acp_top_links_info
 			'title'		=> 'ACP_TOP_LINKS',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'outlinks'		=> array('title' => 'ACP_TOP_LINKS', 'auth' => 'acl_a_board', 'cat' => array('ACP_BOARD_CONFIGURATION')),
+				'toplinks'		=> array('title' => 'ACP_TOP_LINKS', 'auth' => 'acl_a_board', 'cat' => array('ACP_BOARD_CONFIGURATION')),
 			),
 		);
 	}
