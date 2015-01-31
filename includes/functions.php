@@ -5165,9 +5165,6 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_mp_show_joined',
 		'style_mp_show_with_us',
 		'style_mp_show_buttons',
-
-		// counters
-		'style_counters_html',
 	);
 
 	foreach ($settings as $setting)
@@ -5175,12 +5172,20 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		$template->assign_var(strtoupper($setting), !empty($config[$setting]) ? $config[$setting] : false);
 	}
 
+	// Text configuration
+	$config_text = $phpbb_container->get('config_text');
+	$config_text = $config_text->get_array(array(
+		'toplinks',
+		'style_counters_html'
+	));
+
 	$template->assign_vars(array(
 		'STYLE_MP_ON_LEFT'				=> (($user->data['mp_on_left'] == 0) ? $config['style_mp_on_left'] : (($user->data['mp_on_left'] == 1) ? 1:0)),
+		'STYLE_COUNTERS_HTML'			=> $config_text['style_counters_html'],
 	));
 
 	// Top links
-	$toplinks = empty($config['toplinks']) ? array() : explode("\n", $config['toplinks']);
+	$toplinks = empty($config_text['toplinks']) ? array() : explode("\n", $config_text['toplinks']);
 	$template->assign_var('S_TOP_LINKS', !empty($toplinks));
 	foreach ($toplinks as $row)
 	{
@@ -5334,7 +5339,7 @@ function phpbb_generate_debug_output(\phpbb\db\driver\driver_interface $db, \php
 function page_footer($run_cron = true, $display_template = true, $exit_handler = true)
 {
 	global $db, $config, $template, $user, $auth, $cache, $starttime, $phpbb_root_path, $phpEx;
-	global $request, $phpbb_dispatcher, $phpbb_admin_path;
+	global $request, $phpbb_dispatcher, $phpbb_admin_path, $phpbb_container;
 
 	// A listener can set this variable to `true` when it overrides this function
 	$page_footer_override = false;
@@ -5358,7 +5363,8 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 
 	phpbb_check_and_display_sql_report($request, $auth, $db);
 
-	$copyright = $config['copyright_notice'];
+	$copyright = $phpbb_container->get('config_text');
+	$copyright = $copyright->get('copyright_notice');
 	$powered_by = defined('POWERED_BY_ALT') ? POWERED_BY_ALT : POWERED_BY;
 	if (strpos($copyright, '{POWERED_BY}') === false && stripos($copyright, 'phpBBex') === false)
 	{

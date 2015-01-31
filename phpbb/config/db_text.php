@@ -118,11 +118,17 @@ class db_text
 
 			if (!$this->db->sql_affectedrows($result))
 			{
-				$sql = 'INSERT INTO ' . $this->table . ' ' . $this->db->sql_build_array('INSERT', array(
+				$sql_array = array(
 					'config_name'	=> (string) $key,
 					'config_value'	=> (string) $value,
-					'is_dynamic'	=> ($use_cache) ? 0 : 1,
-				));
+				);
+
+				if ($use_cache)
+				{
+					$sql_array['is_dynamic'] = 0;
+				}
+
+				$sql = 'INSERT INTO ' . $this->table . ' ' . $this->db->sql_build_array('INSERT', $sql_array);
 				$this->db->sql_query($sql);
 			}
 		}
@@ -147,7 +153,7 @@ class db_text
 	*/
 	public function get_array(array $keys)
 	{
-		$map = array();
+		$map = $cached_config = array();
 
 		// Get cached values
 		foreach ($keys as $key => $config_name)
@@ -173,8 +179,20 @@ class db_text
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$map[$row['config_name']] = $row['config_value'];
+
+			if (!$row['is_dynamic'])
+			{
+				$cached_config[$row['config_name']] = $row['config_value'];
+			}
 		}
 		$this->db->sql_freeresult($result);
+
+		// Set cached values
+		if (!empty($cached_config))
+		{
+			$cached_config = array_merge($cached_config, $this->cache->get('config'));
+			$this->cache->put('config', $cached_config);
+		}
 
 		return $map;
 	}
