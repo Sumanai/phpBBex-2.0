@@ -127,7 +127,7 @@ $sql_data[TOPICS_TABLE]['sql'] = array(
 	'topic_last_poster_id'		=> $poster_id,
 	'topic_last_poster_name'	=> $username,
 	'topic_last_poster_colour'	=> ($user->data['user_id'] != ANONYMOUS) ? $user->data['user_colour'] : '',
-	'topic_last_post_subject'	=> utf8_normalize_nfc($merge_post_data['post_subject']),
+	'topic_last_post_subject'	=> utf8_normalize_nfc($merge_post_data['post_subject'] ? $merge_post_data['post_subject'] : $data['topic_title']),
 	'topic_last_post_time'		=> $current_time,
 	'topic_attachment'			=> (!empty($data['attachment_data']) || (isset($merge_post_data['topic_attachment']) && $merge_post_data['topic_attachment'])) ? 1 : 0,
 );

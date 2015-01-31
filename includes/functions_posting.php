@@ -1869,7 +1869,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_last_poster_id'		=> $sql_data[POSTS_TABLE]['sql']['poster_id'],
 				'topic_last_poster_name'	=> ($user->data['user_id'] == ANONYMOUS) ? $sql_data[POSTS_TABLE]['sql']['post_username'] : $user->data['username'],
 				'topic_last_poster_colour'	=> $user->data['user_colour'],
-				'topic_last_post_subject'	=> (string) $subject,
+				'topic_last_post_subject'	=> (string) (($subject) ? $subject : $data['topic_title']),
 			);
 		}
 
@@ -2089,7 +2089,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		if ($post_visibility == ITEM_APPROVED || $data['topic_visibility'] == $post_visibility)
 		{
 			// only the subject can be changed from edit
-			$sql_data[TOPICS_TABLE]['stat'][] = "topic_last_post_subject = '" . $db->sql_escape($subject) . "'";
+			$sql_data[TOPICS_TABLE]['stat'][] = "topic_last_post_subject = '" . $db->sql_escape(($subject) ? $subject : $data['topic_title']) . "'";
 
 			// Maybe not only the subject, but also changing anonymous usernames. ;)
 			if ($data['poster_id'] == ANONYMOUS)
