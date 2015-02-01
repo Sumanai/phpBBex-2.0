@@ -35,7 +35,7 @@ class contact_admin_form extends \phpbb\db\migration\migration
 
 	public function contact_admin_info()
 	{
-		$text_config = new \phpbb\config\db_text($this->db, $this->table_prefix . 'config_text');
+		$text_config = new \phpbb\config\db_text($this->db, $this->table_prefix . 'config_text', $this->config, $this->cache);
 		$text_config->set_array(array(
 			'contact_admin_info'			=> '',
 			'contact_admin_info_uid'		=> '',

@@ -42,6 +42,9 @@ class migrator
 	/** @var string */
 	protected $migrations_table;
 
+	/** @var \phpbb\cache\driver\driver_interface */
+	protected $cache;
+
 	/**
 	* State of all migrations
 	*
@@ -84,7 +87,7 @@ class migrator
 	/**
 	* Constructor of the database migrator
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $migrations_table, $phpbb_root_path, $php_ext, $table_prefix, $tools, \phpbb\db\migration\helper $helper)
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $migrations_table, $phpbb_root_path, $php_ext, $table_prefix, $tools, \phpbb\db\migration\helper $helper, \phpbb\cache\driver\driver_interface $cache)
 	{
 		$this->config = $config;
 		$this->db = $db;
@@ -97,6 +100,8 @@ class migrator
 		$this->php_ext = $php_ext;
 
 		$this->table_prefix = $table_prefix;
+
+		$this->cache = $cache;
 
 		$this->output_handler = new null_migrator_output_handler();
 
@@ -742,7 +747,7 @@ class migrator
 	*/
 	protected function get_migration($name)
 	{
-		return new $name($this->config, $this->db, $this->db_tools, $this->phpbb_root_path, $this->php_ext, $this->table_prefix);
+		return new $name($this->config, $this->db, $this->db_tools, $this->phpbb_root_path, $this->php_ext, $this->table_prefix, $this->cache);
 	}
 
 	/**
