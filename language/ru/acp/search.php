@@ -70,7 +70,7 @@ $lang = array_merge($lang, array(
 	'FULLTEXT_POSTGRES_MIN_WORD_LEN_EXPLAIN'			=> 'Слова, состоящие не менее, чем из указанного количества символов, будут включены в запрос к базе данных.',
 	'FULLTEXT_POSTGRES_MAX_WORD_LEN_EXPLAIN'			=> 'Слова, состоящие не более, чем из указанного количества символов, будут включены в запрос к базе данных.',
 
-	'FULLTEXT_SPHINX_CONFIGURE'				=> 'Задайте следующие настройки для создания файла конфигурации sphinx',
+	'FULLTEXT_SPHINX_CONFIGURE'				=> 'Задайте следующие настройки для создания файла конфигурации Sphinx',
 	'FULLTEXT_SPHINX_DATA_PATH'				=> 'Путь к папке с данными',
 	'FULLTEXT_SPHINX_DATA_PATH_EXPLAIN'		=> 'Указанный путь будет использован для хранения индексов и файлов журналов. Необходимо создать данную папку за пределами пространства, доступного из веб-пространства (путь должен заканчиваться прямым слэшем)',
 	'FULLTEXT_SPHINX_DELTA_POSTS'			=> 'Количество сообщений в часто обновляемом дельта-индексе',
@@ -81,10 +81,10 @@ $lang = array_merge($lang, array(
 	'FULLTEXT_SPHINX_MAIN_POSTS'			=> 'Количество сообщений в основном индексе',
 	'FULLTEXT_SPHINX_PORT'					=> 'Порт Sphinx',
 	'FULLTEXT_SPHINX_PORT_EXPLAIN'			=> 'Порт, по которому доступен процесс sphinx (searchd). Оставьте значение пустым для использования порта по умолчанию 9312',
-	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'Поисковый механизм sphinx для phpBB поддерживает только СУБД MySQL и PostgreSQL.',
+	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'Поисковый механизм Sphinx для phpBB поддерживает только СУБД MySQL и PostgreSQL.',
 	'FULLTEXT_SPHINX_CONFIG_FILE'			=> 'Файл конфигурации Sphinx',
-	'FULLTEXT_SPHINX_CONFIG_FILE_EXPLAIN'	=> 'Содержимое для создания файла конфигурации sphinx. Указанные данные должны быть сохранены в файле sphinx.conf, используемый поисковым процессом sphinx. Замените лексемы [dbuser] и [dbpassword] на имя и пароль для вашей базы данных.',
-	'FULLTEXT_SPHINX_NO_CONFIG_DATA'		=> 'Пути к папкам для хранения данных и конфигурации sphinx не заданы. Задайте их для того, чтобы создать файл конфигурации.',
+	'FULLTEXT_SPHINX_CONFIG_FILE_EXPLAIN'	=> 'Содержимое для создания файла конфигурации Sphinx. Указанные данные должны быть сохранены в файле sphinx.conf, используемый поисковым процессом sphinx. Замените лексемы [dbuser] и [dbpassword] на имя и пароль для вашей базы данных.',
+	'FULLTEXT_SPHINX_NO_CONFIG_DATA'		=> 'Путь к папке с данными Sphinx не задан. Задайте путь и нажмите «Отправить» для создания файла конфигурации.',
 
 	'GENERAL_SEARCH_SETTINGS'				=> 'Общие настройки поиска',
 	'GO_TO_SEARCH_INDEX'					=> 'Перейти на страницу поисковых индексов',
