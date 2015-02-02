@@ -17,6 +17,11 @@ class v140 extends \phpbb\db\migration\migration
 		return isset($this->config['phpbbex_version']) && version_compare($this->config['phpbbex_version'], '1.4.0', '>=');
 	}
 
+	static public function depends_on()
+	{
+		return array('\phpbb\db\migration\data\v30x\release_3_0_13');
+	}
+
 	public function update_schema()
 	{
 		return array(

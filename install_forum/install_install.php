@@ -1201,7 +1201,7 @@ class install_install extends module
 				->get_classes();
 
 			$sqlite_db = new \phpbb\db\driver\sqlite();
-			$schema_generator = new \phpbb\db\migration\schema_generator($classes, new \phpbb\config\config(array()), $sqlite_db, new \phpbb\db\tools($sqlite_db, true), $phpbb_root_path, $phpEx, $table_prefix);
+			$schema_generator = new \phpbb\db\migration\schema_generator($classes, new \phpbb\config\config(array()), $sqlite_db, new \phpbb\db\tools($sqlite_db, true), $phpbb_root_path, $phpEx, $table_prefix, new \phpbb\cache\driver\null);
 			$db_table_schema = $schema_generator->get_schema();
 		}
 
@@ -2087,7 +2087,7 @@ class install_install extends module
 		return array(
 			'language'		=> basename(request_var('language', '')),
 			'dbms'			=> request_var('dbms', ''),
-			'dbhost'		=> request_var('dbhost', ''),
+			'dbhost'		=> request_var('dbhost', '', true),
 			'dbport'		=> request_var('dbport', ''),
 			'dbuser'		=> request_var('dbuser', ''),
 			'dbpasswd'		=> request_var('dbpasswd', '', true),

@@ -120,7 +120,9 @@
 
 		<dl class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 			<dt class="<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF --> responsive-hide">
+				<!-- EVENT viewtopic_body_post_author_before -->
 				{postrow.POST_AUTHOR_FULL}<!-- IF STYLE_MP_SHOW_GENDER --><!-- IF postrow.S_POSTER_GENDER_M --> <img src="{T_THEME_PATH}/images/icon_gender_m.gif" title="{L_GENDER}{L_COLON} {L_GENDER_M}" alt="M" /><!-- ELSEIF postrow.S_POSTER_GENDER_F --> <img src="{T_THEME_PATH}/images/icon_gender_f.gif" title="{L_GENDER}{L_COLON} {L_GENDER_F}" alt="F" /><!-- ENDIF --><!-- ENDIF -->
+				<!-- EVENT viewtopic_body_post_author_after -->
 			</dt>
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-hide"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-hide">{postrow.RANK_IMG}</dd><!-- ENDIF -->
@@ -132,7 +134,9 @@
 				<!-- EVENT viewtopic_body_avatar_after -->
 			</dd>
 			<dd class="<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF --> responsive-show">
+				<!-- EVENT viewtopic_body_post_author_before -->
 				{postrow.POST_AUTHOR_FULL}<!-- IF STYLE_MP_SHOW_GENDER --><!-- IF postrow.S_POSTER_GENDER_M --> <img src="{T_THEME_PATH}/images/icon_gender_m.gif" title="{L_GENDER}{L_COLON} {L_GENDER_M}" alt="M" /><!-- ELSEIF postrow.S_POSTER_GENDER_F --> <img src="{T_THEME_PATH}/images/icon_gender_f.gif" title="{L_GENDER}{L_COLON} {L_GENDER_F}" alt="F" /><!-- ENDIF --><!-- ENDIF -->
+			<!-- EVENT viewtopic_body_post_author_after -->
 			</dd>
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-show"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-show">{postrow.RANK_IMG}</dd><!-- ENDIF -->
