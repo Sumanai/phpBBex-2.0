@@ -350,7 +350,7 @@ $lang = array_merge($lang, array(
 	'IN'						=> 'в разделе',
 	'INDEX'						=> 'Главная страница',
 	'INFORMATION'				=> 'Информация',
-	'INSECURE_REDIRECT'      => 'Попытка перенаправления на потенциально опасный сайт.',
+	'INSECURE_REDIRECT'			=> 'Попытка перенаправления на потенциально опасный сайт.',
 	'INTERESTS'					=> 'Интересы',
 	'INVALID_DIGEST_CHALLENGE'	=> 'Неверный запрос аутентификации.',
 	'INVALID_EMAIL_LOG'			=> 'Возможно, введён неверный адрес email: <strong>%s</strong>',
@@ -387,7 +387,7 @@ $lang = array_merge($lang, array(
 	'LOGIN_CONFIRM_EXPLAIN'				=> 'Для предотвращения подбора паролей к вашей учётной записи необходимо ввести код подтверждения после максимального количества неудачных входов в систему. Код показан на картинке ниже. Введите код в точности так, как вы его видите. Если вы не видите кода, то обратитесь к %sадминистратору%s.', // больше не используется
 	'LOGIN_ERROR_ATTEMPTS'				=> 'Вы превысили максимально допустимое количество попыток входа. Теперь, кроме имени пользователя и пароля, вы должны пройти проверку средством против спам-ботов.',
 	'LOGIN_ERROR_EXTERNAL_AUTH_APACHE'	=> 'Apache не смог вас аутентифицировать.',
-	'LOGIN_ERROR_OAUTH_SERVICE_DOES_NOT_EXIST'  => 'Был запрошен несуществующий сервис oAuth.',
+	'LOGIN_ERROR_OAUTH_SERVICE_DOES_NOT_EXIST'	=> 'Был запрошен несуществующий сервис oAuth.',
 	'LOGIN_ERROR_PASSWORD'				=> 'Вы ввели неверный пароль. Проверьте его и попробуйте ввести ещё раз. Если проблема со входом останется, то сообщите об этом %sадминистратору%s.',
 	'LOGIN_ERROR_PASSWORD_CONVERT'		=> 'При обновлении форума не удалось преобразовать ваш пароль. Вы можете %sзапросить новый пароль%s. Если вы продолжаете испытывать трудности, то свяжитесь с %sадминистратором форума%s.',
 	'LOGIN_ERROR_USERNAME'				=> 'Вы ввели неверное имя пользователя. Проверьте его и попробуйте ввести ещё раз. Если проблема со входом останется, то сообщите об этом %sадминистратору%s.',
@@ -467,8 +467,8 @@ $lang = array_merge($lang, array(
 		3	=> '<strong>Ответ</strong> от пользователей %1$s в теме, находящейся у Вас в закладках:',
 	),
 	'NOTIFICATION_FORUM'				=> '<em>Раздел:</em> %1$s',
-	'NOTIFICATION_GROUP_REQUEST'    => '<strong>Запрос</strong> от пользователя %1$s на вступление в группу %2$s.',
-	'NOTIFICATION_GROUP_REQUEST_APPROVED'  => '<strong>Одобрен запрос</strong> на вступление в группу %1$s.',
+	'NOTIFICATION_GROUP_REQUEST'		=> '<strong>Запрос</strong> от пользователя %1$s на вступление в группу %2$s.',
+	'NOTIFICATION_GROUP_REQUEST_APPROVED'	=> '<strong>Одобрен запрос</strong> на вступление в группу %1$s.',
 	'NOTIFICATION_PM'					=> '<strong>Личное сообщение</strong> от пользователя %1$s:',
 	'NOTIFICATION_POST'					=> array(
 		1	=> '<strong>Ответ</strong> от пользователя %1$s в теме:',
@@ -531,7 +531,7 @@ $lang = array_merge($lang, array(
 	'NO_POSTS_TIME_FRAME'		=> 'В теме нет сообщений за выбранный период времени.',
 	'NO_FEED_ENABLED'			=> 'Каналы новостей недоступны на этом форуме.',
 	'NO_FEED'					=> 'Запрашиваемый канал новостей недоступен.',
-	'NO_STYLE_DATA'        => 'Не удалось получить данные о стиле',
+	'NO_STYLE_DATA'				=> 'Не удалось получить данные о стиле',
 	'NO_SUBJECT'				=> 'Не указана тема',								// Used for posts having no subject defined but displayed within management pages.
 	'NO_SUCH_SEARCH_MODULE'		=> 'Указанный поисковый механизм отсутствует.',
 	'NO_SUPPORTED_AUTH_METHODS'	=> 'Метод аутентификации не поддерживается.',
@@ -902,7 +902,7 @@ $lang = array_merge($lang, array(
 	'WLM'				=> 'WLM',
 	'WRONG_PASSWORD'	=> 'Вы ввели неверный пароль.',
 
-	'WRONG_DATA_COLOUR'      => 'Введено неверное значение цвета.',
+	'WRONG_DATA_COLOUR'			=> 'Введено неверное значение цвета.',
 	'WRONG_DATA_JABBER'			=> 'Введённое имя не является правильным именем Jabber.',
 	'WRONG_DATA_LANG'			=> 'Указан неправильный язык.',
 	'WRONG_DATA_POST_SD'		=> 'Выбран неверный метод сортировки сообщений.',
@@ -1470,32 +1470,32 @@ $lang = array_merge($lang, array(
 	'UPD_MERGED'				=> 'Добавлено %s:',
 
 	// Time delta
-	'D_SECONDS'  => array(
+	'D_SECONDS'	=> array(
 		1	=> '%d секунду',
 		2	=> '%d секунды',
 		3	=> '%d секунд'
 	),
-	'D_MINUTES'  => array(
+	'D_MINUTES'	=> array(
 		1	=> '%d минуту',
 		2	=> '%d минуты',
 		3	=> '%d минут'
 	),
-	'D_HOURS'    => array(
+	'D_HOURS'	=> array(
 		1	=> '%d час',
 		2	=> '%d часа',
 		3	=> '%d часов'
 	),
-	'D_MDAY'     => array(
+	'D_MDAY'	=> array(
 		1	=> '%d день',
 		2	=> '%d дня',
 		3	=> '%d дней'
 	),
-	'D_MON'      => array(
+	'D_MON'		=> array(
 		1	=> '%d месяц',
 		2	=> '%d месяца',
 		3	=> '%d месяцев'
 	),
-	'D_YEAR'     => array(
+	'D_YEAR'	=> array(
 		1	=> '%d год',
 		2	=> '%d года',
 		3	=> '%d лет'

@@ -1444,27 +1444,27 @@ $lang = array_merge($lang, array(
 	'UPD_MERGED'				=> 'Added %s:',
 
 	// Time delta
-	'D_SECONDS'  => array(
+	'D_SECONDS'	=> array(
 		1	=> '%d second',
 		2	=> '%d seconds',
 	),
-	'D_MINUTES'  => array(
+	'D_MINUTES'	=> array(
 		1	=> '%d minute',
 		2	=> '%d minutes',
 	),
-	'D_HOURS'    => array(
+	'D_HOURS'	=> array(
 		1	=> '%d hour',
 		2	=> '%d hours',
 	),
-	'D_MDAY'     => array(
+	'D_MDAY'	=> array(
 		1	=> '%d day',
 		2	=> '%d days',
 	),
-	'D_MON'      => array(
+	'D_MON'		=> array(
 		1	=> '%d month',
 		2	=> '%d months',
 	),
-	'D_YEAR'     => array(
+	'D_YEAR'	=> array(
 		1	=> '%d year',
 		2	=> '%d years',
 	),

@@ -95,7 +95,7 @@ $lang = array_merge($lang, array(
 	'ACL_U_PM_BBCODE'	=> 'Может использовать BBCode в ЛС',
 	'ACL_U_PM_SMILIES'	=> 'Может использовать смайлики в ЛС',
 	'ACL_U_PM_IMG'		=> 'Может использовать тег [img] в ЛС',
-	'ACL_U_PM_FLASH'	=>  'Может использовать тег [flash] в ЛС',
+	'ACL_U_PM_FLASH'	=> 'Может использовать тег [flash] в ЛС',
 
 	'ACL_U_SENDEMAIL'	=> 'Может посылать email-сообщения',
 	'ACL_U_SENDIM'		=> 'Может использовать систему мгновенных сообщений',
