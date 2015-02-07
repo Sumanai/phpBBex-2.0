@@ -35,7 +35,7 @@ switch ($mode)
 	break;
 
 	case 'rules':
-		$l_title = $user->lang['FORUM_RULES'];
+		$l_title = $user->lang['BOARD_RULES'];
 		$user->add_lang('rules', false, true);
 	break;
 

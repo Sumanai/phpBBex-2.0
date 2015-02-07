@@ -66,7 +66,7 @@ $lang = array_merge($lang, array(
 	'SITE_HOME_TEXT'				=> 'Main website text',
 	'SITE_HOME_TEXT_EXPLAIN'		=> 'This text will be displayed as a link to your website homepage in the board’s breadcrumbs. If not specified, it will default to “Home”.',
 	'SITE_HOME_URL'					=> 'Main website URL',
-	'SITE_HOME_URL_EXPLAIN'			=> 'If specified, a link to this URL will be prepended to your board’s breadcrumbs and the board logo will link to this URL instead of the forum index. An absolute URL is required, e.g. <samp>http://www.phpbb.com</samp>.',
+	'SITE_HOME_URL_EXPLAIN'			=> 'If specified, a link to this URL will be prepended to your board’s breadcrumbs and the board logo will link to this URL instead of the forum index. An absolute URL is required, e.g. <samp>http://phpbbex.com</samp>.',
 	'SITE_NAME'						=> 'Site name',
 	'SITE_KEYWORDS'					=> 'Site keywords',
 	'SYSTEM_TIMEZONE'				=> 'Guest timezone',
@@ -97,7 +97,7 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
 	'STYLE_NEW_YEAR'					=> 'Winter-style headerbar',
-	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to social media cover',
+	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to an image for links in social media',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
 	'ANNOUNCE_INDEX'				=> 'Display global annoucements',
@@ -176,9 +176,9 @@ $lang = array_merge($lang, array(
 	'ALLOW_REMOTE_UPLOAD_EXPLAIN'	=> 'Allow uploading of avatars from another website.',
 	'ALLOW_UPLOAD'					=> 'Enable avatar uploading',
 	'AVATAR_GALLERY_PATH'			=> 'Avatar gallery path',
-	'AVATAR_GALLERY_PATH_EXPLAIN'	=> 'Path under your phpBB root directory for pre-loaded images, e.g. <samp>images/avatars/gallery</samp>.<br />Double dots like <samp>../</samp> will be stripped from the path for security reasons.',
+	'AVATAR_GALLERY_PATH_EXPLAIN'	=> 'Path under your phpBBex root directory for pre-loaded images, e.g. <samp>images/avatars/gallery</samp>.<br />Double dots like <samp>../</samp> will be stripped from the path for security reasons.',
 	'AVATAR_STORAGE_PATH'			=> 'Avatar storage path',
-	'AVATAR_STORAGE_PATH_EXPLAIN'	=> 'Path under your phpBB root directory, e.g. <samp>images/avatars/upload</samp>.<br />Avatar uploading <strong>will not be available</strong> if this path is not writable.<br />Double dots like <samp>../</samp> will be stripped from the path for security reasons.',
+	'AVATAR_STORAGE_PATH_EXPLAIN'	=> 'Path under your phpBBex root directory, e.g. <samp>images/avatars/upload</samp>.<br />Avatar uploading <strong>will not be available</strong> if this path is not writable.<br />Double dots like <samp>../</samp> will be stripped from the path for security reasons.',
 	'MAX_AVATAR_SIZE'				=> 'Maximum avatar dimensions',
 	'MAX_AVATAR_SIZE_EXPLAIN'		=> 'Width x Height in pixels.',
 	'MAX_FILESIZE'					=> 'Maximum avatar file size',
@@ -449,12 +449,12 @@ $lang = array_merge($lang, array(
 	'ACP_LOAD_SETTINGS_EXPLAIN'	=> 'Here you can enable and disable certain board functions to reduce the amount of processing required. On most servers there is no need to disable any functions. However on certain systems or in shared hosting environments it may be beneficial to disable capabilities you do not really need. You can also specify limits for system load and active sessions beyond which the board will go offline.',
 
 	'ALLOW_CDN'						=> 'Allow usage of third party content delivery networks',
-	'ALLOW_CDN_EXPLAIN'				=> 'If this setting is enabled, some files will be served from external third party servers instead of your server. This reduces the network bandwidth required by your server, but may present a privacy issue for some board administrators. In a default phpBB installation, this includes loading “jQuery” and the font “Open Sans” from Google’s content delivery network.',
+	'ALLOW_CDN_EXPLAIN'				=> 'If this setting is enabled, some files will be served from external third party servers instead of your server. This reduces the network bandwidth required by your server, but may present a privacy issue for some board administrators. In a default phpBBex installation, this includes loading “jQuery” and the font “Open Sans” from Google’s content delivery network.',
 	'ALLOW_LIVE_SEARCHES'			=> 'Allow live searches',
 	'ALLOW_LIVE_SEARCHES_EXPLAIN'	=> 'If this setting is enabled, users are provided with keyword suggestions as they type in certain fields throughout the board.',
 	'CUSTOM_PROFILE_FIELDS'			=> 'Custom profile fields',
 	'LIMIT_LOAD'					=> 'Limit system load',
-	'LIMIT_LOAD_EXPLAIN'			=> 'If the system’s 1-minute load average exceeds this value the board will automatically go offline. A value of 1.0 equals ~100% utilisation of one processor. This only functions on UNIX based servers and where this information is accessible. The value here resets itself to 0 if phpBB was unable to get the load limit.',
+	'LIMIT_LOAD_EXPLAIN'			=> 'If the system’s 1-minute load average exceeds this value the board will automatically go offline. A value of 1.0 equals ~100% utilisation of one processor. This only functions on UNIX based servers and where this information is accessible. The value here resets itself to 0 if phpBBex was unable to get the load limit.',
 	'LIMIT_SESSIONS'				=> 'Limit sessions',
 	'LIMIT_SESSIONS_EXPLAIN'		=> 'If the number of sessions exceeds this value within a one minute period the board will go offline. Set to 0 for unlimited sessions.',
 	'LOAD_CPF_MEMBERLIST'			=> 'Allow styles to display custom profile fields in memberlist',
@@ -488,7 +488,7 @@ $lang = array_merge($lang, array(
 
 // Auth settings
 $lang = array_merge($lang, array(
-	'ACP_AUTH_SETTINGS_EXPLAIN'	=> 'phpBB supports authentication plug-ins, or modules. These allow you determine how users are authenticated when they log into the board. By default four plug-ins are provided: DB, LDAP, Apache, and OAuth. Not all methods require additional information so only fill out fields if they are relevant to the selected method.',
+	'ACP_AUTH_SETTINGS_EXPLAIN'	=> 'phpBBex supports authentication plug-ins, or modules. These allow you determine how users are authenticated when they log into the board. By default four plug-ins are provided: DB, LDAP, Apache, and OAuth. Not all methods require additional information so only fill out fields if they are relevant to the selected method.',
 
 	'AUTH_METHOD'				=> 'Select an authentication method',
 
@@ -498,7 +498,7 @@ $lang = array_merge($lang, array(
 	'AUTH_PROVIDER_OAUTH_TITLE'					=> 'OAuth',
 	'AUTH_PROVIDER_OAUTH_SECRET'				=> 'Secret',
 
-	'APACHE_SETUP_BEFORE_USE'	=> 'You have to setup apache authentication before you switch phpBB to this authentication method. Keep in mind that the username you use for apache authentication has to be the same as your phpBB username. Apache authentication can only be used with mod_php (not with a CGI version) and safe_mode disabled.',
+	'APACHE_SETUP_BEFORE_USE'	=> 'You have to setup apache authentication before you switch phpBBex to this authentication method. Keep in mind that the username you use for apache authentication has to be the same as your phpBBex username. Apache authentication can only be used with mod_php (not with a CGI version) and safe_mode disabled.',
 
 	'LDAP'							=> 'LDAP',
 	'LDAP_DN'						=> 'LDAP base <var>dn</var>',
@@ -517,7 +517,7 @@ $lang = array_merge($lang, array(
 	'LDAP_UID'						=> 'LDAP <var>uid</var>',
 	'LDAP_UID_EXPLAIN'				=> 'This is the key under which to search for a given login identity, e.g. <var>uid</var>, <var>sn</var>, etc.',
 	'LDAP_USER'						=> 'LDAP user <var>dn</var>',
-	'LDAP_USER_EXPLAIN'				=> 'Leave blank to use anonymous binding. If filled in phpBB uses the specified distinguished name on login attempts to find the correct user, e.g. <samp>uid=Username,ou=MyUnit,o=MyCompany,c=US</samp>. Required for Active Directory Servers.',
+	'LDAP_USER_EXPLAIN'				=> 'Leave blank to use anonymous binding. If filled in phpBBex uses the specified distinguished name on login attempts to find the correct user, e.g. <samp>uid=Username,ou=MyUnit,o=MyCompany,c=US</samp>. Required for Active Directory Servers.',
 	'LDAP_USER_FILTER'				=> 'LDAP user filter',
 	'LDAP_USER_FILTER_EXPLAIN'		=> 'Optionally you can further limit the searched objects with additional filters. For example <samp>objectClass=posixGroup</samp> would result in the use of <samp>(&amp;(uid=$username)(objectClass=posixGroup))</samp>',
 ));
@@ -531,16 +531,16 @@ $lang = array_merge($lang, array(
 	'FORCE_SERVER_VARS'			=> 'Force server URL settings',
 	'FORCE_SERVER_VARS_EXPLAIN'	=> 'If set to yes the server settings defined here will be used in favour of the automatically determined values.',
 	'ICONS_PATH'				=> 'Post icons storage path',
-	'ICONS_PATH_EXPLAIN'		=> 'Path under your phpBB root directory, e.g. <samp>images/icons</samp>.',
+	'ICONS_PATH_EXPLAIN'		=> 'Path under your phpBBex root directory, e.g. <samp>images/icons</samp>.',
 	'MOD_REWRITE_ENABLE'		=> 'Enable URL Rewriting',
 	'MOD_REWRITE_ENABLE_EXPLAIN' => 'When enabled, URLs containing ’app.php’ will be rewritten to remove the filename (i.e. app.php/foo will become /foo). <strong>Apache server’s mod_rewrite module is required for this functionality to work; if this option is enabled without mod_rewrite support, URLs on your board may be broken.</strong>',
 	'MOD_REWRITE_DISABLED'		=> 'The <strong>mod_rewrite</strong> module on your Apache web server is disabled. Enable the module or contact your web hosting provider if you wish to enable this feature.',
 	'MOD_REWRITE_INFORMATION_UNAVAILABLE' => 'We are unable to determine whether or not this server supports URL rewriting. This setting may be enabled but if URL rewriting is not available, paths generated by this board (such as for use in links) may be broken. Contact your web hosting provider if you are unsure whether or not you can safely enable this feature.',
 	'PATH_SETTINGS'				=> 'Path settings',
 	'RANKS_PATH'				=> 'Rank image storage path',
-	'RANKS_PATH_EXPLAIN'		=> 'Path under your phpBB root directory, e.g. <samp>images/ranks</samp>.',
+	'RANKS_PATH_EXPLAIN'		=> 'Path under your phpBBex root directory, e.g. <samp>images/ranks</samp>.',
 	'SCRIPT_PATH'				=> 'Script path',
-	'SCRIPT_PATH_EXPLAIN'		=> 'The path where phpBB is located relative to the domain name, e.g. <samp>/phpBB3</samp>.',
+	'SCRIPT_PATH_EXPLAIN'		=> 'The path where phpBBex is located relative to the domain name, e.g. <samp>/phpBBex</samp>.',
 	'SERVER_NAME'				=> 'Domain name',
 	'SERVER_NAME_EXPLAIN'		=> 'The domain name this board runs from (for example: <samp>www.example.com</samp>).',
 	'SERVER_PORT'				=> 'Server port',
@@ -549,11 +549,11 @@ $lang = array_merge($lang, array(
 	'SERVER_PROTOCOL_EXPLAIN'	=> 'This is used as the server protocol if these settings are forced. If empty or not forced the protocol is determined by the cookie secure settings (<samp>http://</samp> or <samp>https://</samp>).',
 	'SERVER_URL_SETTINGS'		=> 'Server URL settings',
 	'SMILIES_PATH'				=> 'Smilies storage path',
-	'SMILIES_PATH_EXPLAIN'		=> 'Path under your phpBB root directory, e.g. <samp>images/smilies</samp>.',
+	'SMILIES_PATH_EXPLAIN'		=> 'Path under your phpBBex root directory, e.g. <samp>images/smilies</samp>.',
 	'UPLOAD_ICONS_PATH'			=> 'Extension group icons storage path',
-	'UPLOAD_ICONS_PATH_EXPLAIN'	=> 'Path under your phpBB root directory, e.g. <samp>images/upload_icons</samp>.',
+	'UPLOAD_ICONS_PATH_EXPLAIN'	=> 'Path under your phpBBex root directory, e.g. <samp>images/upload_icons</samp>.',
 	'USE_SYSTEM_CRON'		=> 'Run periodic tasks from system cron',
-	'USE_SYSTEM_CRON_EXPLAIN'		=> 'When off, phpBB will arrange for periodic tasks to be run automatically. When on, phpBB will not schedule any periodic tasks by itself; a system administrator must arrange for <code>bin/phpbbcli.php cron:run</code> to be run by the system cron facility at regular intervals (e.g. every 5 minutes).',
+	'USE_SYSTEM_CRON_EXPLAIN'		=> 'When off, phpBBex will arrange for periodic tasks to be run automatically. When on, phpBBex will not schedule any periodic tasks by itself; a system administrator must arrange for <code>bin/phpbbcli.php cron:run</code> to be run by the system cron facility at regular intervals (e.g. every 5 minutes).',
 ));
 
 // Security Settings
@@ -621,7 +621,7 @@ $lang = array_merge($lang, array(
 	'BOARD_HIDE_EMAILS_EXPLAIN'		=> 'This function keeps email addresses completely private.',
 	'CONTACT_EMAIL'					=> 'Contact email address',
 	'CONTACT_EMAIL_EXPLAIN'			=> 'This address will be used whenever a specific contact point is needed, e.g. spam, error output, etc. It will always be used as the <samp>From</samp> and <samp>Reply-To</samp> address in emails.',
-	'CONTACT_EMAIL_NAME'			=> 'Contact name',
+	'CONTACT_EMAIL_NAME'			=> 'Notifications sender name',
 	'CONTACT_EMAIL_NAME_EXPLAIN'	=> 'This is the contact name that e-mail recipients will see. If you don’t want to have a contact name, leave this field empty.',
 	'EMAIL_FUNCTION_NAME'			=> 'Email function name',
 	'EMAIL_FUNCTION_NAME_EXPLAIN'	=> 'The email function used to send mails through PHP.',
@@ -652,7 +652,7 @@ $lang = array_merge($lang, array(
 
 // Jabber settings
 $lang = array_merge($lang, array(
-	'ACP_JABBER_SETTINGS_EXPLAIN'	=> 'Here you can enable and control the use of Jabber for instant messaging and board notifications. Jabber is an open source protocol and therefore available for use by anyone. Some Jabber servers include gateways or transports which allow you to contact users on other networks. Not all servers offer all transports and changes in protocols can prevent transports from operating. Please be sure to enter already registered account details - phpBB will use the details you enter here as is.',
+	'ACP_JABBER_SETTINGS_EXPLAIN'	=> 'Here you can enable and control the use of Jabber for instant messaging and board notifications. Jabber is an open source protocol and therefore available for use by anyone. Some Jabber servers include gateways or transports which allow you to contact users on other networks. Not all servers offer all transports and changes in protocols can prevent transports from operating. Please be sure to enter already registered account details - phpBBex will use the details you enter here as is.',
 
 	'JAB_ENABLE'				=> 'Enable Jabber',
 	'JAB_ENABLE_EXPLAIN'		=> 'Enables use of Jabber messaging and notifications.',

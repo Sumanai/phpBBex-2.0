@@ -81,7 +81,7 @@ $lang = array_merge($lang, array(
 	'FULLTEXT_SPHINX_MAIN_POSTS'			=> 'Number of posts in main index',
 	'FULLTEXT_SPHINX_PORT'					=> 'Sphinx search daemon port',
 	'FULLTEXT_SPHINX_PORT_EXPLAIN'			=> 'Port on which the sphinx search daemon (searchd) listens. Leave empty to use the default Sphinx API port 9312',
-	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'The sphinx search for phpBB supports MySQL and PostgreSQL only.',
+	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'The sphinx search for phpBBex supports MySQL and PostgreSQL only.',
 	'FULLTEXT_SPHINX_CONFIG_FILE'			=> 'Sphinx config file',
 	'FULLTEXT_SPHINX_CONFIG_FILE_EXPLAIN'	=> 'The generated content of the sphinx config file. This data needs to be pasted into the sphinx.conf which is used by sphinx search daemon. Replace the [dbuser] and [dbpassword] placeholders with your database credentials.',
 	'FULLTEXT_SPHINX_NO_CONFIG_DATA'		=> 'The sphinx data directory path is not defined. Please define the path and submit to generate the config file.',
@@ -125,7 +125,7 @@ $lang = array_merge($lang, array(
 	'SEARCH_STORE_RESULTS'					=> 'Search result cache length',
 	'SEARCH_STORE_RESULTS_EXPLAIN'			=> 'Cached search results will expire after this time, in seconds. Set to 0 if you want to disable search cache.',
 	'SEARCH_TYPE'							=> 'Search backend',
-	'SEARCH_TYPE_EXPLAIN'					=> 'phpBB allows you to choose the backend that is used for searching text in post contents. By default the search will use phpBB’s own fulltext search.',
+	'SEARCH_TYPE_EXPLAIN'					=> 'phpBBex allows you to choose the backend that is used for searching text in post contents. By default the search will use phpBBex’s own fulltext search.',
 	'SWITCHED_SEARCH_BACKEND'				=> 'You switched the search backend. In order to use the new search backend you should make sure that there is an index for the backend you chose.',
 
 	'TOTAL_WORDS'							=> 'Total number of indexed words',

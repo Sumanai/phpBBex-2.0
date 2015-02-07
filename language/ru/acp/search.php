@@ -81,7 +81,7 @@ $lang = array_merge($lang, array(
 	'FULLTEXT_SPHINX_MAIN_POSTS'			=> 'Количество сообщений в основном индексе',
 	'FULLTEXT_SPHINX_PORT'					=> 'Порт Sphinx',
 	'FULLTEXT_SPHINX_PORT_EXPLAIN'			=> 'Порт, по которому доступен процесс sphinx (searchd). Оставьте значение пустым для использования порта по умолчанию 9312',
-	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'Поисковый механизм Sphinx для phpBB поддерживает только СУБД MySQL и PostgreSQL.',
+	'FULLTEXT_SPHINX_WRONG_DATABASE'		=> 'Поисковый механизм Sphinx для phpBBex поддерживает только СУБД MySQL и PostgreSQL.',
 	'FULLTEXT_SPHINX_CONFIG_FILE'			=> 'Файл конфигурации Sphinx',
 	'FULLTEXT_SPHINX_CONFIG_FILE_EXPLAIN'	=> 'Содержимое для создания файла конфигурации Sphinx. Указанные данные должны быть сохранены в файле sphinx.conf, используемый поисковым процессом sphinx. Замените лексемы [dbuser] и [dbpassword] на имя и пароль для вашей базы данных.',
 	'FULLTEXT_SPHINX_NO_CONFIG_DATA'		=> 'Путь к папке с данными Sphinx не задан. Задайте путь и нажмите «Отправить» для создания файла конфигурации.',
@@ -131,7 +131,7 @@ $lang = array_merge($lang, array(
 	'SEARCH_STORE_RESULTS'					=> 'Кэширование результатов поиска',
 	'SEARCH_STORE_RESULTS_EXPLAIN'			=> 'Длительность кэширования результатов поиска (в секундах). Введите 0 для отключения кэширования результатов.',
 	'SEARCH_TYPE'							=> 'Поисковый механизм',
-	'SEARCH_TYPE_EXPLAIN'					=> 'phpBB позволяет выбрать механизм для осуществления поиска в сообщениях. По умолчанию используется встроенный полнотекстовый поисковый механизм phpBB.',
+	'SEARCH_TYPE_EXPLAIN'					=> 'phpBBex позволяет выбрать механизм для осуществления поиска в сообщениях. По умолчанию используется встроенный полнотекстовый поисковый механизм phpBBex.',
 	'SWITCHED_SEARCH_BACKEND'				=> 'Вы переключились на другой поисковый механизм. Убедитесь, что имеются индексы для этого поискового механизма, и, в случае необходимости, создайте их.',
 
 	'TOTAL_WORDS'							=> 'Общее количество индексированных слов',
@@ -143,7 +143,7 @@ $lang = array_merge($lang, array(
 	'YES_SEARCH_UPDATE_EXPLAIN'				=> 'Обновление полнотекстовых индексов при отправке сообщений. Опция не работает, если поисковые возможности отключены.',
 
 	'DEFAULT_SEARCH_TITLEONLY'				=> 'По умолчанию искать только по названиям тем',
-	'DEFAULT_SEARCH_TITLEONLY_EXPLAIN'		=> 'Затрагивает глобальный поиск и поиск по конкретному форуму.',
+	'DEFAULT_SEARCH_TITLEONLY_EXPLAIN'		=> 'Затрагивает глобальный поиск и поиск по конкретному разделу.',
 
 	'SEARCH_HIGHLIGHT_KEYWORDS'				=> 'Подсвечивать найденные слова',
 	'SEARCH_HIGHLIGHT_KEYWORDS_EXPLAIN'		=> 'Создаёт ссылки на viewtopic.php с параметром hilit для найденных тем.',
