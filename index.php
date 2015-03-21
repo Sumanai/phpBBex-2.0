@@ -163,9 +163,9 @@ if ($config['load_birthdays'] && $config['allow_birthdays'] && $auth->acl_gets('
 
 // Images for display topic rows
 $template->assign_vars(array(
-	'NEWEST_POST_IMG'                      => $user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
-	'LAST_POST_IMG'                        => $user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
-	'POLL_IMG'                             => $user->img('icon_topic_poll', 'TOPIC_POLL'),
+	'NEWEST_POST_IMG'			=> $user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
+	'LAST_POST_IMG'				=> $user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
+	'POLL_IMG'					=> $user->img('icon_topic_poll', 'TOPIC_POLL'),
 	'DELETED_IMG'				=> $user->img('icon_topic_deleted', 'TOPIC_DELETED'),
 ));
 
@@ -200,13 +200,14 @@ $template->assign_vars(array(
 	'FORUM_UNREAD_LOCKED_IMG'	=> $user->img('forum_unread_locked', 'UNREAD_POSTS_LOCKED'),
 
 	'S_LOGIN_ACTION'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
-	'U_SEND_PASSWORD'           => ($config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=sendpassword') : '',
+	'U_SEND_PASSWORD'			=> ($config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=sendpassword') : '',
 	'S_DISPLAY_BIRTHDAY_LIST'	=> ($config['load_birthdays']) ? true : false,
 	'S_INDEX'					=> true,
 
 	'U_MARK_FORUMS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums&amp;mark_time=' . time()) : '',
-	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
-);
+	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '',
+	'U_CANONICAL'		=> generate_board_url() . '/',
+));
 
 $page_title = ($config['site_desc'] !== '') ? $config['site_desc'] : $user->lang['INDEX'];
 
