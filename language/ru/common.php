@@ -888,6 +888,7 @@ $lang = array_merge($lang, array(
 	'VIEW_TOPIC_POLL'			=> 'Опрос: ',
 	'VIEW_TOPIC_STICKY'			=> 'Прикреплённая: ',
 	'VISIT_WEBSITE'				=> 'Перейти на сайт',
+	'VK'						=> 'ВКонтакте',
 
 	'WARNINGS'			=> 'Предупреждения',
 	'WARN_USER'			=> 'Вынести предупреждение',

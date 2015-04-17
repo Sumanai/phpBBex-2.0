@@ -61,10 +61,25 @@ class type_text extends type_string_common
 	public function get_options($default_lang_id, $field_data)
 	{
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['FIELD_LENGTH'],		'FIELD' => '<input type="number" min="0" max="99999" name="rows" size="5" value="' . $field_data['rows'] . '" /> ' . $this->user->lang['ROWS'] . '</dd><dd><input type="number" min="0" max="99999" name="columns" size="5" value="' . $field_data['columns'] . '" /> ' . $this->user->lang['COLUMNS'] . ' <input type="hidden" name="field_length" value="' . $field_data['field_length'] . '" />'),
-			1 => array('TITLE' => $this->user->lang['MIN_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" max="9999999999" name="field_minlen" size="10" value="' . $field_data['field_minlen'] . '" />'),
-			2 => array('TITLE' => $this->user->lang['MAX_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" max="9999999999" name="field_maxlen" size="10" value="' . $field_data['field_maxlen'] . '" />'),
-			3 => array('TITLE' => $this->user->lang['FIELD_VALIDATION'],	'FIELD' => '<select name="field_validation">' . $this->validate_options($field_data) . '</select>'),
+			0 => array(
+				'ID'		=> 'field_length_rows',
+				'TITLE' => $this->user->lang['FIELD_LENGTH'],
+				'FIELD' => '<input type="number" min="0" max="99999" name="rows" id="field_length_rows" size="5" value="' . $field_data['rows'] . '" /> ' . $this->user->lang['ROWS'] . '</dd><dd><input type="number" min="0" max="99999" name="columns" size="5" value="' . $field_data['columns'] . '" /> ' . $this->user->lang['COLUMNS'] . ' <input type="hidden" name="field_length" value="' . $field_data['field_length'] . '" />',
+			),
+			1 => array(
+				'ID'		=> 'field_minlen',
+				'TITLE' => $this->user->lang['MIN_FIELD_CHARS'],
+				'FIELD' => '<input type="number" min="0" max="9999999999" name="field_minlen" id="field_minlen" size="10" value="' . $field_data['field_minlen'] . '" />',
+			),
+			2 => array(
+				'ID'		=> 'field_maxlen',
+				'TITLE' => $this->user->lang['MAX_FIELD_CHARS'],
+				'FIELD' => '<input type="number" min="0" max="9999999999" name="field_maxlen" id="field_maxlen" size="10" value="' . $field_data['field_maxlen'] . '" />',
+			),
+			3 => array(
+				'TITLE' => $this->user->lang['FIELD_VALIDATION'],
+				'FIELD' => '<select name="field_validation">' . $this->validate_options($field_data) . '</select>',
+			),
 		);
 
 		return $options;
@@ -79,7 +94,9 @@ class type_text extends type_string_common
 			'field_length'		=> '5|80',
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 1000,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '.*',
+			'field_regexp'		=> '',
 			'field_novalue'		=> '',
 			'field_default_value'	=> '',
 		);
@@ -180,7 +197,7 @@ class type_text extends type_string_common
 	*/
 	public function prepare_hidden_fields($step, $key, $action, &$field_data)
 	{
-		if ($key == 'field_length' &&  $this->request->is_set('rows'))
+		if ($key == 'field_length' && $this->request->is_set('rows'))
 		{
 			$field_data['rows'] = $this->request->variable('rows', 0);
 			$field_data['columns'] = $this->request->variable('columns', 0);

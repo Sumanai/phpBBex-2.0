@@ -40,7 +40,9 @@ class type_googleplus extends type_string
 			'field_length'			=> 20,
 			'field_minlen'			=> 3,
 			'field_maxlen'			=> 255,
+			'field_input_maxlen'	=> '',
 			'field_validation'		=> '(?:(?!\.{2,})([^<>=+]))+',
+			'field_regexp'			=> '',
 			'field_novalue'			=> '',
 			'field_default_value'	=> '',
 		);

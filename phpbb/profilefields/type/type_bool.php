@@ -82,8 +82,16 @@ class type_bool extends type_base
 		);
 
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['FIELD_TYPE'], 'EXPLAIN' => $this->user->lang['BOOL_TYPE_EXPLAIN'], 'FIELD' => '<label><input type="radio" class="radio" name="field_length" value="1"' . (($field_data['field_length'] == 1) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['RADIO_BUTTONS'] . '</label><label><input type="radio" class="radio" name="field_length" value="2"' . (($field_data['field_length'] == 2) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['CHECKBOX'] . '</label>'),
-			1 => array('TITLE' => $this->user->lang['DEFAULT_VALUE'], 'FIELD' => $this->process_field_row('preview', $profile_row)),
+			0 => array(
+				'ID'		=> 'field_length',
+				'TITLE'		=> $this->user->lang['FIELD_TYPE'],
+				'EXPLAIN'	=> $this->user->lang['BOOL_TYPE_EXPLAIN'],
+				'FIELD'		=> '<label><input type="radio" class="radio" name="field_length" id="field_length" value="1"' . (($field_data['field_length'] == 1) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['RADIO_BUTTONS'] . '</label><label><input type="radio" class="radio" name="field_length" value="2"' . (($field_data['field_length'] == 2) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['CHECKBOX'] . '</label>',
+			),
+			1 => array(
+				'TITLE'		=> $this->user->lang['DEFAULT_VALUE'],
+				'FIELD'		=> $this->process_field_row('preview', $profile_row),
+			),
 		);
 
 		return $options;
@@ -98,7 +106,9 @@ class type_bool extends type_base
 			'field_length'		=> 1,
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 0,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '',
+			'field_regexp'		=> '',
 			'field_novalue'		=> 0,
 			'field_default_value'	=> 0,
 		);

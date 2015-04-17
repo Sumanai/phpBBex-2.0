@@ -61,10 +61,38 @@ class type_string extends type_string_common
 	public function get_options($default_lang_id, $field_data)
 	{
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['FIELD_LENGTH'],		'FIELD' => '<input type="number" min="0" name="field_length" size="5" value="' . $field_data['field_length'] . '" />'),
-			1 => array('TITLE' => $this->user->lang['MIN_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" name="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />'),
-			2 => array('TITLE' => $this->user->lang['MAX_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" name="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />'),
-			3 => array('TITLE' => $this->user->lang['FIELD_VALIDATION'],	'FIELD' => '<select name="field_validation">' . $this->validate_options($field_data) . '</select>'),
+			0 => array(
+				'ID'		=> 'field_length',
+				'TITLE'		=> $this->user->lang['FIELD_LENGTH'],
+				'FIELD'		=> '<input type="number" min="0" name="field_length" id="field_length" size="5" value="' . $field_data['field_length'] . '" />',
+			),
+			1 => array(
+				'ID'		=> 'field_minlen',
+				'TITLE'		=> $this->user->lang['MIN_FIELD_CHARS'],
+				'FIELD'		=> '<input type="number" min="0" name="field_minlen" id="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />',
+			),
+			2 => array(
+				'ID'		=> 'field_maxlen',
+				'TITLE'		=> $this->user->lang['MAX_FIELD_CHARS'],
+				'FIELD'		=> '<input type="number" min="0" name="field_maxlen" id="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />',
+			),
+			3 => array(
+				'ID'		=> 'field_input_maxlen',
+				'TITLE'		=> $this->user->lang['MAX_INPUT_FIELD_CHARS'],
+				'EXPLAIN'	=> $this->user->lang['MAX_INPUT_FIELD_CHARS_EXPLAIN'],
+				'FIELD'		=> '<input type="number" min="0" name="field_input_maxlen" id="field_input_maxlen" size="5" value="' . $field_data['field_input_maxlen'] . '" />',
+			),
+			4 => array(
+				'ID'		=> 'field_validation',
+				'TITLE'		=> $this->user->lang['FIELD_VALIDATION'],
+				'FIELD'		=> '<select name="field_validation" id="field_validation">' . $this->validate_options($field_data) . '</select>',
+			),
+			5 => array(
+				'ID'		=> 'field_regexp',
+				'TITLE'		=> $this->user->lang['FIELD_REGEXP'],
+				'EXPLAIN'	=> $this->user->lang['FIELD_REGEXP_EXPLAIN'],
+				'FIELD'		=> '<input type="text" name="field_regexp" id="field_regexp" size="35" value="' . $field_data['field_regexp'] . '" />',
+			),
 		);
 
 		return $options;
@@ -79,7 +107,9 @@ class type_string extends type_string_common
 			'field_length'		=> 10,
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 20,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '.*',
+			'field_regexp'		=> '',
 			'field_novalue'		=> '',
 			'field_default_value'	=> '',
 		);
@@ -111,6 +141,7 @@ class type_string extends type_string_common
 		$field_ident = $profile_row['field_ident'];
 		$default_value = $profile_row['lang_default_value'];
 		$profile_row['field_value'] = ($this->request->is_set($field_ident)) ? $this->request->variable($field_ident, $default_value, true) : ((!isset($this->user->profile_fields[$field_ident]) || $preview_options !== false) ? $default_value : $this->user->profile_fields[$field_ident]);
+		$profile_row['field_maxlen'] = ($profile_row['field_input_maxlen']) ? $profile_row['field_input_maxlen'] : $profile_row['field_maxlen'];
 
 		$this->template->assign_block_vars($this->get_name_short(), array_change_key_case($profile_row, CASE_UPPER));
 	}

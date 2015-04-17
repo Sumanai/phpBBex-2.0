@@ -859,6 +859,7 @@ $lang = array_merge($lang, array(
 	'VIEW_TOPIC_POLL'			=> 'Poll: ',
 	'VIEW_TOPIC_STICKY'			=> 'Sticky: ',
 	'VISIT_WEBSITE'				=> 'Visit website',
+	'VK'						=> 'VK',
 
 	'WARNINGS'			=> 'Warnings',
 	'WARN_USER'			=> 'Warn user',

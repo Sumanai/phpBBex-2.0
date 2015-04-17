@@ -83,8 +83,15 @@ class type_date extends type_base
 		}
 
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['DEFAULT_VALUE'],	'FIELD' => $this->process_field_row('preview', $profile_row)),
-			1 => array('TITLE' => $this->user->lang['ALWAYS_TODAY'],	'FIELD' => '<label><input type="radio" class="radio" name="always_now" value="1"' . (($s_checked) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['YES'] . '</label><label><input type="radio" class="radio" name="always_now" value="0"' . ((!$s_checked) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['NO'] . '</label>'),
+			0 => array(
+				'TITLE' => $this->user->lang['DEFAULT_VALUE'],
+				'FIELD' => $this->process_field_row('preview', $profile_row),
+			),
+			1 => array(
+				'ID'		=> 'always_now',
+				'TITLE' => $this->user->lang['ALWAYS_TODAY'],
+				'FIELD' => '<label><input type="radio" class="radio" name="always_now" id="always_now" value="1"' . (($s_checked) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['YES'] . '</label><label><input type="radio" class="radio" name="always_now" value="0"' . ((!$s_checked) ? ' checked="checked"' : '') . ' onchange="document.getElementById(\'add_profile_field\').submit();" /> ' . $this->user->lang['NO'] . '</label>',
+			),
 		);
 
 		return $options;
@@ -99,7 +106,9 @@ class type_date extends type_base
 			'field_length'		=> 10,
 			'field_minlen'		=> 10,
 			'field_maxlen'		=> 10,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '',
+			'field_regexp'		=> '',
 			'field_novalue'		=> ' 0- 0-   0',
 			'field_default_value'	=> ' 0- 0-   0',
 		);

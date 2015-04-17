@@ -20,9 +20,9 @@ abstract class type_string_common extends type_base
 		'NUMBERS_ONLY'		=> '[0-9]+',
 		'ALPHA_ONLY'		=> '[a-zA-Z0-9]+',
 		'ALPHA_UNDERSCORE'	=> '[\w]+',
-		'ALPHA_DOTS'        => '[a-zA-Z0-9.]+',
+		'ALPHA_DOTS'		=> '[a-zA-Z0-9.]+',
 		'ALPHA_SPACERS'		=> '[\w\x20+\-\[\]]+',
-		'ALPHA_PUNCTUATION' => '[a-zA-Z][\w\.,\-]+',
+		'ALPHA_PUNCTUATION'	=> '[a-zA-Z][\w\.,\-]+',
 		'LETTER_NUM_ONLY'			=> '[\p{Lu}\p{Ll}0-9]+',
 		'LETTER_NUM_UNDERSCORE'		=> '[\p{Lu}\p{Ll}0-9_]+',
 		'LETTER_NUM_DOTS'			=> '[\p{Lu}\p{Ll}0-9.]+',
@@ -70,6 +70,11 @@ abstract class type_string_common extends type_base
 		else if (trim($field_value) === '' && $field_data['field_required'])
 		{
 			return $this->user->lang('FIELD_REQUIRED', $this->get_field_name($field_data['lang_name']));
+		}
+
+		if (!empty($field_data['field_regexp']))
+		{
+			$field_value = preg_replace('#^' . str_replace('\\\\', '\\', $field_data['field_regexp']) . '$#iu', '$1', $field_value);
 		}
 
 		if ($field_data['field_minlen'] && utf8_strlen($field_value) < $field_data['field_minlen'])

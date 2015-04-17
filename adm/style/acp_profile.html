@@ -140,7 +140,7 @@
 			<legend>{L_TITLE}</legend>
 		<!-- BEGIN option -->
 			<dl>
-				<dt><label>{option.TITLE}{L_COLON}</label><!-- IF option.EXPLAIN --><br /><span>{option.EXPLAIN}</span><!-- ENDIF --></dt>
+				<dt><label<!-- IF option.ID --> for="{option.ID}"<!-- ENDIF -->>{option.TITLE}{L_COLON}</label><!-- IF option.EXPLAIN --><br /><span>{option.EXPLAIN}</span><!-- ENDIF --></dt>
 				<dd>{option.FIELD}</dd>
 			</dl>
 		<!-- END option -->

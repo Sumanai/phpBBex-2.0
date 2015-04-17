@@ -29,9 +29,21 @@ class type_url extends type_string
 	public function get_options($default_lang_id, $field_data)
 	{
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['FIELD_LENGTH'],		'FIELD' => '<input type="number" min="0" name="field_length" size="5" value="' . $field_data['field_length'] . '" />'),
-			1 => array('TITLE' => $this->user->lang['MIN_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" name="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />'),
-			2 => array('TITLE' => $this->user->lang['MAX_FIELD_CHARS'],	'FIELD' => '<input type="number" min="0" name="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />'),
+			0 => array(
+				'ID'		=> 'field_length',
+				'TITLE' => $this->user->lang['FIELD_LENGTH'],
+				'FIELD' => '<input type="number" min="0" name="field_length" id="field_length" size="5" value="' . $field_data['field_length'] . '" />',
+			),
+			1 => array(
+				'ID'		=> 'field_minlen',
+				'TITLE' => $this->user->lang['MIN_FIELD_CHARS'],
+				'FIELD' => '<input type="number" min="0" name="field_minlen" id="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />',
+			),
+			2 => array(
+				'ID'		=> 'field_maxlen',
+				'TITLE' => $this->user->lang['MAX_FIELD_CHARS'],
+				'FIELD' => '<input type="number" min="0" name="field_maxlen" id="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />',
+			),
 		);
 
 		return $options;
@@ -46,7 +58,9 @@ class type_url extends type_string
 			'field_length'		=> 40,
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 200,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '',
+			'field_regexp'		=> '',
 			'field_novalue'		=> '',
 			'field_default_value'	=> '',
 		);

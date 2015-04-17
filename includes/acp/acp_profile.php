@@ -352,7 +352,7 @@ class acp_profile
 				// $exclude contains the data we gather in each step
 				$exclude = array(
 					1	=> array('field_ident', 'lang_name', 'lang_explain', 'field_option_none', 'field_show_on_reg', 'field_show_on_pm', 'field_show_on_vt', 'field_show_on_ml', 'field_required', 'field_show_novalue', 'field_hide', 'field_show_profile', 'field_no_view', 'field_is_contact', 'field_contact_desc', 'field_contact_url'),
-					2	=> array('field_length', 'field_maxlen', 'field_minlen', 'field_validation', 'field_novalue', 'field_default_value'),
+					2	=> array('field_length', 'field_maxlen', 'field_minlen', 'field_input_maxlen', 'field_validation', 'field_regexp', 'field_novalue', 'field_default_value'),
 					3	=> array('l_lang_name', 'l_lang_explain', 'l_lang_default_value', 'l_lang_options')
 				);
 
@@ -469,7 +469,7 @@ class acp_profile
 				}
 
 				// Check for general issues in every step
-				if ($submit) //  && $step == 1
+				if ($submit) // && $step == 1
 				{
 					// Check values for step 1
 					if ($cp->vars['field_ident'] == '')
@@ -772,7 +772,7 @@ class acp_profile
 						break;
 
 						case 'optionfield':
-							$value = ((isset($value[$lang_id])) ? ((is_array($value[$lang_id])) ?  implode("\n", $value[$lang_id]) : $value[$lang_id]) : implode("\n", $var));
+							$value = ((isset($value[$lang_id])) ? ((is_array($value[$lang_id])) ? implode("\n", $value[$lang_id]) : $value[$lang_id]) : implode("\n", $var));
 							$lang_options[$lang_id]['fields'][$field] = array(
 								'TITLE'		=> $user->lang['CP_' . strtoupper($field)],
 								'FIELD'		=> '<dd><textarea name="l_' . $field . '[' . $lang_id . ']" rows="7" cols="80">' . $value . '</textarea></dd>'
@@ -835,9 +835,11 @@ class acp_profile
 			'field_length'			=> $cp->vars['field_length'],
 			'field_minlen'			=> $cp->vars['field_minlen'],
 			'field_maxlen'			=> $cp->vars['field_maxlen'],
+			'field_input_maxlen'	=> $cp->vars['field_input_maxlen'],
 			'field_novalue'			=> $cp->vars['field_novalue'],
 			'field_default_value'	=> $cp->vars['field_default_value'],
 			'field_validation'		=> $cp->vars['field_validation'],
+			'field_regexp'			=> $cp->vars['field_regexp'],
 			'field_required'		=> $cp->vars['field_required'],
 			'field_show_novalue'	=> $cp->vars['field_show_novalue'],
 			'field_show_on_reg'		=> $cp->vars['field_show_on_reg'],

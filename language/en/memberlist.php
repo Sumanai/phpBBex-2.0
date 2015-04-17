@@ -152,5 +152,6 @@ $lang = array_merge($lang, array(
 	'VIEW_SKYPE_PROFILE'	=> 'View Skype Profile',
 	'VIEW_TWITTER_PROFILE'	=> 'View Twitter Profile',
 	'VIEW_YOUTUBE_CHANNEL'	=> 'View YouTube Channel',
+	'VIEW_VK_PROFILE'		=> 'View VK Profile',
 	'VIEW_GOOGLEPLUS_PROFILE' => 'View Google+ Profile',
 ));

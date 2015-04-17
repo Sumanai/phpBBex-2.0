@@ -61,10 +61,26 @@ class type_int extends type_base
 	public function get_options($default_lang_id, $field_data)
 	{
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['FIELD_LENGTH'],		'FIELD' => '<input type="number" min="0" max="99999" name="field_length" size="5" value="' . $field_data['field_length'] . '" />'),
-			1 => array('TITLE' => $this->user->lang['MIN_FIELD_NUMBER'],	'FIELD' => '<input type="number" min="0" max="99999" name="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />'),
-			2 => array('TITLE' => $this->user->lang['MAX_FIELD_NUMBER'],	'FIELD' => '<input type="number" min="0" max="99999" name="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />'),
-			3 => array('TITLE' => $this->user->lang['DEFAULT_VALUE'],		'FIELD' => '<input type="number" name="field_default_value" value="' . $field_data['field_default_value'] . '" />'),
+			0 => array(
+				'ID'		=> 'field_length',
+				'TITLE' => $this->user->lang['FIELD_LENGTH'],
+				'FIELD' => '<input type="number" min="0" max="99999" name="field_length" id="field_length" size="5" value="' . $field_data['field_length'] . '" />',
+			),
+			1 => array(
+				'ID'		=> 'field_minlen',
+				'TITLE' => $this->user->lang['MIN_FIELD_NUMBER'],
+				'FIELD' => '<input type="number" min="0" max="99999" name="field_minlen" id="field_minlen" size="5" value="' . $field_data['field_minlen'] . '" />',
+			),
+			2 => array(
+				'ID'		=> 'field_maxlen',
+				'TITLE' => $this->user->lang['MAX_FIELD_NUMBER'],
+				'FIELD' => '<input type="number" min="0" max="99999" name="field_maxlen" id="field_maxlen" size="5" value="' . $field_data['field_maxlen'] . '" />',
+			),
+			3 => array(
+				'ID'		=> 'field_default_value',
+				'TITLE' => $this->user->lang['DEFAULT_VALUE'],
+				'FIELD' => '<input type="number" name="field_default_value" id="field_default_value" value="' . $field_data['field_default_value'] . '" />',
+			),
 		);
 
 		return $options;
@@ -79,7 +95,9 @@ class type_int extends type_base
 			'field_length'		=> 5,
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 100,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '',
+			'field_regexp'		=> '',
 			'field_novalue'		=> 0,
 			'field_default_value'	=> 0,
 		);

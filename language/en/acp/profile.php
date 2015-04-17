@@ -108,6 +108,8 @@ $lang = array_merge($lang, array(
 	'FIELD_TYPE_EXPLAIN'		=> 'You are not able to change the field type later.',
 	'FIELD_URL'					=> 'URL (Link)',
 	'FIELD_VALIDATION'			=> 'Field validation',
+	'FIELD_REGEXP'				=> 'Regular expression',
+	'FIELD_REGEXP_EXPLAIN'		=> 'Not a required field. For pre-processing the input text. For example gives an opportunity to create a field in which can be entered a link to the profile in the social network, or profile ID. Enter the regular expression without separators, modifiers and quotes. At concurrence of the first occurrence replaces the user input.',
 	'FIRST_OPTION'				=> 'First option',
 
 	'HIDE_PROFILE_FIELD'			=> 'Hide profile field',
@@ -126,6 +128,8 @@ $lang = array_merge($lang, array(
 	'LETTER_NUM_UNDERSCORE'		=> 'Any letters, numbers and underscores',
 
 	'MAX_FIELD_CHARS'		=> 'Maximum number of characters',
+	'MAX_INPUT_FIELD_CHARS'	=> 'Maximum number of characters in the input field',
+	'MAX_INPUT_FIELD_CHARS_EXPLAIN'	=> 'Not a required field. Useful if you use a regular expression, allows you to enter are more characters in the input field that will be processed on the server.',
 	'MAX_FIELD_NUMBER'		=> 'Highest allowed number',
 	'MIN_FIELD_CHARS'		=> 'Minimum number of characters',
 	'MIN_FIELD_NUMBER'		=> 'Lowest allowed number',

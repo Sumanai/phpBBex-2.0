@@ -86,8 +86,15 @@ class type_dropdown extends type_base
 		$profile_row[1]['field_default_value']	= $field_data['field_novalue'];
 
 		$options = array(
-			0 => array('TITLE' => $this->user->lang['DEFAULT_VALUE'], 'FIELD' => $this->process_field_row('preview', $profile_row[0])),
-			1 => array('TITLE' => $this->user->lang['NO_VALUE_OPTION'], 'EXPLAIN' => $this->user->lang['NO_VALUE_OPTION_EXPLAIN'], 'FIELD' => $this->process_field_row('preview', $profile_row[1])),
+			0 => array(
+				'TITLE' => $this->user->lang['DEFAULT_VALUE'],
+				'FIELD' => $this->process_field_row('preview', $profile_row[0]),
+			),
+			1 => array(
+				'TITLE' => $this->user->lang['NO_VALUE_OPTION'],
+				'EXPLAIN' => $this->user->lang['NO_VALUE_OPTION_EXPLAIN'],
+				'FIELD' => $this->process_field_row('preview', $profile_row[1]),
+			),
 		);
 
 		return $options;
@@ -102,7 +109,9 @@ class type_dropdown extends type_base
 			'field_length'		=> 0,
 			'field_minlen'		=> 0,
 			'field_maxlen'		=> 5,
+			'field_input_maxlen'	=> '',
 			'field_validation'	=> '',
+			'field_regexp'		=> '',
 			'field_novalue'		=> 0,
 			'field_default_value'	=> 0,
 		);

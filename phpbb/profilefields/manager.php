@@ -221,6 +221,8 @@ class manager
 				// If the result is not false, it's an error message
 				$cp_error[] = $cp_result;
 			}
+
+			$cp_data['pf_' . $row['field_ident']] = $check_value;
 		}
 		$this->db->sql_freeresult($result);
 	}
