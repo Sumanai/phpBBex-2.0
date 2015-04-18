@@ -24,13 +24,6 @@ class profilefield_skype extends \phpbb\db\migration\profilefield_base_migration
 		);
 	}
 
-	public function update_data()
-	{
-		return array(
-			array('custom', array(array($this, 'create_custom_field'))),
-		);
-	}
-
 	protected $profilefield_name = 'phpbb_skype';
 
 	protected $profilefield_database_type = array('VCHAR', '');
@@ -58,4 +51,6 @@ class profilefield_skype extends \phpbb\db\migration\profilefield_base_migration
 		'field_contact_desc'	=> 'VIEW_SKYPE_PROFILE',
 		'field_contact_url'		=> 'skype:%s?userinfo',
 	);
+
+	protected $user_column_name = 'user_skype';
 }
