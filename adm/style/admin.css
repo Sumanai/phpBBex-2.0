@@ -70,10 +70,6 @@ h2, caption {
 	margin-top: 25px;
 }
 
-.rtl h2, .rtl caption {
-	text-align: right;
-}
-
 h3, h4 {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 1.20em;
@@ -93,10 +89,6 @@ ul {
 	margin: 0 0 1em 2em;
 }
 
-.rtl ul {
-	margin: 0 2em 1em 0;
-}
-
 hr {
 	border: 0 none;
 	border-top: 1px dashed #999999;
@@ -111,10 +103,6 @@ hr {
 
 .search-box {
 	float: left;
-}
-
-.rtl .search-box {
-	float: right;
 }
 
 .small {
@@ -193,11 +181,6 @@ li {
 	margin-bottom: 10px;
 }
 
-.rtl #page-header {
-	text-align: left;
-	background: url("../images/phpbb_logo.png") top right no-repeat;
-}
-
 #page-header h1 {
 	color: #767676;
 	font-family: "Trebuchet MS",Helvetica,sans-serif;
@@ -239,18 +222,8 @@ li {
 	margin: 0 0 0 -210px;
 }
 
-.rtl #main {
-	float: left;
-	margin: 0 -210px 0 0;
-}
-
 .main {
 	margin-left: 210px;
-}
-
-.rtl .main {
-	margin-left: 0;
-	margin-right: 210px;
 }
 
 #page-body.simple-page-body {
@@ -274,11 +247,6 @@ li {
 		overflow: hidden;
 	}
 
-	.rtl #page-header {
-		padding-right: 160px;
-		padding-left: 0;
-	}
-
 	#page-header h1 {
 		font-size: 1.2em;
 		white-space: nowrap;
@@ -290,7 +258,7 @@ li {
 		margin-top: 5px;
 	}
 
-	#main, .rtl #main, .main, .rtl .main {
+	#main, .main {
 		float: none;
 		width: auto;
 		margin: 0;
@@ -312,10 +280,6 @@ li {
 		background-size: 76px 26.5px;
 		padding-left: 80px;
 		min-height: 30px;
-	}
-
-	.rtl #page-header {
-		padding-right: 80px;
 	}
 
 	#page-header h1 {
@@ -347,10 +311,6 @@ li {
 	font-size: 0.85em;
 	font-weight: bold;
 	line-height: 14px;
-}
-
-.rtl #tabs .tab {
-	float: right;
 }
 
 #tabs .tab > a {
@@ -516,12 +476,6 @@ li {
 	z-index: 1;
 }
 
-.rtl #menu {
-	float: right;
-	border: none;
-	border-left: 1px solid #CCCFD3;
-}
-
 #menu p {
 	font-size: 0.85em;
 }
@@ -552,10 +506,6 @@ li {
 	color: #138ECB;
 }
 
-.rtl #menu li span {
-	padding: 3px 8px 3px 3px;
-}
-
 #menu li a:hover, #menu li a:hover span {
 	text-decoration: none;
 	background-color: #FFFFFF;
@@ -573,19 +523,11 @@ li {
 	background: transparent url("../images/arrow_right.gif") 0% 50% no-repeat;
 }
 
-.rtl #menu li#activemenu a span {
-	background: transparent url("../images/arrow_left.gif") 100% 50% no-repeat;
-}
-
 #menu li#activemenu a:hover span, #menu li#activemenu span {
 	text-decoration: none;
 	font-weight: bold;
 	color: #BC2A4D;
 	background: #FFFFFF url("../images/arrow_right.gif") 1% 50% no-repeat;
-}
-
-.rtl #menu li#activemenu a:hover span, .rtl #menu li#activemenu span {
-	background: #FFFFFF url("../images/arrow_left.gif") 99% 50% no-repeat;
 }
 
 #menu li a:active, #menu li a:active span, #menu li#activemenu a:active span {
@@ -596,12 +538,6 @@ li {
 	text-decoration: none;
 	padding: 3px 3px 3px 12px;
 	background: url("../images/arrow_down.gif") 1% 50% no-repeat;
-}
-
-.rtl #menu li span.completed {
-	text-decoration: none;
-	padding: 3px 12px 3px 3px;
-	background: url("../images/arrow_down.gif") 99% 50% no-repeat;
 }
 
 #menu .header {
@@ -621,7 +557,7 @@ li {
 
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
 {
-	#menu, .rtl #menu {
+	#menu {
 		float: none;
 		width: auto;
 		border-width: 0;
@@ -707,10 +643,6 @@ td {
 	line-height: 1.20em;
 }
 
-.rtl th, .rtl td {
-	text-align: right;
-}
-
 .table1 {
 	border-collapse: separate;
 	border-spacing: 1px;
@@ -758,10 +690,6 @@ table.type3  {
 	padding: 0;
 }
 
-.rtl table.type3 {
-	float: left;
-}
-
 table.type3 thead th {
 	background-color: transparent;
 	border-top: none;
@@ -784,10 +712,6 @@ table.type3 tbody th {
 	width: 100%;
 }
 
-.rtl table.type3 tbody th {
-	text-align: right;
-}
-
 table.type3 td {
 	text-align: center;
 	padding: 1px;
@@ -798,26 +722,14 @@ th.name {
 	width: auto;
 }
 
-.rtl th.name {
-	text-align: right;
-}
-
 td.name {
 	text-align: left;
 	font-weight: bold;
 }
 
-.rtl td.name {
-	text-align: right;
-}
-
 .entry {
 	text-align: left;
 	font-weight: normal;
-}
-
-.rtl .entry {
-	text-align: right;
 }
 
 .row1 {
@@ -963,10 +875,6 @@ table.fixed-width-table {
 		margin-bottom: 1px;
 	}
 
-	.rtl table.responsive td {
-		text-align: right !important;
-	}
-
 	table.responsive td.empty {
 		display: none !important;
 	}
@@ -985,10 +893,6 @@ table.fixed-width-table {
 		float: left;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-	}
-
-	.rtl table.responsive.two-columns td {
-		float: right;
 	}
 
 	table.responsive.two-columns td:nth-child(2n+1) {
@@ -1010,9 +914,6 @@ table.fixed-width-table {
 		width: 27px;
 		background: transparent;
 	}
-	.rtl table.responsive.forums td.folder {
-		float: right;
-	}
 
 	table.responsive.forums td.forum-desc {
 		margin-left: 35px;
@@ -1020,18 +921,9 @@ table.fixed-width-table {
 		background: transparent;
 	}
 
-	.rtl table.responsive.forums td.forum-desc {
-		margin-left: 0;
-		margin-right: 35px;
-	}
-
 	table.responsive td.actions {
 		clear: both;
 		text-align: right !important;
-	}
-
-	.rtl table.responsive td.actions {
-		text-align: left !important;
 	}
 
 	table.responsive.styles tr.responsive-style-row td:first-child {
@@ -1070,13 +962,6 @@ fieldset h2 {
 	margin-top: 0;
 }
 
-.rtl fieldset {
-	border-top: 1px solid #D7D7D7;
-	border-right: 1px solid #D7D7D7;
-	border-bottom: 1px solid #CCCCCC;
-	border-left: 1px solid #CCCCCC;
-}
-
 fieldset p {
 	font-size: 0.85em;
 }
@@ -1107,13 +992,6 @@ input, textarea {
 	border-right: 1px solid #D5D5C8;
 	border-bottom: 1px solid #D5D5C8;
 	background-color: #E3DFD8;
-}
-
-.rtl input, .rtl textarea {
-	border-left: 1px solid #D5D5C8;
-	border-top: 1px solid #AFAEAA;
-	border-right: 1px solid #AFAEAA;
-	border-bottom: 1px solid #D5D5C8;
 }
 
 input:hover, textarea:hover {
@@ -1170,10 +1048,6 @@ option.disabled-option {
 	color: graytext;
 }
 
-.rtl option {
-	padding: 0 0 0 1em;
-}
-
 .sep {
 	font-weight: bold;
 }
@@ -1195,10 +1069,6 @@ label {
 	padding: 0 5px 0 0;
 }
 
-.rtl label {
-	padding: 0 0 0 5px;
-}
-
 label input {
 	font-size: 1.00em;
 	vertical-align: middle;
@@ -1214,10 +1084,6 @@ fieldset.quick, p.quick {
 	border: none;
 	background-color: transparent;
 	text-align: right;
-}
-
-.rtl fieldset.quick, .rtl p.quick {
-	text-align: left;
 }
 
 fieldset.quick legend {
@@ -1297,14 +1163,9 @@ dt {
 	width: auto;
 }
 
-.rtl dt {
-	float: right;
-}
-
 dd { color: #666666;}
 dd + dd { padding-top: 5px;}
 dt span { padding: 0 5px 0 0;}
-.rtl dt span { padding: 0 0 0 5px;}
 
 dt .explain { font-style: italic;}
 
@@ -1315,19 +1176,11 @@ dt label {
 	color: #4A5A73;
 }
 
-.rtl dt label {
-	text-align: right;
-}
-
 dd label {
 	font-size: 1.00em;
 	white-space: nowrap;
 	margin: 0 10px 0 0;
 	color: #4A5A73;
-}
-
-.rtl dd label {
-	margin: 0 0 0 10px;
 }
 
 html>body dd label input { vertical-align: text-bottom;}	/* Tweak for Moz to align checkboxes/radio buttons nicely */
@@ -1364,12 +1217,6 @@ fieldset dt {
 	padding-top: 3px;
 }
 
-.rtl fieldset dt {
-	text-align: right;
-	border: none;
-	border-left: 1px solid #CCCCCC;
-}
-
 fieldset #color_palette_placeholder {
 	padding-top: 0;
 }
@@ -1383,14 +1230,7 @@ fieldset dd {
 	font-size: 1.00em;
 }
 
-.rtl fieldset dd {
-	margin: 0 45% 0 0;
-	padding: 0 5px 0 0;
-	border: none;
-	border-right: 1px solid #CCCCCC;
-}
-
-dd.full, .rtl dd.full {
+dd.full {
 	margin: 0;
 	border: 0;
 	padding: 0;
@@ -1432,7 +1272,7 @@ input:focus, textarea:focus {
 		margin-bottom: 0;
 	}
 
-	fieldset dt, .rtl fieldset dt, fieldset dd, .rtl fieldset dd {
+	fieldset dt, fieldset dd {
 		border-width: 0;
 		margin-left: 0;
 		margin-right: 0;
@@ -1444,12 +1284,8 @@ input:focus, textarea:focus {
 		float: left;
 	}
 
-	.ltr fieldset dd {
+	fieldset dd {
 		padding-left: 20px;
-	}
-
-	.rtl fieldset dd {
-		padding-right: 20px;
 	}
 
 	select, dd select, dd input {
@@ -1692,11 +1528,6 @@ input.button1:focus, input.button2:focus {
 	margin: 15px 0 5px 0;
 }
 
-.rtl .pagination {
-	text-align: left;
-	float: left;
-}
-
 li.pagination {
 	margin-top: 0;
 }
@@ -1765,7 +1596,7 @@ li.pagination ul {
 
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
 {
-	.pagination, .rtl .pagination {
+	.pagination {
 		float: none;
 		text-align: center;
 		margin: 5px 0;
@@ -1902,10 +1733,6 @@ li.pagination ul {
 	padding: 0;
 }
 
-.rtl .sourcenum {
-	text-align: left;
-}
-
 .source {
 	font-family: Monaco, 'Courier New', monospace;
 	font-size: 1.25em;
@@ -1945,7 +1772,7 @@ li.pagination ul {
 	float: left;
 }
 
-.ltr .column2, .rtl .column1 {
+.column2 {
 	float: right;
 }
 
@@ -1963,27 +1790,14 @@ fieldset.permissions .permissions-simple {
 	padding-top: 3px;
 }
 
-.rtl fieldset.permissions .permissions-simple {
-	text-align: right;
-}
-
 fieldset.permissions .permissions-advanced {
 	padding: 10px 0 0 5px;
 	vertical-align: top;
 	clear: right;
 }
 
-.rtl fieldset.permissions .permissions-advanced {
-	padding: 10px 5px 0 0;
-	clear: left;
-}
-
 fieldset.permissions .permissions-switch {
 	float: right;
-}
-
-.rtl fieldset.permissions .permissions-switch {
-	float: left;
 }
 
 fieldset.permissions .padding {
@@ -2014,10 +1828,6 @@ fieldset.permissions .padding {
 	font-size: 0.85em;
 }
 
-.rtl .permissions-category {
-	margin: 0 7px -1px 0;
-}
-
 .permissions-category ul {
 	margin: 0;
 	padding: 0;
@@ -2041,10 +1851,6 @@ fieldset.permissions .padding {
 	position: relative;
 }
 
-.rtl .permissions-category a {
-	float: right;
-}
-
 .permissions-category a span.tabbg {
 	float: left;
 	display: block;
@@ -2054,12 +1860,8 @@ fieldset.permissions .padding {
 	white-space: nowrap;
 }
 
-.rtl .permissions-category a span.tabbg {
-	float: right;
-}
-
 /* Commented Backslash Hack hides rule from IE5-Mac \*/
-.permissions-category a span.tabbg, .rtl .permissions-category a span.tabbg { float: none;}
+.permissions-category a span.tabbg { float: none;}
 /* End hack */
 
 .permissions-category a:hover span.tabbg {
@@ -2101,13 +1903,6 @@ fieldset.permissions .padding {
 	height: 10px;
 	margin: 0 5px 0 0;
 }
-
-/* Most browsers will have to live with a left aligned icon in RTL mode, as (currently) only Firefox 3.0 Alpha 3 renders it correctly without destroying it
-.rtl .permissions-category a span.colour {
-	float: right;
-	margin: 0 0 0 5px;
-}
-*/
 
 .permissions-category .activetab span.colour {
 	border-color: #333333;
@@ -2151,10 +1946,6 @@ fieldset.permissions .padding {
 	padding: 5px 0;
 }
 
-.rtl .permissions-panel {
-	float: right;
-}
-
 /* Permission table
 ---------------------------------------- */
 .permissions-panel .tablewrap {
@@ -2177,10 +1968,6 @@ fieldset.permissions .padding {
 	text-align: left;
 	width: auto;
 	text-transform: none;
-}
-
-.rtl .permissions-panel th.name {
-	text-align: right;
 }
 
 .permissions-panel th.permissions-name {
