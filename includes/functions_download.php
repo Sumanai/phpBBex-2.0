@@ -45,9 +45,19 @@ function wrap_img_in_html($src, $title)
 */
 function send_file_to_browser($attachment, $upload_dir, $category)
 {
-	global $user, $db, $config, $phpbb_root_path;
+	global $user, $db, $config, $phpbb_root_path, $phpEx;
 
 	$filename = $phpbb_root_path . $upload_dir . '/' . $attachment['physical_filename'];
+
+	if (!@file_exists($filename) && substr($attachment['physical_filename'],0,6) == 'thumb_')
+	{
+		$image_file = substr($attachment['physical_filename'],6);
+		include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+		if (! create_thumbnail($phpbb_root_path . $upload_dir . '/' . $image_file, $filename, '')) 
+		{ // disable thumbnail 
+			$db->sql_query('UPDATE ' . ATTACHMENTS_TABLE . ' SET thumbnail = 0 WHERE attach_id = ' . $attachment['attach_id']);
+		};
+	};
 
 	if (!@file_exists($filename))
 	{
