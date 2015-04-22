@@ -95,7 +95,6 @@ $lang = array_merge($lang, array(
 	'STYLE_MAX_WIDTH'					=> 'Maximum page width',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR'	=> 'Display site name and description in header bar',
 	'STYLE_SHOW_SITENAME_IN_HEADERBAR_EXPLAIN'	=> 'Site name will still be displayed on small screens.',
-	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
 	'STYLE_NEW_YEAR'					=> 'Winter-style headerbar',
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to an image for links in social media',
 
@@ -103,6 +102,7 @@ $lang = array_merge($lang, array(
 	'ANNOUNCE_INDEX'				=> 'Display global annoucements',
 	'ACTIVE_TOPICS_ON_INDEX'		=> 'Display active topics',
 	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'=> 'Leave empty or 0 to disable active topics on index.',
+	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'View Topic',
 	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Display social buttons',
@@ -131,11 +131,11 @@ $lang = array_merge($lang, array(
 
 // Board Features
 $lang = array_merge($lang, array(
-	'ACP_BOARD_FEATURES_EXPLAIN'	=> 'Here you can enable/disable several board features.',
+	'ACP_BOARD_FEATURES_EXPLAIN'	=> 'Here you can show/hide several features.',
 
 	'ALLOW_ATTACHMENTS'			=> 'Allow attachments',
 	'ALLOW_BIRTHDAYS'			=> 'Allow birthdays',
-	'ALLOW_BIRTHDAYS_EXPLAIN'	=> 'Allow birthdays to be entered and age being displayed in profiles. Please note the birthday list within the board index is controlled by a separate load setting.',
+	'ALLOW_BIRTHDAYS_EXPLAIN'	=> 'Allow birthdays to be entered and age being displayed in profiles.',
 	'ALLOW_BOOKMARKS'			=> 'Allow bookmarking topics',
 	'ALLOW_BOOKMARKS_EXPLAIN'	=> 'User is able to store personal bookmarks.',
 	'ALLOW_BBCODE'				=> 'Allow BBCode',
@@ -469,14 +469,13 @@ $lang = array_merge($lang, array(
 	'RECOMPILE_STYLES_EXPLAIN'		=> 'Check for updated style components on filesystem and recompile.',
 	'YES_ANON_READ_MARKING'			=> 'Enable topic marking for guests',
 	'YES_ANON_READ_MARKING_EXPLAIN'	=> 'Stores read/unread status information for guests. If disabled, posts are always marked read for guests.',
-	'YES_BIRTHDAYS'					=> 'Enable birthday listing',
-	'YES_BIRTHDAYS_EXPLAIN'			=> 'If disabled the birthday listing is no longer displayed. To let this setting take effect the birthday feature needs to be enabled too.',
+	'YES_BIRTHDAYS'					=> 'Display birthday list',
 	'YES_JUMPBOX'					=> 'Enable display of jumpbox',
 	'YES_MODERATORS'				=> 'Enable display of moderators',
 	'YES_ONLINE'					=> 'Enable online user listings',
 	'YES_ONLINE_EXPLAIN'			=> 'Display online user information on index, forum and topic pages.',
-	'YES_ONLINE_GUESTS'				=> 'Enable online guest listings in viewonline',
-	'YES_ONLINE_GUESTS_EXPLAIN'		=> 'Allow display of guest user information in viewonline.',
+	'YES_ONLINE_GUESTS'				=> 'Enable online guest listings',
+	'YES_ONLINE_BOTS'				=> 'Enable online bot listings',
 	'YES_ONLINE_TRACK'				=> 'Enable display of user online/offline information',
 	'YES_ONLINE_TRACK_EXPLAIN'		=> 'Display online information for user in profiles and topic pages.',
 	'YES_POST_MARKING'				=> 'Enable dotted topics',

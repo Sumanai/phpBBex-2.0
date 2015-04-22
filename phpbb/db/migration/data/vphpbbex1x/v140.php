@@ -90,6 +90,7 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('allow_quick_post_options', 0)),
 			array('config.add', array('allow_quick_reply_options', 20)),
 			array('config.add', array('default_search_titleonly', 0)),
+			array('config.add', array('load_online_bots', 0)),
 			array('config.add', array('login_via_email_enable', 1)),
 			array('config.add', array('max_post_imgs', 0)),
 			array('config.add', array('max_sig_imgs', 0)),

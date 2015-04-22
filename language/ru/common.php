@@ -137,6 +137,11 @@ $lang = array_merge($lang, array(
 	'BOARD_DISABLED'		=> 'Форум в настоящий момент отключен.',
 	'BOARD_RULES'			=> 'Правила форума',
 	'BOARD_UNAVAILABLE'		=> 'Форум временно недоступен. Попробуйте зайти через несколько минут.',
+	'BOTS_TOTAL'			=> array(
+		1	=> '%d бот',
+		2	=> '%d бота',
+		3	=> '%d ботов',
+	),
 	'BROWSING_FORUM'		=> 'Сейчас этот раздел просматривают: %1$s',
 	'BROWSING_FORUM_GUESTS'	=> array(
 		1	=> 'Сейчас этот раздел просматривают: %2$s и %1$d гость',
@@ -330,6 +335,7 @@ $lang = array_merge($lang, array(
 	'G_GLOBAL_MODERATORS'		=> 'Супермодераторы',
 	'G_NEWLY_REGISTERED'		=> 'Новые',
 
+	'HIDE'						=> 'Скрыть',
 	'HIDDEN_USERS_ONLINE'		=> array(
 		0	=> '%d скрытых пользователей',
 		1	=> '%d скрытый пользователь',
@@ -526,7 +532,7 @@ $lang = array_merge($lang, array(
 	'NO_MODERATORS'				=> 'Модераторы отсутствуют.',
 	'NO_NEW_MESSAGES'			=> 'Нет новых сообщений',
 	'NO_NEW_POSTS'				=> 'Нет новых сообщений', // Больше не используется
-	'NO_ONLINE_USERS'			=> 'нет зарегистрированных пользователей',
+	'NO_ONLINE_USERS'			=> 'Нет пользователей онлайн',
 	'NO_POSTS'					=> 'Нет сообщений',
 	'NO_POSTS_TIME_FRAME'		=> 'В теме нет сообщений за выбранный период времени.',
 	'NO_FEED_ENABLED'			=> 'Каналы новостей недоступны на этом форуме.',
@@ -562,6 +568,11 @@ $lang = array_merge($lang, array(
 	'OFFLINE'					=> 'Не в сети',
 	'ONLINE'					=> 'В сети',
 	'ONLINE_BUDDIES'			=> 'Друзья',
+	'ONLINE_HIDDEN_USERS'		=> array(
+		1	=> '%d скрытый',
+		2	=> '%d скрытых',
+		3	=> '%d скрытых',
+	),
 	// "... :: x registered and y hidden"
 	'ONLINE_USERS_TOTAL'		=> array(
 		1	=> 'Всего <strong>%1$d</strong> посетитель: %2$s и %3$s',
@@ -573,6 +584,12 @@ $lang = array_merge($lang, array(
 		1	=> 'Всего <strong>%1$d</strong> посетитель: %2$s, %3$s и %4$s',
 		2	=> 'Всего <strong>%1$d</strong> посетителя: %2$s, %3$s и %4$s',
 		3	=> 'Всего <strong>%1$d</strong> посетителей: %2$s, %3$s и %4$s',
+	),
+	// phpBBex users online style
+	'ONLINE_TOTAL_STR'			=> array(
+		1	=> 'Всего <strong>%1$d</strong> посетитель: ',
+		2	=> 'Всего <strong>%1$d</strong> посетителя: ',
+		3	=> 'Всего <strong>%1$d</strong> посетителей: ',
 	),
 	'OPTIONS'					=> 'Настройки',
 

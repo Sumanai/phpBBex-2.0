@@ -311,6 +311,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post_o
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply_options', '20');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_online_bots', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('merge_interval', '18');

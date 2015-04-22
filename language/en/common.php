@@ -131,6 +131,10 @@ $lang = array_merge($lang, array(
 	'BOARD_DISABLED'		=> 'This board is currently disabled.',
 	'BOARD_RULES'			=> 'Board rules',
 	'BOARD_UNAVAILABLE'		=> 'Sorry but the board is temporarily unavailable, please try again in a few minutes.',
+	'BOTS_TOTAL'			=> array(
+		1	=> '%d bot',
+		2	=> '%d bots',
+	),
 	'BROWSING_FORUM'		=> 'Users browsing this forum: %1$s',
 	'BROWSING_FORUM_GUESTS'	=> array(
 		1	=> 'Users browsing this forum: %2$s and %1$d guest',
@@ -316,6 +320,7 @@ $lang = array_merge($lang, array(
 	'G_GLOBAL_MODERATORS'		=> 'Global moderators',
 	'G_NEWLY_REGISTERED'		=> 'Newly registered users',
 
+	'HIDE'						=> 'Hide',
 	'HIDDEN_USERS_ONLINE'		=> array(
 		1	=> '%d hidden user',
 		2	=> '%d hidden users',
@@ -504,7 +509,7 @@ $lang = array_merge($lang, array(
 	'NO_MODERATORS'				=> 'There are no moderators.',
 	'NO_NEW_MESSAGES'			=> 'No new messages',
 	'NO_NEW_POSTS'				=> 'No new posts',	// Not used anymore
-	'NO_ONLINE_USERS'			=> 'No registered users',
+	'NO_ONLINE_USERS'			=> 'No online users',
 	'NO_POSTS'					=> 'No posts',
 	'NO_POSTS_TIME_FRAME'		=> 'No posts exist inside this topic for the selected time frame.',
 	'NO_FEED_ENABLED'			=> 'Feeds are not available on this board.',
@@ -538,6 +543,7 @@ $lang = array_merge($lang, array(
 	'OFFLINE'					=> 'Offline',
 	'ONLINE'					=> 'Online',
 	'ONLINE_BUDDIES'			=> 'Online friends',
+	'ONLINE_HIDDEN_USERS'		=> '%d hidden',
 	// "... :: x registered and y hidden"
 	'ONLINE_USERS_TOTAL'		=> array(
 		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s and %3$s',
@@ -547,6 +553,11 @@ $lang = array_merge($lang, array(
 	'ONLINE_USERS_TOTAL_GUESTS'	=> array(
 		1	=> 'In total there is <strong>%1$d</strong> user online :: %2$s, %3$s and %4$s',
 		2	=> 'In total there are <strong>%1$d</strong> users online :: %2$s, %3$s and %4$s',
+	),
+	// phpBBex users online style
+	'ONLINE_TOTAL_STR'			=> array(
+		1	=> 'In total there are <strong>%d</strong> user online:: ',
+		2	=> 'In total there are <strong>%d</strong> users online:: ',
 	),
 	'OPTIONS'					=> 'Options',
 
