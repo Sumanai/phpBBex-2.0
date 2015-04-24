@@ -103,11 +103,30 @@
 		{S_HIDDEN_FIELDS}
 		<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
 		<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button1 default-submit-action" />
-		{S_FORM_TOKEN}
+		<input type="hidden" name="creation_time" value="0" />
+		<input type="hidden" name="form_token" value="0" />
 	</fieldset>
 
 	</div>
 </div>
 </form>
+
+<script>
+function addListener(obj, type, listener) {
+	if (obj.addEventListener) {
+		obj.addEventListener(type, listener, false);
+		return true;
+	} else if(obj.attachEvent) {
+		obj.attachEvent('on' + type, listener);
+		return true;
+	}
+	return false;
+}
+
+addListener(document.getElementById("register"), 'submit', function() {
+	$('i'+'nput[nam'+'e=cre'+'ation_ti'+'me]').val('{RAW_CREATION_TIME}');
+	$('in'+'pu'+'t[nam'+'e=form'+'_to'+'ken]').val('{RAW_FORM_TOKEN}');
+});
+</script>
 
 <!-- INCLUDE overall_footer.html -->

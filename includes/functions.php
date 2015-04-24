@@ -2576,7 +2576,9 @@ function add_form_key($form_name)
 	extract($phpbb_dispatcher->trigger_event('core.add_form_key', compact($vars)));
 
 	$template->assign_vars(array(
-		'S_FORM_TOKEN'	=> $s_fields,
+		'S_FORM_TOKEN'		=> $s_fields,
+		'RAW_CREATION_TIME'	=> $now,
+		'RAW_FORM_TOKEN'	=> $token,
 	));
 }
 
