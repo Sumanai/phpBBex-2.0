@@ -114,39 +114,63 @@ class user extends \phpbb\session
 
 			/**
 			* If a guest user is surfing, we try to guess his/her language first by obtaining the browser language
-			* If re-enabled we need to make sure only those languages installed are checked
-			* Commented out so we do not loose the code.
+			*/
 
-			if ($request->header('Accept-Language'))
+			if (!empty($config['auto_guest_lang']) && !$lang_override && $request->header('Accept-Language'))
 			{
+				if (($lang_allowed = $cache->get("_lang_allowed")) === false)
+				{
+					$sql = 'SELECT * FROM ' . LANG_TABLE;
+					$result = $db->sql_query($sql);
+
+					$lang_allowed = array();
+					while ($row = $db->sql_fetchrow($result))
+					{
+						if (file_exists($phpbb_root_path . 'language/' . $row['lang_dir'] . "/common.$phpEx"))
+						{
+							$lang_allowed[$row['lang_iso']] = substr($row['lang_iso'], 0, 2);
+						}
+					}
+					$cache->put('_lang_allowed', $lang_allowed, 3600);
+				}
+
 				$accept_lang_ary = explode(',', $request->header('Accept-Language'));
 
 				foreach ($accept_lang_ary as $accept_lang)
 				{
-					// Set correct format ... guess full xx_YY form
-					$accept_lang = substr($accept_lang, 0, 2) . '_' . strtoupper(substr($accept_lang, 3, 2));
-					$accept_lang = basename($accept_lang);
+					$accept_lang = explode(';', $accept_lang);
+					$accept_lang = strtolower(trim($accept_lang[0]));
+					if (strlen($accept_lang) < 2) continue;
 
-					if (file_exists($this->lang_path . $accept_lang . "/common.$phpEx"))
+					// Guess full xx_yy form
+					if (strlen($accept_lang) >= 5)
 					{
-						$user_lang_name = $config['default_lang'] = $accept_lang;
-						break;
-					}
-					else
-					{
-						// No match on xx_YY so try xx
-						$accept_lang = substr($accept_lang, 0, 2);
-						$accept_lang = basename($accept_lang);
-
-						if (file_exists($this->lang_path . $accept_lang . "/common.$phpEx"))
+						$accept_lang = substr($accept_lang, 0, 2) . '_' . substr($accept_lang, 3, 2);
+						if (isset($lang_allowed[$accept_lang]))
 						{
 							$user_lang_name = $config['default_lang'] = $accept_lang;
 							break;
 						}
 					}
+
+					// No match on xx_yy so try xx
+					$accept_lang = substr($accept_lang, 0, 2);
+					if (isset($lang_allowed[$accept_lang]))
+					{
+						$user_lang_name = $config['default_lang'] = $accept_lang;
+						break;
+					}
+
+					// No match on xx so try xx_yy with another yy
+					$accept_lang = array_search($accept_lang, $lang_allowed);
+					if ($accept_lang !== false)
+					{
+						$user_lang_name = $config['default_lang'] = $accept_lang;
+						break;
+					}
 				}
+				$this->data['user_lang'] = $this->lang_name;
 			}
-			*/
 		}
 
 		$user_data = $this->data;
