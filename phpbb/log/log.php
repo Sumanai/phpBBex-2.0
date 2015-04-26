@@ -102,7 +102,7 @@ class log implements \phpbb\log\log_interface
 	* Constructor
 	*
 	* @param	\phpbb\db\driver\driver_interface	$db		Database object
-	* @param	\phpbb\config\config 		$config		Config object
+	* @param	\phpbb\config\config		$config		Config object
 	* @param	\phpbb\user		$user	User object
 	* @param	\phpbb\auth\auth		$auth	Auth object
 	* @param	\phpbb\event\dispatcher_interface	$phpbb_dispatcher	Event dispatcher
@@ -362,6 +362,10 @@ class log implements \phpbb\log\log_interface
 				$log_type = LOG_CRITICAL;
 				break;
 
+			case 'register':
+				$log_type = LOG_REGISTER;
+				break;
+
 			default:
 				$log_type = false;
 		}
@@ -375,8 +379,8 @@ class log implements \phpbb\log\log_interface
 		* @event core.delete_log
 		* @var	string	mode			Mode of the entry we log
 		* @var	string	log_type		Type ID of the log (should be different than false)
-		* @var	array	conditions		An array of conditions, 3 different  forms are accepted
-		* 								1) <key> => <value> transformed into 'AND <key> = <value>' (value should be an integer)
+		* @var	array	conditions		An array of conditions, 3 different forms are accepted
+		*								1) <key> => <value> transformed into 'AND <key> = <value>' (value should be an integer)
 		*								2) <key> => array(<operator>, <value>) transformed into 'AND <key> <operator> <value>' (values can't be an array)
 		*								3) <key> => array('IN' => array(<values>)) transformed into 'AND <key> IN <values>'
 		*								A special field, keywords, can also be defined. In this case only the log entries that have the keywords in log_operation or log_data will be deleted.
