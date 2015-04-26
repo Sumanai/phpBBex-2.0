@@ -1,7 +1,6 @@
 	</div>
 
 	<div class="copyright">{CREDIT_LINE}
-		<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
 		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
 	</div>
 
@@ -20,9 +19,15 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}" type="text/javascript"%3E%3C/script%3E'));</script><!-- ENDIF -->
-<script type="text/javascript" src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+<!--[if lt IE 9]>
+	<script src="{T_JQUERY_LINK}"></script>
+	<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('<script src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}"><\/script>')</script><!-- ENDIF -->
+<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="{T_JQUERY_V2_LINK}"></script>
+	<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('<script src="{T_ASSETS_PATH}/javascript/jquery.v2.js?assets_version={T_ASSETS_VERSION}"><\/script>')</script><!-- ENDIF -->
+<!--<![endif]-->
+
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->
 

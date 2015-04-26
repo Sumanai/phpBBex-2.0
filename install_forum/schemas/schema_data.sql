@@ -186,7 +186,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_cpf_viewprofi
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_cpf_viewtopic', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_db_lastread', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_db_track', '1');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_jquery_url', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_jquery_url', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_jquery_v2_url', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_jumpbox', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_moderators', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_notifications', '1');

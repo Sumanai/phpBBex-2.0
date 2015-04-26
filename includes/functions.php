@@ -70,18 +70,18 @@ function set_var(&$result, $var, $type, $multibyte = false)
 *
 * @deprecated
 * @param	mixed			$var_name	The form variable's name from which data shall be retrieved.
-* 										If the value is an array this may be an array of indizes which will give
-* 										direct access to a value at any depth. E.g. if the value of "var" is array(1 => "a")
-* 										then specifying array("var", 1) as the name will return "a".
-* 										If you pass an instance of {@link \phpbb\request\request_interface phpbb_request_interface}
-* 										as this parameter it will overwrite the current request class instance. If you do
-* 										not do so, it will create its own instance (but leave superglobals enabled).
+*										If the value is an array this may be an array of indizes which will give
+*										direct access to a value at any depth. E.g. if the value of "var" is array(1 => "a")
+*										then specifying array("var", 1) as the name will return "a".
+*										If you pass an instance of {@link \phpbb\request\request_interface phpbb_request_interface}
+*										as this parameter it will overwrite the current request class instance. If you do
+*										not do so, it will create its own instance (but leave superglobals enabled).
 * @param	mixed			$default	A default value that is returned if the variable was not set.
-* 										This function will always return a value of the same type as the default.
+*										This function will always return a value of the same type as the default.
 * @param	bool			$multibyte	If $default is a string this paramater has to be true if the variable may contain any UTF-8 characters
 *										Default is false, causing all bytes outside the ASCII range (0-127) to be replaced with question marks
 * @param	bool			$cookie		This param is mapped to \phpbb\request\request_interface::COOKIE as the last param for
-* 										\phpbb\request\request_interface::variable for backwards compatability reasons.
+*										\phpbb\request\request_interface::variable for backwards compatability reasons.
 * @param	\phpbb\request\request_interface|null|false	If an instance of \phpbb\request\request_interface is given the instance is stored in
 *										a static variable and used for all further calls where this parameters is null. Until
 *										the function is called with an instance it automatically creates a new \phpbb\request\request
@@ -89,7 +89,7 @@ function set_var(&$result, $var, $type, $multibyte = false)
 *										after having passed in a \phpbb\request\request_interface instance.
 *
 * @return	mixed	The value of $_REQUEST[$var_name] run through {@link set_var set_var} to ensure that the type is the
-* 					the same as that of $default. If the variable is not set $default is returned.
+*					the same as that of $default. If the variable is not set $default is returned.
 */
 function request_var($var_name, $default, $multibyte = false, $cookie = false, $request = null)
 {
@@ -135,11 +135,11 @@ function request_var($var_name, $default, $multibyte = false, $cookie = false, $
 * Please note that this function does not update the is_dynamic value for
 * an already existing config option.
 *
-* @param string $config_name   The configuration option's name
-* @param string $config_value  New configuration value
-* @param bool   $is_dynamic    Whether this variable should be cached (false) or
-*                              if it changes too frequently (true) to be
-*                              efficiently cached.
+* @param string $config_name	The configuration option's name
+* @param string $config_value	New configuration value
+* @param bool	$is_dynamic		Whether this variable should be cached (false) or
+*								if it changes too frequently (true) to be
+*								efficiently cached.
 *
 * @return null
 *
@@ -165,11 +165,11 @@ function set_config($config_name, $config_value, $is_dynamic = false, \phpbb\con
 /**
 * Increments an integer config value directly in the database.
 *
-* @param string $config_name   The configuration option's name
-* @param int    $increment     Amount to increment by
-* @param bool   $is_dynamic    Whether this variable should be cached (false) or
-*                              if it changes too frequently (true) to be
-*                              efficiently cached.
+* @param string $config_name	The configuration option's name
+* @param int	$increment		Amount to increment by
+* @param bool	$is_dynamic		Whether this variable should be cached (false) or
+*								if it changes too frequently (true) to be
+*								efficiently cached.
 *
 * @return null
 *
@@ -296,13 +296,13 @@ function get_formatted_filesize($value, $string_only = true, $allowed_units = fa
 
 	$available_units = array(
 		'tb' => array(
-			'min' 		=> 1099511627776, // pow(2, 40)
+			'min'		=> 1099511627776, // pow(2, 40)
 			'index'		=> 4,
 			'si_unit'	=> 'TB',
 			'iec_unit'	=> 'TIB',
 		),
 		'gb' => array(
-			'min' 		=> 1073741824, // pow(2, 30)
+			'min'		=> 1073741824, // pow(2, 30)
 			'index'		=> 3,
 			'si_unit'	=> 'GB',
 			'iec_unit'	=> 'GIB',
@@ -323,7 +323,7 @@ function get_formatted_filesize($value, $string_only = true, $allowed_units = fa
 			'min'		=> 0,
 			'index'		=> 0,
 			'si_unit'	=> 'BYTES', // Language index
-			'iec_unit'	=> 'BYTES',  // Language index
+			'iec_unit'	=> 'BYTES', // Language index
 		),
 	);
 
@@ -363,7 +363,7 @@ function get_formatted_filesize($value, $string_only = true, $allowed_units = fa
 		return $unit_info;
 	}
 
-	return $value  . ' ' . $unit_info['unit'];
+	return $value . ' ' . $unit_info['unit'];
 }
 
 /**
@@ -1641,7 +1641,7 @@ function get_complete_topic_tracking($forum_id, $topic_ids, $global_announce_lis
 * @param string $sql_extra		Extra WHERE SQL statement
 * @param string $sql_sort		ORDER BY SQL sorting statement
 * @param string $sql_limit		Limits the size of unread topics list, 0 for unlimited query
-* @param string $sql_limit_offset  Sets the offset of the first row to search, 0 to search from the start
+* @param string $sql_limit_offset	Sets the offset of the first row to search, 0 to search from the start
 *
 * @return array[int][int]		Topic ids as keys, mark_time of topic as value
 */
@@ -1681,7 +1681,7 @@ function get_unread_topics($user_id = false, $sql_extra = '', $sql_sort = '', $s
 			),
 
 			'WHERE'			=> "
-				 t.topic_last_post_time > $last_mark AND
+				t.topic_last_post_time > $last_mark AND
 				(
 				(tt.mark_time IS NOT NULL AND t.topic_last_post_time > tt.mark_time) OR
 				(tt.mark_time IS NULL AND ft.mark_time IS NOT NULL AND t.topic_last_post_time > ft.mark_time) OR
@@ -2508,8 +2508,8 @@ function phpbb_request_http_version()
 
 
 /**
-* Add a secret hash   for use in links/GET requests
-* @param string  $link_name The name of the link; has to match the name used in check_link_hash, otherwise no restrictions apply
+* Add a secret hash for use in links/GET requests
+* @param string $link_name The name of the link; has to match the name used in check_link_hash, otherwise no restrictions apply
 * @return string the hash
 
 */
@@ -2539,7 +2539,7 @@ function check_link_hash($token, $link_name)
 
 /**
 * Add a secret token to the form (requires the S_FORM_TOKEN template variable)
-* @param string  $form_name The name of the form; has to match the name used in check_form_key, otherwise no restrictions apply
+* @param string $form_name The name of the form; has to match the name used in check_form_key, otherwise no restrictions apply
 */
 function add_form_key($form_name)
 {
@@ -2831,7 +2831,7 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 		$username	= request_var('username', '', true);
 		$autologin	= $request->is_set_post('autologin');
 		$viewonline = (int) !$request->is_set_post('viewonline');
-		$admin 		= ($admin) ? 1 : 0;
+		$admin		= ($admin) ? 1 : 0;
 		$viewonline = ($admin) ? $user->data['session_viewonline'] : $viewonline;
 
 		// Check if the supplied username is equal to the one stored within the database if re-authenticating
@@ -2875,7 +2875,7 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 			* This event allows an extension to modify the redirection when a user successfully logs in
 			*
 			* @event core.login_box_redirect
-			* @var  string	redirect	Redirect string
+			* @var	string	redirect	Redirect string
 			* @var	boolean	admin		Is admin?
 			* @var	bool	return		If true, do not redirect but return the sanitized URL.
 			* @since 3.1.0-RC5
@@ -2941,15 +2941,15 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 		}
 
 		/**
-		 * This event allows an extension to process when a user fails a login attempt
-		 *
-		 * @event core.login_box_failed
-		 * @var array   result      Login result data
-		 * @var string  username    User name used to login
-		 * @var string  password    Password used to login
-		 * @var string  err         Error message
-		 * @since 3.1.3-RC1
-		 */
+		* This event allows an extension to process when a user fails a login attempt
+		*
+		* @event core.login_box_failed
+		* @var array	result		Login result data
+		* @var string	username	User name used to login
+		* @var string	password	Password used to login
+		* @var string	err			Error message
+		* @since 3.1.3-RC1
+		*/
 		$vars = array('result', 'username', 'password', 'err');
 		extract($phpbb_dispatcher->trigger_event('core.login_box_failed', compact($vars)));
 	}
@@ -3001,13 +3001,13 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 		'LOGIN_ERROR'		=> $err,
 		'LOGIN_EXPLAIN'		=> $l_explain,
 
-		'U_SEND_PASSWORD' 		=> ($config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=sendpassword') : '',
+		'U_SEND_PASSWORD'		=> ($config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=sendpassword') : '',
 		'U_RESEND_ACTIVATION'	=> ($config['require_activation'] == USER_ACTIVATION_SELF && $config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=resend_act') : '',
 		'U_TERMS_USE'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=terms'),
 		'U_PRIVACY'				=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=privacy'),
 
 		'S_DISPLAY_FULL_LOGIN'	=> ($s_display) ? true : false,
-		'S_HIDDEN_FIELDS' 		=> $s_hidden_fields,
+		'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
 
 		'S_ADMIN_AUTH'			=> $admin,
 		'USERNAME'				=> ($admin) ? ($config['login_via_email_enable'] == LOGIN_VIA_EMAIL_ONLY ? $user->data['user_email'] : $user->data['username']) : '',
@@ -3964,7 +3964,7 @@ function msg_handler($errno, $msg_text, $errfile, $errline)
 			echo '* { margin: 0; padding: 0; } html { font-size: 100%; height: 100%; margin-bottom: 1px; background-color: #E4EDF0; } body { font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; color: #536482; background: #E4EDF0; font-size: 62.5%; margin: 0; } ';
 			echo 'a:link, a:active, a:visited { color: #006699; text-decoration: none; } a:hover { color: #DD6900; text-decoration: underline; } ';
 			echo '#wrap { padding: 0 20px 15px 20px; min-width: 615px; } #page-header { text-align: right; height: 40px; } #page-footer { clear: both; font-size: 1em; text-align: center; } ';
-			echo '.panel { margin: 4px 0; background-color: #FFFFFF; border: solid 1px  #A9B8C2; } ';
+			echo '.panel { margin: 4px 0; background-color: #FFFFFF; border: solid 1px #A9B8C2; } ';
 			echo '#errorpage #page-header a { font-weight: bold; line-height: 6em; } #errorpage #content { padding: 10px; } #errorpage #content h1 { line-height: 1.2em; margin-bottom: 0; color: #DF075C; } ';
 			echo '#errorpage #content div { margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #CCCCCC; padding-bottom: 5px; color: #333333; font: bold 1.2em "Lucida Grande", Arial, Helvetica, sans-serif; text-decoration: none; line-height: 120%; text-align: left; } ';
 			echo "\n" . '/* ]]> */' . "\n";
@@ -4288,7 +4288,7 @@ function obtain_users_online_string($online_users, $item_id = 0, $item = 'forum'
 		$user_online_link = get_username_string('no_profile', $row['user_id'], $row['username'], $row['user_colour']);
 		$online_botlist .= ($online_botlist != '' ? ', ' : '') . $user_online_link;
 	}
-	
+
 	if ($online_botlist)
 	{
 		$online_userlist .= '<br />' . $user->lang['G_BOTS'] . ': ' . $online_botlist;
@@ -5152,8 +5152,9 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'T_RANKS_PATH'			=> "{$web_path}{$config['ranks_path']}/",
 		'T_UPLOAD_PATH'			=> "{$web_path}{$config['upload_path']}/",
 		'T_STYLESHEET_LINK'		=> "{$web_path}styles/" . rawurlencode($user->style['style_path']) . '/theme/stylesheet.css?assets_version=' . $config['assets_version'],
-		'T_STYLESHEET_LANG_LINK'    => "{$web_path}styles/" . rawurlencode($user->style['style_path']) . '/theme/' . $user->lang_name . '/stylesheet.css?assets_version=' . $config['assets_version'],
+		'T_STYLESHEET_LANG_LINK'	=> "{$web_path}styles/" . rawurlencode($user->style['style_path']) . '/theme/' . $user->lang_name . '/stylesheet.css?assets_version=' . $config['assets_version'],
 		'T_JQUERY_LINK'			=> !empty($config['allow_cdn']) && !empty($config['load_jquery_url']) ? $config['load_jquery_url'] : "{$web_path}assets/javascript/jquery.min.js?assets_version=" . $config['assets_version'],
+		'T_JQUERY_V2_LINK'		=> !empty($config['allow_cdn']) && !empty($config['load_jquery_v2_url']) ? $config['load_jquery_v2_url'] : "{$web_path}assets/javascript/jquery.v2.js?assets_version=" . $config['assets_version'],
 		'S_ALLOW_CDN'			=> !empty($config['allow_cdn']),
 
 		'T_THEME_NAME'			=> rawurlencode($user->style['style_path']),

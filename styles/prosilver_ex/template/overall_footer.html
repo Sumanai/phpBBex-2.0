@@ -35,8 +35,15 @@
 
 </div>
 
-<script src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write(unescape('%3Cscript src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}"%3E%3C/script%3E'));</script><!-- ENDIF -->
+<!--[if lt IE 9]>
+	<script src="{T_JQUERY_LINK}"></script>
+	<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('<script src="{T_ASSETS_PATH}/javascript/jquery.min.js?assets_version={T_ASSETS_VERSION}"><\/script>')</script><!-- ENDIF -->
+<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="{T_JQUERY_V2_LINK}"></script>
+	<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('<script src="{T_ASSETS_PATH}/javascript/jquery.v2.js?assets_version={T_ASSETS_VERSION}"><\/script>')</script><!-- ENDIF -->
+<!--<![endif]-->
+
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->

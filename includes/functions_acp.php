@@ -171,6 +171,7 @@ function adm_page_footer($copyright_html = true)
 		'TRANSLATION_INFO'	=> (!empty($user->lang['TRANSLATION_INFO'])) ? $user->lang['TRANSLATION_INFO'] : '',
 		'CREDIT_LINE'		=> $copyright_html ? $user->lang('POWERED_BY', POWERED_BY) : '',
 		'T_JQUERY_LINK'		=> !empty($config['allow_cdn']) && !empty($config['load_jquery_url']) ? $config['load_jquery_url'] : "{$phpbb_root_path}assets/javascript/jquery.min.js",
+		'T_JQUERY_V2_LINK'	=> !empty($config['allow_cdn']) && !empty($config['load_jquery_v2_url']) ? $config['load_jquery_v2_url'] : "{$phpbb_root_path}assets/javascript/jquery.v2.js",
 		'S_ALLOW_CDN'		=> !empty($config['allow_cdn']),
 		'VERSION'			=> $config['version'])
 	);
@@ -263,7 +264,7 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 			$size = (int) $tpl_type[1];
 			$maxlength = (int) $tpl_type[2];
 
-			$tpl = '<input id="' . $key . '" type="' . $tpl_type[0] . '"' . (($size) ? ' size="' . $size . '"' : '') . ' maxlength="' . (($maxlength) ? $maxlength : 255) . '" name="' . $name . '" value="' . $new[$config_key] . '"' . (($tpl_type[0] === 'password') ?  ' autocomplete="off"' : '') . ' />';
+			$tpl = '<input id="' . $key . '" type="' . $tpl_type[0] . '"' . (($size) ? ' size="' . $size . '"' : '') . ' maxlength="' . (($maxlength) ? $maxlength : 255) . '" name="' . $name . '" value="' . $new[$config_key] . '"' . (($tpl_type[0] === 'password') ? ' autocomplete="off"' : '') . ' />';
 		break;
 
 		case 'number':
@@ -403,7 +404,7 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 }
 
 /**
-* Going through a config array and validate values, writing errors to $error. The validation method  accepts parameters separated by ':' for string and int.
+* Going through a config array and validate values, writing errors to $error. The validation method accepts parameters separated by ':' for string and int.
 * The first parameter defines the type to be used, the second the lower bound and the third the upper bound. Only the type is required.
 */
 function validate_config_vars($config_vars, &$cfg_array, &$error)
@@ -641,17 +642,17 @@ function validate_range($value_ary, &$error)
 	global $user;
 
 	$column_types = array(
-		'BOOL'	=> array('php_type' => 'int', 		'min' => 0, 				'max' => 1),
-		'USINT'	=> array('php_type' => 'int',		'min' => 0, 				'max' => 65535),
-		'UINT'	=> array('php_type' => 'int', 		'min' => 0, 				'max' => (int) 0x7fffffff),
+		'BOOL'	=> array('php_type' => 'int',		'min' => 0,					'max' => 1),
+		'USINT'	=> array('php_type' => 'int',		'min' => 0,					'max' => 65535),
+		'UINT'	=> array('php_type' => 'int',		'min' => 0,					'max' => (int) 0x7fffffff),
 		// Do not use (int) 0x80000000 - it evaluates to different
 		// values on 32-bit and 64-bit systems.
 		// Apparently -2147483648 is a float on 32-bit systems,
 		// despite fitting in an int, thus explicit cast is needed.
-		'INT'	=> array('php_type' => 'int', 		'min' => (int) -2147483648,	'max' => (int) 0x7fffffff),
+		'INT'	=> array('php_type' => 'int',		'min' => (int) -2147483648,	'max' => (int) 0x7fffffff),
 		'TINT'	=> array('php_type' => 'int',		'min' => -128,				'max' => 127),
 
-		'VCHAR'	=> array('php_type' => 'string', 	'min' => 0, 				'max' => 255),
+		'VCHAR'	=> array('php_type' => 'string',	'min' => 0,					'max' => 255),
 	);
 	foreach ($value_ary as $value)
 	{
@@ -700,9 +701,9 @@ function validate_range($value_ary, &$error)
 * @param array $display_vars An array of existing config display vars
 * @param array $add_config_vars An array of new config display vars
 * @param array $where Where to place the new config vars,
-*              before or after an exisiting config, as an array
-*              of the form: array('after' => 'config_name') or
-*              array('before' => 'config_name').
+*				before or after an exisiting config, as an array
+*				of the form: array('after' => 'config_name') or
+*				array('before' => 'config_name').
 * @return array The array of config display vars
 */
 function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
