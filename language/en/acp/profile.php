@@ -154,6 +154,8 @@ $lang = array_merge($lang, array(
 	'ROWS'						=> 'Rows',
 
 	'SAVE'							=> 'Save',
+	'SEARCH_ON_MEMBERLIST'			=> 'Allow search by field',
+	'SEARCH_ON_MEMBERLIST_EXPLAIN'	=> 'If this option is enabled, this field will be to search for users.',
 	'SECOND_OPTION'					=> 'Second option',
 	'SHOW_NOVALUE_FIELD'			=> 'Show field if no value was selected',
 	'SHOW_NOVALUE_FIELD_EXPLAIN'	=> 'Determines if the profile field should be displayed if no value was selected for optional fields or if no value has been selected yet for required fields.',

@@ -174,14 +174,14 @@ switch ($mode)
 		);
 
 		/**
-		 * Modify the query used to get the users for the team page
-		 *
-		 * @event core.memberlist_team_modify_query
-		 * @var array	sql_ary			Array containing the query
-		 * @var array	group_ids		Array of group ids
-		 * @var array	teampage_data	The teampage data
-		 * @since 3.1.3-RC1
-		 */
+		* Modify the query used to get the users for the team page
+		*
+		* @event core.memberlist_team_modify_query
+		* @var array	sql_ary			Array containing the query
+		* @var array	group_ids		Array of group ids
+		* @var array	teampage_data	The teampage data
+		* @since 3.1.3-RC1
+		*/
 		$vars = array(
 			'sql_ary',
 			'group_ids',
@@ -265,7 +265,7 @@ switch ($mode)
 			if (!$team_data['group_id'])
 			{
 				$template->assign_block_vars('group', array(
-					'GROUP_NAME'  => $team_data['teampage_name'],
+					'GROUP_NAME'	=> $team_data['teampage_name'],
 				));
 
 				$parent_team = (int) $team_data['teampage_id'];
@@ -323,14 +323,14 @@ switch ($mode)
 						);
 
 						/**
-						 * Modify the template vars for displaying the user in the groups on the teampage
-						 *
-						 * @event core.memberlist_team_modify_template_vars
-						 * @var array	template_vars		Array containing the query
-						 * @var array	row					Array containing the action user row
-						 * @var array	groups_ary			Array of groups with all users that should be displayed
-						 * @since 3.1.3-RC1
-						 */
+						* Modify the template vars for displaying the user in the groups on the teampage
+						*
+						* @event core.memberlist_team_modify_template_vars
+						* @var array	template_vars		Array containing the query
+						* @var array	row					Array containing the action user row
+						* @var array	groups_ary			Array of groups with all users that should be displayed
+						* @since 3.1.3-RC1
+						*/
 						$vars = array(
 							'template_vars',
 							'row',
@@ -610,7 +610,7 @@ switch ($mode)
 			$member['user_sig'] = generate_text_for_display($member['user_sig'], $member['user_sig_bbcode_uid'], $member['user_sig_bbcode_bitfield'], $parse_flags, true);
 		}
 
-		// We need to check if the modules 'zebra' ('friends' & 'foes' mode),  'notes' ('user_notes' mode) and  'warn' ('warn_user' mode) are accessible to decide if we can display appropriate links
+		// We need to check if the modules 'zebra' ('friends' & 'foes' mode), 'notes' ('user_notes' mode) and 'warn' ('warn_user' mode) are accessible to decide if we can display appropriate links
 		$zebra_enabled = $friends_enabled = $foes_enabled = $user_notes_enabled = $warn_user_enabled = false;
 
 		// Only check if the user is logged in
@@ -653,7 +653,7 @@ switch ($mode)
 		* @var	bool	zebra_enabled			Is the ucp zebra module enabled?
 		* @var	bool	friends_enabled			Is the ucp friends module enabled?
 		* @var	bool	foes_enabled			Is the ucp foes module enabled?
-		* @var	bool    friend					Is the user friend?
+		* @var	bool	friend					Is the user friend?
 		* @var	bool	foe						Is the user foe?
 		* @var	array	profile_fields			Array with user's profile field data
 		* @since 3.1.0-a1
@@ -907,10 +907,9 @@ switch ($mode)
 		// then only admins can make use of this (for ACP functionality)
 		$sql_select = $sql_where_data = $sql_from = $sql_where = $order_by = '';
 
-
 		$form			= request_var('form', '');
 		$field			= request_var('field', '');
-		$select_single 	= request_var('select_single', false);
+		$select_single	= request_var('select_single', false);
 
 		// Search URL parameters, if any of these are in the URL we do a search
 		$search_params = array('username', 'email', 'jabber', 'search_group_id', 'joined_select', 'active_select', 'count_select', 'joined', 'active', 'count', 'ip');
@@ -1151,6 +1150,64 @@ switch ($mode)
 			$sql_where_data = " AND u.user_id = ug.user_id AND ug.group_id = $group_id";
 		}
 
+		// Sorting options for user search on additional profile field
+		$cp = $phpbb_container->get('profilefields.manager');
+
+		$cp_row = $cp->grab_profile_fields_raw_data('field_search_on_ml');
+		$sql_where_apf = '';
+		$params = $sort_params = $custom_fields_template = array();
+
+		foreach ($cp_row as $field_name => $field_data)
+		{
+			$custom_fields_template[] = array(
+				'FIELD_ID'		=> $field_name,
+				'LANG_NAME'		=> $field_data['lang_name'],
+			);
+
+			// We do not use request_var() here directly to save some calls (not all variables are set)
+			if (!isset($_REQUEST[$field_name]))
+			{
+				continue;
+			}
+
+			$search_field = utf8_normalize_nfc(request_var($field_name, $field_data['field_default_value'], true));
+
+			if ($field_data['field_default_value'] !== $search_field)
+			{
+				$params[] = urlencode($field_name) . '=' . ((is_string($search_field)) ? urlencode($search_field) : $search_field);
+
+				end($custom_fields_template);
+				$custom_fields_template[key($custom_fields_template)]['VALUE'] = $search_field;
+
+				$sql_where_apf .= ' AND pf.pf_' . $field_name . ' ' . $db->sql_like_expression(str_replace('*', $db->get_any_char(), $search_field));
+			}
+		}
+
+		if (!empty($sql_where_apf))
+		{
+			$sql_from = ', ' . PROFILE_FIELDS_DATA_TABLE . ' pf ';
+			$sql_where .= $sql_where_apf . ' AND u.user_id = pf.user_id';
+		}
+
+		if (!empty($custom_fields_template))
+		{
+			$template->assign_var('S_SEARCH_CUSTOM_FIELDS', true);
+
+			// The distribution of fields in two columns
+			foreach ($custom_fields_template as $column => $custom_field)
+			{
+				if ($column % 2 ==0)
+				{
+					$template->assign_block_vars('search_custom_fields_1', $custom_field);
+				}
+				else
+				{
+					$template->assign_block_vars('search_custom_fields_2', $custom_field);
+				}
+			}
+		}
+		isset($sql_where_apf, $custom_fields_template, $cp_row);
+
 		// Sorting and order
 		if (!isset($sort_key_sql[$sort_key]))
 		{
@@ -1180,9 +1237,6 @@ switch ($mode)
 		{
 			$total_users = $config['num_users'];
 		}
-
-		// Build a relevant pagination_url
-		$params = $sort_params = array();
 
 		// We do not use request_var() here directly to save some calls (not all variables are set)
 		$check_params = array(
@@ -1215,16 +1269,20 @@ switch ($mode)
 			}
 
 			$param = call_user_func_array('request_var', $call);
-			$param = urlencode($key) . '=' . ((is_string($param)) ? urlencode($param) : $param);
-			$params[] = $param;
 
-			if ($key != 'first_char')
+			if ($param !== $call[1])
 			{
-				$u_first_char_params[] = $param;
-			}
-			if ($key != 'sk' && $key != 'sd')
-			{
-				$sort_params[] = $param;
+				$param = urlencode($key) . '=' . ((is_string($param)) ? urlencode($param) : $param);
+				$params[] = $param;
+
+				if ($key != 'first_char')
+				{
+					$u_first_char_params[] = $param;
+				}
+				if ($key != 'sk' && $key != 'sd')
+				{
+					$sort_params[] = $param;
+				}
 			}
 		}
 
@@ -1366,8 +1424,6 @@ switch ($mode)
 		// Load custom profile fields
 		if ($config['load_cpf_memberlist'])
 		{
-			$cp = $phpbb_container->get('profilefields.manager');
-
 			$cp_row = $cp->generate_profile_fields_template_headlines('field_show_on_ml');
 			foreach ($cp_row as $profile_field)
 			{
@@ -1445,7 +1501,7 @@ switch ($mode)
 			if ($sort_key == 'l')
 			{
 //				uasort($id_cache, create_function('$first, $second', "return (\$first['last_visit'] == \$second['last_visit']) ? 0 : ((\$first['last_visit'] < \$second['last_visit']) ? $lesser_than : ($lesser_than * -1));"));
-				usort($user_list,  'phpbb_sort_last_active');
+				usort($user_list, 'phpbb_sort_last_active');
 			}
 
 			for ($i = 0, $end = sizeof($user_list); $i < $end; ++$i)

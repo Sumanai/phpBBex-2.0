@@ -291,7 +291,7 @@ class manager
 	* Grab the user specific profile fields data
 	*
 	* @param	int|array	$user_ids	Single user id or an array of ids
-	* @return array		Users profile fields data
+	* @return	array		Users profile fields data
 	*/
 	public function grab_profile_fields_data($user_ids = 0)
 	{
@@ -480,5 +480,37 @@ class manager
 		$this->db->sql_freeresult($result);
 
 		return $cp_data;
+	}
+
+	/**
+	* Generate the raw data setting custom profile fields
+	*
+	* @param string	$restrict_option	Restrict the published fields to a certain profile field option
+	* @return array	with raw data
+	*/
+	public function grab_profile_fields_raw_data($restrict_option = '')
+	{
+		if (!sizeof($this->profile_cache))
+		{
+			$this->build_cache();
+		}
+
+		$raw_fields = array();
+
+		// Go through the fields in correct order
+		foreach ($this->profile_cache as $field_ident => $field_data)
+		{
+			if ($restrict_option && !$field_data[$restrict_option])
+			{
+				continue;
+			}
+
+			$profile_field = $this->type_collection[$field_data['field_type']];
+
+			$raw_fields[$field_ident] = $field_data;
+			$raw_fields[$field_ident]['lang_name'] = $profile_field->get_field_name($field_data['lang_name']);
+		}
+
+		return $raw_fields;
 	}
 }

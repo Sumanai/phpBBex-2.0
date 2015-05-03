@@ -26,6 +26,7 @@ class v200 extends \phpbb\db\migration\migration
 			'\phpbb\db\migration\data\vphpbbex20\cached_config_text',
 			'\phpbb\db\migration\data\vphpbbex20\update_profile_field',
 			'\phpbb\db\migration\data\vphpbbex20\profilefield_vk',
+			'\phpbb\db\migration\data\vphpbbex20\search_profilefield_on_ml',
 		);
 	}
 

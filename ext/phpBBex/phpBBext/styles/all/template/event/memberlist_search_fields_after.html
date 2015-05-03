@@ -1,0 +1,24 @@
+<!-- IF S_SEARCH_CUSTOM_FIELDS -->
+</fieldset>
+<hr />
+	<!-- IF .search_custom_fields_1 -->
+		<fieldset class="fields1 column1">
+		<!-- BEGIN search_custom_fields_1 -->
+			<dl>
+				<dt><label for="{search_custom_fields_1.FIELD_ID}">{search_custom_fields_1.LANG_NAME}{L_COLON}</label></dt>
+				<dd><input type="text" name="{search_custom_fields_1.FIELD_ID}" id="{search_custom_fields_1.FIELD_ID}" value="{search_custom_fields_1.VALUE}" class="inputbox" /></dd>
+			</dl>
+		<!-- END search_custom_fields_1 -->
+		<!-- IF .search_custom_fields_2 --></fieldset><!-- ENDIF -->
+	<!-- ENDIF -->
+
+	<!-- IF .search_custom_fields_2 -->
+		<fieldset class="fields1 column2">
+		<!-- BEGIN search_custom_fields_2 -->
+			<dl>
+				<dt><label for="{search_custom_fields_2.FIELD_ID}">{search_custom_fields_2.LANG_NAME}{L_COLON}</label></dt>
+				<dd><input type="text" name="{search_custom_fields_2.FIELD_ID}" id="{search_custom_fields_2.FIELD_ID}" value="{search_custom_fields_2.VALUE}" class="inputbox" /></dd>
+			</dl>
+		<!-- END search_custom_fields_2 -->
+	<!-- ENDIF -->
+<!-- ENDIF -->
