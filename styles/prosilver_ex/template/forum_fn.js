@@ -305,6 +305,7 @@ function parseDocument($container) {
 	}
 
 	/**
+
 	* Makes breadcrumbs responsive
 	*/
 	$container.find('.breadcrumbs:not([data-skip-responsive])').each(function() {
@@ -326,7 +327,13 @@ function parseDocument($container) {
 		// Function that checks breadcrumbs
 		function check() {
 			var height = $this.height(),
-				width = $body.width();
+				width;
+
+			// Test max-width set in code for .navlinks above
+			width = parseInt($this.css('max-width'));
+			if (!width) {
+ 				width = $body.width();
+			}
 
 			maxHeight = parseInt($this.css('line-height'));
 			$links.each(function() {

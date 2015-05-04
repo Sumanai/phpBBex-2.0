@@ -2,7 +2,7 @@
 <html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- IF SITE_KEYWORDS --><meta name="keywords" content="{SITE_KEYWORDS}" /><!-- ENDIF -->
 <!-- IF SITE_DESCRIPTION --><meta name="description" content="{SITE_DESCRIPTION}" /><!-- ENDIF -->
 {META}
@@ -75,7 +75,7 @@
 	</div>
 	<!-- ENDIF -->
 	<div id="page-header" <!-- IF not S_TOP_LINKS --> style="padding-top:10px;"<!-- ENDIF -->>
-		<div class="headerbar">
+		<div class="headerbar" role="banner">
 			<div class="inner">
 
 			<div id="site-description">
@@ -84,8 +84,9 @@
 				<!-- IF STYLE_SHOW_SITENAME_IN_HEADERBAR and SITE_DESCRIPTION --><p>{SITE_DESCRIPTION}</p><!-- ENDIF -->
 			</div>
 
+			<!-- EVENT overall_header_searchbox_before -->
 			<!-- IF not S_TOP_LINKS and S_DISPLAY_SEARCH and not S_IN_SEARCH -->
-			<div id="search-box" class="search-box search-header">
+			<div id="search-box" class="search-box search-header" role="search">
 				<form action="{U_SEARCH}" method="get" id="search">
 				<fieldset>
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search tiny" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
@@ -99,13 +100,13 @@
 
 			</div>
 		</div>
-
+		<!-- EVENT overall_header_navbar_before -->
 		<!-- INCLUDE navbar_header.html -->
 	</div>
 
 	<!-- EVENT overall_header_page_body_before -->
 
-	<div id="page-body"<!-- IF STYLE_MP_ON_LEFT --> class="mp-on-left"<!-- ENDIF -->>
+	<div id="page-body" role="main"<!-- IF STYLE_MP_ON_LEFT --> class="mp-on-left"<!-- ENDIF -->>
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">
 			<div class="inner">

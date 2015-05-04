@@ -36,6 +36,7 @@
 	<!-- INCLUDE posting_buttons.html -->
 
 	<div id="smiley-box">
+		<!-- EVENT posting_editor_smilies_before -->	
 		<!-- IF S_SMILIES_ALLOWED and .smiley -->
 			<!-- BEGIN smiley -->
 				<img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" onclick="insert_text('{smiley.A_SMILEY_CODE}', true);" />
@@ -44,7 +45,7 @@
 		<!-- IF S_SHOW_SMILEY_LINK and S_SMILIES_ALLOWED -->
 			<a href="{U_MORE_SMILIES}" onclick="popup(this.href, 750, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a>
 		<!-- ENDIF -->
-
+		<!-- EVENT posting_editor_smilies_after -->
 		<!-- IF S_SMILIES_ALLOWED and .smiley --><hr /><!-- ENDIF -->
 
 		<!-- EVENT posting_editor_options_prepend -->
@@ -78,6 +79,7 @@
 		<!-- IF S_LOCK_POST_ALLOWED -->
 			<label for="lock_post"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /> {L_LOCK_POST_EXPLAIN}</label>
 		<!-- ENDIF -->
+		<!-- EVENT posting_editor_bbcode_status_after -->
 	</div>
 
 	<!-- EVENT posting_editor_message_before -->
