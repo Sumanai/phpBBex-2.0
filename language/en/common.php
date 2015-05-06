@@ -1446,6 +1446,12 @@ $lang = array_merge($lang, array(
 	'GENDER_M'					=> 'Male',
 	'GENDER_F'					=> 'Female',
 
+	// Memberlist filters
+	'MEMBERLIST_ALL_USERS'		=> 'All users',
+	'MEMBERLIST_ACTIVE_USERS'	=> 'Active',
+	'MEMBERLIST_INACTIVE_USERS'	=> 'Inactive',
+	'SEARCH_USERS'				=> 'Search users',
+
 	// Login via E-Mail
 	'USERNAME_OR_EMAIL'					=> 'Username or E-Mail',
 	'LOGIN_ERROR_USERNAME_OR_EMAIL'		=> 'You have specified an incorrect username or e-mail address. Please check your entry and try again. If you continue to have problems please contact the %sBoard Administrator%s.',

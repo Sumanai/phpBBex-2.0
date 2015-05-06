@@ -51,7 +51,7 @@ if ($mode == 'leaders')
 }
 
 // Check our mode...
-if (!in_array($mode, array('', 'group', 'viewprofile', 'email', 'contact', 'contactadmin', 'searchuser', 'team', 'livesearch')))
+if (!in_array($mode, array('', 'group', 'viewprofile', 'email', 'contact', 'contactadmin', 'searchuser', 'team', 'livesearch', 'active', 'inactive')))
 {
 	trigger_error('NO_MODE');
 }
@@ -858,7 +858,7 @@ switch ($mode)
 	case 'group':
 	default:
 		// The basic memberlist
-		$page_title = $user->lang['MEMBERLIST'];
+		$page_title = $user->lang['MEMBERLIST_ALL_USERS'];
 		$template_html = 'memberlist_body.html';
 		$pagination = $phpbb_container->get('pagination');
 
@@ -917,7 +917,7 @@ switch ($mode)
 		// We validate form and field here, only id/class allowed
 		$form = (!preg_match('/^[a-z0-9_-]+$/i', $form)) ? '' : $form;
 		$field = (!preg_match('/^[a-z0-9_-]+$/i', $field)) ? '' : $field;
-		if ((($mode == '' || $mode == 'searchuser') || sizeof(array_intersect($request->variable_names(\phpbb\request\request_interface::GET), $search_params)) > 0) && ($config['load_search'] || $auth->acl_get('a_')))
+		if ((($mode == '' || $mode == 'searchuser' || $mode == 'active' || $mode == 'inactive') || sizeof(array_intersect($request->variable_names(\phpbb\request\request_interface::GET), $search_params)) > 0) && ($config['load_search'] || $auth->acl_get('a_')))
 		{
 			$username	= request_var('username', '', true);
 			$email		= strtolower(request_var('email', ''));
@@ -1049,6 +1049,20 @@ switch ($mode)
 			}
 		}
 
+		// Memberlist filters
+		switch( $mode )
+		{
+			case 'active':
+				$page_title = $user->lang['MEMBERLIST_ACTIVE_USERS'];
+				$sql_where .= " AND u.user_lastvisit > " . (time()-3600*24*((empty($config['active_users_days']) ? 90 : intval($config['active_users_days'])))) . " ";
+			break;
+
+			case 'inactive':
+				$page_title = $user->lang['MEMBERLIST_INACTIVE_USERS'];
+				$sql_where .= " AND u.user_lastvisit <= " . (time()-3600*24*((empty($config['active_users_days']) ? 90 : intval($config['active_users_days'])))) . " ";
+			break;
+		}
+
 		$first_char = request_var('first_char', '');
 
 		if ($first_char == 'other')
@@ -1155,7 +1169,7 @@ switch ($mode)
 
 		$cp_row = $cp->grab_profile_fields_raw_data('field_search_on_ml');
 		$sql_where_apf = '';
-		$params = $sort_params = $custom_fields_template = array();
+		$params = $sort_params = $custom_fields_template = $u_first_char_params = array();
 
 		foreach ($cp_row as $field_name => $field_data)
 		{
@@ -1174,7 +1188,14 @@ switch ($mode)
 
 			if ($field_data['field_default_value'] !== $search_field)
 			{
-				$params[] = urlencode($field_name) . '=' . ((is_string($search_field)) ? urlencode($search_field) : $search_field);
+				if ($key != 'sk' && $key != 'sd')
+				{
+					$sort_params[] = $params[] = urlencode($field_name) . '=' . ((is_string($search_field)) ? urlencode($search_field) : $search_field);
+				}
+				else
+				{
+					$params[] = urlencode($field_name) . '=' . ((is_string($search_field)) ? urlencode($search_field) : $search_field);
+				}
 
 				end($custom_fields_template);
 				$custom_fields_template[key($custom_fields_template)]['VALUE'] = $search_field;
@@ -1245,7 +1266,7 @@ switch ($mode)
 			'sd'			=> array('sd', 'a'),
 			'form'			=> array('form', ''),
 			'field'			=> array('field', ''),
-			'select_single'	=> array('select_single', $select_single),
+			'select_single'	=> array('select_single', false),
 			'username'		=> array('username', '', true),
 			'email'			=> array('email', ''),
 			'jabber'		=> array('jabber', ''),
@@ -1260,7 +1281,6 @@ switch ($mode)
 			'first_char'	=> array('first_char', ''),
 		);
 
-		$u_first_char_params = array();
 		foreach ($check_params as $key => $call)
 		{
 			if (!isset($_REQUEST[$key]))
@@ -1286,14 +1306,14 @@ switch ($mode)
 			}
 		}
 
-		$u_hide_find_member = append_sid("{$phpbb_root_path}memberlist.$phpEx", "start=$start" . (!empty($params) ? '&amp;' . implode('&amp;', $params) : ''));
+		$hide_find_member = (($start) ? "&amp;start=$start" : '') . (!empty($params) ? '&amp;' . implode('&amp;', $params) : '');
 
 		if ($mode)
 		{
 			$params[] = "mode=$mode";
 			$u_first_char_params[] = "mode=$mode";
+			$sort_params[] = "mode=$mode";
 		}
-		$sort_params[] = "mode=$mode";
 
 		$pagination_url = append_sid("{$phpbb_root_path}memberlist.$phpEx", implode('&amp;', $params));
 		$sort_url = append_sid("{$phpbb_root_path}memberlist.$phpEx", implode('&amp;', $sort_params));
@@ -1322,7 +1342,7 @@ switch ($mode)
 		}
 
 		// Some search user specific data
-		if (($mode == '' || $mode == 'searchuser') && ($config['load_search'] || $auth->acl_get('a_')))
+		if (($mode == '' || $mode == 'searchuser' || $mode == 'active' || $mode == 'inactive') && ($config['load_search'] || $auth->acl_get('a_')))
 		{
 			$group_selected = request_var('search_group_id', 0);
 			$s_group_select = '<option value="0"' . ((!$group_selected) ? ' selected="selected"' : '') . '>&nbsp;</option>';
@@ -1390,7 +1410,7 @@ switch ($mode)
 				'S_EMAIL_SEARCH_ALLOWED'=> ($auth->acl_get('a_user')) ? true : false,
 				'S_JABBER_ENABLED'		=> $config['jab_enable'],
 				'S_IN_SEARCH_POPUP'		=> ($form && $field) ? true : false,
-				'S_SEARCH_USER'			=> ($mode == 'searchuser' || ($mode == '' && $submit)),
+				'S_SEARCH_USER'			=> ($mode == 'searchuser' || (($mode == '' || $mode == 'active' || $mode == 'inactive') && $submit)),
 				'S_FORM_NAME'			=> $form,
 				'S_FIELD_NAME'			=> $field,
 				'S_SELECT_SINGLE'		=> $select_single,
@@ -1557,8 +1577,11 @@ switch ($mode)
 			'JABBER_IMG'	=> $user->img('icon_contact_jabber', $user->lang['JABBER']),
 			'SEARCH_IMG'	=> $user->img('icon_user_search', $user->lang['SEARCH']),
 
-			'U_FIND_MEMBER'			=> ($config['load_search'] || $auth->acl_get('a_')) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser' . (($start) ? "&amp;start=$start" : '') . (!empty($params) ? '&amp;' . implode('&amp;', $params) : '')) : '',
-			'U_HIDE_FIND_MEMBER'	=> ($mode == 'searchuser' || ($mode == '' && $submit)) ? $u_hide_find_member : '',
+			'U_FIND_MEMBER'			=> ($config['load_search'] || $auth->acl_get('a_')) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser' . $hide_find_member) : '',
+			'U_HIDE_FIND_MEMBER'	=> ($mode == 'searchuser' || (($mode == '' || $mode == 'active' || $mode == 'inactive') && $submit)) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", $hide_find_member) : '',
+			'U_ALL_USERS'			=> append_sid("{$phpbb_root_path}memberlist.$phpEx"),
+			'U_ACTIVE_USERS'		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=active'),
+			'U_INACTIVE_USERS'		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=inactive'),
 			'U_LIVE_SEARCH'			=> ($config['allow_live_searches']) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=livesearch') : false,
 			'U_SORT_USERNAME'		=> $sort_url . '&amp;sk=a&amp;sd=' . (($sort_key == 'a' && $sort_dir == 'a') ? 'd' : 'a'),
 			'U_SORT_JOINED'			=> $sort_url . '&amp;sk=c&amp;sd=' . (($sort_key == 'c' && $sort_dir == 'a') ? 'd' : 'a'),

@@ -19,15 +19,15 @@
 		<h2>{PAGE_TITLE}<!-- IF SEARCH_WORDS -->{L_COLON} <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
 
 		<div class="action-bar top">
+			<!-- IF not S_IN_SEARCH_POPUP -->
 			<div class="member-search panel">
 				<!-- IF U_FIND_MEMBER and not S_SEARCH_USER --><a href="{U_FIND_MEMBER}" id="member_search" data-alt-text="{LA_HIDE_MEMBER_SEARCH}">{L_FIND_USERNAME}</a> &bull; <!-- ELSEIF S_SEARCH_USER and U_HIDE_FIND_MEMBER and not S_IN_SEARCH_POPUP --><a href="{U_HIDE_FIND_MEMBER}" id="member_search" data-alt-text="{LA_FIND_USERNAME}">{L_HIDE_MEMBER_SEARCH}</a> &bull; <!-- ENDIF -->
-				<strong>
-				<!-- BEGIN first_char -->
-					<a href="{first_char.U_SORT}">{first_char.DESC}</a>&nbsp;
-				<!-- END first_char -->
-				</strong>
+				<a href="{U_ALL_USERS}">{L_ALL}</a> &bull;
+				<a href="{U_ACTIVE_USERS}">{L_MEMBERLIST_ACTIVE_USERS}</a> &bull;
+				<a href="{U_INACTIVE_USERS}">{L_MEMBERLIST_INACTIVE_USERS}</a>
 			</div>
-		
+			<!-- ENDIF -->
+
 			<div class="pagination">
 				{TOTAL_USERS}
 				<!-- IF .pagination --> 

@@ -1478,6 +1478,12 @@ $lang = array_merge($lang, array(
 	'GENDER_M'					=> 'Мужской',
 	'GENDER_F'					=> 'Женский',
 
+	// Memberlist filters
+	'MEMBERLIST_ALL_USERS'		=> 'Все пользователи',
+	'MEMBERLIST_ACTIVE_USERS'	=> 'Активные',
+	'MEMBERLIST_INACTIVE_USERS'	=> 'Неактивные',
+	'SEARCH_USERS'				=> 'Поиск пользователей',
+
 	// Login via E-Mail
 	'USERNAME_OR_EMAIL'					=> 'Имя или e-mail',
 	'LOGIN_ERROR_USERNAME_OR_EMAIL'		=> 'Вы ввели неверное имя пользователя или e-mail. Проверьте введённые данные и попробуйте ещё раз. Если проблема со входом останется, то сообщите об этом %sадминистратору%s.',
