@@ -70,16 +70,16 @@ class acp_board
 						'override_user_dateformat'	=> array('lang' => 'OVERRIDE_DATEFORMAT',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'board_timezone'		=> array('lang' => 'SYSTEM_TIMEZONE',		'validate' => 'timezone',	'type' => 'custom', 'method' => 'timezone_select', 'explain' => true),
 						'override_user_timezone'	=> array('lang' => 'OVERRIDE_TIMEZONE',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
-
-						'legend2'				=> 'BOARD_STYLE',
 						'default_style'			=> array('lang' => 'DEFAULT_STYLE',			'validate' => 'int',	'type' => 'select', 'function' => 'style_select', 'params' => array('{CONFIG_VALUE}', false), 'explain' => true),
 						'guest_style'			=> array('lang' => 'GUEST_STYLE',			'validate' => 'int',	'type' => 'select', 'function' => 'style_select', 'params' => array($this->guest_style_get(), false), 'explain' => true),
 						'override_user_style'	=> array('lang' => 'OVERRIDE_STYLE',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'active_topics_days'	=> array('lang' => 'ACTIVE_TOPICS_DAYS',	'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', true), 'explain' => true),
+						'active_users_days'		=> array('lang' => 'ACTIVE_USERS_DAYS',		'validate' => 'int',	'type' => 'select', 'method' => 'select_days', 'params' => array('{CONFIG_VALUE}', '{KEY}', false), 'explain' => true),
 
-						'legend3'				=> 'WARNINGS',
+						'legend2'				=> 'WARNINGS',
 						'warnings_expire_days'	=> array('lang' => 'WARNINGS_EXPIRE',		'validate' => 'int:0:9999',	'type' => 'number:0:9999', 'explain' => true, 'append' => ' ' . $user->lang['DAYS']),
 
-						'legend4'					=> 'ACP_SUBMIT_CHANGES',
+						'legend3'					=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;

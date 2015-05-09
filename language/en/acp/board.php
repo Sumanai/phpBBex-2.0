@@ -39,6 +39,10 @@ if (empty($lang) || !is_array($lang))
 // Board Settings
 $lang = array_merge($lang, array(
 	'ACP_BOARD_SETTINGS_EXPLAIN'	=> 'Here you can determine the basic operation of your board, give it a fitting name and description, and among other settings adjust the default values for timezone and language.',
+	'ACTIVE_TOPICS_DAYS'			=> 'Topic is active for',
+	'ACTIVE_TOPICS_DAYS_EXPLAIN'	=> 'Default activity period for "Active topics" page. Set this value to 0 to display all topics.',
+	'ACTIVE_USERS_DAYS'				=> 'User is active for',
+	'ACTIVE_USERS_DAYS_EXPLAIN'		=> 'The user is considered active for entered number of days.',
 	'BOARD_INDEX_TEXT'				=> 'Board index text',
 	'BOARD_INDEX_TEXT_EXPLAIN'		=> 'This text is displayed as the board index in the board’s breadcrumbs. If not specified, it will default to “Board index”.',
 	'BOARD_STYLE'					=> 'Board style',

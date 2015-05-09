@@ -84,6 +84,8 @@ class v140 extends \phpbb\db\migration\migration
 		return array(
 			// New phpBBex options
 			array('config.add', array('active_topics_on_index', 5)),
+			array('config.add', array('active_topics_days', 30)),
+			array('config.add', array('active_users_days', 90)),
 			array('config.add', array('announce_index', 1)),
 			array('config.add', array('allow_quick_full_quote', 0)),
 			array('config.add', array('allow_quick_post', 0)),

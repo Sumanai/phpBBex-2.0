@@ -306,6 +306,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_vt_show_post
 
 # New phpBBex options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('active_topics_on_index', '5');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('active_topics_days', '30');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('active_users_days', '90');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_full_quote', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post_options', '0');
