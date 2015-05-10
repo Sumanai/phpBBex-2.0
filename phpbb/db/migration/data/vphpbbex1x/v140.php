@@ -106,6 +106,12 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('social_media_cover_url', '')),
 
 			// Style options
+			array('config.add', array('style_ml_show_row_numbers', 1)),
+			array('config.add', array('style_ml_show_gender', 1)),
+			array('config.add', array('style_ml_show_rank', 1)),
+			array('config.add', array('style_ml_show_posts', 1)),
+			array('config.add', array('style_ml_show_joined', 1)),
+			array('config.add', array('style_ml_show_last_active', 1)),
 			array('config.add', array('style_mp_on_left', 0)),
 			array('config.add', array('style_mp_show_topic_poster', 1)),
 			array('config.add', array('style_mp_show_gender', 1)),

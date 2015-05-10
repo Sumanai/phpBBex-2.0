@@ -5252,6 +5252,14 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_mp_show_joined',
 		'style_mp_show_with_us',
 		'style_mp_show_buttons',
+
+		// memberlist
+		'style_ml_show_row_numbers',
+		'style_ml_show_gender',
+		'style_ml_show_rank',
+		'style_ml_show_posts',
+		'style_ml_show_joined',
+		'style_ml_show_last_active',
 	);
 
 	foreach ($settings as $setting)

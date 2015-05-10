@@ -173,17 +173,25 @@ class acp_board
 						'style_mp_show_with_us'				=> array('lang' => 'STYLE_MP_SHOW_WITH_US',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_buttons'				=> array('lang' => 'STYLE_MP_SHOW_BUTTONS',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
-						'legend5'							=> 'CUSTOM_PROFILE_FIELDS',
+						'legend5'							=> 'STYLE_SETTINGS_MEMBERLIST',
+						'style_ml_show_row_numbers'			=> array('lang' => 'STYLE_MP_SHOW_ROW_NUMBERS',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_ml_show_gender'				=> array('lang' => 'STYLE_MP_SHOW_GENDER',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_ml_show_rank'				=> array('lang' => 'STYLE_MP_SHOW_RANK',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_ml_show_posts'				=> array('lang' => 'STYLE_MP_SHOW_POSTS',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_ml_show_joined'				=> array('lang' => 'STYLE_MP_SHOW_JOINED',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_ml_show_last_active'			=> array('lang' => 'STYLE_MP_SHOW_LAST_ACTIVE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+
+						'legend6'							=> 'CUSTOM_PROFILE_FIELDS',
 						'load_cpf_memberlist'	=> array('lang' => 'LOAD_CPF_MEMBERLIST',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_cpf_pm'			=> array('lang' => 'LOAD_CPF_PM',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain'	=> false),
 						'load_cpf_viewprofile'	=> array('lang' => 'LOAD_CPF_VIEWPROFILE',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_cpf_viewtopic'	=> array('lang' => 'LOAD_CPF_VIEWTOPIC',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 
-						'legend6'							=> 'STYLE_SETTINGS_FOOTER',
+						'legend7'							=> 'STYLE_SETTINGS_FOOTER',
 						'copyright_notice'					=> array('lang' => 'COPYRIGHT_NOTICE',					'validate' => 'long_string',	'type' => 'htmlarea:2:800', 'explain' => true),
 						'style_counters_html'				=> array('lang' => 'STYLE_COUNTERS_HTML',				'validate' => 'long_string',	'type' => 'htmlarea:8:25000', 'explain' => true),
 
-						'legend7'							=> 'ACP_SUBMIT_CHANGES',
+						'legend8'							=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;

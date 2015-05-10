@@ -125,6 +125,11 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_SHOW_WITH_US'				=> 'Отображать как долго пользователь с нами',
 	'STYLE_MP_SHOW_BUTTONS'				=> 'Отображать кнопки контактов',
 
+	'STYLE_SETTINGS_MEMBERLIST'			=> 'Список пользователей',
+	'STYLE_MP_SHOW_ROW_NUMBERS'			=> 'Отображать номера строк',
+	'STYLE_MP_SHOW_RANK'				=> 'Отображать звание',
+	'STYLE_MP_SHOW_LAST_ACTIVE'			=> 'Отображать дату последнего посещения',
+
 	'STYLE_SETTINGS_FOOTER'				=> 'Нижняя часть страницы',
 	'COPYRIGHT_NOTICE'					=> 'Авторские права (HTML)',
 	'COPYRIGHT_NOTICE_EXPLAIN'			=> 'Не забудьте вставить метку {POWERED_BY} либо указать информацию о phpBBex.',

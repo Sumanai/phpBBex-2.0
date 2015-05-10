@@ -1,6 +1,6 @@
 <!-- INCLUDEJS script.js -->
 
-<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
+<!-- IF (S_QUICK_REPLY and S_VIEWTOPIC) or S_IN_MEMBERLIST -->
 <script>
 (function($)
 {
@@ -41,5 +41,71 @@
 	});
 })(jQuery);
 
+<!-- IF S_IN_MEMBERLIST -->
+(function(){
+var filters='<a href="{U_ALL_USERS}">{L_ALL}</a> &bull;\
+	<a href="{U_ACTIVE_USERS}">{L_MEMBERLIST_ACTIVE_USERS}</a> &bull;\
+	<a href="{U_INACTIVE_USERS}">{L_MEMBERLIST_INACTIVE_USERS}</a>';
+
+$(".member-search").children("strong").replaceWith(filters);
+})();
+<!-- ENDIF -->
 </script>
+<!-- ENDIF -->
+
+<!-- IF S_IN_MEMBERLIST -->
+<style>
+<!-- IF STYLE_ML_SHOW_ROW_NUMBERS -->
+#memberlist tr::before {
+	border: 0 solid #FAFAFA;
+	border-width: 1px 1px 0 0;
+	content: counter(rows, decimal);
+	display: table-cell;
+	font-size: 1.1em;
+	padding: 5px 10px;
+	text-align: center;
+	width: 1%;
+}
+
+#memberlist thead > tr::before {
+	border: none;
+	color: #FFF;
+	content: "";
+	padding: 0;
+}
+
+#memberlist tbody {
+	counter-reset: rows {N_START};
+}
+
+#memberlist tbody > tr {
+	counter-increment: rows;
+}
+<!-- ENDIF -->
+
+<!-- IF not STYLE_ML_SHOW_RANK -->
+table.table1 span.rank-img {
+	display: none;
+}
+<!-- ENDIF -->
+
+<!-- IF not STYLE_ML_SHOW_POSTS -->
+table.table1 .posts {
+	display: none;
+}
+<!-- ENDIF -->
+
+<!-- IF not STYLE_ML_SHOW_JOINED -->
+table.table1 .joined, table.table1 tbody td:nth-last-child(2) {
+	display: none;
+}
+<!-- ENDIF -->
+
+<!-- IF not STYLE_ML_SHOW_LAST_ACTIVE -->
+table.table1 .active, table.table1 td:last-child {
+	display: none;
+}
+<!-- ENDIF -->
+
+</style>
 <!-- ENDIF -->

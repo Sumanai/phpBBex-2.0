@@ -105,9 +105,9 @@ $lang = array_merge($lang, array(
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to an image for links in social media',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
-	'ANNOUNCE_INDEX'				=> 'Display global annoucements',
-	'ACTIVE_TOPICS_ON_INDEX'		=> 'Display active topics',
-	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'=> 'Leave empty or 0 to disable active topics on index.',
+	'ANNOUNCE_INDEX'					=> 'Display global annoucements',
+	'ACTIVE_TOPICS_ON_INDEX'			=> 'Display active topics',
+	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'	=> 'Leave empty or 0 to disable active topics on index.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'View Topic',
@@ -124,11 +124,16 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_SHOW_WITH_US'				=> 'Display how long user is with us',
 	'STYLE_MP_SHOW_BUTTONS'				=> 'Display contact buttons',
 
+	'STYLE_SETTINGS_MEMBERLIST'			=> 'Member list',
+	'STYLE_MP_SHOW_ROW_NUMBERS'			=> 'Display sequential numbers',
+	'STYLE_MP_SHOW_RANK'				=> 'Display user rank',
+	'STYLE_MP_SHOW_LAST_ACTIVE'			=> 'Display user last active date',
+
 	'STYLE_SETTINGS_FOOTER'				=> 'Page footer',
 	'COPYRIGHT_NOTICE'					=> 'Copyrights (HTML)',
 	'COPYRIGHT_NOTICE_EXPLAIN'			=> 'You have to use {POWERED_BY} placeholder or write custom phpBBex copyrights.',
 	'STYLE_COUNTERS_HTML'				=> 'Counters code (HTML)',
-	'STYLE_COUNTERS_HTML_EXPLAIN'				=> 'Use class .counter-block to prevent moving of the block elements on a new line.',
+	'STYLE_COUNTERS_HTML_EXPLAIN'		=> 'Use class .counter-block to prevent moving of the block elements on a new line.',
 
 	'AUTO'								=> 'Auto',
 	'ON_LEFT'							=> 'On Left',

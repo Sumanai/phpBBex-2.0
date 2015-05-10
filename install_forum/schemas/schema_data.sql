@@ -289,6 +289,12 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '144
 # New style options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1240');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_row_numbers', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_gender', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rank', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_posts', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_joined', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_last_active', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_topic_poster', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_gender', '1');
