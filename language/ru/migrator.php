@@ -52,6 +52,13 @@ $lang = array_merge($lang, array(
 	'MIGRATION_SCHEMA_DONE'				=> 'Обновлена схема: %1$s; Время: %2$.2f секунд',
 	'MIGRATION_SCHEMA_RUNNING'			=> 'Обновление схемы: %s.',
 
+	'MIGRATION_INVALID_DATA_MISSING_CONDITION'		=> 'Файл обновления содержит ошибки. Обработчик оператора if не смог найти условие.',
+	'MIGRATION_INVALID_DATA_MISSING_STEP'			=> 'Файл обновления содержит ошибки. Обработчик оператора if не смог обнаружить корректный запуск шага обновления.',
+	'MIGRATION_INVALID_DATA_CUSTOM_NOT_CALLABLE'	=> 'Файл обновления содержит ошибки. Попытка обращения к пользовательской функции, которая не может быть вызвана.',
+	'MIGRATION_INVALID_DATA_UNKNOWN_TYPE'			=> 'Файл обновления содержит ошибки. Тип обновления не указан.',
+	'MIGRATION_INVALID_DATA_UNDEFINED_TOOL'			=> 'Файл обновления содержит ошибки. Требуемый файл обновления не существует.',
+	'MIGRATION_INVALID_DATA_UNDEFINED_METHOD'		=> 'Файл обновления содержит ошибки. Требуемый метод отсутствует в файле обновления.',
+
 	'MODULE_ERROR'						=> 'Ошибка при создании модуля: %s',
 	'MODULE_INFO_FILE_NOT_EXIST'		=> 'Обязательный компонент модуля не существует: %2$s',
 	'MODULE_NOT_EXIST'					=> 'Обязательный модуль не существует: %s',
