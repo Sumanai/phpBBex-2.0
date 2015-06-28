@@ -621,7 +621,7 @@ class acp_board
 		}
 
 		// We go through the display_vars to make sure no one is trying to set variables he/she is not allowed to...
-		foreach ($display_vars['vars'] as $config_name => $null)
+		foreach ($display_vars['vars'] as $config_name => $data)
 		{
 			if (!isset($cfg_array[$config_name]) || strpos($config_name, 'legend') !== false)
 			{
@@ -635,7 +635,8 @@ class acp_board
 
 			if ($config_name == 'guest_style')
 			{
-				if (isset($cfg_array[$config_name])) {
+				if (isset($cfg_array[$config_name]))
+				{
 					$this->guest_style_set($cfg_array[$config_name]);
 				}
 				continue;
@@ -652,6 +653,14 @@ class acp_board
 
 			if ($submit)
 			{
+				if (strpos($data['type'], 'password') === 0 && $config_value === '********')
+				{
+					// Do not update password fields if the content is ********,
+					// because that is the password replacement we use to not
+					// send the password to the output
+					continue;
+				}
+
 				if (array_key_exists($config_name, $style_config_text))
 				{
 					$style_config_text[$config_name] = $config_value;
@@ -692,6 +701,7 @@ class acp_board
 			$old_auth_config = array();
 			foreach ($auth_providers as $provider)
 			{
+				/** @var \phpbb\auth\provider\provider_interface $provider */
 				if ($fields = $provider->acp())
 				{
 					// Check if we need to create config fields for this plugin and save config when submit was pressed
@@ -704,6 +714,14 @@ class acp_board
 
 						if (!isset($cfg_array[$field]) || strpos($field, 'legend') !== false)
 						{
+							continue;
+						}
+
+						if (substr($field, -9) === '_password' && $cfg_array[$field] === '********')
+						{
+							// Do not update password fields if the content is ********,
+							// because that is the password replacement we use to not
+							// send the password to the output
 							continue;
 						}
 

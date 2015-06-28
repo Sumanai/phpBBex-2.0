@@ -1,8 +1,8 @@
 <!-- INCLUDE overall_header.html -->
-
 <!-- INCLUDE header_icons.html -->
-
+<!-- EVENT viewforum_forum_title_before -->
 <h2 class="forum-title"><!-- EVENT viewforum_forum_name_prepend --><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a><!-- EVENT viewforum_forum_name_append --></h2>
+<!-- EVENT viewforum_forum_title_after -->
 
 <!-- INCLUDE header_path.html -->
 
@@ -89,7 +89,7 @@
 				</dl>
 				<dl>
 					<dt><label for="password">{L_PASSWORD}{L_COLON}</label></dt>
-					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" /></dd>
+					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" autocomplete="off" /></dd>
 					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" checked="checked" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
 					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
 				</dl>

@@ -191,6 +191,7 @@
 
 			<!-- IF postrow.POST_SUBJECT and postrow.POST_SUBJECT != TOPIC_TITLE --><h3><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3><!-- ENDIF -->
 
+		<!-- EVENT viewtopic_body_post_buttons_list_before -->
 		<!-- IF not S_IS_BOT -->
 			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
 				<ul class="post-buttons">
@@ -229,6 +230,7 @@
 				</ul>
 			<!-- ENDIF -->
 		<!-- ENDIF -->
+		<!-- EVENT viewtopic_body_post_buttons_list_after -->
 
 			<!-- EVENT viewtopic_body_postrow_post_details_before -->
 			<p class="author"><!-- IF not S_IS_BOT --><a rel="nofollow" href="{postrow.U_MINI_POST}"><!-- ENDIF --><!-- IF STYLE_VT_SHOW_POST_NUMBERS -->#{postrow.POST_NUMBER}<!-- ELSE -->{postrow.MINI_POST_IMG}<!-- ENDIF --><!-- IF not S_IS_BOT --></a><!-- ENDIF --><span class="responsive-hide">{L_POST_BY_AUTHOR} <a href="{postrow.U_POST_AUTHOR}"<!-- IF S_QUICK_REPLY --> onclick="insert_text('[b]{postrow.POSTER_QUOTE}[/b], '); return false;"<!-- ENDIF --> style="font-weight: bold;<!-- IF postrow.POST_AUTHOR_COLOUR --> color: {postrow.POST_AUTHOR_COLOUR};<!-- ENDIF -->">{postrow.POST_AUTHOR}</a> &raquo; </span>{postrow.POST_DATE} </p>

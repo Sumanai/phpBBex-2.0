@@ -60,6 +60,7 @@ body {
 	background-color: #EEEEE7;
 	height: 100%;
 	word-wrap: break-word;
+	-webkit-print-color-adjust: exact;
 }
 
 h1 {

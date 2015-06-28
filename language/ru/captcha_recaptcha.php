@@ -47,6 +47,6 @@ $lang = array_merge($lang, array(
 	'RECAPTCHA_PRIVATE'				=> 'Закрытый ключ reCaptcha (Private Key)',
 	'RECAPTCHA_PRIVATE_EXPLAIN'		=> 'Ваш закрытый ключ reCaptcha. Ключи можно получить на сайте <a href="http://www.google.com/recaptcha">www.google.com/recaptcha</a>.',
 
-	'RECAPTCHA_EXPLAIN'				=> 'В целях предотвращения автоматической отправки форм, введите оба отображённых слова в текстовое поле ниже.',
+	'RECAPTCHA_EXPLAIN'				=> 'В целях предотвращения автоматической отправки форм спам-ботами, введите отображённый текст в поле ниже.',
 	'RECAPTCHA_SOCKET_ERROR'		=> 'Проблема с подключением к сервису RECAPTCHA: невозможно открыть сокет. Попробуйте еще раз позже.',
 ));

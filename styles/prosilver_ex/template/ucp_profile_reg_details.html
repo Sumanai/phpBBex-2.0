@@ -19,7 +19,7 @@
 	</dl>
 	<dl>
 		<dt><label for="email">{L_EMAIL_ADDRESS}{L_COLON}</label></dt>
-		<dd><!-- IF S_CHANGE_EMAIL --><input type="email" name="email" id="email" maxlength="100" value="{EMAIL}" class="inputbox" title="{L_EMAIL_ADDRESS}" /><!-- ELSE --><strong>{EMAIL}</strong><!-- ENDIF --></dd>
+		<dd><!-- IF S_CHANGE_EMAIL --><input type="email" name="email" id="email" maxlength="100" value="{EMAIL}" class="inputbox" title="{L_EMAIL_ADDRESS}" autocomplete="off" /><!-- ELSE --><strong>{EMAIL}</strong><!-- ENDIF --></dd>
 	</dl>
 	<!-- IF S_CHANGE_PASSWORD -->
 		<dl>
@@ -42,7 +42,7 @@
 	<fieldset>
 	<dl>
 		<dt><label for="cur_password">{L_CURRENT_PASSWORD}{L_COLON}</label><br /><span><!-- IF S_CHANGE_PASSWORD -->{L_CURRENT_CHANGE_PASSWORD_EXPLAIN}<!-- ELSE -->{L_CURRENT_PASSWORD_EXPLAIN}<!-- ENDIF --></span></dt>
-		<dd><input type="password" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" /></dd>
+		<dd><input type="password" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" class="inputbox" title="{L_CURRENT_PASSWORD}" autocomplete="off" /></dd>
 	</dl>
 	</fieldset>
 
