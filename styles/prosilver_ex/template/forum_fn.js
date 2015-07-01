@@ -384,7 +384,7 @@ function parseDocument($container) {
 	/**
 	* Responsive link lists
 	*/
-	var selector = '.linklist:not(.navlinks, [data-skip-responsive]),';
+	var selector = '.linklist:not(.navlinks, [data-skip-responsive])';
 	$container.find(selector).each(function() {
 		var $this = $(this),
 			filterSkip = '.breadcrumbs, [data-skip-responsive]',
