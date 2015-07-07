@@ -718,9 +718,22 @@ function validate_range($value_ary, &$error)
 */
 function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 {
-	if (is_array($where) && array_key_exists(current($where), $display_vars))
+	if (is_array($where))
 	{
-		$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
+		if (array_key_exists(current($where), $display_vars))
+		{
+			$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
+		}
+		else
+		{
+			$position = end($display_vars) - 1;
+		}
+
+		if(is_array(reset($add_config_vars)))
+		{
+			$add_config_vars = array_merge(array('acp_legend_ext'	=> 'ACP_LEGEND_EXT'), $add_config_vars);
+		}
+
 		$display_vars = array_merge(
 			array_slice($display_vars, 0, $position),
 			$add_config_vars,
