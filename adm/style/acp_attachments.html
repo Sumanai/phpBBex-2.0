@@ -388,13 +388,15 @@
 	</div>
 
 <!-- IF .attachments -->
-	<table class="table1 zebra-table fixed-width-table">
+	<table class="table1 zebra-table fixed-width-table manage-attachments-table">
 	<thead>
 	<tr>
 		<th>{L_FILENAME}</th>
 		<th style="width: 15%;">{L_POSTED}</th>
 		<th style="width: 15%;" class="centered-text">{L_FILESIZE}</th>
-		<th style="width: 10%;" class="centered-text">{L_MARK}</th>
+		<th class="attach-post-id" style="width: 100px">{L_ATTACH_POST_ID}</th>
+		<th class="attach-to-post" style="width: 15%;">{L_ATTACH_TO_POST}</th>
+		<th style="width: 120px;" class="centered-text">{L_DELETE}</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -406,9 +408,21 @@
 			</td>
 			<td>{attachments.FILETIME}<br />{L_POST_BY_AUTHOR} {attachments.ATTACHMENT_POSTER}</td>
 			<td class="centered-text">{attachments.FILESIZE}</td>
+			<td class="attach-post-id">
+				<input type="text" name="post_id[{attachments.ATTACH_ID}]" size="7" maxlength="10" value="{attachments.POST_ID}" {attachments.DISABLED} />
+				<input type="hidden" name="current_post_id[{attachments.ATTACH_ID}]" value="{attachments.POST_ID}" />
+				<input type="hidden" name="current_topic_id[{attachments.ATTACH_ID}]" value="{attachments.TOPIC_ID}" />
+			</td>
+			<td class="attach-to-post"><!-- IF not attachments.DISABLED --><input type="checkbox" class="radio" name="add[{attachments.ATTACH_ID}]" /><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
 			<td class="centered-text"><input type="checkbox" class="radio" name="delete[{attachments.ATTACH_ID}]" /></td>
 		</tr>
 	<!-- END attachments -->
+	<tr class="row4">
+		<td class="attach-post">&nbsp;</td>
+		<td colspan="3">&nbsp;</td>
+		<td class="small attach-post"><a href="#" onclick="marklist('attachments', 'add', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('attachments', 'add', false); return false;">{L_UNMARK_ALL}</a></td>
+		<td class="small"><a href="#" onclick="marklist('attachments', 'delete', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('attachments', 'delete', false); return false;">{L_UNMARK_ALL}</a></td>
+	</tr>
 	</tbody>
 	</table>
 <!-- ELSE -->
@@ -435,15 +449,10 @@
 
 	<hr />
 
-<!-- IF .attachments -->
-	<fieldset class="quick">
-		<input class="button2" type="submit" name="submit" value="{L_DELETE_MARKED}" /><br />
-		<p class="small">
-			<a href="#" onclick="marklist('attachments', 'delete', true); return false;">{L_MARK_ALL}</a> &bull;
-			<a href="#" onclick="marklist('attachments', 'delete', false); return false;">{L_UNMARK_ALL}</a>		
-		</p>
-	</fieldset>
-<!-- ENDIF -->
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
 	{S_FORM_TOKEN}
 	</fieldset>
 	</form>

@@ -502,6 +502,7 @@ $lang = array_merge($lang, array(
 	'LOG_ADMIN_AUTH_SUCCESS'	=> '<strong>Successful administration login</strong>',
 
 	'LOG_ATTACHMENTS_DELETED'	=> '<strong>Removed user attachments</strong><br />» %s',
+	'LOG_ATTACH_REASSIGNED'		=> '<strong>Attachment reassigned to Post</strong><br />» ID %1$d - %2$s',
 
 	'LOG_ATTACH_EXT_ADD'		=> '<strong>Added or edited attachment extension</strong><br />» %s',
 	'LOG_ATTACH_EXT_DEL'		=> '<strong>Removed attachment extension</strong><br />» %s',

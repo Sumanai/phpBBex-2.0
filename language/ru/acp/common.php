@@ -503,6 +503,7 @@ $lang = array_merge($lang, array(
 	'LOG_ADMIN_AUTH_SUCCESS'	=> '<strong>Успешный вход в качестве администратора</strong>',
 
 	'LOG_ATTACHMENTS_DELETED'	=> '<strong>Удалены вложения пользователя</strong><br />» %s',
+	'LOG_ATTACH_REASSIGNED'		=> '<strong>Вложение прикреплено к другому к сообщению</strong><br />» ID %1$d - %2$s',
 
 	'LOG_ATTACH_EXT_ADD'		=> '<strong>Добавлено или изменено расширение вложений</strong><br />» %s',
 	'LOG_ATTACH_EXT_DEL'		=> '<strong>Удалено расширение вложений</strong><br />» %s',

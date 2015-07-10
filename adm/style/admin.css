@@ -810,6 +810,13 @@ table.fixed-width-table {
 	word-break: break-word;
 }
 
+@media only screen and (min-width: 700px) and (max-width: 1000px), only screen and (min-device-width: 700px) and (max-device-width: 1000px)
+{
+	.manage-attachments-table .attach-post-id, .manage-attachments-table .attach-to-post, .manage-attachments-table .attach-post {
+		display: none;
+	}
+}
+
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
 {
 	table.responsive, table.responsive tbody, table.responsive tr, table.responsive td {

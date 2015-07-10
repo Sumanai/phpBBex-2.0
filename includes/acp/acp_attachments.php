@@ -1074,6 +1074,42 @@ class acp_attachments
 				if ($submit)
 				{
 					$delete_files = (isset($_POST['delete'])) ? array_keys(request_var('delete', array('' => 0))) : array();
+					$add_files = (isset($_POST['add'])) ? array_keys(request_var('add', array('' => 0))) : array();
+					$post_ids = request_var('post_id', array('' => 0));
+
+					$current_post_ids = request_var('current_post_id', array('' => 0));
+					$current_topic_ids = request_var('current_topic_id', array('' => 0));
+					$next_post_ids = $post_ids;
+					$unset_topic_ids = $unset_post_ids = array();
+
+					if (sizeof($delete_files) && sizeof($add_files))
+					{
+						foreach ($delete_files as $attach_id)
+						{
+							if (!empty($current_post_ids[$attach_id]) && !empty($next_post_ids[$attach_id]))
+							{
+								unset($current_post_ids[$attach_id]);
+								unset($next_post_ids[$attach_id]);
+							}
+						}
+					}
+
+					if (sizeof($add_files))
+					{
+						$unset_post_ids = array_diff($current_post_ids, $next_post_ids);
+
+						$sql = 'SELECT topic_id
+							FROM ' . POSTS_TABLE . '
+							WHERE ' . $db->sql_in_set('post_id', $next_post_ids);
+						$result = $db->sql_query($sql);
+						$next_topic_ids = array();
+						while ($row = $db->sql_fetchrow($result))
+						{
+							$next_topic_ids[] = $row['topic_id'];
+						}
+						$db->sql_freeresult($result);
+						$unset_topic_ids = array_diff($current_topic_ids, $next_topic_ids);
+					}
 
 					if (sizeof($delete_files))
 					{
@@ -1102,6 +1138,110 @@ class acp_attachments
 						{
 							$error[] = $user->lang['NO_FILES_TO_DELETE'];
 						}
+					}
+
+					$upload_list = array();
+					foreach ($add_files as $attach_id)
+					{
+						if (!in_array($attach_id, array_keys($delete_files)) && !empty($post_ids[$attach_id]) && $post_ids[$attach_id] != $current_post_ids[$attach_id])
+						{
+							$upload_list[$attach_id] = $post_ids[$attach_id];
+						}
+					}
+					unset($add_files);
+
+					if (sizeof($upload_list))
+					{
+						$template->assign_var('S_UPLOADING_FILES', true);
+
+						$sql = 'SELECT forum_id, forum_name
+							FROM ' . FORUMS_TABLE;
+						$result = $db->sql_query($sql, 86400);
+
+						$forum_names = array();
+						while ($row = $db->sql_fetchrow($result))
+						{
+							$forum_names[$row['forum_id']] = $row['forum_name'];
+						}
+						$db->sql_freeresult($result);
+
+						$sql = 'SELECT forum_id, topic_id, post_id, poster_id
+							FROM ' . POSTS_TABLE . '
+							WHERE ' . $db->sql_in_set('post_id', $upload_list);
+						$result = $db->sql_query($sql);
+
+						$post_info = array();
+						while ($row = $db->sql_fetchrow($result))
+						{
+							$post_info[$row['post_id']] = $row;
+						}
+						$db->sql_freeresult($result);
+
+						// Select those attachments we want to change...
+						$sql = 'SELECT *
+							FROM ' . ATTACHMENTS_TABLE . '
+							WHERE ' . $db->sql_in_set('attach_id', array_keys($upload_list)) . '
+								AND is_orphan = 0';
+						$result = $db->sql_query($sql);
+
+						while ($row = $db->sql_fetchrow($result))
+						{
+							$post_row = $post_info[$upload_list[$row['attach_id']]];
+
+							$template->assign_block_vars('upload', array(
+								'FILE_INFO'		=> sprintf($user->lang['LOG_ATTACH_REASSIGNED'], $post_row['post_id'], $row['real_filename']),
+								'S_DENIED'		=> (!$auth->acl_get('f_attach', $post_row['forum_id'])) ? true : false,
+								'L_DENIED'		=> (!$auth->acl_get('f_attach', $post_row['forum_id'])) ? sprintf($user->lang['UPLOAD_DENIED_FORUM'], $forum_names[$row['forum_id']]) : '')
+							);
+
+							if (!$auth->acl_get('f_attach', $post_row['forum_id']))
+							{
+								continue;
+							}
+
+							// Adjust attachment entry
+							$sql_ary = array(
+								'in_message'	=> 0,
+								'is_orphan'		=> 0,
+								'poster_id'		=> $post_row['poster_id'],
+								'post_msg_id'	=> $post_row['post_id'],
+								'topic_id'		=> $post_row['topic_id'],
+							);
+
+							$sql = 'UPDATE ' . ATTACHMENTS_TABLE . '
+								SET ' . $db->sql_build_array('UPDATE', $sql_ary) . '
+								WHERE attach_id = ' . $row['attach_id'];
+							$db->sql_query($sql);
+
+							$sql = 'UPDATE ' . POSTS_TABLE . '
+								SET post_attachment = 1
+								WHERE post_id = ' . $post_row['post_id'];
+							$db->sql_query($sql);
+
+							$sql = 'UPDATE ' . TOPICS_TABLE . '
+								SET topic_attachment = 1
+								WHERE topic_id = ' . $post_row['topic_id'];
+							$db->sql_query($sql);
+
+							if (sizeof($unset_post_ids))
+							{
+								$sql = 'UPDATE ' . POSTS_TABLE . '
+									SET post_attachment = 0
+									WHERE ' . $db->sql_in_set('post_id', $unset_post_ids);
+								$db->sql_query($sql);
+							}
+
+							if (sizeof($unset_topic_ids))
+							{
+								$sql = 'UPDATE ' . TOPICS_TABLE . '
+									SET topic_attachment = 0
+									WHERE ' . $db->sql_in_set('topic_id', $unset_topic_ids);
+								$db->sql_query($sql);
+							}
+
+							add_log('admin', 'LOG_ATTACH_REASSIGNED', $post_row['post_id'], $row['real_filename']);
+						}
+						$db->sql_freeresult($result);
 					}
 				}
 
@@ -1178,7 +1318,7 @@ class acp_attachments
 				$sql = 'SELECT a.*, u.username, u.user_colour, t.topic_title
 					FROM ' . ATTACHMENTS_TABLE . ' a
 					LEFT JOIN ' . USERS_TABLE . ' u ON (u.user_id = a.poster_id)
-					LEFT JOIN ' . TOPICS_TABLE . " t ON (a.topic_id = t.topic_id)
+					LEFT JOIN ' . TOPICS_TABLE . " t ON (a.topic_id = t.topic_id AND a.in_message = 0)
 					WHERE a.is_orphan = 0
 						$limit_filetime
 					ORDER BY $sql_sort_order";
@@ -1228,6 +1368,7 @@ class acp_attachments
 						'EXT_GROUP_NAME'	=> (!empty($extensions[$row['extension']]['group_name'])) ? $user->lang['EXT_GROUP_' . $extensions[$row['extension']]['group_name']] : '',
 						'COMMENT'			=> $comment,
 						'TOPIC_TITLE'		=> (!$row['in_message']) ? (string) $row['topic_title'] : '',
+						'DISABLED'			=> ($row['in_message']) ? 'disabled="disabled"' : '',
 						'ATTACH_ID'			=> (int) $row['attach_id'],
 						'POST_ID'			=> (int) $row['post_msg_id'],
 						'TOPIC_ID'			=> (int) $row['topic_id'],
