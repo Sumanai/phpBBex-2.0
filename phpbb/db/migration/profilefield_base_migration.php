@@ -188,6 +188,11 @@ abstract class profilefield_base_migration extends container_aware_migration
 	*/
 	public function convert_user_field_to_custom_field($start)
 	{
+		if (!$this->db_tools->sql_column_exists($this->table_prefix . 'users', $this->user_column_name))
+		{
+			return;
+		}
+
 		$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . 'profile_fields_data');
 		$limit = 250;
 		$converted_users = 0;
