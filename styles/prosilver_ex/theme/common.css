@@ -1115,6 +1115,19 @@ form > p.post-notice strong {
 	background: transparent;
 }
 
+/* Hides inner text and shows preloader 10×2 pixels */
+.inline-preloader {
+	background: url("data:image/gif;base64,R0lGODlhCgACAPEAADMzM5mZmQAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAAACwAAAAACgACAEACBkwAhqZ5XgAh+QQFCgABACwAAAAAAgACAAACAoRRACH5BAUKAAIALAAAAAAGAAIAAAIFTCQAhloAIfkEBQoAAgAsBAAAAAYAAgAAAgVMJACGWgA7");
+	display: inline-block !important;
+	height: 2px;
+	width: 10px;
+	padding: 0px;
+	vertical-align: middle;
+	font: 0/0 serif;
+	text-shadow: none;
+	color: transparent;
+}
+
 /* Inner box-model clearing */
 .inner:after,
 ul.linklist:after,

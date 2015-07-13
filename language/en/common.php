@@ -1446,6 +1446,10 @@ $lang = array_merge($lang, array(
 	'GENDER_M'					=> 'Male',
 	'GENDER_F'					=> 'Female',
 
+	// Ratings
+	'USER_RATING'				=> 'Reputation',
+	'USER_RATED'				=> 'Loyalty',
+
 	// Memberlist filters
 	'MEMBERLIST_ALL_USERS'		=> 'All users',
 	'MEMBERLIST_ACTIVE_USERS'	=> 'Active',

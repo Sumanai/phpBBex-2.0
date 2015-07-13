@@ -19,6 +19,19 @@
 	vertical-align: bottom;
 }
 
+.button.left-button {
+	border-radius: 4px 0 0 4px;
+}
+
+.button.center-button {
+	border-radius: 0;
+	border-width: 1px 0;
+}
+
+.button.right-button {
+	border-radius: 0 4px 4px 0;
+}
+
 .dropdown-select {
 	padding-right: 24px;
 }
@@ -170,7 +183,7 @@ ul.linklist.bulletin > li.small-icon:before {
 }
 
 h3 + .post-buttons {
-	margin-top: 4px;
+	margin-top: 2px;
 }
 
 .post-buttons > li {
@@ -198,23 +211,56 @@ h3 + .post-buttons {
 	margin-left: 0;
 }
 
-.quote-icon:before							{ background-position: -122px 0; }
-.quote-icon:hover:before					{ background-position: -122px -21px; }
-.edit-icon:before							{ background-position: -137px 0; }
-.edit-icon:hover:before						{ background-position: -137px -21px; }
-.warn-icon:before							{ background-position: -208px 0; }
-.warn-icon:hover:before						{ background-position: -208px -21px; }
-.delete-icon:before							{ background-position: -152px 0; }
-.delete-icon:hover:before					{ background-position: -152px -21px; }
-.report-icon:before							{ background-position: -165px 0; }
-.report-icon:hover:before					{ background-position: -165px -21px; }
-.info-icon:before							{ background-position: -175px 0; }
-.info-icon:hover:before						{ background-position: -175px -21px; }
+.quote-icon:before				{ background-position: -122px 0; }
+.quote-icon:hover:before		{ background-position: -122px -21px; }
+.edit-icon:before				{ background-position: -137px 0; }
+.edit-icon:hover:before			{ background-position: -137px -21px; }
+.warn-icon:before				{ background-position: -208px 0; }
+.warn-icon:hover:before			{ background-position: -208px -21px; }
+.delete-icon:before				{ background-position: -152px 0; }
+.delete-icon:hover:before		{ background-position: -152px -21px; }
+.report-icon:before				{ background-position: -165px 0; }
+.report-icon:hover:before		{ background-position: -165px -21px; }
+.info-icon:before				{ background-position: -175px 0; }
+.info-icon:hover:before			{ background-position: -175px -21px; }
 
 /* Browser-specific tweaks */
 button::-moz-focus-inner {
 	padding: 0;
 	border: 0
+}
+
+/* Rate post box
+---------------------------------------- */
+.rate-box > span {
+	box-shadow: none !important;
+}
+
+.rate-box .rate-no-minus, .rate-box .rate-no-plus, .hastouch .rate-box .rate-no-minus, .hastouch .rate-box .rate-no-plus {
+	cursor: inherit;
+	padding-left: 0;
+	padding-right: 0;
+	width: 3px;
+}
+
+.rate-no-minus {
+	border-right: 0;
+}
+
+.rate-no-plus {
+	border-left: 0;
+}
+
+.rate-value {
+	padding: 0px 4px;
+	font-weight: bold;
+	line-height: 16px;
+	min-width: 16px;
+	text-align: center;
+}
+
+.rate-value:before, .rate-no-minus:before, .rate-no-plus:before {
+	display: none;
 }
 
 /* Global back to top of page

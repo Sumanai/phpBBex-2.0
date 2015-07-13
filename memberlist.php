@@ -887,6 +887,27 @@ switch ($mode)
 		$sort_key_text['m'] = $user->lang['SORT_RANK'];
 		$sort_key_sql['m'] = 'u.user_rank';
 
+		if ($config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']))
+		{
+			$sort_key_text['r'] = $user->lang['USER_RATING'];
+			$sort_key_text['o'] = $user->lang['USER_RATED'];
+			if (!$config['rate_no_negative'] && !$config['rate_no_positive'])
+			{
+				$sort_key_sql['r'] = 'CAST(u.user_rating_positive AS SIGNED)-CAST(u.user_rating_negative AS SIGNED)';
+				$sort_key_sql['o'] = 'CAST(u.user_rated_positive AS SIGNED)-CAST(u.user_rated_negative AS SIGNED)';
+			}
+			else if (!$config['rate_no_positive'])
+			{
+				$sort_key_sql['r'] = 'u.user_rating_positive';
+				$sort_key_sql['o'] = 'u.user_rated_positive';
+			}
+			else if (!$config['rate_no_negative'])
+			{
+				$sort_key_sql['r'] = '-CAST(u.user_rating_negative AS SIGNED)';
+				$sort_key_sql['o'] = '-CAST(u.user_rated_negative AS SIGNED)';
+			}
+		}
+
 		$sort_dir_text = array('a' => $user->lang['ASCENDING'], 'd' => $user->lang['DESCENDING']);
 
 		$s_sort_key = '';
@@ -1554,6 +1575,8 @@ switch ($mode)
 			'U_LIVE_SEARCH'			=> ($config['allow_live_searches']) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=livesearch') : false,
 			'U_SORT_USERNAME'		=> $sort_url . 'sk=a' . (($sort_key == 'a' && $sort_dir == 'a') ? '&amp;sd=d' : ''),
 			'U_SORT_JOINED'			=> $sort_url . 'sk=c' . (($sort_key == 'c' && $sort_dir == 'd') ? '' : '&amp;sd=d'),
+			'U_SORT_RATING'			=> ($config['rate_enabled']) ? $sort_url . 'sk=r' . (($sort_key == 'r' && $sort_dir == 'd') ? '' : '&amp;sd=d') : '',
+			'U_SORT_RATED'			=> ($config['rate_enabled']) ? $sort_url . 'sk=o' . (($sort_key == 'o' && $sort_dir == 'd') ? '' : '&amp;sd=d') : '',
 			'U_SORT_POSTS'			=> $sort_url . 'sk=d' . (($sort_key == 'd' && $sort_dir == 'd') ? '' : '&amp;sd=d'),
 			'U_SORT_EMAIL'			=> $sort_url . 'sk=e' . (($sort_key == 'e' && $sort_dir == 'a') ? '&amp;sd=d' : ''),
 			'U_SORT_ACTIVE'			=> ($auth->acl_get('u_viewonline')) ? $sort_url . 'sk=l' . (($sort_key == 'l' && $sort_dir == 'd') ? '' : '&amp;sd=d') : '',

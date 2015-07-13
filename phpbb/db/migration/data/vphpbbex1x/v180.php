@@ -27,6 +27,7 @@ class v180 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
+			array('config.add', array('display_raters', '0')),
 			array('config.add', array('keep_admin_logs_days', 365)),
 			array('config.add', array('keep_mod_logs_days', 365)),
 			array('config.add', array('keep_critical_logs_days', 365)),

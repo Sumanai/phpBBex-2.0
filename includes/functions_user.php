@@ -733,6 +733,9 @@ function user_delete($mode, $user_ids, $retain_username = true)
 		update_last_username();
 	}
 
+	$rate = $phpbb_container->get('rating.rate');
+	$rate->remove_rates_batch('user', $user_id);
+
 	return false;
 }
 

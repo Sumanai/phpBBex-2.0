@@ -26,6 +26,19 @@ class v140 extends \phpbb\db\migration\migration
 	{
 		return array(
 			'add_tables' => array(
+				$this->table_prefix . 'post_rates' => array(
+					'COLUMNS' => array(
+						'user_id'		=> array('UINT', 0),
+						'post_id'		=> array('UINT', 0),
+						'rate'			=> array('TINT:4', 0),
+						'rate_time'		=> array('TIMESTAMP', 0),
+					),
+					'PRIMARY_KEY' => 'user_id,post_id',
+					'KEYS' => array(
+						'post_id' => array('INDEX', 'post_id'),
+						'user_id' => array('INDEX', 'user_id'),
+					),
+				),
 				$this->table_prefix . 'user_confirm_keys' => array(
 					'COLUMNS' => array(
 						'confirm_key'	=> array('VCHAR:10', ''),
@@ -56,8 +69,10 @@ class v140 extends \phpbb\db\migration\migration
 					'bbcode_order' => array('TINT:4', 0, 'after' => 'bbcode_id'),
 				),
 				$this->table_prefix . 'posts' => array(
-					'poster_browser_id'	=> array('CHAR:32', '', 'after' => 'poster_ip'),
-					'post_merged'		=> array('TIMESTAMP', 0, 'after' => 'post_time'),
+					'poster_browser_id'		=> array('CHAR:32', '', 'after' => 'poster_ip'),
+					'post_merged'			=> array('TIMESTAMP', 0, 'after' => 'post_time'),
+					'post_rating_positive'	=> array('UINT:8', 0, 'after' => 'post_reported'),
+					'post_rating_negative'	=> array('UINT:8', 0, 'after' => 'post_rating_positive'),
 				),
 				$this->table_prefix . 'topics' => array(
 					'poll_show_voters'		=> array('BOOL', 0, 'after' => 'poll_vote_change'),
@@ -66,6 +81,10 @@ class v140 extends \phpbb\db\migration\migration
 				$this->table_prefix . 'users' => array(
 					'user_browser'			=> array('VCHAR:150', '', 'after' => 'user_ip'),
 					'user_gender'			=> array('TINT:1', 0, 'after' => 'user_birthday'),
+					'user_rating_positive'	=> array('UINT:8', 0, 'after' => 'user_last_search'),
+					'user_rating_negative'	=> array('UINT:8', 0, 'after' => 'user_rating_positive'),
+					'user_rated_positive'	=> array('UINT:8', 0, 'after' => 'user_rating_negative'),
+					'user_rated_negative'	=> array('UINT:8', 0, 'after' => 'user_rated_positive'),
 					'user_topics_per_page'	=> array('UINT:8', 0, 'after' => 'user_topic_sortby_dir'),
 					'user_posts_per_page'	=> array('UINT:8', 0, 'after' => 'user_post_sortby_dir'),
 				),
@@ -102,6 +121,13 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('override_user_lang', 0)),
 			array('config.add', array('override_user_dateformat', 0)),
 			array('config.add', array('override_user_timezone', 0)),
+			array('config.add', array('rate_enabled', '1')),
+			array('config.add', array('rate_only_topics', '0')),
+			array('config.add', array('rate_time', 3600*24*30)),
+			array('config.add', array('rate_topic_time', -1)),
+			array('config.add', array('rate_change_time', 60*5)),
+			array('config.add', array('rate_no_negative', '0')),
+			array('config.add', array('rate_no_positive', '0')),
 			array('config.add', array('site_keywords', '')),
 			array('config.add', array('social_media_cover_url', '')),
 
@@ -109,6 +135,10 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('style_ml_show_row_numbers', 1)),
 			array('config.add', array('style_ml_show_gender', 1)),
 			array('config.add', array('style_ml_show_rank', 1)),
+			array('config.add', array('style_ml_show_rating', '1')),
+			array('config.add', array('style_ml_show_rating_detailed', '0')),
+			array('config.add', array('style_ml_show_rated', '0')),
+			array('config.add', array('style_ml_show_rated_detailed', '0')),
 			array('config.add', array('style_ml_show_posts', 1)),
 			array('config.add', array('style_ml_show_joined', 1)),
 			array('config.add', array('style_ml_show_last_active', 1)),
@@ -117,10 +147,18 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('style_mp_show_gender', 1)),
 			array('config.add', array('style_mp_show_age', 1)),
 			array('config.add', array('style_mp_show_warnings', 1)),
+			array('config.add', array('style_mp_show_rating', '1')),
+			array('config.add', array('style_mp_show_rating_detailed', '0')),
+			array('config.add', array('style_mp_show_rated', '0')),
+			array('config.add', array('style_mp_show_rated_detailed', '0')),
 			array('config.add', array('style_mp_show_posts', 0)),
 			array('config.add', array('style_mp_show_joined', 0)),
 			array('config.add', array('style_mp_show_with_us', 1)),
 			array('config.add', array('style_mp_show_buttons', 1)),
+			array('config.add', array('style_p_show_rating', '1')),
+			array('config.add', array('style_p_show_rating_detailed', '1')),
+			array('config.add', array('style_p_show_rated', '0')),
+			array('config.add', array('style_p_show_rated_detailed', '0')),
 			array('config.add', array('style_show_feeds_in_forumlist', 0)),
 			array('config.add', array('style_show_sitename_in_headerbar', 1)),
 			array('config.add', array('style_show_social_buttons', 1)),

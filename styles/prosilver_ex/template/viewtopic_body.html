@@ -115,7 +115,7 @@
 	<!-- IF postrow.S_FIRST_UNREAD -->
 		<a id="unread" class="anchor"<!-- IF S_UNREAD_VIEW --> data-url="{postrow.U_MINI_POST}"<!-- ENDIF -->></a>
 	<!-- ENDIF -->
-	<div id="p{postrow.POST_ID}" class="post has-profile <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.S_POST_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE and not postrow.S_POST_HIDDEN --> online<!-- ENDIF --><!-- IF postrow.POSTER_WARNINGS --> warned<!-- ENDIF -->">
+	<div id="p{postrow.POST_ID}" class="post has-profile <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.S_POST_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE and not postrow.S_POST_HIDDEN --> online<!-- ENDIF --><!-- IF postrow.POSTER_WARNINGS --> warned<!-- ENDIF --><!-- IF postrow.S_GUEST --> post-guest<!-- ENDIF -->">
 		<div class="inner">
 
 		<dl class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
@@ -141,6 +141,8 @@
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-show"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-show">{postrow.RANK_IMG}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_AGE and postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd class="profile-age"><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
+			<!-- IF (STYLE_MP_SHOW_RATING or STYLE_MP_SHOW_RATING_DETAILED) and postrow.S_POSTER_RATING --><dd><strong>{L_USER_RATING}{L_COLON}</strong> <!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_MP_SHOW_RATING and STYLE_MP_SHOW_RATING_DETAILED -->{postrow.POSTER_RATING} (+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE})<!-- ELSEIF STYLE_MP_SHOW_RATING_DETAILED -->+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE}<!-- ELSE --><span title="+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE}">{postrow.POSTER_RATING}</span><!-- ENDIF --><!-- ELSE -->{postrow.POSTER_RATING}<!-- ENDIF --></dd><!-- ENDIF -->
+			<!-- IF (STYLE_MP_SHOW_RATED or STYLE_MP_SHOW_RATED_DETAILED) and postrow.S_POSTER_RATING --><dd><strong>{L_USER_RATED}{L_COLON}</strong> <!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_MP_SHOW_RATED and STYLE_MP_SHOW_RATED_DETAILED -->{postrow.POSTER_RATED} (+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE})<!-- ELSEIF STYLE_MP_SHOW_RATED_DETAILED -->+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE}<!-- ELSE --><span title="+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE}">{postrow.POSTER_RATED}</span><!-- ENDIF --><!-- ELSE -->{postrow.POSTER_RATED}<!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_POSTS and postrow.POSTER_POSTS != '' --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF postrow.U_SEARCH !== '' --><a href="{postrow.U_SEARCH}"><!-- ENDIF -->{postrow.POSTER_POSTS}<!-- IF postrow.U_SEARCH !== '' --></a><!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_JOINED and postrow.POSTER_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_WITH_US and postrow.POSTER_WITH_US --><dd class="profile-with_us"><strong>{L_USER_WITH_US}{L_COLON}</strong> {postrow.POSTER_WITH_US}</dd><!-- ENDIF -->
@@ -193,7 +195,7 @@
 
 		<!-- EVENT viewtopic_body_post_buttons_list_before -->
 		<!-- IF not S_IS_BOT -->
-			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
+			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE or postrow.POST_RATING_SHOW -->
 				<ul class="post-buttons">
 					<!-- EVENT viewtopic_body_post_buttons_before -->
 					<!-- IF postrow.U_INFO -->
@@ -222,8 +224,13 @@
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE -->
-						<li>
-							<a class="button icon-button quote-icon<!-- IF not S_QUICK_REPLY or postrow.DECODED_MESSAGE -->"<!-- ELSE --> no-full-quote" style="display: none;"<!-- ENDIF --><!-- IF not S_QUICK_REPLY --> href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span><!-- ELSE --> href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); return false;" title="{L_QUOTE_TEXT}"><span>{L_QUOTE}</span><!-- ENDIF --></a>
+						<li<!-- IF S_QUICK_REPLY or postrow.DECODED_MESSAGE --> style="display: none;"<!-- ENDIF -->>
+							<a class="button icon-button quote-icon<!-- IF not S_QUICK_REPLY or postrow.DECODED_MESSAGE -->"<!-- ELSE --> no-full-quote"<!-- ENDIF --><!-- IF not S_QUICK_REPLY --> href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span><!-- ELSE --> href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); return false;" title="{L_QUOTE_TEXT}"><span>{L_QUOTE}</span><!-- ENDIF --></a>
+						</li>
+					<!-- ENDIF -->
+					<!-- IF postrow.POST_RATING_SHOW -->
+						<li class="rate-box">
+							<span class="button icon-button left-button rate-<!-- IF postrow.USER_RATE < 0 -->minus-voted<!-- ELSEIF postrow.USER_CAN_MINUS -->minus<!-- ELSE -->no-minus<!-- ENDIF -->"></span><span class="button icon-button center-button rate-value rate-<!-- IF postrow.POST_RATING > 0 -->positive<!-- ELSEIF postrow.POST_RATING < 0 -->negative<!-- ELSE -->zero<!-- ENDIF -->"<!-- IF .postrow.postrater or not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE and not DISPLAY_RATERS --> title="<!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE and not DISPLAY_RATERS -->+{postrow.POST_RATING_POSITIVE}/−{postrow.POST_RATING_NEGATIVE}<!-- ENDIF --><!-- BEGIN postrow.postrater --><!-- IF not postrow.postrater.S_FIRST_ROW -->&#13;<!-- ENDIF -->{postrow.postrater.DATE} {postrow.postrater.RATE_TEXT} {postrow.postrater.RATER_NAME}<!-- END postrow.postrater -->"<!-- ENDIF -->><!-- IF postrow.POST_RATING_NEGATIVE != 0 or postrow.POST_RATING_POSITIVE != 0 -->{postrow.POST_RATING}<!-- ELSE -->−<!-- ENDIF --></span><span class="button icon-button right-button rate-<!-- IF postrow.USER_RATE > 0 -->plus-voted<!-- ELSEIF postrow.USER_CAN_PLUS -->plus<!-- ELSE -->no-plus<!-- ENDIF -->"></span>
 						</li>
 					<!-- ENDIF -->
 					<!-- EVENT viewtopic_body_post_buttons_after -->

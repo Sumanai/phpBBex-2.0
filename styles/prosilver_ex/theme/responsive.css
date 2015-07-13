@@ -358,8 +358,21 @@ fieldset.quick-login label[for="autologin"] {
 	}
 
 	.postbody .post-buttons {
-		max-width: 120px;
 		top: 0;
+	}
+
+	h3 + .post-buttons {
+		margin-top: 0;
+	}
+
+	.post-guest .post-buttons {
+		max-width: none;
+	}
+
+	.post-buttons .rate-box {
+		clear: both;
+		float: right;
+		margin: 5px;
 	}
 
 	dd label {
@@ -399,6 +412,11 @@ fieldset.quick-login label[for="autologin"] {
 @media only screen and (max-width: 430px), only screen and (max-device-width: 430px) {
 	.section-viewtopic .search-box .inputbox {
 		width: 110px;
+	}
+
+	.postbody .post-buttons {
+		max-width: 120px;
+		top: 0;
 	}
 }
 

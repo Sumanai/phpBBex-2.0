@@ -1,0 +1,7 @@
+phpBBex_phpBBext_rate_post:
+    pattern: /phpbbex/rating/{action}/{post}/{token}
+    defaults: { _controller: phpBBex.phpBBext.rate_post:main }
+    requirements:
+        action:  plus|minus
+        post:    \d+
+        token:   \w+

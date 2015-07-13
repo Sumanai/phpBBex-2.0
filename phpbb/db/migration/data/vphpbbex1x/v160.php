@@ -57,6 +57,17 @@ class v160 extends \phpbb\db\migration\migration
 			array('config.add', array('style_rounded_corners', 1)),
 			array('config.add', array('style_vt_show_post_numbers', 0)),
 
+			// New phpBBex ACL rights
+			array('permission.add', array('u_canplus', true)),
+			array('permission.add', array('u_canminus', true)),
+
+			// Set permissions
+			array('permission.permission_set', array('ROLE_USER_FULL', array('u_canplus', 'u_canminus'))),
+			array('permission.permission_set', array('ROLE_USER_STANDARD', array('u_canplus', 'u_canminus'))),
+			array('permission.permission_set', array('ROLE_USER_LIMITED', array('u_canplus', 'u_canminus'))),
+			array('permission.permission_set', array('ROLE_USER_NOPM', array('u_canplus', 'u_canminus'))),
+			array('permission.permission_set', array('ROLE_USER_NOAVATAR', array('u_canplus', 'u_canminus'))),
+
 			array('custom', array(array($this, 'converting_merging_data'))),
 
 			// phpBBex version

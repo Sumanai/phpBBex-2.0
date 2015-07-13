@@ -1478,6 +1478,10 @@ $lang = array_merge($lang, array(
 	'GENDER_M'					=> 'Мужской',
 	'GENDER_F'					=> 'Женский',
 
+	// Ratings
+	'USER_RATING'				=> 'Репутация',
+	'USER_RATED'				=> 'Лояльность',
+
 	// Memberlist filters
 	'MEMBERLIST_ALL_USERS'		=> 'Все пользователи',
 	'MEMBERLIST_ACTIVE_USERS'	=> 'Активные',

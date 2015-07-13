@@ -1,7 +1,7 @@
 <!-- INCLUDEJS script.js -->
 
-<!-- IF (S_QUICK_REPLY and S_VIEWTOPIC) or S_IN_MEMBERLIST -->
 <script>
+<!-- IF S_QUICK_REPLY and S_VIEWTOPIC -->
 (function($)
 {
 	var post = $('div.post', '#page-body'),
@@ -16,7 +16,7 @@
 		quoteButton.attr('onclick', "addquote(" + this.id.substr(1) + ",'" + author.text() + "'); return false;");
 
 		<!-- IF not S_QUICK_FULL_QUOTE -->
-			quoteButton.hide().addClass('no-full-quote');
+			quoteButton.addClass('no-full-quote').parent().hide();
 		<!-- ENDIF -->
 	});
 
@@ -28,18 +28,19 @@
 		setTimeout(function()
 		{
 			waiting = false;
-			$('.no-full-quote').hide();
+			$('.no-full-quote').parent().hide();
 			if (get_selected_text() && event.which <= 1)
 			{
-				$('.no-full-quote', post).show();
+				$('.no-full-quote', post).parent().show();
 			}
 		}, 50);
 	});
 	$('body').on('mouseup', function(event)
 	{
-		if (!waiting) $('.no-full-quote').hide();
+		if (!waiting) $('.no-full-quote').parent().hide();
 	});
 })(jQuery);
+<!-- ENDIF -->
 
 <!-- IF S_IN_MEMBERLIST -->
 (function(){
@@ -50,8 +51,47 @@ var filters='<a href="{U_ALL_USERS}">{L_ALL}</a> &bull;\
 $(".member-search").children("strong").replaceWith(filters);
 })();
 <!-- ENDIF -->
-</script>
+
+<!-- IF S_RATE_ENABLED and S_VIEWTOPIC -->
+jQuery(function($)
+{
+	$('li.rate-box').on('click', '.rate-minus, .rate-plus', function()
+	{
+		var url = 'app.php/phpbbex/rating/';
+		var action = $(this).hasClass('rate-minus') ? 'minus' : 'plus';
+		var post_id = $(this).parents('.post').attr('id').substr(1);
+		var $box = $(this).parent();
+		$('.rate-value', $box).wrapInner('<i class="inline-preloader"></i>');
+		$.getJSON(url + action + '/' + post_id + '/' + '{AJAX_TOKEN}')
+		.done(function(data)
+		{
+			if (data.status != 'ok') return;
+			<!-- IF DISPLAY_RATERS -->
+			var title = $('.rate-value', $box).attr('title');
+			<!-- ENDIF -->
+			var html = '';
+			html += '<span class="button icon-button left-button rate-';
+			html += (data.user_rate < 0) ? 'minus-voted' : (data.user_can_minus ? 'minus' : 'no-minus');
+			html += '"></span><span class="button icon-button center-button rate-value rate-';
+			html += (data.post_rating > 0) ? 'positive' : ((data.post_rating < 0) ? 'negative' : 'zero');
+			html += '" title="+' + data.post_rating_positive + '/−' + data.post_rating_negative + '">';
+			html += (data.post_rating_positive != 0 || data.post_rating_negative != 0) ? data.post_rating : '−';
+			html += '</span><span class="button icon-button right-button rate-';
+			html += (data.user_rate > 0) ? 'plus-voted' : (data.user_can_plus ? 'plus' : 'no-plus');
+			html += '"></span>';
+			$box.html(html);
+			<!-- IF DISPLAY_RATERS -->
+			$('.rate-value', $box).attr('title', title ? title : '');
+			<!-- ENDIF -->
+		})
+		.fail(function()
+		{
+			$('.rate-value', $box).text($('.rate-value span', $box).text());
+		});
+	});
+});
 <!-- ENDIF -->
+</script>
 
 <!-- IF S_IN_MEMBERLIST -->
 <style>

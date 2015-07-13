@@ -136,6 +136,51 @@ jQuery(function($)
 		return true;
 	});
 });
+
+<!-- IF S_OVERVIEW and (not S_USER_FOUNDER or S_FOUNDER) -->
+jQuery(function($)
+{
+	$('#quicktools').on('change', function()
+	{
+		var option = $(this).val();
+		$('#reasons').hide();
+		$('#delrates').hide();
+
+		switch (option)
+		{
+			case 'banuser':
+			case 'banemail':
+			case 'banip':
+				$('#reasons').show();
+			break;
+
+			case 'delrates':
+				$('#delrates').show();
+			break;
+		}
+
+		var text = $('#ban_reason').val();
+		if (text && text != '{LA_USER_ADMIN_BAN_NAME_REASON}' && text != '{LA_USER_ADMIN_BAN_EMAIL_REASON}' && text != '{LA_USER_ADMIN_BAN_IP_REASON}')
+		{
+			return;
+		}
+
+		if (option == 'banuser')
+		{
+			$('#ban_reason').val('{LA_USER_ADMIN_BAN_NAME_REASON}');
+		}
+		else if (option == 'banemail')
+		{
+			$('#ban_reason').val('{LA_USER_ADMIN_BAN_EMAIL_REASON}');
+		}
+		else if (option == 'banip')
+		{
+			$('#ban_reason').val('{LA_USER_ADMIN_BAN_IP_REASON}');
+		}
+	});
+	$('#quicktools').trigger('change');
+});
+<!-- ENDIF -->
 </script>
 
 <!-- EVENT acp_overall_footer_after -->

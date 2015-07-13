@@ -236,6 +236,14 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 
 		'AUTHOR_AGE'		=> $age,
 
+		'S_RATE_ENABLED'			=> $config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']) && ($author_id != ANONYMOUS),
+		'AUTHOR_RATING'				=> (int) ($config['rate_no_positive'] ? 0 : $user_info['user_rating_positive']) - ($config['rate_no_negative'] ? 0 : $user_info['user_rating_negative']),
+		'AUTHOR_RATING_POSITIVE'	=> (int) $user_info['user_rating_positive'],
+		'AUTHOR_RATING_NEGATIVE'	=> (int) $user_info['user_rating_negative'],
+		'AUTHOR_RATED'				=> (int) ($config['rate_no_positive'] ? 0 : $user_info['user_rated_positive']) - ($config['rate_no_negative'] ? 0 : $user_info['user_rated_negative']),
+		'AUTHOR_RATED_POSITIVE'		=> (int) $user_info['user_rated_positive'],
+		'AUTHOR_RATED_NEGATIVE'		=> (int) $user_info['user_rated_negative'],
+
 		'S_AUTHOR_GENDER_X'	=> $user_info['user_gender'] == GENDER_X,
 		'S_AUTHOR_GENDER_M'	=> $user_info['user_gender'] == GENDER_M,
 		'S_AUTHOR_GENDER_F'	=> $user_info['user_gender'] == GENDER_F,

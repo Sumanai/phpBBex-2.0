@@ -156,6 +156,13 @@ services:
             - @php_ini
             - @mimetype.guesser
 
+    rating.rate:
+        class: phpbb\rating\rate
+        arguments:
+            - @auth
+            - @config
+            - @dbal.conn
+
     request:
         class: phpbb\request\request
         arguments:

@@ -114,11 +114,16 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Display social buttons',
 	'STYLE_VT_SHOW_POST_NUMBERS'		=> 'Display post numbers',
 
+	'STYLE_SETTINGS_PROFILE'			=> 'Profile',
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Mini profile',
-	'STYLE_MP_ON_LEFT'					=> 'Profiles on left',
+	'STYLE_MP_ON_LEFT'					=> 'Mini profiles on left',
 	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Display topic starter',
 	'STYLE_MP_SHOW_GENDER'				=> 'Display gender',
 	'STYLE_MP_SHOW_AGE'					=> 'Display age',
+	'STYLE_MP_SHOW_RATING'				=> 'Display reputation',
+	'STYLE_MP_SHOW_RATING_DETAILED'		=> 'Display detailed reputation',
+	'STYLE_MP_SHOW_RATED'				=> 'Display loyalty',
+	'STYLE_MP_SHOW_RATED_DETAILED'		=> 'Display detailed loyalty',
 	'STYLE_MP_SHOW_POSTS'				=> 'Display posts counter',
 	'STYLE_MP_SHOW_JOINED'				=> 'Display joined date',
 	'STYLE_MP_SHOW_WITH_US'				=> 'Display how long user is with us',
@@ -171,6 +176,16 @@ $lang = array_merge($lang, array(
 	'ALLOW_TOPIC_NOTIFY'		=> 'Allow subscribing to topics',
 	'BOARD_PM'					=> 'Private messaging',
 	'BOARD_PM_EXPLAIN'			=> 'Enable private messaging for all users.',
+
+	'RATINGS'					=> 'Post ratings',
+	'RATE_ENABLED'				=> 'Enable ratings',
+	'RATE_ONLY_TOPICS'			=> 'Rate only topics (first posts)',
+	'RATE_TOPIC_TIME'			=> 'Limit topic (first post) rating time',
+	'RATE_TIME'					=> 'Limit post rating time',
+	'RATE_CHANGE_TIME'			=> 'Limit rating change time',
+	'RATE_NO_NEGATIVE'			=> 'No negative',
+	'RATE_NO_POSITIVE'			=> 'No positive',
+	'DISPLAY_RATERS'			=> 'Display who and how rated messages',
 ));
 
 // Avatar Settings

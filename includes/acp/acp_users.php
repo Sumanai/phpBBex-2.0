@@ -585,6 +585,82 @@ class acp_users
 							}
 						break;
 
+						case 'delrates':
+
+							$delrates_type = request_var('delrates_type', 0);
+							$delrates_from = request_var('delrates_from', '');
+							$delrates_to = request_var('delrates_to', '');
+
+							if (confirm_box(true))
+							{
+								// Convert "from" field from string to unixtime
+								$delrates_from = explode('-', $delrates_from);
+								if (sizeof($delrates_from) == 3)
+								{
+									$delrates_from = gmmktime(0, 0, 0, (int) $delrates_from[1], (int) $delrates_from[2], (int) $delrates_from[0]);
+
+									if ($delrates_from === -1)
+									{
+										$delrates_from = false;
+									}
+								}
+								else
+								{
+									$delrates_from = false;
+								}
+
+								// Convert "to" field from string to unixtime
+								$delrates_to = explode('-', $delrates_to);
+								if (sizeof($delrates_to) == 3)
+								{
+									$delrates_to = gmmktime(0, 0, 0, (int) $delrates_to[1], (int) $delrates_to[2], (int) $delrates_to[0]);
+
+									if ($delrates_to === -1)
+									{
+										$delrates_to = false;
+									}
+
+									// To end of choosed day
+									if ($delrates_to)
+									{
+										$delrates_to += 3600 * 24;
+									}
+								}
+								else
+								{
+									$delrates_to = false;
+								}
+
+								// Execute remove_rates_batch if needed
+								if ($delrates_type)
+								{
+									$rate = $phpbb_container->get('rating.rate');
+									$rate->remove_rates_batch('user', $user_id, $delrates_type & 1, $delrates_type & 2, $delrates_from, $delrates_to);
+									$lang = 'OK';
+								}
+								else
+								{
+									$lang = 'NOTHING';
+								}
+
+								trigger_error($user->lang['DEL_RATES_MSG_' . $lang] . adm_back_link($this->u_action . '&amp;u=' . $user_id));
+							}
+							else
+							{
+								confirm_box(false, $user->lang['CONFIRM_OPERATION'], build_hidden_fields(array(
+									'u'				=> $user_id,
+									'i'				=> $id,
+									'mode'			=> $mode,
+									'action'		=> $action,
+									'update'		=> true,
+									'delrates_type'	=> $delrates_type,
+									'delrates_from'	=> $delrates_from,
+									'delrates_to'	=> $delrates_to,
+								)));
+							}
+
+						break;
+
 						case 'moveposts':
 
 							if (!check_form_key($form_name))
@@ -1000,6 +1076,8 @@ class acp_users
 					$user_row['session_viewonline'] = (isset($row['session_viewonline'])) ? $row['session_viewonline'] : 0;
 					unset($row);
 				}
+
+				$quick_tool_ary['delrates'] = 'DEL_RATES';
 
 				/**
 				* Add additional quick tool options and overwrite user data

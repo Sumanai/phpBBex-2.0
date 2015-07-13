@@ -6,6 +6,8 @@
 		<dl class="details">
 			<!-- IF AGE and AGE < 65 and AGE > 10 --><dt>{L_AGE}{L_COLON}</dt> <dd>{AGE}</dd><!-- ENDIF -->
 			<!-- IF not S_GENDER_X --><dt>{L_GENDER}{L_COLON}</dt> <dd><!-- IF S_GENDER_M -->{L_GENDER_M}<!-- ELSE -->{L_GENDER_F}<!-- ENDIF --></dd><!-- ENDIF -->
+			<!-- IF (STYLE_P_SHOW_RATING or STYLE_P_SHOW_RATING_DETAILED) and S_RATING --><dt>{L_USER_RATING}{L_COLON}</dt> <dd><!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_P_SHOW_RATING and STYLE_P_SHOW_RATING_DETAILED -->{RATING} (+{RATING_POSITIVE}/−{RATING_NEGATIVE})<!-- ELSEIF STYLE_P_SHOW_RATING_DETAILED -->+{RATING_POSITIVE}/−{RATING_NEGATIVE}<!-- ELSE --><span title="+{RATING_POSITIVE}/−{RATING_NEGATIVE}">{RATING}</span><!-- ENDIF --><!-- ELSE -->{RATING}<!-- ENDIF --></dd><!-- ENDIF -->
+			<!-- IF (STYLE_P_SHOW_RATED or STYLE_P_SHOW_RATED_DETAILED) and S_RATING --><dt>{L_USER_RATED}{L_COLON}</dt> <dd><!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_P_SHOW_RATED and STYLE_P_SHOW_RATED_DETAILED -->{RATED} (+{RATED_POSITIVE}/−{RATED_NEGATIVE})<!-- ELSEIF STYLE_P_SHOW_RATED_DETAILED -->+{RATED_POSITIVE}/−{RATED_NEGATIVE}<!-- ELSE --><span title="+{RATED_POSITIVE}/−{RATED_NEGATIVE}">{RATED}</span><!-- ENDIF --><!-- ELSE -->{RATED}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF USER_AGENT and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_AGENT}{L_COLON}</dt> <dd>{USER_AGENT}</dd><!-- ENDIF -->
 			<!-- IF USER_LAST_IP and (U_USER_ADMIN or U_USER_BAN) --><dt>{L_USER_LAST_IP}{L_COLON}</dt> <dd>{USER_LAST_IP}</dd><!-- ENDIF -->
 	</dl>

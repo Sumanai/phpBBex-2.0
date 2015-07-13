@@ -114,12 +114,17 @@ $lang = array_merge($lang, array(
 	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Отображать кнопки социальных сетей',
 	'STYLE_VT_SHOW_POST_NUMBERS'		=> 'Отображать номера сообщений',
 
+	'STYLE_SETTINGS_PROFILE'			=> 'Профиль',
 	'STYLE_SETTINGS_MINIPROFILE'		=> 'Минипрофиль',
 	'STYLE_MP_ON_LEFT'					=> 'Минипрофили по умолчанию слева',
 	'STYLE_MP_ON_LEFT_EXPLAIN'			=> 'Пользователи смогут выбрать для себя предпочитаемый способ отображения.',
 	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Отображать автора темы',
 	'STYLE_MP_SHOW_GENDER'				=> 'Отображать пол',
 	'STYLE_MP_SHOW_AGE'					=> 'Отображать возраст',
+	'STYLE_MP_SHOW_RATING'				=> 'Отображать репутацию',
+	'STYLE_MP_SHOW_RATING_DETAILED'		=> 'Отображать репутацию (подробно)',
+	'STYLE_MP_SHOW_RATED'				=> 'Отображать лояльность',
+	'STYLE_MP_SHOW_RATED_DETAILED'		=> 'Отображать лояльность (подробно)',
 	'STYLE_MP_SHOW_POSTS'				=> 'Отображать количество сообщений',
 	'STYLE_MP_SHOW_JOINED'				=> 'Отображать дату регистрации',
 	'STYLE_MP_SHOW_WITH_US'				=> 'Отображать как долго пользователь с нами',
@@ -172,6 +177,16 @@ $lang = array_merge($lang, array(
 	'ALLOW_TOPIC_NOTIFY'		=> 'Разрешить подписку на темы',
 	'BOARD_PM'					=> 'Разрешить личные сообщения',
 	'BOARD_PM_EXPLAIN'			=> 'Включение обмена личными сообщениями для всех пользователей.',
+
+	'RATINGS'					=> 'Оценки сообщений',
+	'RATE_ENABLED'				=> 'Включить оценки',
+	'RATE_ONLY_TOPICS'			=> 'Оценивать только темы (первые сообщения)',
+	'RATE_TOPIC_TIME'			=> 'Время оценивания тем (первых сообщений)',
+	'RATE_TIME'					=> 'Время оценивания сообщений',
+	'RATE_CHANGE_TIME'			=> 'Время изменения решения',
+	'RATE_NO_NEGATIVE'			=> 'Без отрицательных',
+	'RATE_NO_POSITIVE'			=> 'Без положительных',
+	'DISPLAY_RATERS'			=> 'Отображать кто и как оценивал сообщения',
 ));
 
 // Avatar Settings

@@ -1,0 +1,6 @@
+services:
+    phpBBex.phpBBext.rate_post:
+        class: phpBBex\phpBBext\controller\rate_post
+        arguments:
+            - @user
+            - @rating.rate

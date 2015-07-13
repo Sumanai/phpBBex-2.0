@@ -292,6 +292,10 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', 
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_row_numbers', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_gender', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rank', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rating', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rating_detailed', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rated', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_rated_detailed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_posts', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_joined', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_last_active', '1');
@@ -299,10 +303,18 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left',
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_topic_poster', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_gender', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_age', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rating', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rating_detailed', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rated', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rated_detailed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_posts', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_joined', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_with_us', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_buttons', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_p_show_rating', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_p_show_rating_detailed', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_p_show_rated', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_p_show_rated_detailed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_new_year', '-1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_rounded_corners', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_show_feeds_in_forumlist', '0');
@@ -331,6 +343,13 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0'
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_enabled', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_only_topics', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_time', 0);
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_topic_time', -1);
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_change_time', 60*5);
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_no_negative', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_no_positive', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('social_media_cover_url', '');
 
@@ -467,6 +486,8 @@ INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('a_words', 1);
 # -- User related auth options
 INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_', 1);
 INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_attach', 1);
+INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_canplus', 1);
+INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_canminus', 1);
 INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_chgavatar', 1);
 INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_chgcensors', 1);
 INSERT INTO phpbb_acl_options (auth_option, is_global) VALUES ('u_chgemail', 1);
@@ -596,7 +617,7 @@ INSERT INTO phpbb_acl_roles_data (role_id, auth_option_id, auth_setting) SELECT 
 INSERT INTO phpbb_acl_roles_data (role_id, auth_option_id, auth_setting) SELECT 7, auth_option_id, 1 FROM phpbb_acl_options WHERE auth_option LIKE 'u_%' AND auth_option NOT IN ('u_attach', 'u_viewonline', 'u_chggrp', 'u_chgname', 'u_ignoreflood', 'u_ignorefpedittime', 'u_ignoreedittime', 'u_pm_attach', 'u_pm_emailpm', 'u_pm_flash', 'u_savedrafts', 'u_search', 'u_sendemail', 'u_sendim', 'u_masspm', 'u_masspm_group');
 
 # No Private Messages (u_)
-INSERT INTO phpbb_acl_roles_data (role_id, auth_option_id, auth_setting) SELECT 8, auth_option_id, 1 FROM phpbb_acl_options WHERE auth_option LIKE 'u_%' AND auth_option IN ('u_', 'u_chgavatar', 'u_chgcensors', 'u_chgemail', 'u_chgpasswd', 'u_download', 'u_hideonline', 'u_sig', 'u_viewprofile');
+INSERT INTO phpbb_acl_roles_data (role_id, auth_option_id, auth_setting) SELECT 8, auth_option_id, 1 FROM phpbb_acl_options WHERE auth_option LIKE 'u_%' AND auth_option IN ('u_', 'u_chgavatar', 'u_chgcensors', 'u_chgemail', 'u_chgpasswd', 'u_download', 'u_hideonline', 'u_sig', 'u_viewprofile', 'u_canplus', 'u_canminus');
 INSERT INTO phpbb_acl_roles_data (role_id, auth_option_id, auth_setting) SELECT 8, auth_option_id, 0 FROM phpbb_acl_options WHERE auth_option LIKE 'u_%' AND auth_option IN ('u_readpm', 'u_sendpm', 'u_masspm', 'u_masspm_group');
 
 # No Avatar (u_)

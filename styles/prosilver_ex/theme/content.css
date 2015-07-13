@@ -376,8 +376,8 @@ dl.faq dt {
 
 /* Post author */
 p.author {
-	margin: 0.4em 0.4em 0.2em 0;
-	padding: 0 0 5px 0;
+	margin: 0.2em 0.4em 0.2em 0;
+	padding: 0.2em 0 5px 0;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	line-height: 1.2em;

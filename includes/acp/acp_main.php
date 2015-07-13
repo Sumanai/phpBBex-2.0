@@ -79,6 +79,10 @@ class acp_main
 						$confirm = true;
 						$confirm_lang = 'RESYNC_POSTCOUNTS_CONFIRM';
 					break;
+					case 'rates':
+						$confirm = true;
+						$confirm_lang = 'RESYNC_RATES_CONFIRM';
+					break;
 					case 'date':
 						$confirm = true;
 						$confirm_lang = 'RESET_DATE_CONFIRM';
@@ -251,6 +255,24 @@ class acp_main
 						{
 							trigger_error('RESYNC_POSTCOUNTS_SUCCESS');
 						}
+					break;
+
+					case 'rates':
+						if (!$auth->acl_get('a_board'))
+						{
+							trigger_error($user->lang['NO_AUTH_OPERATION'] . adm_back_link($this->u_action), E_USER_WARNING);
+						}
+
+						$rate = $phpbb_container->get('rating.rate');
+						$rate->resync_rates();
+
+						add_log('admin', 'LOG_RESYNC_RATES');
+
+						if ($request->is_ajax())
+						{
+							trigger_error('RESYNC_RATES_SUCCESS');
+						}
+
 					break;
 
 					case 'date':

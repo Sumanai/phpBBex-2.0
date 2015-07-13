@@ -5123,6 +5123,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'SESSION_ID'		=> $user->session_id,
 		'ROOT_PATH'			=> $web_path,
 		'BOARD_URL'			=> $board_url,
+		'AJAX_TOKEN'		=> generate_link_hash('ajax'),
 
 		'CURRENT_DAY'		=> date('d'),
 		'CURRENT_MONTH'		=> date('m'),
@@ -5231,6 +5232,9 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	// Style settings
 	$settings = array(
 		// general
+		'display_raters',
+		'rate_no_positive',
+		'rate_no_negative',
 		'style_back_to_top',
 		'style_max_width',
 		'style_new_year',
@@ -5248,15 +5252,29 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_mp_show_gender',
 		'style_mp_show_age',
 		'style_mp_show_from',
+		'style_mp_show_rating',
+		'style_mp_show_rating_detailed',
+		'style_mp_show_rated',
+		'style_mp_show_rated_detailed',
 		'style_mp_show_posts',
 		'style_mp_show_joined',
 		'style_mp_show_with_us',
 		'style_mp_show_buttons',
 
+		// profile
+		'style_p_show_rating',
+		'style_p_show_rating_detailed',
+		'style_p_show_rated',
+		'style_p_show_rated_detailed',
+
 		// memberlist
 		'style_ml_show_row_numbers',
 		'style_ml_show_gender',
 		'style_ml_show_rank',
+		'style_ml_show_rating',
+		'style_ml_show_rating_detailed',
+		'style_ml_show_rated',
+		'style_ml_show_rated_detailed',
 		'style_ml_show_posts',
 		'style_ml_show_joined',
 		'style_ml_show_last_active',

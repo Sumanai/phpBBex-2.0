@@ -748,6 +748,7 @@ $template->assign_vars(array(
 	'S_DISPLAY_POST_INFO'	=> ($topic_data['forum_type'] == FORUM_POST && ($auth->acl_get('f_post', $forum_id) || $user->data['user_id'] == ANONYMOUS)) ? true : false,
 	'S_DISPLAY_REPLY_INFO'	=> ($topic_data['forum_type'] == FORUM_POST && ($auth->acl_get('f_reply', $forum_id) || $user->data['user_id'] == ANONYMOUS)) ? true : false,
 	'S_ENABLE_FEEDS_TOPIC'	=> ($config['feed_topic'] && !phpbb_optionget(FORUM_OPTION_FEED_EXCLUDE, $topic_data['forum_options'])) ? true : false,
+	'S_RATE_ENABLED'		=> $config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']),
 
 	'U_TOPIC'				=> "{$server_path}viewtopic.$phpEx?f=$forum_id&amp;t=$topic_id",
 	'U_FORUM'				=> $server_path,
@@ -1314,6 +1315,9 @@ while ($row = $db->sql_fetchrow($result))
 		'post_delete_reason'=> $row['post_delete_reason'],
 		'post_delete_user'	=> $row['post_delete_user'],
 
+		'post_rating_negative'	=> $row['post_rating_negative'],
+		'post_rating_positive'	=> $row['post_rating_positive'],
+
 		// Make sure the icon actually exists
 		'icon_id'			=> (isset($icons[$row['icon_id']]['img'], $icons[$row['icon_id']]['height'], $icons[$row['icon_id']]['width'])) ? $row['icon_id'] : 0,
 		'post_attachment'	=> $row['post_attachment'],
@@ -1354,6 +1358,13 @@ while ($row = $db->sql_fetchrow($result))
 				'with_us'		=> '',
 				'posts'			=> '',
 
+				'rating'			=> 0,
+				'rating_positive'	=> 0,
+				'rating_negative'	=> 0,
+				'rated'				=> 0,
+				'rated_positive'	=> 0,
+				'rated_negative'	=> 0,
+
 				'sig'					=> '',
 				'sig_bbcode_uid'		=> '',
 				'sig_bbcode_bitfield'	=> '',
@@ -1363,7 +1374,6 @@ while ($row = $db->sql_fetchrow($result))
 				'rank_title'		=> '',
 				'rank_image'		=> '',
 				'rank_image_src'	=> '',
-				'sig'				=> '',
 				'pm'				=> '',
 				'email'				=> '',
 				'jabber'			=> '',
@@ -1418,6 +1428,13 @@ while ($row = $db->sql_fetchrow($result))
 				'with_us'		=> !empty($config['style_mp_show_with_us']) ? \phpbb\datetime::get_verbal($row['user_regdate'], time(), false, 2) : '',
 				'posts'			=> $row['user_posts'],
 				'warnings'		=> (isset($row['user_warnings'])) ? $row['user_warnings'] : 0,
+
+				'rating'			=> ($config['rate_no_positive'] ? 0 : $row['user_rating_positive']) - ($config['rate_no_negative'] ? 0 : $row['user_rating_negative']),
+				'rating_positive'	=> $row['user_rating_positive'],
+				'rating_negative'	=> $row['user_rating_negative'],
+				'rated'				=> ($config['rate_no_positive'] ? 0 : $row['user_rated_positive']) - ($config['rate_no_negative'] ? 0 : $row['user_rated_negative']),
+				'rated_positive'	=> $row['user_rated_positive'],
+				'rated_negative'	=> $row['user_rated_negative'],
 
 				'sig'					=> $user_sig,
 				'sig_bbcode_uid'		=> (!empty($row['user_sig_bbcode_uid'])) ? $row['user_sig_bbcode_uid'] : '',
@@ -1634,6 +1651,22 @@ $template->assign_vars(array(
 	'S_NUM_POSTS' => sizeof($post_list))
 );
 
+// Get user rates
+$user_rates = array();
+if ($config['rate_enabled'])
+{
+	$sql = 'SELECT *
+		FROM ' . POST_RATES_TABLE . '
+		WHERE user_id = ' . $user->data['user_id'] . '
+			AND ' . $db->sql_in_set('post_id', $post_list);
+	$result = $db->sql_query($sql);
+
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$user_rates[$row['post_id']] = $row;
+	}
+}
+
 /**
 * Event to modify the post, poster and attachment data before assigning the posts
 *
@@ -1673,6 +1706,27 @@ $vars = array(
 	'attachments',
 );
 extract($phpbb_dispatcher->trigger_event('core.viewtopic_modify_post_data', compact($vars)));
+
+// Get list of rates for displaying
+$post_raters = array();
+if ($config['rate_enabled'] && $config['display_raters'])
+{
+	$sql = 'SELECT r.*, u.username, u.user_colour
+		FROM ' . POST_RATES_TABLE . ' r
+		LEFT JOIN ' . USERS_TABLE . ' u ON r.user_id = u.user_id
+		WHERE ' . $db->sql_in_set('r.post_id', $post_list) . '
+		ORDER BY r.post_id, r.rate_time';
+	$result = $db->sql_query($sql);
+
+	while ($row = $db->sql_fetchrow($result))
+	{
+		if (!isset($post_raters[$row['post_id']]))
+		{
+			$post_raters[$row['post_id']] = array();
+		}
+		$post_raters[$row['post_id']][] = $row;
+	}
+}
 
 // Output the posts
 $first_unread = $post_unread = false;
@@ -1959,14 +2013,17 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		$u_pm = append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;mode=compose&amp;action=quotepost&amp;p=' . $row['post_id']);
 	}
 
+	$user_rate = isset($user_rates[$row['post_id']]) ? $user_rates[$row['post_id']] : array('rate' => 0, 'rate_time' => 0);
+	$rate_time = ($topic_data['topic_first_post_id'] != $row['post_id'] || !isset($config['rate_topic_time']) || $config['rate_topic_time'] == -1) ? $config['rate_time'] : $config['rate_topic_time'];
+
 	$post_number = ($topic_data['topic_first_post_show'] && $start != 0) ? ($topic_data['topic_first_post_id'] == $row['post_id'] ? 1 : $i + $start) : $i + $start + 1;
 
-	//
 	$post_row = array(
 		'POST_AUTHOR_FULL'		=> ($poster_id != ANONYMOUS) ? $user_cache[$poster_id]['author_full'] : get_username_string('full', $poster_id, $row['username'], $row['user_colour'], $row['post_username']),
 		'POST_AUTHOR_COLOUR'	=> ($poster_id != ANONYMOUS) ? $user_cache[$poster_id]['author_colour'] : get_username_string('colour', $poster_id, $row['username'], $row['user_colour'], $row['post_username']),
 		'POST_AUTHOR'			=> ($poster_id != ANONYMOUS) ? $user_cache[$poster_id]['author_username'] : get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['post_username']),
 		'U_POST_AUTHOR'			=> ($poster_id != ANONYMOUS) ? $user_cache[$poster_id]['author_profile'] : get_username_string('profile', $poster_id, $row['username'], $row['user_colour'], $row['post_username']),
+		'S_GUEST'				=> ($poster_id == ANONYMOUS) ? true : false,
 
 		'RANK_TITLE'		=> $user_cache[$poster_id]['rank_title'],
 		'RANK_IMG'			=> $user_cache[$poster_id]['rank_image'],
@@ -1978,6 +2035,15 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POSTER_WARNINGS'	=> $auth->acl_get('m_warn') ? $user_cache[$poster_id]['warnings'] : '',
 		'POSTER_AGE'		=> $user_cache[$poster_id]['age'],
 		'CONTACT_USER'		=> $user_cache[$poster_id]['contact_user'],
+
+		'S_POSTER_RATING'			=> $config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']) && ($poster_id != ANONYMOUS),
+		'POSTER_RATING'				=> $user_cache[$poster_id]['rating'],
+		'POSTER_RATING_POSITIVE'	=> $user_cache[$poster_id]['rating_positive'],
+		'POSTER_RATING_NEGATIVE'	=> $user_cache[$poster_id]['rating_negative'],
+		'POSTER_RATED'				=> $user_cache[$poster_id]['rated'],
+		'POSTER_RATED_POSITIVE'		=> $user_cache[$poster_id]['rated_positive'],
+		'POSTER_RATED_NEGATIVE'		=> $user_cache[$poster_id]['rated_negative'],
+
 		// This value will be used as a parameter for JS insert_text() function, so we use addslashes to handle "special" usernames properly ;)
 		'POSTER_QUOTE'		=> addslashes(get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['post_username'])),
 
@@ -2027,6 +2093,14 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POST_ID'			=> $row['post_id'],
 		'POST_NUMBER'		=> $post_number,
 		'POSTER_ID'			=> $poster_id,
+
+		'POST_RATING_SHOW'		=> $config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']) && ($row['post_rating_negative'] != 0 || $row['post_rating_positive'] != 0 || (empty($config['rate_only_topics']) || $topic_data['topic_first_post_id'] == $row['post_id']) && ($rate_time > 0 ? $rate_time + $row['post_time'] > time() : true)),
+		'POST_RATING'			=> ($config['rate_no_positive'] ? 0 : $row['post_rating_positive']) - ($config['rate_no_negative'] ? 0 : $row['post_rating_negative']),
+		'POST_RATING_NEGATIVE'	=> $row['post_rating_negative'],
+		'POST_RATING_POSITIVE'	=> $row['post_rating_positive'],
+		'USER_RATE'				=> $user_rate['rate'],
+		'USER_CAN_MINUS'		=> $config['rate_enabled'] && ($user->data['user_id'] != ANONYMOUS) && ($user->data['user_id'] != $poster_id) && (empty($config['rate_only_topics']) || $topic_data['topic_first_post_id'] == $row['post_id']) && ($rate_time > 0 ? $rate_time + $row['post_time'] > time() : true) && ($user_rate['rate'] >= 0) && ($user_rate['rate'] != 0 && $config['rate_change_time'] > 0 ? $config['rate_change_time'] + $user_rate['rate_time'] > time() : true) && ($config['rate_no_negative'] ? $user_rate['rate'] != 0 : true) && $auth->acl_get('u_canminus'),
+		'USER_CAN_PLUS'			=> $config['rate_enabled'] && ($user->data['user_id'] != ANONYMOUS) && ($user->data['user_id'] != $poster_id) && (empty($config['rate_only_topics']) || $topic_data['topic_first_post_id'] == $row['post_id']) && ($rate_time > 0 ? $rate_time + $row['post_time'] > time() : true) && ($user_rate['rate'] <= 0) && ($user_rate['rate'] != 0 && $config['rate_change_time'] > 0 ? $config['rate_change_time'] + $user_rate['rate_time'] > time() : true) && ($config['rate_no_positive'] ? $user_rate['rate'] != 0 : true) && $auth->acl_get('u_canplus'),
 
 		'S_HAS_ATTACHMENTS'	=> (!empty($attachments[$row['post_id']])) ? true : false,
 		'S_MULTIPLE_ATTACHMENTS'	=> !empty($attachments[$row['post_id']]) && sizeof($attachments[$row['post_id']]) > 1,
@@ -2095,6 +2169,29 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	// Dump vars into template
 	$template->assign_block_vars('postrow', $post_row);
+
+	// Display raters if needed
+	if ($config['rate_enabled'] && $config['display_raters'] && isset($post_raters[$row['post_id']]))
+	{
+		$is_first_row = true;
+		foreach ($post_raters[$row['post_id']] as $rater)
+		{
+			$template->assign_block_vars('postrow.postrater', array(
+				'S_FIRST_ROW'	=> $is_first_row,
+				'RATER_ID'		=> $rater['user_id'],
+				'POST_ID'		=> $rater['post_id'],
+				'RATE'			=> $rater['rate'],
+				'RATE_TEXT'		=> ($rater['rate'] > 0 ? '+'.$rater['rate'] : '−'.abs($rater['rate'])),
+				'DATETIME'		=> $user->format_date($rater['rate_time']),
+				'DATE'			=> $user->format_date($rater['rate_time'], false, false, true),
+				'U_RATER'		=> get_username_string('profile', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_NAME'	=> get_username_string('username', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_COLOUR'	=> get_username_string('colour', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_FULL'	=> get_username_string('full', 		$rater['user_id'], $rater['username'], $rater['user_colour']),
+			));
+			$is_first_row = false;
+		}
+	}
 
 	$contact_fields = array(
 		array(

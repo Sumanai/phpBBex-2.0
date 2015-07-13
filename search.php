@@ -931,6 +931,27 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 		);
 		extract($phpbb_dispatcher->trigger_event('core.search_modify_rowset', compact($vars)));
 
+		// Get list of rates for displaying
+		$post_raters = array();
+		if ($config['rate_enabled'] && $config['display_raters'] && $show_results == 'posts' && sizeof($id_ary))
+		{
+			$sql = 'SELECT r.*, u.username, u.user_colour
+				FROM ' . POST_RATES_TABLE . ' r
+				LEFT JOIN ' . USERS_TABLE . ' u ON r.user_id = u.user_id
+				WHERE ' . $db->sql_in_set('r.post_id', $id_ary) . '
+				ORDER BY r.post_id, r.rate_time';
+			$result = $db->sql_query($sql);
+
+			while ($row = $db->sql_fetchrow($result))
+			{
+				if (!isset($post_raters[$row['post_id']]))
+				{
+					$post_raters[$row['post_id']] = array();
+				}
+				$post_raters[$row['post_id']][] = $row;
+			}
+		}
+
 		foreach ($rowset as $row)
 		{
 			$forum_id = $row['forum_id'];
@@ -1052,6 +1073,11 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					'POST_AUTHOR'			=> get_username_string('username', $row['poster_id'], $row['username'], $row['user_colour'], $row['post_username']),
 					'U_POST_AUTHOR'			=> get_username_string('profile', $row['poster_id'], $row['username'], $row['user_colour'], $row['post_username']),
 
+					'POST_RATING_SHOW'		=> $config['rate_enabled'] && (!$config['rate_no_negative'] || !$config['rate_no_positive']) && ($row['post_rating_negative'] != 0 || $row['post_rating_positive'] != 0),
+					'POST_RATING'			=> ($config['rate_no_positive'] ? 0 : $row['post_rating_positive']) - ($config['rate_no_negative'] ? 0 : $row['post_rating_negative']),
+					'POST_RATING_NEGATIVE'	=> $row['post_rating_negative'],
+					'POST_RATING_POSITIVE'	=> $row['post_rating_positive'],
+
 					'POST_SUBJECT'		=> (!empty($row['post_subject'])) ? $row['post_subject'] : 'Re: ' . $topic_title,
 					'POST_DATE'			=> (!empty($row['post_time'])) ? $user->format_date($row['post_time']) : '',
 					'MESSAGE'			=> $row['post_text']
@@ -1124,6 +1150,29 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 			if ($show_results == 'topics')
 			{
 				$pagination->generate_template_pagination($view_topic_url, 'searchresults.pagination', 'start', $replies + 1, $config['posts_per_page'], 1, true, true);
+			}
+
+			// Display raters if needed
+			if ($config['rate_enabled'] && $config['display_raters'] && $show_results == 'posts' && isset($post_raters[$row['post_id']]))
+			{
+				$is_first_row = true;
+				foreach ($post_raters[$row['post_id']] as $rater)
+				{
+					$template->assign_block_vars('searchresults.postrater', array(
+						'S_FIRST_ROW'	=> $is_first_row,
+						'RATER_ID'		=> $rater['user_id'],
+						'POST_ID'		=> $rater['post_id'],
+						'RATE'			=> $rater['rate'],
+						'RATE_TEXT'		=> ($rater['rate'] > 0 ? '+'.$rater['rate'] : '−'.abs($rater['rate'])),
+						'DATETIME'		=> $user->format_date($rater['rate_time']),
+						'DATE'			=> $user->format_date($rater['rate_time'], false, false, true),
+						'U_RATER'		=> get_username_string('profile', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+						'RATER_NAME'	=> get_username_string('username', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+						'RATER_COLOUR'	=> get_username_string('colour', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
+						'RATER_FULL'	=> get_username_string('full', 		$rater['user_id'], $rater['username'], $rater['user_colour']),
+					));
+					$is_first_row = false;
+				}
 			}
 		}
 
