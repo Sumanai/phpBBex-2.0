@@ -78,8 +78,8 @@ class v200 extends \phpbb\db\migration\migration
 				),
 			)),
 
-			array('config.update', array('load_jquery_url', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')),
-			array('config.add', array('load_jquery_v2_url', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')),
+			array('config.update', array('load_jquery_url', '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')),
+			array('config.add', array('load_jquery_v2_url', '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')),
 
 			// phpBBex version
 			array('config.update', array('phpbbex_version', '2.0.0')),
