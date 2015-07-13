@@ -51,7 +51,10 @@ class v153 extends \phpbb\db\migration\migration
 			// Style options
 			array('config.add', array('style_max_width', 1280)),
 
-			// Replace default phpBB config
+			// Reset some other options to phpBBex defaults
+			array('config.update', array('edit_time', 60)),
+			array('config.update', array('feed_item_statistics', 0)),
+			array('config.update', array('form_token_lifetime', 43200)),
 			array('config.update', array('board_hide_emails', 0)),
 			array('custom', array(array($this, 'update_all_users_options'))),
 

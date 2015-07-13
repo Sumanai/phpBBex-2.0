@@ -590,4 +590,6 @@ $lang = array_merge($lang, array(
 	'REPORT_OTHER'					=> 'The reported post does not fit into any other category, please use the further information field.',
 
 	'TOPICS_TOPIC_TITLE'			=> 'Welcome to phpBBex',
+
+	'BOARD_DISABLE_DEFAULT'			=> 'Forum in maintenance',
 ));

@@ -143,7 +143,7 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('style_ml_show_joined', 1)),
 			array('config.add', array('style_ml_show_last_active', 1)),
 			array('config.add', array('style_mp_on_left', 0)),
-			array('config.add', array('style_mp_show_topic_poster', 1)),
+			array('config.add', array('style_mp_show_topic_poster', 0)),
 			array('config.add', array('style_mp_show_gender', 1)),
 			array('config.add', array('style_mp_show_age', 1)),
 			array('config.add', array('style_mp_show_warnings', 1)),
@@ -163,12 +163,49 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('style_show_sitename_in_headerbar', 1)),
 			array('config.add', array('style_show_social_buttons', 1)),
 
-			// Replace default phpBB config
-			array('config.update', array('allow_quick_reply', 2)),
+			// Reset avatar options to phpBBex defaults
+			array('config.update', array('allow_avatar', 1)),
+			array('config.update', array('allow_avatar_upload', 1)),
+			array('config.update', array('allow_avatar_remote_upload', 1)),
+			array('config.update', array('avatar_filesize', 10240)),
+			array('config.update', array('avatar_max_height', 100)),
+			array('config.update', array('avatar_max_width', 100)),
+			array('config.update', array('avatar_min_height', 64)),
+			array('config.update', array('avatar_min_width', 64)),
+
+			// Reset signature options to phpBBex defaults (Disable BBCodes, max 200 characters)
+			array('config.update', array('allow_sig_bbcode', 0)),
+			array('config.update', array('allow_sig_img', 0)),
+			array('config.update', array('allow_sig_links', 0)),
+			array('config.update', array('allow_sig_smilies', 0)),
+			array('config.update', array('max_sig_chars', 200)),
+
+			// Reset attachments options to phpBBex defaults
+			array('config.update', array('allow_pm_attach', 1)),
+			array('config.update', array('max_attachments', 30)),
+			array('config.update', array('max_filesize', 524288)),
+			array('config.update', array('max_filesize_pm', 262144)),
+			array('config.update', array('img_create_thumbnail', 1)),
+
+			// Reset some other options to phpBBex defaults
+//			array('config.update', array('require_activation', '1')),
 			array('config.update', array('default_dateformat', '|d.m.Y|{, H:i}')),
-			array('config.update', array('max_sig_font_size', 100)),
+			array('config.update', array('delete_time', 15)),
+			array('config.update', array('feed_enable', 1)),
+			array('config.update', array('feed_overall', 0)),
+			array('config.update', array('load_moderators', 0)),
+			array('config.update', array('load_tplcompile', 1)),
+			array('config.update', array('max_poll_options', 25)),
+			array('config.update', array('max_post_smilies', 20)),
+			array('config.update', array('max_post_urls', 20)),
+			array('config.update', array('max_quote_depth', 2)),
+			array('config.update', array('pm_max_msgs', 1000)),
+			array('config.update', array('hot_threshold', 100)),
 			array('config.update', array('posts_per_page', 20)),
 			array('config.update', array('topics_per_page', 50)),
+
+			// Replace default phpBB config
+			array('config.update', array('allow_quick_reply', 2)),
 
 			// Remove obsolete options
 			array('config.remove', array('copyright_notice_html')),

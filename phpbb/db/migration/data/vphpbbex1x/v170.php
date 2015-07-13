@@ -27,6 +27,10 @@ class v170 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
+			// Reset some other options to phpBBex defaults
+			array('config.update', array('max_post_font_size', 200)),
+			array('config.update', array('max_sig_font_size', 100)),
+
 			array('config.add', array('min_post_font_size', 85)),
 			array('config.add', array('min_sig_font_size', 100)),
 
