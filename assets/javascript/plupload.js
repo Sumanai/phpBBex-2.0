@@ -478,6 +478,33 @@ $fileList.on('click', '.file-error', function(e) {
 });
 
 /**
+ * Replace original max_file_size function from plupload
+ */
+plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
+	var undef,
+		ext = file.name.match(/\.[\w\d]+$/)[0].substring(1).toLowerCase();
+
+	if (phpbb.plupload.allowed[ext] !== undef) {
+		maxSize = phpbb.plupload.allowed[ext];
+	} else {
+		maxSize = plupload.parseSize(maxSize);
+	}
+
+	// Invalid file size
+	if (file.size !== undef && maxSize && file.size > maxSize) {
+		this.trigger('Error', {
+			code : plupload.FILE_SIZE_ERROR,
+			message : plupload.translate('File size error.'),
+			file : file,
+			maxSize : maxSize
+		});
+		cb(false);
+	} else {
+		cb(true);
+	}
+});
+
+/**
  * Fires when an error occurs.
  */
 phpbb.plupload.uploader.bind('Error', function(up, error) {
@@ -485,12 +512,34 @@ phpbb.plupload.uploader.bind('Error', function(up, error) {
 
 	// The error message that Plupload provides for these is vague, so we'll be more specific.
 	if (error.code === plupload.FILE_EXTENSION_ERROR) {
-		error.message = plupload.translate('Invalid file extension:') + ' ' + error.file.name;
+		error.message = error.message + ' ' + error.file.name + '. ' + plupload.translate('Try to use zip or 7z archives.');
 	} else if (error.code === plupload.FILE_SIZE_ERROR) {
-		error.message = plupload.translate('File too large:') + ' ' + error.file.name;
+		error.message = error.message + ' ' + error.file.name + ' (' +
+			plupload.get_verbal_size(error.file.size) + '). ' +
+			plupload.translate('Allowed file size for files of this type:') + ' ' +
+			plupload.get_verbal_size(error.maxSize);
 	}
 	phpbb.alert(phpbb.plupload.lang.ERROR, error.message);
 });
+
+/**
+ * Makes the spellable phrase.
+ *
+ * @param {int} size	File size.
+ * @returns {string}	Formatted file size.
+ */
+plupload.get_verbal_size = function(size) {
+	var size_text = '';
+
+	if (size < 1024) {
+		size_text = size.toString() + plupload.translate('b');
+	} else if (size / 1024 < 1024) {
+		size_text = (size/1024.0).toFixed(2) + plupload.translate('kb');
+	} else {
+		size_text = (size/1048576.0).toFixed(2) + plupload.translate('mb');
+	}
+	return size_text;
+};
 
 /**
  * Fires before a given file is about to be uploaded. This allows us to

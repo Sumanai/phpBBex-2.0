@@ -155,6 +155,7 @@ services:
             - @user
             - @php_ini
             - @mimetype.guesser
+            - @auth
 
     rating.rate:
         class: phpbb\rating\rate

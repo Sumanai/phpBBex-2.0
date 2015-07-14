@@ -1,0 +1,39 @@
+<!-- IF S_PLUPLOAD -->
+<script>
+plupload.addI18n({
+	'Allowed file size for files of this type:': '{LA_PLUPLOAD_ERR_FILE_ALLOWED_SIZE}',
+	'File extension error.': '{LA_PLUPLOAD_ERR_FILE_INVALID_EXT}',
+	'File size error.': '{LA_PLUPLOAD_ERR_FILE_TOO_LARGE}',
+	'Try to use zip or 7z archives.': '{LA_PLUPLOAD_ERR_FILE_USE_ARCHIVES}'
+});
+
+phpbb.plupload.allowed = {ALLOWED_EXTENSIONS_JSON};
+
+/**
+ * Replace original max_file_size function from plupload
+ */
+plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
+	var undef,
+		ext = file.name.match(/\.[\w\d]+$/)[0].substring(1).toLowerCase();
+
+	if (phpbb.plupload.allowed[ext] !== undef) {
+		maxSize = phpbb.plupload.allowed[ext];
+	} else {
+		maxSize = plupload.parseSize(maxSize);
+	}
+
+	// Invalid file size
+	if (file.size !== undef && maxSize && file.size > maxSize) {
+		this.trigger('Error', {
+			code : plupload.FILE_SIZE_ERROR,
+			message : plupload.translate('File size error.'),
+			file : file,
+			maxSize : maxSize
+		});
+		cb(false);
+	} else {
+		cb(true);
+	}
+});
+</script>
+<!-- ENDIF -->

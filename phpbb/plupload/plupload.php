@@ -49,6 +49,11 @@ class plupload
 	protected $mimetype_guesser;
 
 	/**
+	* @var \phpbb\auth\auth
+	*/
+	protected $auth;
+
+	/**
 	* Final destination for uploaded files, i.e. the "files" directory.
 	* @var string
 	*/
@@ -70,7 +75,7 @@ class plupload
 	* @param \phpbb\php\ini $php_ini
 	* @param \phpbb\mimetype\guesser $mimetype_guesser
 	*/
-	public function __construct($phpbb_root_path, \phpbb\config\config $config, \phpbb\request\request_interface $request, \phpbb\user $user, \phpbb\php\ini $php_ini, \phpbb\mimetype\guesser $mimetype_guesser)
+	public function __construct($phpbb_root_path, \phpbb\config\config $config, \phpbb\request\request_interface $request, \phpbb\user $user, \phpbb\php\ini $php_ini, \phpbb\mimetype\guesser $mimetype_guesser, \phpbb\auth\auth $auth)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->config = $config;
@@ -78,6 +83,7 @@ class plupload
 		$this->user = $user;
 		$this->php_ini = $php_ini;
 		$this->mimetype_guesser = $mimetype_guesser;
+		$this->auth = $auth;
 
 		$this->set_default_directories();
 	}
@@ -155,6 +161,7 @@ class plupload
 	public function configure(\phpbb\cache\service $cache, \phpbb\template\template $template, $s_action, $forum_id, $max_files)
 	{
 		$filters = $this->generate_filter_string($cache, $forum_id);
+		$allowed = $this->get_allowed_extension_sizes($cache, $forum_id);
 		$chunk_size = $this->get_chunk_size();
 		$resize = $this->generate_resize_string();
 
@@ -167,6 +174,7 @@ class plupload
 			'MAX_ATTACHMENTS'	=> $max_files,
 			'ATTACH_ORDER'		=> ($this->config['display_order']) ? 'asc' : 'desc',
 			'L_TOO_MANY_ATTACHMENTS'	=> $this->user->lang('TOO_MANY_ATTACHMENTS', $max_files),
+			'ALLOWED_EXTENSIONS_JSON'	=> json_encode($allowed),
 		));
 
 		$this->user->add_lang('plupload');
@@ -255,6 +263,55 @@ class plupload
 	}
 
 	/**
+	* Get allowed extensions and their sizes in bytes
+	* @param \phpbb\cache\service $cache
+	* @param string $forum_id The ID of the forum
+	*
+	* @return string
+	*/
+	function get_allowed_extension_sizes(\phpbb\cache\service $cache, $forum_id = false)
+	{
+		$result = array();
+		$can_ignore = $this->auth->acl_get('a_') || $forum_id !== false && $this->auth->acl_get('m_', $forum_id);
+
+		if ($can_ignore)
+		{
+			return $result;
+		}
+
+		$extensions = $cache->obtain_attach_extensions($forum_id);
+		unset($extensions['_allowed_']);
+		ksort($extensions);
+	
+		// Calc maximum allowed size
+		$all_max_size = !empty($forum_id) ? (int) $this->config['max_filesize'] : (int) $this->config['max_filesize_pm'];
+		$php_max_size = $this->get_upload_max_filesize();
+
+		// We actually don't know php_max_size, set it to 1MB
+		if (!$php_max_size)
+		{
+			$php_max_size = 1*1024*1024;
+		}
+
+		$all_max_size = $all_max_size ? min($all_max_size, $php_max_size) : $php_max_size;
+
+		foreach($extensions as $ext => $vals)
+		{
+			$ext_max_size = (int) $vals['max_filesize'];
+
+			if (!$ext_max_size or $ext_max_size == $all_max_size)
+			{
+				continue;
+			}
+
+			$result[strtolower($ext)] = min($ext_max_size, $php_max_size);
+
+		}
+
+		return $result;
+	}
+
+	/**
 	* Generates a string that is used to tell plupload to automatically resize
 	* files before uploading them.
 	*
@@ -293,6 +350,21 @@ class plupload
 		// Use half of the maximum possible to leave plenty of room for other
 		// POST data.
 		return floor($max / 2);
+	}
+
+	/**
+	* Get allowed file size uploaded per PHP ini settings
+	*
+	* @return int
+	*/
+	public function get_upload_max_filesize()
+	{
+		$max = min(
+			$this->php_ini->get_bytes('upload_max_filesize'),
+			$this->php_ini->get_bytes('post_max_size')
+		);
+
+		return $max;
 	}
 
 	protected function temporary_filepath($file_name)
