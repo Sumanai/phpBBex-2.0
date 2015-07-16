@@ -856,8 +856,9 @@ function posting_gen_inline_attachments(&$attachment_data)
 */
 function posting_gen_attachment_entry($attachment_data, &$filename_data, $show_attach_box = true)
 {
-	global $template, $config, $phpbb_root_path, $phpEx, $user, $auth, $plupload;
+	global $template, $config, $phpbb_root_path, $phpEx, $user, $auth, $phpbb_container;
 
+	$plupload = $phpbb_container->get('plupload');
 	$php_max_size = $plupload->get_upload_max_filesize();
 	if ($auth->acl_get('a_'))
 	{
