@@ -648,6 +648,10 @@ dl.file dt.attach-file {
 	padding-left: 8px;
 }
 
+dl.file dt.attach-file-with-icon > img {
+	vertical-align: middle;
+}
+
 dl.file dd {
 	margin: 0;
 	padding: 0;
