@@ -52,8 +52,8 @@ function bbstyle(bbnumber, event)
 	{
 		bbfontstyle(bbtags[bbnumber], bbtags[bbnumber+1], event);
 	} else {
- 		insert_text('[*]');
- 	}
+		insert_text('[*]');
+	}
 	textarea.focus();
 }
 

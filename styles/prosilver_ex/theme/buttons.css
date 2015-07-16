@@ -147,6 +147,7 @@ ul.linklist.bulletin > li.small-icon:before {
 }
 
 .hastouch .contact-button {
+	margin-right: 5px;
 	padding: 4px;
 }
 
@@ -161,7 +162,7 @@ ul.linklist.bulletin > li.small-icon:before {
 
 /* Profile icons */
 .pm-icon		{ background-position: 0 0; }
-.email-icon		{ background-position: -21px 0; }
+.email-icon		{ background-position: -20px 0; }
 .jabber-icon	{ background-position: -80px 0; }
 .phpbb_icq-icon	{ background-position: -61px 0 ; }
 .phpbb_wlm-icon	{ background-position: -182px 0; }
@@ -189,6 +190,10 @@ h3 + .post-buttons {
 .post-buttons > li {
 	float: left;
 	margin-right: 3px;
+}
+
+.hastouch .post-buttons > li {
+	margin: 0 5px 5px;
 }
 
 .post-buttons .icon-button {

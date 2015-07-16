@@ -484,7 +484,7 @@ class bbcode
 				'spoiler_title_open'	=> '<dl class="spoilerbox"><dt>$1</dt><dd>',
 				'spoiler_open'			=> '<dl class="spoilerbox"><dt>' . $user->lang['SPOILER'] . '</dt><dd>',
 				'spoiler_close'			=> '</dd></dl>',
-				'upd_merged'			=> '<span style="font-size: 85%; line-height: normal; color: gray;">$1</span>',
+				'upd_merged'			=> '<span class="upd-merged">$1</span>',
 				'upd_subject'			=> '<br /><span style="font-weight: bold">$1</span>',
 			);
 		}

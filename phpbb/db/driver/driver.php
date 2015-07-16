@@ -908,7 +908,6 @@ abstract class driver implements driver_interface
 						<div id="page-body">
 							<div id="acp">
 							<div class="panel">
-								<span class="corners-top"><span></span></span>
 								<div id="content">
 									<h1>SQL Report</h1>
 									<br />
@@ -919,7 +918,6 @@ abstract class driver implements driver_interface
 									<br /><br />
 									' . $this->sql_report . '
 								</div>
-								<span class="corners-bottom"><span></span></span>
 							</div>
 							</div>
 						</div>

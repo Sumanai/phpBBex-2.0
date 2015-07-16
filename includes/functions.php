@@ -4347,7 +4347,11 @@ function obtain_users_online_string($online_users, $item_id = 0, $item = 'forum'
 
 	if ($online_botlist)
 	{
-		$online_userlist .= '<br />' . $user->lang['G_BOTS'] . ': ' . $online_botlist;
+		if ($online_userlist)
+		{
+			$online_userlist .= '<br />';
+		}
+		$online_userlist .= $user->lang['G_BOTS'] . ': ' . $online_botlist;
 	}
 
 	$l_online_users = $user->lang('ONLINE_TOTAL_STR', $online_users['total_online']);

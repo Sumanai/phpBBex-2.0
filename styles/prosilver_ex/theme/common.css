@@ -191,6 +191,7 @@ abbr[title], acronym[title] {
 	min-height: 100%;
 	max-width: 1152px;
 	min-width: 625px;
+	box-sizing: border-box;
 }
 
 #page-body {
@@ -724,10 +725,6 @@ table.info tbody th {
 	margin: 0;
 }
 
-.forumbg-table > .inner {
-	margin: 0 -1px;
-}
-
 #color_palette_placeholder table {
 	border-collapse: separate;
 	border-spacing: 1px;
@@ -1136,7 +1133,8 @@ ul.linklist:after,
 .tabs-container:after,
 #tabs > ul:after,
 #minitabs > ul:after,
-#top-menu:after {
+#top-menu:after,
+#page-footer:after {
 	clear: both;
 	content: '';
 	display: block;

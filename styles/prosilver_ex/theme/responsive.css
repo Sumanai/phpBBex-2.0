@@ -36,6 +36,10 @@ html {
 	border-radius: 7px;
 }
 
+#tabs {
+	margin-left: 0;
+}
+
 /* Logo block
 ----------------------------------------*/
 #site-description {

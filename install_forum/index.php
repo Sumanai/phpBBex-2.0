@@ -643,14 +643,12 @@ class module
 		echo '	<div id="page-body">';
 		echo '		<div id="acp">';
 		echo '		<div class="panel">';
-		echo '			<span class="corners-top"><span></span></span>';
 		echo '			<div id="content">';
 		echo '				<h1>' . $lang['INST_ERR_FATAL'] . '</h1>';
 		echo '		<p>' . $lang['INST_ERR_FATAL'] . "</p>\n";
 		echo '		<p>' . basename($file) . ' [ ' . $line . " ]</p>\n";
 		echo '		<p><b>' . $error . "</b></p>\n";
 		echo '			</div>';
-		echo '			<span class="corners-bottom"><span></span></span>';
 		echo '		</div>';
 		echo '		</div>';
 		echo '	</div>';

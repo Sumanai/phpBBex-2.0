@@ -392,6 +392,11 @@ a.icon-header-unlock { background-position: 0 -234px; }
 	padding-left: 5px;
 }
 
+/* Fix for third-party styles */
+.header-icons .small-icon:after {
+	content: none;
+}
+
 /* New year */
 .headerbar, .forabg, .forumbg {
 	padding: 0;

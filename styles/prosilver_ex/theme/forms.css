@@ -233,6 +233,10 @@ fieldset.submit-buttons input {
 	word-wrap: normal;
 }
 
+#colour_palette {
+	display: none;
+}
+
 /* Main message box */
 #message-box {
 	width: 80%;
@@ -306,7 +310,12 @@ textarea.inputbox {
 }
 
 input[type="number"] {
-	-moz-padding-end: inherit;
+	-moz-padding-end: 0;
+	font-size: 1.1em;
+}
+
+input[type="number"][size="3"] {
+	width: 4em;
 }
 
 input[type="search"] {
