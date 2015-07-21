@@ -46,9 +46,9 @@ class event extends \Twig_Node
 		{
 			$ext_namespace = str_replace('/', '_', $ext_namespace);
 
-			if ($this->environment->get_style_name() === 'prosilverEx' and $ext_namespace === 'phpBBex_phpBBext')
+			if ($this->environment->get_style_compatible() && $ext_namespace === 'phpBBex_phpBBext')
 			{
-				 continue;
+				continue;
 			}
 
 			if (defined('DEBUG'))

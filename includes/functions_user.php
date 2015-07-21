@@ -3199,7 +3199,7 @@ function group_validate_groupname($group_id, $group_name)
 {
 	global $config, $db;
 
-	$group_name =  utf8_clean_string($group_name);
+	$group_name = utf8_clean_string($group_name);
 
 	if (!empty($group_id))
 	{
@@ -3574,7 +3574,7 @@ function remove_newly_registered($user_id, $user_data = false)
 		}
 		else
 		{
-			$user_data  = $user_row;
+			$user_data = $user_row;
 		}
 	}
 

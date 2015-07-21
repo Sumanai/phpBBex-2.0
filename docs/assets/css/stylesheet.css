@@ -188,7 +188,7 @@ a#logo:hover {
 
 .content h2, .panel h2 {
 	color: #115098;
-	border-bottom-color:  #CCCCCC;
+	border-bottom-color: #CCCCCC;
 }
 
 a:link	{ color: #898989; text-decoration: none; }
@@ -233,11 +233,11 @@ a:active	{ color: #368AD2; }
 
 .content h2, .panel h2 {
 	color: #115098;
-	border-bottom-color:  #CCCCCC;
+	border-bottom-color: #CCCCCC;
 }
 
 .notice {
-	border-top-color:  #CCCCCC;
+	border-top-color: #CCCCCC;
 }
 
 .codebox {
@@ -282,18 +282,18 @@ a:active	{ color: #368AD2; }
 	margin-left: 20px;
 }
 
-.paragraph table  {
+.paragraph table {
 	font-size:	8pt;
 	border-collapse: collapse;
 	border: 1px solid #cfcfcf;
 	margin-bottom: 20px;
 }
 
-.paragraph table caption  {
+.paragraph table caption {
 	display: none;
 }
 
-.paragraph table thead  {
+.paragraph table thead {
 	background-color: #cadceb;
 	color: #000;
 }

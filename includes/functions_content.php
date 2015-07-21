@@ -73,7 +73,7 @@ function gen_sort_selects(&$limit_days, &$sort_by_text, &$sort_days, &$sort_key,
 			'output'	=> &$s_sort_dir,
 		),
 	);
-	$u_sort_param  = '';
+	$u_sort_param = '';
 
 	foreach ($sorts as $name => $sort_ary)
 	{
@@ -1436,7 +1436,7 @@ function get_username_string($mode, $user_id, $username, $username_colour = '', 
 	{
 		if (($mode == 'full' && !$profile_url) || $mode == 'no_profile')
 		{
-			$username_string =  str_replace(array('{USERNAME_COLOUR}', '{USERNAME}', '{TITLE}'), array($username_colour, $username, $title), (!$username_colour) ? $_profile_cache['tpl_noprofile'.$postfix] : $_profile_cache['tpl_noprofile_colour'.$postfix]);
+			$username_string = str_replace(array('{USERNAME_COLOUR}', '{USERNAME}', '{TITLE}'), array($username_colour, $username, $title), (!$username_colour) ? $_profile_cache['tpl_noprofile'.$postfix] : $_profile_cache['tpl_noprofile_colour'.$postfix]);
 		}
 		else
 		{

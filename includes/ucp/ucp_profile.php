@@ -407,7 +407,7 @@ class ucp_profile
 						* @event core.ucp_profile_info_modify_sql_ary
 						* @var	array	cp_data		Array with the user custom profile fields data
 						* @var	array	data		Array with user profile data
-						* @var  array	sql_ary		user options data we update
+						* @var	array	sql_ary		user options data we update
 						* @since 3.1.4-RC1
 						*/
 						$vars = array('cp_data', 'data', 'sql_ary');
@@ -670,9 +670,9 @@ class ucp_profile
 						if (!confirm_box(true))
 						{
 							confirm_box(false, $user->lang('CONFIRM_AVATAR_DELETE'), build_hidden_fields(array(
-									'avatar_delete'     => true,
-									'i'                 => $id,
-									'mode'              => $mode))
+									'avatar_delete'		=> true,
+									'i'					=> $id,
+									'mode'				=> $mode))
 							);
 						}
 						else

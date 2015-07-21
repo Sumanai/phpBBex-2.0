@@ -262,7 +262,7 @@ class mcp_queue
 					{
 						$sql = 'SELECT u.user_id, u.username, u.user_colour
 							FROM ' . POSTS_TABLE . ' p, ' . USERS_TABLE . ' u
-							WHERE p.post_id =  ' . $post_info['post_id'] . '
+							WHERE p.post_id = ' . $post_info['post_id'] . '
 								AND p.post_delete_user = u.user_id';
 						$result = $db->sql_query($sql);
 						$post_delete_userinfo = $db->sql_fetchrow($result);
@@ -498,7 +498,7 @@ class mcp_queue
 					$sql = 'SELECT t.forum_id, t.topic_id, t.topic_title, t.topic_title AS post_subject, t.topic_time AS post_time, t.topic_poster AS poster_id, t.topic_first_post_id AS post_id, t.topic_attachment AS post_attachment, t.topic_first_poster_name AS username, t.topic_first_poster_colour AS user_colour
 						FROM ' . TOPICS_TABLE . ' t
 						WHERE ' . $db->sql_in_set('forum_id', $forum_list) . '
-							AND  ' . $db->sql_in_set('topic_visibility', $visibility_const) . "
+							AND ' . $db->sql_in_set('topic_visibility', $visibility_const) . "
 							AND topic_delete_user <> 0
 							$limit_time_sql
 						ORDER BY $sort_order_sql";

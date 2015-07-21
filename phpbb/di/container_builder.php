@@ -22,7 +22,7 @@ class container_builder
 	/** @var string phpBB Root Path */
 	protected $phpbb_root_path;
 
-	/** @var string php file extension  */
+	/** @var string php file extension */
 	protected $php_ext;
 
 	/**

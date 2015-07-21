@@ -139,7 +139,7 @@ class module implements \phpbb\db\migration\tool\tool_interface
 	* @param int|string $parent The parent module_id|module_langname (0 for no parent)
 	* @param array $data an array of the data on the new \module.
 	* 	This can be setup in two different ways.
-	*	1. The "manual" way.  For inserting a category or one at a time.
+	*	1. The "manual" way. For inserting a category or one at a time.
 	*		It will be merged with the base array shown a bit below,
 	*			but at the least requires 'module_langname' to be sent, and,
 	*			if you want to create a module (instead of just a category) you must
@@ -147,15 +147,15 @@ class module implements \phpbb\db\migration\tool\tool_interface
 	*		array(
 	*			'module_enabled'	=> 1,
 	*			'module_display'	=> 1,
-	*	   		'module_basename'	=> '',
+	*			'module_basename'	=> '',
 	*			'module_class'		=> $class,
-	*	   		'parent_id'			=> (int) $parent,
+	*			'parent_id'			=> (int) $parent,
 	*			'module_langname'	=> '',
-	*	   		'module_mode'		=> '',
-	*	   		'module_auth'		=> '',
+	*			'module_mode'		=> '',
+	*			'module_auth'		=> '',
 	*		)
-	*	2. The "automatic" way.  For inserting multiple at a time based on the
-	*			specs in the info file for the module(s).  For this to work the
+	*	2. The "automatic" way. For inserting multiple at a time based on the
+	*			specs in the info file for the module(s). For this to work the
 	*			modules must be correctly setup in the info file.
 	*		An example follows (this would insert the settings, log, and flag
 	*			modes from the includes/acp/info/acp_asacp.php file):

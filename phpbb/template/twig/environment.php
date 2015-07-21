@@ -204,13 +204,12 @@ class environment extends \Twig_Environment
 	}
 
 	/**
-	* Getting the style name of the last user
-	* phpBBex
+	* Getting style compatible with phpBBex
 	*
-	* @return string
+	* @return bool
 	*/
-	public function get_style_name()
+	public function get_style_compatible()
 	{
-		return $this->extension_manager->get_style_name();
+		return $this->extension_manager->get_style_compatible();
 	}
 }

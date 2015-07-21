@@ -597,13 +597,12 @@ class manager
 	}
 
 	/**
-	* Getting the style name of the last user
-	* phpBBex
+	* Getting style compatible with phpBBex
 	*
-	* @return string
+	* @return bool
 	*/
-	public function get_style_name()
+	public function get_style_compatible()
 	{
-		return $this->user->style['style_name'];
+		return (bool) $this->user->style['phpbbex_compatible'];
 	}
 }

@@ -104,11 +104,11 @@ a.topictitle:hover {
 	text-decoration: underline;
 }
 
-/* Arrow links  */
+/* Arrow links */
 a.arrow-up		{ background: none no-repeat left center; }
-a.arrow-down		{ background: none no-repeat right center; }
-a.arrow-left		{ background: none no-repeat 3px 60%; }
-a.arrow-right		{ background: none no-repeat 95% 60%; }
+a.arrow-down	{ background: none no-repeat right center; }
+a.arrow-left	{ background: none no-repeat 3px 60%; }
+a.arrow-right	{ background: none no-repeat 95% 60%; }
 
 a.arrow-up {
 	padding-left: 10px;

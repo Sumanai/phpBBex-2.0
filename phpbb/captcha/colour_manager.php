@@ -100,7 +100,7 @@ class colour_manager
 			}
 
 			$mode = 'rgb';
-			$colour = array(255 & ($colour >> 16), 255 & ($colour >>  8), 255 & $colour);
+			$colour = array(255 & ($colour >> 16), 255 & ($colour >> 8), 255 & $colour);
 		}
 
 		if (isset($colour['mode']))
@@ -174,11 +174,11 @@ class colour_manager
 						switch ($params['hue_bias'])
 						{
 							case 'o':
-								$h = $alt ?  60 :  30;
+								$h = $alt ? 60 : 30;
 								break;
 
 							case 'y':
-								$h = $alt ? 120 :  60;
+								$h = $alt ? 120 : 60;
 								break;
 
 							case 'g':

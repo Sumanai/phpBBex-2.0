@@ -3,7 +3,7 @@
 var phpbb = {};
 phpbb.alertTime = 100;
 
-(function($) {  // Avoid conflicts with other libraries
+(function($) { // Avoid conflicts with other libraries
 
 'use strict';
 
@@ -340,7 +340,7 @@ phpbb.ajaxify = function(options) {
 					}
 
 					phpbb.loadingIndicator();
-					data =  $('<form>' + res.S_HIDDEN_FIELDS + '</form>').serialize();
+					data = $('<form>' + res.S_HIDDEN_FIELDS + '</form>').serialize();
 					$.ajax({
 						url: res.S_CONFIRM_ACTION,
 						type: 'POST',
@@ -949,7 +949,7 @@ phpbb.addAjaxCallback('toggle_link', function() {
 		$anchor = $(this);
 	}
 
-	if (runsFunc !== undefined  && runsFunc.length) {
+	if (runsFunc !== undefined && runsFunc.length) {
 		RunsFuncByName(runsFunc);
 	}
 

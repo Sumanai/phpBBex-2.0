@@ -77,14 +77,14 @@ class notifications_schema_fix extends \phpbb\db\migration\migration
 				),
 				$this->table_prefix . 'notifications'		=> array(
 					'COLUMNS'			=> array(
-						'notification_id'  				=> array('UINT', null, 'auto_increment'),
-						'item_type'			   			=> array('VCHAR:255', ''),
-						'item_id'		  				=> array('UINT', 0),
-						'item_parent_id'   				=> array('UINT', 0),
+						'notification_id'				=> array('UINT', null, 'auto_increment'),
+						'item_type'						=> array('VCHAR:255', ''),
+						'item_id'						=> array('UINT', 0),
+						'item_parent_id'				=> array('UINT', 0),
 						'user_id'						=> array('UINT', 0),
 						'notification_read'				=> array('BOOL', 0),
 						'notification_time'				=> array('TIMESTAMP', 1),
-						'notification_data'			   	=> array('TEXT_UNI', ''),
+						'notification_data'				=> array('TEXT_UNI', ''),
 					),
 					'PRIMARY_KEY'		=> 'notification_id',
 					'KEYS'				=> array(

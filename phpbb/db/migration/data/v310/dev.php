@@ -232,7 +232,7 @@ class dev extends \phpbb\db\migration\migration
 
 			$sql = 'UPDATE ' . MODULES_TABLE . "
 				SET module_basename = 'ucp_pm'
-				WHERE  module_id = " . (int) $row['module_id'];
+				WHERE module_id = " . (int) $row['module_id'];
 
 			$this->sql_query($sql);
 		}

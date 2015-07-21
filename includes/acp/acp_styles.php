@@ -754,6 +754,7 @@ class acp_styles
 				'style_active'		=> 0,
 				'style_path'		=> $dir,
 				'bbcode_bitfield'	=> $cfg['template_bitfield'],
+				'phpbbex_compatible'	=> $cfg['phpbbex_compatible'],
 				'style_parent_id'	=> 0,
 				'style_parent_tree'	=> '',
 				// Extra values for styles list
@@ -1106,6 +1107,10 @@ class acp_styles
 		if (!isset($cfg['template_bitfield']))
 		{
 			$cfg['template_bitfield'] = $this->default_bitfield();
+		}
+		if (!isset($cfg['phpbbex_compatible']))
+		{
+			$cfg['phpbbex_compatible'] = 0;
 		}
 
 		return $cfg;

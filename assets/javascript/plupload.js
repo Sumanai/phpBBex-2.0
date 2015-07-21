@@ -3,7 +3,7 @@
 plupload.addI18n(phpbb.plupload.i18n);
 phpbb.plupload.ids = [];
 
-(function($) {  // Avoid conflicts with other libraries
+(function($) { // Avoid conflicts with other libraries
 
 'use strict';
 

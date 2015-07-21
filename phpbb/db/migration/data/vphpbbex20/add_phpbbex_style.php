@@ -19,6 +19,17 @@ class add_phpbbex_style extends \phpbb\db\migration\migration
 		);
 	}
 
+	public function update_schema()
+	{
+		return array(
+			'add_columns'		=> array(
+				$this->table_prefix . 'styles'	=> array(
+					'phpbbex_compatible'	=> array('BOOL', 0, 'after' => 'bbcode_bitfield'),
+				),
+			),
+		);
+	}
+
 	public function update_data()
 	{
 		return array(
@@ -51,7 +62,8 @@ class add_phpbbex_style extends \phpbb\db\migration\migration
 				'style_copyright'	=> $cfg['copyright'],
 				'style_active'		=> 1,
 				'style_path'		=> 'prosilver_ex',
-				'bbcode_bitfield'	=> 'lNmA',
+				'bbcode_bitfield'	=> $cfg['template_bitfield'],
+				'phpbbex_compatible'	=> 1,
 				'style_parent_id'	=> $prosilver_id,
 				'style_parent_tree'	=> 'prosilver',
 			);

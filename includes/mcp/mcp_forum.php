@@ -244,7 +244,7 @@ function mcp_forum_view($id, $mode, $action, $forum_info)
 
 		$topic_title = censor_text($row['topic_title']);
 
-		$topic_unapproved = (($row['topic_visibility'] == ITEM_UNAPPROVED || $row['topic_visibility'] == ITEM_REAPPROVE)  && $auth->acl_get('m_approve', $row['forum_id'])) ? true : false;
+		$topic_unapproved = (($row['topic_visibility'] == ITEM_UNAPPROVED || $row['topic_visibility'] == ITEM_REAPPROVE) && $auth->acl_get('m_approve', $row['forum_id'])) ? true : false;
 		$posts_unapproved = ($row['topic_visibility'] == ITEM_APPROVED && $row['topic_posts_unapproved'] && $auth->acl_get('m_approve', $row['forum_id'])) ? true : false;
 		$topic_deleted = $row['topic_visibility'] == ITEM_DELETED;
 		$u_mcp_queue = ($topic_unapproved || $posts_unapproved) ? $url . '&amp;i=queue&amp;mode=' . (($topic_unapproved) ? 'approve_details' : 'unapproved_posts') . '&amp;t=' . $row['topic_id'] : '';
@@ -477,7 +477,7 @@ function merge_topics($forum_id, $topic_ids, $to_topic_id)
 		// Update the bookmarks table.
 		phpbb_update_rows_avoiding_duplicates($db, BOOKMARKS_TABLE, 'topic_id', $topic_ids, $to_topic_id);
 
-		// Re-sync the topics and forums because the auto-sync was deactivated in the call of  move_posts()
+		// Re-sync the topics and forums because the auto-sync was deactivated in the call of move_posts()
 		sync('topic_reported', 'topic_id', $sync_topics);
 		sync('topic_attachment', 'topic_id', $sync_topics);
 		sync('topic', 'topic_id', $sync_topics, true);

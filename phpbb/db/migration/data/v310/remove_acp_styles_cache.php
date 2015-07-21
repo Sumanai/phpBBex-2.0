@@ -40,10 +40,10 @@ class remove_acp_styles_cache extends \phpbb\db\migration\migration
 				'acp',
 				'ACP_STYLE_MANAGEMENT',
 				array(
-					'module_basename'   => 'acp_styles',
-					'module_langname'   => 'ACP_STYLES_CACHE',
-					'module_mode'       => 'cache',
-					'module_auth'       => 'acl_a_styles',
+					'module_basename'	=> 'acp_styles',
+					'module_langname'	=> 'ACP_STYLES_CACHE',
+					'module_mode'		=> 'cache',
+					'module_auth'		=> 'acl_a_styles',
 				),
 			)),
 		);

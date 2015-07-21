@@ -350,7 +350,7 @@ $topic_tracking_info = isset($topic_tracking_info) ? $topic_tracking_info : null
 * @var	int		post_id							The id of the post the user tries to start viewing at.
 *												It may be 0 for none given.
 * @var	array	topic_data						All the information from the topic and forum tables for this topic
-* 												It includes posts information if post_id is not 0
+*												It includes posts information if post_id is not 0
 * @var	bool	overrides_f_read_check			Set true to remove f_read check afterwards
 * @var	bool	overrides_forum_password_check	Set true to remove forum_password check afterwards
 * @var	array	topic_tracking_info				Information upon calling get_topic_tracking()
@@ -697,11 +697,11 @@ $pagination->generate_template_pagination($base_url, 'pagination', 'start', $tot
 
 // Send vars to template
 $template->assign_vars(array(
-	'FORUM_ID' 		=> $forum_id,
-	'FORUM_NAME' 	=> $topic_data['forum_name'],
+	'FORUM_ID'		=> $forum_id,
+	'FORUM_NAME'	=> $topic_data['forum_name'],
 	'FORUM_DESC'	=> generate_text_for_display($topic_data['forum_desc'], $topic_data['forum_desc_uid'], $topic_data['forum_desc_bitfield'], $topic_data['forum_desc_options']),
-	'TOPIC_ID' 		=> $topic_id,
-	'TOPIC_TITLE' 	=> $topic_data['topic_title'],
+	'TOPIC_ID'		=> $topic_id,
+	'TOPIC_TITLE'	=> $topic_data['topic_title'],
 	'TOPIC_POSTER'	=> $topic_data['topic_poster'],
 
 	'TOPIC_AUTHOR_FULL'		=> get_username_string('full', $topic_data['topic_poster'], $topic_data['topic_first_poster_name'], $topic_data['topic_first_poster_colour']),
@@ -709,20 +709,20 @@ $template->assign_vars(array(
 	'TOPIC_AUTHOR'			=> get_username_string('username', $topic_data['topic_poster'], $topic_data['topic_first_poster_name'], $topic_data['topic_first_poster_colour']),
 
 	'TOTAL_POSTS'	=> $user->lang('VIEW_TOPIC_POSTS', (int) $total_posts),
-	'U_MCP' 		=> ($auth->acl_get('m_', $forum_id)) ? append_sid("{$phpbb_root_path}mcp.$phpEx", "i=main&amp;mode=topic_view&amp;f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start") . ((strlen($u_sort_param)) ? "&amp;$u_sort_param" : ''), true, $user->session_id) : '',
+	'U_MCP'			=> ($auth->acl_get('m_', $forum_id)) ? append_sid("{$phpbb_root_path}mcp.$phpEx", "i=main&amp;mode=topic_view&amp;f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start") . ((strlen($u_sort_param)) ? "&amp;$u_sort_param" : ''), true, $user->session_id) : '',
 	'MODERATORS'	=> (isset($forum_moderators[$forum_id]) && sizeof($forum_moderators[$forum_id])) ? implode($user->lang['COMMA_SEPARATOR'], $forum_moderators[$forum_id]) : '',
 
-	'POST_IMG' 			=> ($topic_data['forum_status'] == ITEM_LOCKED) ? $user->img('button_topic_locked', 'FORUM_LOCKED') : $user->img('button_topic_new', 'POST_NEW_TOPIC'),
-	'QUOTE_IMG' 		=> $user->img('icon_post_quote', 'REPLY_WITH_QUOTE'),
+	'POST_IMG'			=> ($topic_data['forum_status'] == ITEM_LOCKED) ? $user->img('button_topic_locked', 'FORUM_LOCKED') : $user->img('button_topic_new', 'POST_NEW_TOPIC'),
+	'QUOTE_IMG'			=> $user->img('icon_post_quote', 'REPLY_WITH_QUOTE'),
 	'REPLY_IMG'			=> ($topic_data['forum_status'] == ITEM_LOCKED || $topic_data['topic_status'] == ITEM_LOCKED) ? $user->img('button_topic_locked', 'TOPIC_LOCKED') : $user->img('button_topic_reply', 'REPLY_TO_TOPIC'),
-	'EDIT_IMG' 			=> $user->img('icon_post_edit', 'EDIT_POST'),
-	'DELETE_IMG' 		=> $user->img('icon_post_delete', 'DELETE_POST'),
+	'EDIT_IMG'			=> $user->img('icon_post_edit', 'EDIT_POST'),
+	'DELETE_IMG'		=> $user->img('icon_post_delete', 'DELETE_POST'),
 	'DELETED_IMG'		=> $user->img('icon_topic_deleted', 'POST_DELETED_RESTORE'),
-	'INFO_IMG' 			=> $user->img('icon_post_info', 'VIEW_INFO'),
+	'INFO_IMG'			=> $user->img('icon_post_info', 'VIEW_INFO'),
 	'PROFILE_IMG'		=> $user->img('icon_user_profile', 'READ_PROFILE'),
-	'SEARCH_IMG' 		=> $user->img('icon_user_search', 'SEARCH_USER_POSTS'),
-	'PM_IMG' 			=> $user->img('icon_contact_pm', 'SEND_PRIVATE_MESSAGE'),
-	'EMAIL_IMG' 		=> $user->img('icon_contact_email', 'SEND_EMAIL'),
+	'SEARCH_IMG'		=> $user->img('icon_user_search', 'SEARCH_USER_POSTS'),
+	'PM_IMG'			=> $user->img('icon_contact_pm', 'SEND_PRIVATE_MESSAGE'),
+	'EMAIL_IMG'			=> $user->img('icon_contact_email', 'SEND_EMAIL'),
 	'JABBER_IMG'		=> $user->img('icon_contact_jabber', 'JABBER') ,
 	'REPORT_IMG'		=> $user->img('icon_post_report', 'REPORT_POST'),
 	'REPORTED_IMG'		=> $user->img('icon_topic_reported', 'POST_REPORTED'),
@@ -730,12 +730,12 @@ $template->assign_vars(array(
 	'WARN_IMG'			=> $user->img('icon_user_warn', 'WARN_USER'),
 
 	'S_IS_LOCKED'			=> ($topic_data['topic_status'] == ITEM_UNLOCKED && $topic_data['forum_status'] == ITEM_UNLOCKED) ? false : true,
-	'S_SELECT_SORT_DIR' 	=> $s_sort_dir,
-	'S_SELECT_SORT_KEY' 	=> $s_sort_key,
-	'S_SELECT_SORT_DAYS' 	=> $s_limit_days,
+	'S_SELECT_SORT_DIR'		=> $s_sort_dir,
+	'S_SELECT_SORT_KEY'		=> $s_sort_key,
+	'S_SELECT_SORT_DAYS'	=> $s_limit_days,
 	'S_SINGLE_MODERATOR'	=> (!empty($forum_moderators[$forum_id]) && sizeof($forum_moderators[$forum_id]) > 1) ? false : true,
-	'S_TOPIC_ACTION' 		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start")),
-	'S_MOD_ACTION' 			=> $s_quickmod_action,
+	'S_TOPIC_ACTION'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start")),
+	'S_MOD_ACTION'			=> $s_quickmod_action,
 	'U_LOCK_TOPIC'			=> ($mod_lock ? ($s_quickmod_action . "&amp;action=" . $mod_lock) : false),
 
 	'L_RETURN_TO_FORUM'		=> $user->lang('RETURN_TO', $topic_data['forum_name']),
@@ -752,9 +752,9 @@ $template->assign_vars(array(
 
 	'U_TOPIC'				=> "{$server_path}viewtopic.$phpEx?f=$forum_id&amp;t=$topic_id",
 	'U_FORUM'				=> $server_path,
-	'U_VIEW_TOPIC' 			=> $viewtopic_url,
+	'U_VIEW_TOPIC'			=> $viewtopic_url,
 	'U_CANONICAL'			=> generate_board_url() . '/' . append_sid("viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start) ? "&amp;start=$start" : ''), true, ''),
-	'U_VIEW_FORUM' 			=> append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $forum_id),
+	'U_VIEW_FORUM'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $forum_id),
 	'U_VIEW_OLDER_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id&amp;view=previous"),
 	'U_VIEW_NEWER_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id&amp;view=next"),
 	'U_PRINT_TOPIC'			=> ($auth->acl_get('f_print', $forum_id)) ? $viewtopic_url . '&amp;view=print' : '',
@@ -771,14 +771,14 @@ $template->assign_vars(array(
 	'S_BOOKMARK_TOGGLE'		=> (!$user->data['is_registered'] || !$config['allow_bookmarks'] || !$topic_data['bookmarked']) ? $user->lang['BOOKMARK_TOPIC_REMOVE'] : $user->lang['BOOKMARK_TOPIC'],
 	'S_BOOKMARKED_TOPIC'	=> ($user->data['is_registered'] && $config['allow_bookmarks'] && $topic_data['bookmarked']) ? true : false,
 
-	'U_POST_NEW_TOPIC' 		=> ($auth->acl_get('f_post', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=post&amp;f=$forum_id") : '',
-	'U_POST_REPLY_TOPIC' 	=> ($auth->acl_get('f_reply', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id") : '',
+	'U_POST_NEW_TOPIC'		=> ($auth->acl_get('f_post', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=post&amp;f=$forum_id") : '',
+	'U_POST_REPLY_TOPIC'	=> ($auth->acl_get('f_reply', $forum_id) || $user->data['user_id'] == ANONYMOUS) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id") : '',
 	'U_BUMP_TOPIC'			=> (bump_topic_allowed($forum_id, $topic_data['topic_bumped'], $topic_data['topic_last_post_time'], $topic_data['topic_poster'], $topic_data['topic_last_poster_id'])) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=bump&amp;f=$forum_id&amp;t=$topic_id&amp;hash=" . generate_link_hash("topic_$topic_id")) : '',
 
-	'U_SWITCH_MP'							=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch='  . ($mp_switch?'2' : '1')),
-	'U_SWITCH_MP_TOGGLE'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch=' . (($mp_switch)?'1':'2')),
-	'S_SWITCH_MP'							=> ($mp_switch)?$user->lang['MP_ON_RIGHT']:$user->lang['MP_ON_LEFT'],
-	'S_SWITCH_MP_TOGGLE'		=> ($mp_switch)?$user->lang['MP_ON_LEFT']:$user->lang['MP_ON_RIGHT'],
+	'U_SWITCH_MP'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch=' . ($mp_switch?'2' : '1')),
+	'U_SWITCH_MP_TOGGLE'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $forum_id . '&amp;t='. $topic_id . '&amp;mp_switch=' . (($mp_switch)?'1':'2')),
+	'S_SWITCH_MP'			=> ($mp_switch)?$user->lang['MP_ON_RIGHT']:$user->lang['MP_ON_LEFT'],
+	'S_SWITCH_MP_TOGGLE'	=> ($mp_switch)?$user->lang['MP_ON_LEFT']:$user->lang['MP_ON_RIGHT'],
 ));
 
 // Does this topic contain a poll?
@@ -1055,14 +1055,14 @@ if (!empty($topic_data['poll_start']))
 		$option_most_votes = ($poll_option['poll_option_total'] > 0 && $poll_option['poll_option_total'] == $poll_most) ? true : false;
 
 		$poll_options_template_data[] = array(
-			'POLL_OPTION_ID' 			=> $poll_option['poll_option_id'],
-			'POLL_OPTION_CAPTION' 		=> $poll_option['poll_option_text'],
-			'POLL_OPTION_RESULT' 		=> $poll_option['poll_option_total'],
-			'POLL_OPTION_PERCENT' 		=> $option_pct_txt,
-			'POLL_OPTION_PERCENT_REL' 	=> $option_pct_rel_txt,
+			'POLL_OPTION_ID'			=> $poll_option['poll_option_id'],
+			'POLL_OPTION_CAPTION'		=> $poll_option['poll_option_text'],
+			'POLL_OPTION_RESULT'		=> $poll_option['poll_option_total'],
+			'POLL_OPTION_PERCENT'		=> $option_pct_txt,
+			'POLL_OPTION_PERCENT_REL'	=> $option_pct_rel_txt,
 			'POLL_OPTION_PCT'			=> round($option_pct * 100),
-			'POLL_OPTION_WIDTH'     	=> round($option_pct * 250),
-			'POLL_OPTION_VOTERS' 	=> isset($poll_option['poll_option_voters']) ? $poll_option['poll_option_voters'] : '',
+			'POLL_OPTION_WIDTH'			=> round($option_pct * 250),
+			'POLL_OPTION_VOTERS'	=> isset($poll_option['poll_option_voters']) ? $poll_option['poll_option_voters'] : '',
 			'POLL_OPTION_VOTED'			=> (in_array($poll_option['poll_option_id'], $cur_voted_id)) ? true : false,
 			'POLL_OPTION_MOST_VOTES'	=> $option_most_votes,
 		);
@@ -1072,8 +1072,8 @@ if (!empty($topic_data['poll_start']))
 
 	$poll_template_data = array(
 		'POLL_QUESTION'		=> $topic_data['poll_title'],
-		'TOTAL_VOTES' 		=> $poll_total,
-		'TOTAL_VOTERS' 		=> $voters_total,
+		'TOTAL_VOTES'		=> $poll_total,
+		'TOTAL_VOTERS'		=> $voters_total,
 		'POLL_LEFT_CAP_IMG'	=> $user->img('poll_left'),
 		'POLL_RIGHT_CAP_IMG'=> $user->img('poll_right'),
 
@@ -1453,7 +1453,7 @@ while ($row = $db->sql_fetchrow($result))
 
 				'username'			=> $row['username'],
 				'user_colour'		=> $row['user_colour'],
-				'contact_user' 		=> $user->lang('CONTACT_USER', get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['username'])),
+				'contact_user'		=> $user->lang('CONTACT_USER', get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['username'])),
 
 				'online'		=> false,
 				'jabber'		=> ($config['jab_enable'] && $row['user_jabber'] && $auth->acl_get('u_sendim')) ? append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=contact&amp;action=jabber&amp;u=$poster_id") : '',
@@ -1746,7 +1746,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	if ($user_cache[$poster_id]['sig'] && $row['enable_sig'] && empty($user_cache[$poster_id]['sig_parsed']))
 	{
 		$parse_flags = ($user_cache[$poster_id]['sig_bbcode_bitfield'] ? OPTION_FLAG_BBCODE : 0) | OPTION_FLAG_SMILIES;
-		$user_cache[$poster_id]['sig'] = generate_text_for_display($user_cache[$poster_id]['sig'], $user_cache[$poster_id]['sig_bbcode_uid'], $user_cache[$poster_id]['sig_bbcode_bitfield'],  $parse_flags, true);
+		$user_cache[$poster_id]['sig'] = generate_text_for_display($user_cache[$poster_id]['sig'], $user_cache[$poster_id]['sig_bbcode_uid'], $user_cache[$poster_id]['sig_bbcode_bitfield'], $parse_flags, true);
 	}
 
 	// Parse the message and subject
@@ -1762,7 +1762,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		$decoded_message = bbcode_nl2br($decoded_message);
 		$decoded_message = preg_replace('#\[upd(?:=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}))?\](?:(.*?)\[/upd\])?[\n]?#ui', '', $decoded_message);
 		$template->assign_vars(array(
-			'S_QUICK_FULL_QUOTE' 		=> true,
+			'S_QUICK_FULL_QUOTE'		=> true,
 		));
 	}
 
@@ -2184,10 +2184,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 				'RATE_TEXT'		=> ($rater['rate'] > 0 ? '+'.$rater['rate'] : '−'.abs($rater['rate'])),
 				'DATETIME'		=> $user->format_date($rater['rate_time']),
 				'DATE'			=> $user->format_date($rater['rate_time'], false, false, true),
-				'U_RATER'		=> get_username_string('profile', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
-				'RATER_NAME'	=> get_username_string('username', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
-				'RATER_COLOUR'	=> get_username_string('colour', 	$rater['user_id'], $rater['username'], $rater['user_colour']),
-				'RATER_FULL'	=> get_username_string('full', 		$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'U_RATER'		=> get_username_string('profile',	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_NAME'	=> get_username_string('username',	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_COLOUR'	=> get_username_string('colour',	$rater['user_id'], $rater['username'], $rater['user_colour']),
+				'RATER_FULL'	=> get_username_string('full',		$rater['user_id'], $rater['username'], $rater['user_colour']),
 			));
 			$is_first_row = false;
 		}
@@ -2196,7 +2196,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	$contact_fields = array(
 		array(
 			'ID'		=> 'pm',
-			'NAME' 		=> $user->lang['SEND_PRIVATE_MESSAGE'],
+			'NAME'		=> $user->lang['SEND_PRIVATE_MESSAGE'],
 			'U_CONTACT'	=> $u_pm,
 		),
 		array(

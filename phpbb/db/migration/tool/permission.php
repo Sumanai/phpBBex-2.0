@@ -124,7 +124,7 @@ class permission implements \phpbb\db\migration\tool\tool_interface
 		}
 		$auth_admin = new \auth_admin();
 
-		// We have to add a check to see if the !$global (if global, local, and if local, global) permission already exists.  If it does, acl_add_option currently has a bug which would break the ACL system, so we are having a work-around here.
+		// We have to add a check to see if the !$global (if global, local, and if local, global) permission already exists. If it does, acl_add_option currently has a bug which would break the ACL system, so we are having a work-around here.
 		if ($this->exists($auth_option, !$global))
 		{
 			$sql_ary = array(

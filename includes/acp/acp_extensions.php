@@ -326,8 +326,8 @@ class acp_extensions
 	/**
 	* Lists all the enabled extensions and dumps to the template
 	*
-	* @param  $phpbb_extension_manager     An instance of the extension manager
-	* @return null
+	* @param	$phpbb_extension_manager	An instance of the extension manager
+	* @return	null
 	*/
 	public function list_enabled_exts(\phpbb\extension\manager $phpbb_extension_manager)
 	{
@@ -382,8 +382,8 @@ class acp_extensions
 	/**
 	* Lists all the disabled extensions and dumps to the template
 	*
-	* @param  $phpbb_extension_manager     An instance of the extension manager
-	* @return null
+	* @param	$phpbb_extension_manager	An instance of the extension manager
+	* @return	null
 	*/
 	public function list_disabled_exts(\phpbb\extension\manager $phpbb_extension_manager)
 	{
@@ -439,8 +439,8 @@ class acp_extensions
 	/**
 	* Lists all the available extensions and dumps to the template
 	*
-	* @param  $phpbb_extension_manager     An instance of the extension manager
-	* @return null
+	* @param	$phpbb_extension_manager	An instance of the extension manager
+	* @return	null
 	*/
 	public function list_available_exts(\phpbb\extension\manager $phpbb_extension_manager)
 	{

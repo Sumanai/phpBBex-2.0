@@ -714,11 +714,11 @@ class jabber
 
 		if (isset($data['authzid']))
 		{
-			$a1 = pack('H32', $pack)  . sprintf(':%s:%s:%s', $data['nonce'], $data['cnonce'], $data['authzid']);
+			$a1 = pack('H32', $pack) . sprintf(':%s:%s:%s', $data['nonce'], $data['cnonce'], $data['authzid']);
 		}
 		else
 		{
-			$a1 = pack('H32', $pack)  . sprintf(':%s:%s', $data['nonce'], $data['cnonce']);
+			$a1 = pack('H32', $pack) . sprintf(':%s:%s', $data['nonce'], $data['cnonce']);
 		}
 
 		// should be: qop = auth

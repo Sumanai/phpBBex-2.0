@@ -512,7 +512,7 @@ class session
 	function update_browser_id()
 	{
 		global $db, $config, $request;
-		
+
 		$user_id = $this->data['user_id'];
 		$agent = trim(substr($request->server('HTTP_USER_AGENT', ''), 0, 149));
 		$browser_id = request_var($config['cookie_name'] . '_bid', '', false, true);
@@ -538,7 +538,7 @@ class session
 		if(rand(0, 1000) == 1)
 		{
 			$sql = "DELETE FROM " . USER_BROWSER_IDS_TABLE . "
-				WHERE  (visits = 1 AND user_id = " . ANONYMOUS . " AND last_visit+3600*12 < " . $this->time_now . ")
+				WHERE (visits = 1 AND user_id = " . ANONYMOUS . " AND last_visit+3600*12 < " . $this->time_now . ")
 					OR (visits > 1 AND user_id = " . ANONYMOUS . " AND last_visit+86400*7 < " . $this->time_now . ")
 					OR (last_visit+86400*365 < " . $this->time_now . ")";
 			$db->sql_query($sql);

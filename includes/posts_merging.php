@@ -86,7 +86,7 @@ unset($merge_post_data['post_text']);
 
 // Decode text for update properly
 $message_parser->decode_message($merge_post_data['bbcode_uid']);
-$merge_post_data['post_text'] = html_entity_decode($message_parser->message,  ENT_COMPAT, 'UTF-8');
+$merge_post_data['post_text'] = html_entity_decode($message_parser->message, ENT_COMPAT, 'UTF-8');
 unset($message_parser);
 
 $username = (!$user->data['is_registered'] && $post_data['username']) ? $post_data['username'] : (($user->data['user_id'] != ANONYMOUS) ? $user->data['username'] : '');
@@ -148,7 +148,7 @@ $db->sql_query($sql);
 $sql = 'UPDATE ' . TOPICS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data[TOPICS_TABLE]['sql']) . " WHERE topic_id = $topic_id";
 $db->sql_query($sql);
 
-$sql = 'UPDATE ' . FORUMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data[FORUMS_TABLE]['sql']) . "  WHERE forum_id = $forum_id";
+$sql = 'UPDATE ' . FORUMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data[FORUMS_TABLE]['sql']) . " WHERE forum_id = $forum_id";
 $db->sql_query($sql);
 
 // Submit Attachments

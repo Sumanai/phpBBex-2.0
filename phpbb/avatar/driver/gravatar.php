@@ -173,7 +173,7 @@ class gravatar extends \phpbb\avatar\driver\driver
 	protected function get_gravatar_url($row)
 	{
 		$url = self::GRAVATAR_URL;
-		$url .=  md5(strtolower(trim($row['avatar'])));
+		$url .= md5(strtolower(trim($row['avatar'])));
 
 		if ($row['avatar_width'] || $row['avatar_height'])
 		{

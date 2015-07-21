@@ -214,7 +214,7 @@ class release_3_0_6_rc1 extends \phpbb\db\migration\migration
 
 		if (!$group_id)
 		{
-			$sql = 'INSERT INTO ' .  GROUPS_TABLE . " (group_name, group_type, group_founder_manage, group_colour, group_legend, group_avatar, group_desc, group_desc_uid, group_max_recipients) VALUES ('NEWLY_REGISTERED', 3, 0, '', 0, '', '', '', 5)";
+			$sql = 'INSERT INTO ' . GROUPS_TABLE . " (group_name, group_type, group_founder_manage, group_colour, group_legend, group_avatar, group_desc, group_desc_uid, group_max_recipients) VALUES ('NEWLY_REGISTERED', 3, 0, '', 0, '', '', '', 5)";
 			$this->sql_query($sql);
 
 			$group_id = $this->db->sql_nextid();
@@ -274,7 +274,7 @@ class release_3_0_6_rc1 extends \phpbb\db\migration\migration
 
 			$next_order_id++;
 
-			$sql = 'INSERT INTO ' . ACL_ROLES_TABLE . " (role_name, role_description, role_type, role_order) VALUES  ('ROLE_FORUM_NEW_MEMBER', 'ROLE_DESCRIPTION_FORUM_NEW_MEMBER', 'f_', $next_order_id)";
+			$sql = 'INSERT INTO ' . ACL_ROLES_TABLE . " (role_name, role_description, role_type, role_order) VALUES ('ROLE_FORUM_NEW_MEMBER', 'ROLE_DESCRIPTION_FORUM_NEW_MEMBER', 'f_', $next_order_id)";
 			$this->sql_query($sql);
 			$f_role = $this->db->sql_nextid();
 

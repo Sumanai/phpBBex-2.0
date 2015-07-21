@@ -692,7 +692,7 @@ class mysql_extractor extends base_extractor
 				}
 				else
 				{
-					$query  .= ',(';
+					$query .= ',(';
 				}
 
 				for ($j = 0; $j < $fields_cnt; $j++)
@@ -776,7 +776,7 @@ class mysql_extractor extends base_extractor
 				}
 				else
 				{
-					$query  .= ',(';
+					$query .= ',(';
 				}
 
 				for ($j = 0; $j < $fields_cnt; $j++)

@@ -373,7 +373,7 @@ class tools
 	/**
 	* Gets a list of tables in the database.
 	*
-	* @return array		Array of table names  (all lower case)
+	* @return array		Array of table names (all lower case)
 	*/
 	function sql_list_tables()
 	{
@@ -2012,7 +2012,7 @@ class tools
 				// We don't even care about storing the results. We already know the answer if we get rows back.
 				if ($this->db->sql_fetchrow($result))
 				{
-					$statements[] =  "DROP SEQUENCE {$table_name}_seq;\n";
+					$statements[] = "DROP SEQUENCE {$table_name}_seq;\n";
 				}
 				$this->db->sql_freeresult($result);
 			break;
@@ -2039,7 +2039,7 @@ class tools
 			case 'mssql':
 			case 'mssqlnative':
 				$sql = "ALTER TABLE [{$table_name}] WITH NOCHECK ADD ";
-				$sql .= "CONSTRAINT [PK_{$table_name}] PRIMARY KEY  CLUSTERED (";
+				$sql .= "CONSTRAINT [PK_{$table_name}] PRIMARY KEY CLUSTERED (";
 				$sql .= '[' . implode("],\n\t\t[", $column) . ']';
 				$sql .= ')';
 
@@ -2670,7 +2670,7 @@ class tools
 			break;
 
 			case 'oracle':
-				$sql = "SELECT ix.index_name  AS phpbb_index_name, ix.uniqueness AS is_unique
+				$sql = "SELECT ix.index_name AS phpbb_index_name, ix.uniqueness AS is_unique
 					FROM all_ind_columns ixc, all_indexes ix
 					WHERE ix.index_name = ixc.index_name
 						AND ixc.table_name = '" . strtoupper($table_name) . "'

@@ -700,12 +700,12 @@ function close_report($report_id_list, $mode, $action, $pm = false)
 		{
 			if ($pm)
 			{
-				add_log('mod', 0, 0, 'LOG_PM_REPORT_' .  strtoupper($action) . 'D', $post_info[$report['pm_id']]['message_subject']);
+				add_log('mod', 0, 0, 'LOG_PM_REPORT_' . strtoupper($action) . 'D', $post_info[$report['pm_id']]['message_subject']);
 				$phpbb_notifications->delete_notifications('notification.type.report_pm', $report['pm_id']);
 			}
 			else
 			{
-				add_log('mod', $post_info[$report['post_id']]['forum_id'], $post_info[$report['post_id']]['topic_id'], 'LOG_REPORT_' .  strtoupper($action) . 'D', $post_info[$report['post_id']]['post_subject']);
+				add_log('mod', $post_info[$report['post_id']]['forum_id'], $post_info[$report['post_id']]['topic_id'], 'LOG_REPORT_' . strtoupper($action) . 'D', $post_info[$report['post_id']]['post_subject']);
 				$phpbb_notifications->delete_notifications('notification.type.report_post', $report['post_id']);
 			}
 		}

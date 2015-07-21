@@ -304,7 +304,7 @@ class user extends \phpbb\session
 		$parsed_items = $cache->obtain_cfg_items($this->style);
 
 		$check_for = array(
-			'pagination_sep'    => (string) ', '
+			'pagination_sep'	=> (string) ', '
 		);
 
 		foreach ($check_for as $key => $default_value)
@@ -410,7 +410,7 @@ class user extends \phpbb\session
 			}
 			else if (!$this->data['user_allow_viewonline'])
 			{
-				// the user wants to hide and is allowed to  -> cloaking device on.
+				// the user wants to hide and is allowed to -> cloaking device on.
 				if ($auth->acl_get('u_hideonline'))
 				{
 					$sql = 'UPDATE ' . SESSIONS_TABLE . '

@@ -140,7 +140,7 @@ class bot_update extends \phpbb\db\migration\migration
 				else
 				{
 					$sql = 'UPDATE ' . BOTS_TABLE . "
-						SET bot_agent = '" .  $this->db->sql_escape($bot_agent) . "'
+						SET bot_agent = '" . $this->db->sql_escape($bot_agent) . "'
 						WHERE user_id = $bot_user_id";
 					$this->sql_query($sql);
 				}

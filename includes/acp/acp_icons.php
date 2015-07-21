@@ -467,7 +467,7 @@ class acp_icons
 							}
 						}
 
-						if ($action == 'modify'  && !empty($image_id[$image]))
+						if ($action == 'modify' && !empty($image_id[$image]))
 						{
 							$sql = "UPDATE $table
 								SET " . $db->sql_build_array('UPDATE', $img_sql) . "

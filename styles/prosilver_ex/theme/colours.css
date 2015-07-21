@@ -271,7 +271,7 @@ a:hover	{ color: #D31141; }
 	background-color: transparent;
 }
 
-/* Arrow links  */
+/* Arrow links */
 a.arrow-up		{ background-image: url("data:image/gif;base64,R0lGODlhBgAGAIABADMzMwAAACH5BAEAAAEALAAAAAAGAAYAAAIKjG8AqLmhGnyoAAA7") }
 a.arrow-down		{ background-image: url("data:image/gif;base64,R0lGODlhBgAGAIABADMzMwAAACH5BAEAAAEALAAAAAAGAAYAAAIKjA9gmavR0DunAAA7") }
 a.arrow-left		{ background-image: url("data:image/gif;base64,R0lGODlhBAAGAIABADMzMwAAACH5BAEAAAEALAAAAAAEAAYAAAIITACGqGnnUAEAOw==") }
@@ -311,7 +311,7 @@ ul.topiclist li.row dt a.subforum.unread {
 }
 
 li.row {
-	border-top-color:  #FFFFFF;
+	border-top-color: #FFFFFF;
 	border-bottom-color: #00608F;
 }
 
@@ -341,7 +341,7 @@ li.header dt, li.header dd {
 
 .content h2, .panel h2 {
 	color: #115098;
-	border-bottom-color:  #CCCCCC;
+	border-bottom-color: #CCCCCC;
 }
 
 dl.faq dt {
@@ -366,7 +366,7 @@ dl.faq dt {
 
 /* Post noticies */
 .notice {
-	border-top-color:  #CCCCCC;
+	border-top-color: #CCCCCC;
 }
 
 /* BB Code styles
@@ -395,7 +395,7 @@ blockquote blockquote blockquote {
 }
 
 .codebox p {
-	border-bottom-color:  #CCCCCC;
+	border-bottom-color: #CCCCCC;
 }
 
 .codebox code {
@@ -413,7 +413,7 @@ blockquote blockquote blockquote {
 ----------------------------------------*/
 .attachbox {
 	background-color: #FFFFFF;
-	border-color:  #C9D2D8;
+	border-color: #C9D2D8;
 }
 
 .pm-message .attachbox {
