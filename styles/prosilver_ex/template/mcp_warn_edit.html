@@ -2,7 +2,7 @@
 
 <form method="post" id="mcp" action="{U_POST_ACTION}">
 
-<h2>{L_WARN_USER}</h2>
+<h2>{L_MCP_WARN_EDIT}</h2>
 
 <div class="panel">
 	<div class="inner">
@@ -28,17 +28,33 @@
 	</div>
 </div>
 
-<!-- EVENT mcp_warn_user_add_warning_field_before -->
-
+<!-- IF POST -->
 <div class="panel">
 	<div class="inner">
+
+	<h3>{L_POST_DETAILS}</h3>
+
+	<div class="postbody">
+
+		<div class="content">
+			{POST}
+		</div>
+
+	</div>
+
+	</div>
+</div>
+<!-- ENDIF -->
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
 
 	<h3>{L_ADD_WARNING}</h3>
 	<p>{L_ADD_WARNING_EXPLAIN}</p>
 
 	<fieldset class="fields1">
 		<!-- INCLUDE mcp_warn_type.html -->
-		<textarea name="warning" id="warning" class="inputbox" cols="40" rows="3">{L_WARNING_POST_DEFAULT}</textarea>
+		<textarea name="warning" id="warning" class="inputbox" cols="40" rows="3"><!-- IF WARNING -->{WARNING}<!-- ELSE -->{L_WARNING_POST_DEFAULT}<!-- ENDIF --></textarea>
 		<!-- IF S_CAN_NOTIFY -->
 		<br /><br />
 		<dl class="panel">
@@ -51,11 +67,10 @@
 	</div>
 </div>
 
-<!-- EVENT mcp_warn_user_add_warning_field_after -->
-
 <fieldset class="submit-buttons">
 	<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
 	<input type="submit" name="action[add_warning]" value="{L_SUBMIT}" class="button1" />
+	<!-- IF WARNING_ID --><input type="hidden" name="warning_id" value="{WARNING_ID}" /><!-- ENDIF -->
 	{S_FORM_TOKEN}
 </fieldset>
 </form>

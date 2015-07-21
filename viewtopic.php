@@ -1317,6 +1317,7 @@ while ($row = $db->sql_fetchrow($result))
 
 		'post_rating_negative'	=> $row['post_rating_negative'],
 		'post_rating_positive'	=> $row['post_rating_positive'],
+		'warnings_data'			=> array(),
 
 		// Make sure the icon actually exists
 		'icon_id'			=> (isset($icons[$row['icon_id']]['img'], $icons[$row['icon_id']]['height'], $icons[$row['icon_id']]['width'])) ? $row['icon_id'] : 0,
@@ -1386,6 +1387,7 @@ while ($row = $db->sql_fetchrow($result))
 				'contact_user'		=> '',
 
 				'warnings'			=> 0,
+				'warnings_data'		=> array(),
 				'allow_pm'			=> 0,
 			);
 
@@ -1428,6 +1430,7 @@ while ($row = $db->sql_fetchrow($result))
 				'with_us'		=> !empty($config['style_mp_show_with_us']) ? \phpbb\datetime::get_verbal($row['user_regdate'], time(), false, 2) : '',
 				'posts'			=> $row['user_posts'],
 				'warnings'		=> (isset($row['user_warnings'])) ? $row['user_warnings'] : 0,
+				'warnings_data'	=> array(),
 
 				'rating'			=> ($config['rate_no_positive'] ? 0 : $row['user_rating_positive']) - ($config['rate_no_negative'] ? 0 : $row['user_rating_negative']),
 				'rating_positive'	=> $row['user_rating_positive'],
@@ -1634,6 +1637,35 @@ if (sizeof($attach_list))
 	{
 		$display_notice = true;
 	}
+}
+
+// Pull warnings data
+if (!empty($post_list))
+{
+	$user_list = array_keys($user_cache);
+	$sql = 'SELECT w.*, u.username AS issuer_name, u.user_colour AS issuer_colour
+		FROM ' . WARNINGS_TABLE . ' w 
+		LEFT JOIN ' . USERS_TABLE . ' u 
+		ON w.issuer_id = u.user_id
+		WHERE ' . $db->sql_in_set('w.post_id', $post_list) . '
+			OR (' . $db->sql_in_set('w.user_id', $user_list) . ' AND w.warning_active = 1)
+		ORDER BY w.warning_id';
+	$result = $db->sql_query($sql);
+	while ($row = $db->sql_fetchrow($result))
+	{
+		// Warnings by users
+		if (!empty($user_cache[$row['user_id']]))
+		{
+			$user_cache[$row['user_id']]['warnings_data'][] = $row;
+		}
+
+		// Warnings by posts
+		if (!empty($rowset[$row['post_id']]))
+		{
+			$rowset[$row['post_id']]['warnings_data'][] = $row;
+		}
+	}
+	$db->sql_freeresult($result);
 }
 
 // Get the list of users who can receive private messages
@@ -2088,7 +2120,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'U_NEXT_POST_ID'	=> ($i < $i_total && isset($rowset[$post_list[$i + 1]])) ? $rowset[$post_list[$i + 1]]['post_id'] : '',
 		'U_PREV_POST_ID'	=> $prev_post_id,
 		'U_NOTES'			=> ($auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=notes&amp;mode=user_notes&amp;u=' . $poster_id, true, $user->session_id) : '',
-		'U_WARN'			=> ($auth->acl_get('m_warn') && $poster_id != $user->data['user_id'] && $poster_id != ANONYMOUS) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=warn&amp;mode=warn_post&amp;f=' . $forum_id . '&amp;p=' . $row['post_id'], true, $user->session_id) : '',
+		'U_WARN'			=> ($auth->acl_get('m_warn') && $poster_id != ANONYMOUS) ? append_sid("{$phpbb_root_path}mcp.$phpEx", count($row['warnings_data']) ? 'i=warn&amp;mode=warn_edit&amp;warning_id=' . $row['warnings_data'][0]['warning_id'] : 'i=warn&amp;mode=warn_post&amp;f=' . $forum_id . '&amp;p=' . $row['post_id'], true, $user->session_id) : '',
 
 		'POST_ID'			=> $row['post_id'],
 		'POST_NUMBER'		=> $post_number,
@@ -2191,6 +2223,74 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 			));
 			$is_first_row = false;
 		}
+	}
+
+	// Display user warnings
+	foreach ($user_cache[$poster_id]['warnings_data'] as $warning)
+	{
+		switch ($warning['warning_type'])
+		{
+			case 'remark':
+				$warn_title = $user->lang['REMARK'];
+			break;
+			case 'warning':
+			case 'ban':
+				$warn_type = strtoupper($warning['warning_type']);
+				$warn_title = ($warning['warning_days'])
+					? sprintf($user->lang[$warn_type.'_X_DAYS'], $warning['warning_days'])
+					: $user->lang['PERMANENT_'.$warn_type];
+			break;
+		}
+
+		$template->assign_block_vars('postrow.userwarning', array(
+			'TITLE'			=> $warn_title,
+			'WARNING_ID'	=> $warning['warning_id'],
+			'ISSUER_ID'		=> $warning['issuer_id'],
+			'U_ISSUER'		=> get_username_string('profile', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_NAME'	=> get_username_string('username', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_COLOUR'	=> get_username_string('colour', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_FULL'	=> get_username_string('full', 		$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'TIME'			=> $user->format_date($warning['warning_time']),
+			'EXPIRES'		=> $user->format_date($warning['warning_time'] + $warning['warning_days'] * 86400),
+			'ACTIVE'		=> ($warning['warning_active']) ? true : false,
+			'TYPE'			=> $warning['warning_type'],
+			'TYPE_SHORT'	=> strtoupper($warning['warning_type'][0]),
+			'TEXT'			=> $warning['warning_text'],
+			'U_POST'		=> ($warning['post_id']) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $warning['post_id']) . '#p' . $warning['post_id'] : '',
+		));
+	}
+
+	// Display post warnings
+	foreach ($row['warnings_data'] as $warning)
+	{
+		switch ($warning['warning_type'])
+		{
+			case 'remark':
+				$warn_title = $user->lang['REMARK'];
+			break;
+			case 'warning':
+			case 'ban':
+				$warn_type = strtoupper($warning['warning_type']);
+				$warn_title = ($warning['warning_days'])
+					? sprintf($user->lang[$warn_type.'_X_DAYS'], $warning['warning_days'])
+					: $user->lang['PERMANENT_'.$warn_type];
+			break;
+		}
+
+		$template->assign_block_vars('postrow.postwarning', array(
+			'TITLE'			=> $warn_title,
+			'WARNING_ID'	=> $warning['warning_id'],
+			'ISSUER_ID'		=> $warning['issuer_id'],
+			'U_ISSUER'		=> get_username_string('profile', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_NAME'	=> get_username_string('username', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_COLOUR'	=> get_username_string('colour', 	$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'ISSUER_FULL'	=> get_username_string('full', 		$warning['issuer_id'], $warning['issuer_name'], $warning['issuer_colour']),
+			'TIME'			=> $user->format_date($warning['warning_time']),
+			'EXPIRES'		=> $user->format_date($warning['warning_time'] + $warning['warning_days'] * 86400),
+			'ACTIVE'		=> ($warning['warning_active']) ? true : false,
+			'TYPE'			=> $warning['warning_type'],
+			'TEXT'			=> $warning['warning_text'],
+		));
 	}
 
 	$contact_fields = array(

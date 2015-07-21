@@ -592,4 +592,5 @@ $lang = array_merge($lang, array(
 	'TOPICS_TOPIC_TITLE'			=> 'Welcome to phpBBex',
 
 	'BOARD_DISABLE_DEFAULT'			=> 'Forum in maintenance',
+	'WARNING_POST_DEFAULT'			=> 'Violation of rules',
 ));

@@ -106,7 +106,11 @@ class acp_board
 						'display_last_subject'	=> array('lang' => 'DISPLAY_LAST_SUBJECT',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						//'allow_quick_reply'		=> array('lang' => 'ALLOW_QUICK_REPLY',		'validate' => 'bool',	'type' => 'custom', 'method' => 'quick_reply', 'explain' => true),
 
-						'legend2'				=> 'RATINGS',
+						'legend2'				=> 'WARNINGS',
+						'warning_post_default'	=> array('lang' => 'WARNING_POST_DEFAULT',	'validate' => 'string',	'type' => 'textarea:1:255', 'explain' => false),
+						'warnings_expire_days'	=> array('lang' => 'WARNINGS_EXPIRE',		'validate' => 'int',	'type' => 'text:3:4', 'explain' => true, 'append' => ' ' . $user->lang['DAYS']),
+
+						'legend3'				=> 'RATINGS',
 						'rate_enabled'			=> array('lang' => 'RATE_ENABLED',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
 						'display_raters'		=> array('lang' => 'DISPLAY_RATERS',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
 						'rate_only_topics'		=> array('lang' => 'RATE_ONLY_TOPICS',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
@@ -116,18 +120,18 @@ class acp_board
 						'rate_no_negative'		=> array('lang' => 'RATE_NO_NEGATIVE',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
 						'rate_no_positive'		=> array('lang' => 'RATE_NO_POSITIVE',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
 
-						'legend3'				=> 'WHO_IS_ONLINE',
+						'legend4'				=> 'WHO_IS_ONLINE',
 						'load_online'			=> array('lang' => 'YES_ONLINE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'load_online_guests'	=> array('lang' => 'YES_ONLINE_GUESTS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_online_bots'		=> array('lang' => 'YES_ONLINE_BOTS',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_onlinetrack'		=> array('lang' => 'YES_ONLINE_TRACK',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'load_online_time'		=> array('lang' => 'ONLINE_LENGTH',			'validate' => 'int:0:999',	'type' => 'number:0:999', 'explain' => true, 'append' => ' ' . $user->lang['MINUTES']),
 
-						'legend4'				=> 'ACP_LOAD_SETTINGS',
+						'legend5'				=> 'ACP_LOAD_SETTINGS',
 						'load_unreads_search'	=> array('lang' => 'YES_UNREAD_SEARCH',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_db_track'			=> array('lang' => 'YES_POST_MARKING',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 
-						'legend5'					=> 'ACP_SUBMIT_CHANGES',
+						'legend6'					=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 			break;
@@ -179,6 +183,7 @@ class acp_board
 						'style_mp_show_topic_poster'		=> array('lang' => 'STYLE_MP_SHOW_TOPIC_POSTER',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_gender'				=> array('lang' => 'STYLE_MP_SHOW_GENDER',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_age'					=> array('lang' => 'STYLE_MP_SHOW_AGE',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_mp_show_warnings'			=> array('lang' => 'STYLE_MP_SHOW_WARNINGS',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_rating'				=> array('lang' => 'STYLE_MP_SHOW_RATING',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_rating_detailed'		=> array('lang' => 'STYLE_MP_SHOW_RATING_DETAILED',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_mp_show_rated'				=> array('lang' => 'STYLE_MP_SHOW_RATED',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),

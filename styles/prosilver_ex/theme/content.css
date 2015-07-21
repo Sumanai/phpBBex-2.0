@@ -929,3 +929,66 @@ table.fixed-width-table {
 	right: 0;
 	top: -5px;
 }
+
+/* Warnings and remarks
+---------------------------------------- */
+.wcard {
+	float: left;
+	height: 13px;
+	overflow: hidden;
+	margin-right: 2px;
+}
+
+.wcard:before {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+}
+
+.wcards .warning:before {
+	content: url("./images/card_warning.gif");
+}
+
+.wcards .remark:before {
+	content: url("./images/card_remark.gif");
+}
+
+.wcards .ban:before {
+	content: url("./images/card_ban.gif");
+}
+
+.postbody .warning {
+	background: url("./images/card_warning.gif") 8px center no-repeat;
+}
+
+.postbody .remark {
+	background: url("./images/card_remark.gif") 8px center no-repeat;
+}
+
+.postbody .ban {
+	background: url("./images/card_ban.gif") 8px center no-repeat;
+}
+
+.postbody .warning, .postbody .ban, .postbody .remark {
+	margin: 3px 0;
+	padding: 2px 8px 3px 26px;
+	font-size: 1.1em;
+	line-height: 1.1em;
+	clear: both;
+}
+
+.postbody .warning, .postbody .ban {
+	background-color: #ECD5D8;
+	color: #BC2A4D;
+	border: 1px solid #db8180;
+}
+
+.postbody .remark {
+	background-color: #ffffff;
+	color: #000000;
+	border: 1px solid #aaaaaa;
+}
+
+.postbody .warning .date, .postbody .ban .date, .postbody .remark .date {
+	float: right;
+}

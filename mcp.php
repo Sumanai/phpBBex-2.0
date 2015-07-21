@@ -76,6 +76,7 @@ $topic_id = request_var('t', 0);
 $forum_id = request_var('f', 0);
 $report_id = request_var('r', 0);
 $user_id = request_var('u', 0);
+$warning_id = request_var('warning_id', 0);
 $username = utf8_normalize_nfc(request_var('username', '', true));
 
 if ($post_id)
@@ -278,6 +279,11 @@ if (!$user_id && $username == '')
 {
 	$module->set_display('notes', 'user_notes', false);
 	$module->set_display('warn', 'warn_user', false);
+}
+
+if (!$warning_id)
+{
+	$module->set_display('warn', 'warn_edit', false);
 }
 
 /**

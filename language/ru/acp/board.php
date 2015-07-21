@@ -121,6 +121,7 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Отображать автора темы',
 	'STYLE_MP_SHOW_GENDER'				=> 'Отображать пол',
 	'STYLE_MP_SHOW_AGE'					=> 'Отображать возраст',
+	'STYLE_MP_SHOW_WARNINGS'			=> 'Отображать предупреждения',
 	'STYLE_MP_SHOW_RATING'				=> 'Отображать репутацию',
 	'STYLE_MP_SHOW_RATING_DETAILED'		=> 'Отображать репутацию (подробно)',
 	'STYLE_MP_SHOW_RATED'				=> 'Отображать лояльность',

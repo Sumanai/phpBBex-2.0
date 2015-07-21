@@ -232,6 +232,7 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		'AUTHOR_WITH_US'	=> !empty($config['style_mp_show_with_us']) ? \phpbb\datetime::get_verbal($user_info['user_regdate'], time(), false, 2) : '',
 		'AUTHOR_POSTS'		=> (int) $user_info['user_posts'],
 		'U_AUTHOR_POSTS'	=> ($config['load_search'] && $auth->acl_get('u_search')) ? append_sid("{$phpbb_root_path}search.$phpEx", "author_id=$author_id&amp;sr=posts") : '',
+		'AUTHOR_WARNINGS'	=> (int) $user_info['user_warnings'],
 		'CONTACT_USER'		=> $user->lang('CONTACT_USER', get_username_string('username', $author_id, $user_info['username'], $user_info['user_colour'], $user_info['username'])),
 
 		'AUTHOR_AGE'		=> $age,

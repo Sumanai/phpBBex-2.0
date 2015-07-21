@@ -1,0 +1,47 @@
+<script>
+function addListener(obj, type, listener) {
+	if (obj.addEventListener) {
+		obj.addEventListener(type, listener, false);
+		return true;
+	} else if(obj.attachEvent) {
+		obj.attachEvent('on' + type, listener);
+		return true;
+	}
+	return false;
+}
+
+addListener(window, 'load', function() {
+	jQuery(function($)
+	{
+		$("#mcp input[name=warning_type]").change(function()
+		{
+			if ($(this).val() == 'remark' || $(this).val() == 'delete') $(".warning_duration").hide(); else $(".warning_duration").show();
+			if ($(this).val() == 'delete') $("#warning").hide(); else $("#warning").show();
+		});
+		$("#mcp input[name=warning_type]:checked").change();
+		<!-- IF WARNING -->
+			$("#mcp > h2").text("{LA_MCP_WARN_EDIT}");
+			$("#warning").val("{WARNING_JS}");
+		<!-- ENDIF -->
+	});
+});
+</script>
+
+<div class="panel">
+	<div class="inner">
+	<fieldset class="fields1">
+		<dl>
+			<dt><label for="warntype_warning">{L_WARNING_TYPE}{L_COLON}</label></dt>
+			<dd>
+				<label><input type="radio" name="warning_type" id="warntype_remark" value="remark"<!-- IF WARNING_TYPE == 'remark' --> checked="checked"<!-- ENDIF --> /> {L_REMARK}</label> 
+				<label><input type="radio" name="warning_type" id="warntype_warning" value="warning"<!-- IF WARNING_TYPE != 'remark' and WARNING_TYPE != 'ban' --> checked="checked"<!-- ENDIF --> /> {L_WARNING}</label>
+				<label><input type="radio" name="warning_type" id="warntype_ban" value="ban"<!-- IF WARNING_TYPE == 'ban' --> checked="checked"<!-- ENDIF --> /> {L_BAN}</label>
+				<!-- IF WARNING_ID --><label><input type="radio" name="warning_type" id="warntype_delete" value="delete" /> {L_DELETE}</label><!-- ENDIF -->
+			</dd>
+			<dt class="warning_duration"><label for="warning_days">{L_WARNING_DURATION}{L_COLON}</label></dt>
+			<dd class="warning_duration"><label><input type="number" name="warning_days" id="warning_days" size="4" min="0" max="9999" value="{WARNING_DAYS}" /> {L_DAYS}</label></dd>
+		</dl>
+		<!-- IF WARNING_ID --><input type="hidden" name="warning_id" value="{WARNING_ID}" /><!-- ENDIF -->
+	</fieldset>
+	</div>
+</div>

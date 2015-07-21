@@ -318,6 +318,10 @@ input[type="number"][size="3"] {
 	width: 4em;
 }
 
+input[type="number"][size="4"] {
+	width: 5em;
+}
+
 input[type="search"] {
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;

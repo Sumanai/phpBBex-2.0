@@ -140,13 +140,25 @@
 			</dd>
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-show"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-show">{postrow.RANK_IMG}</dd><!-- ENDIF -->
+			<!-- IF STYLE_MP_SHOW_WARNINGS and postrow.POSTER_WARNINGS -->
+				<dd class="wcards">
+				<!-- BEGIN postrow.userwarning -->
+					<!-- IF postrow.userwarning.U_POST -->
+						<a rel="nofollow" href="{postrow.userwarning.U_POST}"
+					<!-- ELSE -->
+						<span
+					<!-- ENDIF -->
+					class="wcard {postrow.userwarning.TYPE}" title="{postrow.userwarning.TITLE}">{postrow.userwarning.TYPE_SHORT}
+					<!-- IF postrow.userwarning.U_POST --></a><!-- ELSE --></span><!-- ENDIF -->
+				<!-- END postrow.userwarning -->
+				</dd>
+			<!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_AGE and postrow.POSTER_AGE and postrow.POSTER_AGE < 65 and postrow.POSTER_AGE > 10 --><dd class="profile-age"><strong>{L_AGE}{L_COLON}</strong> {postrow.POSTER_AGE}</dd><!-- ENDIF -->
 			<!-- IF (STYLE_MP_SHOW_RATING or STYLE_MP_SHOW_RATING_DETAILED) and postrow.S_POSTER_RATING --><dd><strong>{L_USER_RATING}{L_COLON}</strong> <!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_MP_SHOW_RATING and STYLE_MP_SHOW_RATING_DETAILED -->{postrow.POSTER_RATING} (+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE})<!-- ELSEIF STYLE_MP_SHOW_RATING_DETAILED -->+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE}<!-- ELSE --><span title="+{postrow.POSTER_RATING_POSITIVE}/−{postrow.POSTER_RATING_NEGATIVE}">{postrow.POSTER_RATING}</span><!-- ENDIF --><!-- ELSE -->{postrow.POSTER_RATING}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- IF (STYLE_MP_SHOW_RATED or STYLE_MP_SHOW_RATED_DETAILED) and postrow.S_POSTER_RATING --><dd><strong>{L_USER_RATED}{L_COLON}</strong> <!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_MP_SHOW_RATED and STYLE_MP_SHOW_RATED_DETAILED -->{postrow.POSTER_RATED} (+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE})<!-- ELSEIF STYLE_MP_SHOW_RATED_DETAILED -->+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE}<!-- ELSE --><span title="+{postrow.POSTER_RATED_POSITIVE}/−{postrow.POSTER_RATED_NEGATIVE}">{postrow.POSTER_RATED}</span><!-- ENDIF --><!-- ELSE -->{postrow.POSTER_RATED}<!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_POSTS and postrow.POSTER_POSTS != '' --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF postrow.U_SEARCH !== '' --><a href="{postrow.U_SEARCH}"><!-- ENDIF -->{postrow.POSTER_POSTS}<!-- IF postrow.U_SEARCH !== '' --></a><!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_JOINED and postrow.POSTER_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_WITH_US and postrow.POSTER_WITH_US --><dd class="profile-with_us"><strong>{L_USER_WITH_US}{L_COLON}</strong> {postrow.POSTER_WITH_US}</dd><!-- ENDIF -->
-		<!-- IF postrow.POSTER_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {postrow.POSTER_WARNINGS}</dd><!-- ENDIF -->
 
 		<!-- IF postrow.S_PROFILE_FIELD1 -->
 			<!-- Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
@@ -224,7 +236,7 @@
 						</li>
 					<!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE -->
-						<li<!-- IF S_QUICK_REPLY or postrow.DECODED_MESSAGE --> style="display: none;"<!-- ENDIF -->>
+						<li<!-- IF (S_QUICK_REPLY or postrow.DECODED_MESSAGE) and not S_QUICK_FULL_QUOTE --> style="display: none;"<!-- ENDIF -->>
 							<a class="button icon-button quote-icon<!-- IF not S_QUICK_REPLY or postrow.DECODED_MESSAGE -->"<!-- ELSE --> no-full-quote"<!-- ENDIF --><!-- IF not S_QUICK_REPLY --> href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span><!-- ELSE --> href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); return false;" title="{L_QUOTE_TEXT}"><span>{L_QUOTE}</span><!-- ENDIF --></a>
 						</li>
 					<!-- ENDIF -->
@@ -303,6 +315,14 @@
 
 			<!-- EVENT viewtopic_body_postrow_post_notices_after -->
 			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+
+			<!-- BEGIN postrow.postwarning -->
+				<div class="{postrow.postwarning.TYPE}">
+					<span class="date">{postrow.postwarning.ISSUER_NAME} » {postrow.postwarning.TIME}</i></span>
+					<strong>{postrow.postwarning.TITLE}</strong><br />
+					{postrow.postwarning.TEXT}
+				</div>
+			<!-- END postrow.postwarning -->
 
 			<!-- EVENT viewtopic_body_postrow_post_content_footer -->
 			</div>

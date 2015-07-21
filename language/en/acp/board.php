@@ -120,6 +120,7 @@ $lang = array_merge($lang, array(
 	'STYLE_MP_SHOW_TOPIC_POSTER'		=> 'Display topic starter',
 	'STYLE_MP_SHOW_GENDER'				=> 'Display gender',
 	'STYLE_MP_SHOW_AGE'					=> 'Display age',
+	'STYLE_MP_SHOW_WARNINGS'			=> 'Display warnings',
 	'STYLE_MP_SHOW_RATING'				=> 'Display reputation',
 	'STYLE_MP_SHOW_RATING_DETAILED'		=> 'Display detailed reputation',
 	'STYLE_MP_SHOW_RATED'				=> 'Display loyalty',

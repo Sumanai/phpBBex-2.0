@@ -1491,6 +1491,17 @@ $lang = array_merge($lang, array(
 		2	=> '%d years',
 	),
 
+	// Advanced Warnings
+	'USER_WARNING'			=> 'Warning',
+	'WARNING_DAYS'			=> 'Days',
+	'REMARK'				=> 'Remark',
+	'WARNING'				=> 'Warning',
+	'BAN'					=> 'Ban',
+	'PERMANENT_WARNING'		=> 'Permanent warning',
+	'WARNING_X_DAYS'		=> 'Warning for %d days',
+	'PERMANENT_BAN'			=> 'Permanent ban',
+	'BAN_X_DAYS'			=> 'Ban for %d days',
+
 	// Other
 	'SOCIAL_SHARE_IN'		=> 'Share in',
 	'SPOILER'				=> 'Spoiler',

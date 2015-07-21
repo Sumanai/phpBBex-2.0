@@ -5256,6 +5256,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'style_mp_show_gender',
 		'style_mp_show_age',
 		'style_mp_show_from',
+		'style_mp_show_warnings',
 		'style_mp_show_rating',
 		'style_mp_show_rating_detailed',
 		'style_mp_show_rated',

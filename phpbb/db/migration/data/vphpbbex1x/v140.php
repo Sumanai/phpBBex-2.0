@@ -88,6 +88,13 @@ class v140 extends \phpbb\db\migration\migration
 					'user_topics_per_page'	=> array('UINT:8', 0, 'after' => 'user_topic_sortby_dir'),
 					'user_posts_per_page'	=> array('UINT:8', 0, 'after' => 'user_post_sortby_dir'),
 				),
+				$this->table_prefix . 'warnings' => array(
+					'warning_active'		=> array('TINT:1', 1, 'after' => 'warning_id'),
+					'issuer_id'				=> array('UINT:8', 0, 'after' => 'warning_active'),
+					'warning_days'			=> array('TIMESTAMP', 0, 'after' => 'warning_time'),
+					'warning_type'			=> array('ENUM:remark,warning,ban', 'warning', 'after' => 'warning_days'),
+					'warning_text'			=> array('TEXT', NULL, 'after' => 'warning_type'),
+				),
 			),
 
 			'change_columns'	=> array(
@@ -95,11 +102,22 @@ class v140 extends \phpbb\db\migration\migration
 					'user_options'		=> array('UINT:11', 233343),
 				),
 			),
+
+			'add_index'		=> array(
+				$this->table_prefix . 'warnings'		=> array(
+					'warning_active'	=> array('warning_active'),
+					'issuer_id'			=> array('issuer_id'),
+					'user_id'			=> array('user_id'),
+					'post_id'			=> array('post_id'),
+				),
+			),
 		);
 	}
 
 	public function update_data()
 	{
+		global $user;
+
 		return array(
 			// New phpBBex options
 			array('config.add', array('active_topics_on_index', 5)),
@@ -130,6 +148,7 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('rate_no_positive', '0')),
 			array('config.add', array('site_keywords', '')),
 			array('config.add', array('social_media_cover_url', '')),
+			array('config.add', array('warning_post_default', $user->lang['WARNING_POST_DEFAULT'])),
 
 			// Style options
 			array('config.add', array('style_ml_show_row_numbers', 1)),
@@ -225,6 +244,14 @@ class v140 extends \phpbb\db\migration\migration
 				array(
 					'module_basename'	=> 'acp_quick_reply',
 					'modes'				=> array('quick_reply'),
+				),
+			)),
+			array('module.add', array(
+				'mcp',
+				'MCP_WARN',
+				array(
+					'module_basename'	=> 'mcp_warn',
+					'modes'				=> array('warn_edit'),
 				),
 			)),
 

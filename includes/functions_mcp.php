@@ -56,6 +56,12 @@ function phpbb_module_warn_url($mode, &$module_row)
 
 		return $url_extra;
 	}
+	elseif ($mode == 'warn_edit')
+	{
+		global $warning_id;
+
+		return ($warning_id) ? "&amp;warning_id=$warning_id" : '';
+	}
 	else
 	{
 		global $user_id;

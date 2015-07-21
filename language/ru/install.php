@@ -595,4 +595,5 @@ $lang = array_merge($lang, array(
 	'TOPICS_TOPIC_TITLE'			=> 'Добро пожаловать в phpBBex',
 
 	'BOARD_DISABLE_DEFAULT'			=> 'Извините, идет обновление форума. Зайдите через 1 час.',
+	'WARNING_POST_DEFAULT'			=> 'Нарушение правил',
 ));

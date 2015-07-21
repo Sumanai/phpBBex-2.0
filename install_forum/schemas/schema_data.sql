@@ -283,6 +283,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('upload_icons_path'
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('upload_path', 'files');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('use_system_cron', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', '3.1.5');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('warning_post_default', '{L_WARNING_POST_DEFAULT}');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_expire_days', '90');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '14400');
 
@@ -303,6 +304,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_on_left',
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_topic_poster', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_gender', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_age', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_warnings', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rating', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rating_detailed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_mp_show_rated', '0');

@@ -77,6 +77,7 @@ class tools
 				'VCHAR_UNI:'=> 'varchar(%d)',
 				'VCHAR_CI'	=> 'varchar(255)',
 				'VARBINARY'	=> 'varbinary(255)',
+				'ENUM'		=> "enum('%s')",
 			),
 
 			'mysql_40'	=> array(
@@ -107,6 +108,7 @@ class tools
 				'VCHAR_UNI:'=> array('varbinary(%d)', 'limit' => array('mult', 3, 255, 'blob')),
 				'VCHAR_CI'	=> 'blob',
 				'VARBINARY'	=> 'varbinary(255)',
+				'ENUM'		=> "enum('%s')",
 			),
 
 			'mssql'		=> array(
@@ -137,6 +139,7 @@ class tools
 				'VCHAR_UNI:'=> '[varchar] (%d)',
 				'VCHAR_CI'	=> '[varchar] (255)',
 				'VARBINARY'	=> '[varchar] (255)',
+				'ENUM'		=> '[varchar] (255)',
 			),
 
 			'mssqlnative'	=> array(
@@ -167,6 +170,7 @@ class tools
 				'VCHAR_UNI:'=> '[varchar] (%d)',
 				'VCHAR_CI'	=> '[varchar] (255)',
 				'VARBINARY'	=> '[varchar] (255)',
+				'ENUM'		=> '[varchar] (255)',
 			),
 
 			'oracle'	=> array(
@@ -197,6 +201,7 @@ class tools
 				'VCHAR_UNI:'=> array('varchar2(%d)', 'limit' => array('mult', 3, 765, 'clob')),
 				'VCHAR_CI'	=> 'varchar2(255)',
 				'VARBINARY'	=> 'raw(255)',
+				'ENUM'		=> 'varchar2(255)',
 			),
 
 			'sqlite'	=> array(
@@ -227,6 +232,7 @@ class tools
 				'VCHAR_UNI:'=> 'varchar(%d)',
 				'VCHAR_CI'	=> 'varchar(255)',
 				'VARBINARY'	=> 'blob',
+				'ENUM'		=> 'varchar(255)',
 			),
 
 			'sqlite3'	=> array(
@@ -257,6 +263,7 @@ class tools
 				'VCHAR_UNI:'=> 'VARCHAR(%d)',
 				'VCHAR_CI'	=> 'VARCHAR(255)',
 				'VARBINARY'	=> 'BLOB',
+				'ENUM:'		=> 'VARCHAR(255)'
 			),
 
 			'postgres'	=> array(
@@ -287,6 +294,7 @@ class tools
 				'VCHAR_UNI:'=> 'varchar(%d)',
 				'VCHAR_CI'	=> 'varchar_ci',
 				'VARBINARY'	=> 'bytea',
+				'ENUM:'		=> 'varchar(255)',
 			),
 		);
 	}
@@ -1646,6 +1654,10 @@ class tools
 			list($orig_column_type, $column_length) = explode(':', $column_map_type);
 			if (!is_array($this->dbms_type_map[$this->sql_layer][$orig_column_type . ':']))
 			{
+				if (strpos($column_length, ',') !== false)
+				{
+					$column_length = str_replace(',', "','", $column_length);
+				}
 				$column_type = sprintf($this->dbms_type_map[$this->sql_layer][$orig_column_type . ':'], $column_length);
 			}
 			else
