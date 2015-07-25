@@ -184,7 +184,7 @@ dl.details dd {
 
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
-	background-image: url("./images/icon_pages.gif");
+	background-image: url("data:image/gif;base64,R0lGODlhCwAMAKIAAGZmZuHh4f///+3t7ZmZmTMzMwAAAAAAACH5BAEAAAYALAAAAAALAAwAAAMuSLBM9kBIGcAzcY56s9xAASiTAAbDUp5pNLzsEsw0gI5Mc18FPacdGMzyUORGCQA7");
 }
 
 /* Miscellaneous styles
@@ -374,7 +374,7 @@ dl.faq dt {
 /* Quote block */
 blockquote {
 	background-color: #EBEADD;
-	background-image: url("./images/quote.gif");
+	background-image: url("data:image/gif;base64,R0lGODlhDwAMADMAACH5BAEAAAAALAEAAQAOAAoAo97d2DMzM5WUkdLRzLm4tWRkYktLS8XFwXBwbq2sqT8/P6GgnYiIht7d2Hx8elhXVgRBEEjyhpSjnJtCKNehBEYDHJ5hAcOoEJLhrUDhwcCShl5wIb2ERNATSGw9i6MXgCE9CwCDaST2YJ2iBBhgXKwISQQAOw==");
 	border-color:#DBDBCE;
 }
 
