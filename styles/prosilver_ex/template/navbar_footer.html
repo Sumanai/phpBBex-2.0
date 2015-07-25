@@ -13,11 +13,13 @@
 		<li class="rightside">{S_TIMEZONE}</li>
 		<!-- EVENT overall_footer_timezone_after -->
 		<!-- IF not S_IS_BOT -->
-			<li class="small-icon icon-delete-cookies rightside"><a href="{U_DELETE_COOKIES}" data-ajax="true" data-refresh="true" role="menuitem">{L_DELETE_COOKIES}</a></li>
+			<li class="small-icon icon-delete-cookies rightside"><a rel="nofollow" href="{U_DELETE_COOKIES}" data-ajax="true" data-refresh="true" role="menuitem">{L_DELETE_COOKIES}</a></li>
 		<!-- ENDIF -->
 		<!-- EVENT overall_footer_teamlink_before -->
 		<!-- EVENT overall_footer_teamlink_after -->
-		<!-- IF U_CONTACT_US --><li class="small-icon icon-contact rightside" data-last-responsive="true"><a href="{U_CONTACT_US}" role="menuitem">{L_CONTACT_US}</a></li><!-- ENDIF -->
+		<!-- IF U_CONTACT_US -->
+			<li class="small-icon icon-contact rightside" data-last-responsive="true"><a rel="nofollow" href="{U_CONTACT_US}" role="menuitem">{L_CONTACT_US}</a></li>
+		<!-- ENDIF -->
 	</ul>
 
 	</div>

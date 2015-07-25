@@ -58,6 +58,10 @@ class v153 extends \phpbb\db\migration\migration
 			array('config.update', array('board_hide_emails', 0)),
 			array('custom', array(array($this, 'update_all_users_options'))),
 
+			// New phpBBex options
+			array('config.add', array('external_links_newwindow', 0)),
+			array('config.add', array('external_links_newwindow_exclude', '')),
+
 			// Remove obsolete options
 			array('config.remove', array('style_google_analytics_id')),
 			array('config.remove', array('style_show_liveinternet_counter')),

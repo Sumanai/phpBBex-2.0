@@ -2327,10 +2327,12 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 			if ($field_data['S_PROFILE_CONTACT'])
 			{
+				$u_contact = get_attrs_for_external_link($field_data['PROFILE_FIELD_CONTACT']);
+				$u_contact = $field_data['PROFILE_FIELD_CONTACT'] . ($u_contact ? '"' . rtrim($u_contact, '"') : '');
 				$template->assign_block_vars('postrow.contact', array(
 					'ID'		=> $field_data['PROFILE_FIELD_IDENT'],
 					'NAME'		=> $field_data['PROFILE_FIELD_NAME'],
-					'U_CONTACT'	=> $field_data['PROFILE_FIELD_CONTACT'],
+					'U_CONTACT'	=> $u_contact,
 				));
 			}
 		}

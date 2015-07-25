@@ -226,8 +226,8 @@ class bbcode
 				case 3:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[url:$uid\]((.*?))\[/url:$uid\]#s'			=> $this->bbcode_tpl('url', $bbcode_id),
-							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#s'	=> $this->bbcode_tpl('url', $bbcode_id),
+							'#\[url:$uid\]((.*?))\[/url:$uid\]#se'			=> "\$this->bbcode_second_pass_url('\$1', '\$2')",
+							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#se'	=> "\$this->bbcode_second_pass_url('\$1', '\$2')",
 						)
 					);
 				break;
@@ -245,7 +245,7 @@ class bbcode
 					{
 						$this->bbcode_cache[$bbcode_id] = array(
 							'preg' => array(
-								'#\[img:$uid\](.*?)\[/img:$uid\]#s'		=> str_replace('$2', '[ img ]', $this->bbcode_tpl('url', $bbcode_id, true)),
+								'#\[img:$uid\](.*?)\[/img:$uid\]#se'	=> "\$this->bbcode_second_pass_url('\$1', '[ img ]')",
 							)
 						);
 					}
@@ -324,7 +324,7 @@ class bbcode
 					{
 						$this->bbcode_cache[$bbcode_id] = array(
 							'preg' => array(
-								'#\[flash=([0-9]+),([0-9]+):$uid\](.*?)\[/flash:$uid\]#'	=> str_replace('$1', '$3', str_replace('$2', '[ flash ]', $this->bbcode_tpl('url', $bbcode_id, true)))
+								'#\[flash=([0-9]+),([0-9]+):$uid\](.*?)\[/flash:$uid\]#e'	=> "\$this->bbcode_second_pass_url('\$3', '[ flash ]')",
 							)
 						);
 					}
@@ -608,6 +608,20 @@ class bbcode
 		}
 
 		return strtr($this->bbcode_tpl($tpl), array('{LIST_TYPE}' => $type, '{LIST_START}' => $start));
+	}
+
+	/**
+	* Second parse url tag
+	*/
+	function bbcode_second_pass_url($href, $text)
+	{
+		// when using the /e modifier, preg_replace slashes double-quotes but does not
+		// seem to slash anything else
+		$href = str_replace('\"', '"', $href);
+		$text = str_replace('\"', '"', $text);
+		$external = stripos($href, generate_board_url(true)) !== 0 && $href{0} !== '.' && $href{0} !== '/';
+		$attrs = $external ? (' class="postlink"' . get_attrs_for_external_link($href)) : ' class="postlink local"';
+		return '<a href="'.$href.'"'.$attrs.'>'.$text.'</a>';
 	}
 
 	/**

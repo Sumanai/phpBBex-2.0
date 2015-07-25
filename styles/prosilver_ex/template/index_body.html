@@ -21,10 +21,10 @@
 		<li class="row<!-- IF announcetopic.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --> global-announce<!-- IF announcetopic.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<dl class="icon {announcetopic.TOPIC_IMG_STYLE}">
 				<dt<!-- IF announcetopic.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{announcetopic.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{announcetopic.TOPIC_FOLDER_IMG_ALT}">
-					<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a href="{announcetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
+					<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
-						<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a href="{announcetopic.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{announcetopic.U_VIEW_TOPIC}" class="topictitle">{announcetopic.TOPIC_TITLE}</a>
+						<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{announcetopic.U_VIEW_TOPIC}" class="topictitle">{announcetopic.TOPIC_TITLE}</a>
 						<!-- IF announcetopic.S_TOPIC_UNAPPROVED or announcetopic.S_POSTS_UNAPPROVED --><a href="{announcetopic.U_MCP_QUEUE}">{announcetopic.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 						<!-- IF announcetopic.S_TOPIC_DELETED --><a href="{announcetopic.U_MCP_QUEUE}">{DELETED_IMG}</a> <!-- ENDIF -->
 						<!-- IF announcetopic.S_TOPIC_REPORTED --><a href="{announcetopic.U_MCP_REPORT}">{announcetopic.REPORTED_IMG}</a><!-- ENDIF --><br />
@@ -162,7 +162,7 @@
 
 <!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
 	<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
-	<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+	<h3><a rel="nofollow" href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a rel="nofollow" href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
 		<fieldset class="quick-login">
 			<label for="username"><span>{L_LOGIN_NAME}{L_COLON}</span> <input type="text" tabindex="1" name="username" id="username" size="10" class="inputbox" title="{L_LOGIN_NAME}" /></label>
 			<label for="password"><span>{L_PASSWORD}{L_COLON}</span> <input type="password" tabindex="2" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" autocomplete="off" /></label>
@@ -182,7 +182,7 @@
 
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 	<div class="stat-block online-list">
-		<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --> <span class="extra">({L_ONLINE_EXPLAIN})</span></h3>
+		<h3><!-- IF U_VIEWONLINE --><a rel="nofollow" href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --> <span class="extra">({L_ONLINE_EXPLAIN})</span></h3>
 		<p>
 			<!-- EVENT index_body_block_online_prepend -->
 			{TOTAL_USERS_ONLINE}<br />{RECORD_USERS}<!-- IF LOGGED_IN_USER_LIST --><br />{LOGGED_IN_USER_LIST}<!-- ENDIF -->

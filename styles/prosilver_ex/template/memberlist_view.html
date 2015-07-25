@@ -72,7 +72,7 @@
 			<!-- IF custom_fields.S_PROFILE_CONTACT -->
 				<dt>{custom_fields.PROFILE_FIELD_NAME}{L_COLON}</dt>
 				<!-- IF custom_fields.PROFILE_FIELD_CONTACT -->
-					<dd><a href="{custom_fields.PROFILE_FIELD_CONTACT}">{custom_fields.PROFILE_FIELD_DESC}</a></dd>
+					<dd><a href="{custom_fields.PROFILE_FIELD_CONTACT}"<!-- IF EXTERNAL_LINKS_NEWWINDOW --> target="_blank"<!-- ENDIF --><!-- IF EXTERNAL_LINKS_NOFOLLOW --> rel="nofollow"<!-- ENDIF -->>{custom_fields.PROFILE_FIELD_DESC}</a></dd>
 				<!-- ELSE -->
 					<dd>{custom_fields.PROFILE_FIELD_VALUE}</dd>
 				<!-- ENDIF -->

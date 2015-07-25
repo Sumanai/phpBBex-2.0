@@ -335,6 +335,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply_
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('auto_guest_lang', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('external_links_newwindow', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('external_links_newwindow_exclude', '');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_online_bots', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');

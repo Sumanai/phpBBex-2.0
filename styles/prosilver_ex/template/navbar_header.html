@@ -78,10 +78,10 @@
 				<!-- INCLUDE notification_dropdown.html -->
 			</li>
 		<!-- ENDIF -->
-	<!-- ELSE -->
-		<li class="small-icon icon-logout rightside" data-skip-responsive="true"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x" role="menuitem">{L_LOGIN_LOGOUT}</a></li>
+	<!-- ELSE IF not S_IS_BOT -->
+		<li class="small-icon icon-logout rightside" data-skip-responsive="true"><a rel="nofollow" href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x" role="menuitem">{L_LOGIN_LOGOUT}</a></li>
 		<!-- IF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) -->
-			<li class="small-icon icon-register rightside" data-skip-responsive="true"><a href="{U_REGISTER}" role="menuitem">{L_REGISTER}</a></li>
+			<li class="small-icon icon-register rightside" data-skip-responsive="true"><a rel="nofollow" href="{U_REGISTER}" role="menuitem">{L_REGISTER}</a></li>
 		<!-- ENDIF -->
 		<!-- EVENT navbar_header_logged_out_content -->
 	<!-- ENDIF -->

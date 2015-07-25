@@ -632,60 +632,84 @@ function generate_text_for_edit($text, $uid, $flags)
 }
 
 /**
+* Function for make_clickable_callback and bbcode::bbcode_second_pass_url
+*/
+function get_attrs_for_external_link($url)
+{
+	global $config;
+
+	if (stripos($url, 'http://') !== 0 && stripos($url, 'https://') !== 0) return '';
+	$maxpos = strpos($url, '/', 8);
+	if (!$maxpos) $maxpos = strlen($url);
+
+	$newwindow = !empty($config['external_links_newwindow']);
+	if ($newwindow)
+	{
+		static $newwindow_exclude;
+		if (!is_array($newwindow_exclude))
+		{
+			$newwindow_exclude = empty($config['external_links_newwindow_exclude']) ? array() : explode("\n", str_replace(array("\r\n", ','), "\n", $config['external_links_newwindow_exclude']));
+			$newwindow_exclude = array_filter(array_map('trim', $newwindow_exclude));
+		}
+
+		foreach ($newwindow_exclude as $prefix)
+		{
+			$pos = stripos($url, $prefix);
+			if ($pos !== false && $pos < $maxpos)
+			{
+				$newwindow = false;
+				break;
+			}
+		}
+	}
+
+	$nofollow = !empty($config['external_links_nofollow']);
+	if ($nofollow)
+	{
+		static $nofollow_exclude;
+		if (!is_array($nofollow_exclude))
+		{
+			$nofollow_exclude = empty($config['external_links_nofollow_exclude']) ? array() : explode("\n", str_replace(array("\r\n", ','), "\n", $config['external_links_nofollow_exclude']));
+			$nofollow_exclude = array_filter(array_map('trim', $nofollow_exclude));
+		}
+
+		foreach ($nofollow_exclude as $prefix)
+		{
+			$pos = stripos($url, $prefix);
+			if ($pos !== false && $pos < $maxpos)
+			{
+				$nofollow = false;
+				break;
+			}
+		}
+	}
+
+	return ($newwindow ? ' target="_blank"' : '') . ($nofollow ? ' rel="nofollow"' : '');
+}
+
+/**
 * A subroutine of make_clickable used with preg_replace
 * It places correct HTML around an url, shortens the displayed text
 * and makes sure no entities are inside URLs
 */
-function make_clickable_callback($type, $whitespace, $url, $relative_url, $class)
+function make_clickable_callback($type, $whitespace, $url, $server_url)
 {
-	$orig_url		= $url;
-	$orig_relative	= $relative_url;
-	$append			= '';
-	$url			= htmlspecialchars_decode($url);
-	$relative_url	= htmlspecialchars_decode($relative_url);
+	$attrs		= '';
+	$append		= '';
+	$url		= htmlspecialchars_decode($url);
 
 	// make sure no HTML entities were matched
-	$chars = array('<', '>', '"');
-	$split = false;
+	$split = strcspn($url, '<>"');
 
-	foreach ($chars as $char)
-	{
-		$next_split = strpos($url, $char);
-		if ($next_split !== false)
-		{
-			$split = ($split !== false) ? min($split, $next_split) : $next_split;
-		}
-	}
-
-	if ($split !== false)
+	if ($split !== strlen($url))
 	{
 		// an HTML entity was found, so the URL has to end before it
-		$append			= substr($url, $split) . $relative_url;
-		$url			= substr($url, 0, $split);
-		$relative_url	= '';
-	}
-	else if ($relative_url)
-	{
-		// same for $relative_url
-		$split = false;
-		foreach ($chars as $char)
-		{
-			$next_split = strpos($relative_url, $char);
-			if ($next_split !== false)
-			{
-				$split = ($split !== false) ? min($split, $next_split) : $next_split;
-			}
-		}
-
-		if ($split !== false)
-		{
-			$append			= substr($relative_url, $split);
-			$relative_url	= substr($relative_url, 0, $split);
-		}
+		$append		= substr($url, $split);
+		$url		= substr($url, 0, $split);
 	}
 
 	// if the last character of the url is a punctuation mark, exclude it from the url
-	$last_char = ($relative_url) ? $relative_url[strlen($relative_url) - 1] : $url[strlen($url) - 1];
+	$last_char = $url[strlen($url) - 1];
 
 	switch ($last_char)
 	{
@@ -695,14 +719,7 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 		case ':':
 		case ',':
 			$append = $last_char;
-			if ($relative_url)
-			{
-				$relative_url = substr($relative_url, 0, -1);
-			}
-			else
-			{
-				$url = substr($url, 0, -1);
-			}
+			$url = substr($url, 0, -1);
 		break;
 
 		// set last_char to empty here, so the variable can be used later to
@@ -712,39 +729,46 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 		break;
 	}
 
-	$short_url = (utf8_strlen($url) > 55) ? utf8_substr($url, 0, 39) . ' ... ' . utf8_substr($url, -10) : $url;
+	$text = urldecode($url);
+	if (!preg_match('/^./u', $text))
+	{
+		$text = (strlen($url) > 85) ? substr($url, 0, 49) . ' ... ' . substr($url, -30) : $url;
+	}
+	else if (utf8_strlen($text) > 85)
+	{
+		$text = utf8_substr($text, 0, 49) . ' ... ' . utf8_substr($text, -30);
+	}
 
 	switch ($type)
 	{
-		case MAGIC_URL_LOCAL:
-			$tag			= 'l';
-			$relative_url	= preg_replace('/[&?]sid=[0-9a-f]{32}$/', '', preg_replace('/([&?])sid=[0-9a-f]{32}&/', '$1', $relative_url));
-			$url			= $url . '/' . $relative_url;
-			$text			= $relative_url;
-
-			// this url goes to http://domain.tld/path/to/board/ which
-			// would result in an empty link if treated as local so
-			// don't touch it and let MAGIC_URL_FULL take care of it.
-			if (!$relative_url)
-			{
-				return $whitespace . $orig_url . '/' . $orig_relative; // slash is taken away by relative url pattern
-			}
-		break;
+		case MAGIC_URL_WWW:
+			$url	= 'http://' . $url;
 
 		case MAGIC_URL_FULL:
-			$tag	= 'm';
-			$text	= $short_url;
-		break;
-
-		case MAGIC_URL_WWW:
-			$tag	= 'w';
-			$url	= 'http://' . $url;
-			$text	= $short_url;
+			if (strtolower($url) === 'http://')
+			{
+				return $whitespace . $url . $append;
+			}
+			$external = stripos($url, $server_url) !== 0;
+			if ($external)
+			{
+				$tag		= ($type == MAGIC_URL_WWW) ? 'w' : 'm';
+				$attrs		= ' class="postlink"' . get_attrs_for_external_link($url);
+			}
+			else
+			{
+				$tag		= ($type == MAGIC_URL_WWW) ? 'w' : 'l';
+				$attrs		= ' class="postlink local"';
+				$url		= preg_replace('/[&?]sid=[0-9a-f]{32}$/', '', preg_replace('/([&?])sid=[0-9a-f]{32}&/', '$1', $url));
+				if (strlen($url) > strlen($server_url) + 1)
+				{
+					$text	= substr($url, strlen($server_url) + 1);
+				}
+			}
 		break;
 
 		case MAGIC_URL_EMAIL:
 			$tag	= 'e';
-			$text	= $short_url;
 			$url	= 'mailto:' . $url;
 		break;
 	}
@@ -753,7 +777,7 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 	$text	= htmlspecialchars($text);
 	$append	= htmlspecialchars($append);
 
-	$html	= "$whitespace<!-- $tag --><a$class href=\"$url\">$text</a><!-- $tag -->$append";
+	$html	= "$whitespace<!-- $tag --><a$attrs href=\"$url\">$text</a><!-- $tag -->$append";
 
 	return $html;
 }
@@ -765,53 +789,36 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 * Cuts down displayed size of link if over 50 chars, turns absolute links
 * into relative versions when the server/script path matches the link
 */
-function make_clickable($text, $server_url = false, $class = 'postlink')
+function make_clickable($text, $server_url = false, $class = '')
 {
 	if ($server_url === false)
 	{
 		$server_url = generate_board_url();
 	}
 
-	static $static_class;
-	static $magic_url_match_args;
+	static $magic_url_match_args = array();
 
-	if (!isset($magic_url_match_args[$server_url]) || $static_class != $class)
+	if (!isset($magic_url_match_args[$server_url]))
 	{
-		$static_class = $class;
-		$class = ($static_class) ? ' class="' . $static_class . '"' : '';
-		$local_class = ($static_class) ? ' class="' . $static_class . '-local"' : '';
-
-		if (!is_array($magic_url_match_args))
-		{
-			$magic_url_match_args = array();
-		}
-
-		// relative urls for this board
-		$magic_url_match_args[$server_url][] = array(
-			'#(^|[\n\t (>.])(' . preg_quote($server_url, '#') . ')/(' . get_preg_expression('relative_url_inline') . ')#iu',
-			MAGIC_URL_LOCAL,
-			$local_class,
-		);
-
 		// matches a xxxx://aaaaa.bbb.cccc. ...
 		$magic_url_match_args[$server_url][] = array(
 			'#(^|[\n\t (>.])(' . get_preg_expression('url_inline') . ')#iu',
 			MAGIC_URL_FULL,
-			$class,
+			$server_url,
 		);
 
 		// matches a "www.xxxx.yyyy[/zzzz]" kinda lazy URL thing
 		$magic_url_match_args[$server_url][] = array(
 			'#(^|[\n\t (>])(' . get_preg_expression('www_url_inline') . ')#iu',
 			MAGIC_URL_WWW,
-			$class,
+			$server_url,
 		);
 
 		// matches an email@domain type address at the start of a line, or after a space or after what might be a BBCode.
 		$magic_url_match_args[$server_url][] = array(
 			'/(^|[\n\t (>])(' . get_preg_expression('email') . ')/iu',
 			MAGIC_URL_EMAIL,
-			'',
+			$server_url,
 		);
 	}
 
@@ -821,8 +828,7 @@ function make_clickable($text, $server_url = false, $class = 'postlink')
 		{
 			$text = preg_replace_callback($magic_args[0], function($matches) use ($magic_args)
 			{
-				$relative_url = isset($matches[3]) ? $matches[3] : '';
-				return make_clickable_callback($magic_args[1], $matches[1], $matches[2], $relative_url, $magic_args[2]);
+				return make_clickable_callback($magic_args[1], $matches[1], $matches[2], $magic_args[2]);
 			}, $text);
 		}
 	}
@@ -1357,12 +1363,12 @@ function get_username_string($mode, $user_id, $username, $username_colour = '', 
 		$_profile_cache['base_url'] = append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&amp;u={USER_ID}');
 		$_profile_cache['tpl_noprofile'] = '<span class="username">{USERNAME}</span>';
 		$_profile_cache['tpl_noprofile_colour'] = '<span style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</span>';
-		$_profile_cache['tpl_profile'] = '<a href="{PROFILE_URL}" class="username">{USERNAME}</a>';
-		$_profile_cache['tpl_profile_colour'] = '<a href="{PROFILE_URL}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</a>';
+		$_profile_cache['tpl_profile'] = '<a rel="nofollow" href="{PROFILE_URL}" class="username">{USERNAME}</a>';
+		$_profile_cache['tpl_profile_colour'] = '<a rel="nofollow" href="{PROFILE_URL}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</a>';
 		$_profile_cache['tpl_noprofile_title'] = '<span title="{TITLE}">{USERNAME}</span>';
 		$_profile_cache['tpl_noprofile_colour_title'] = '<span title="{TITLE}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</span>';
-		$_profile_cache['tpl_profile_title'] = '<a href="{PROFILE_URL}" title="{TITLE}">{USERNAME}</a>';
-		$_profile_cache['tpl_profile_colour_title'] = '<a href="{PROFILE_URL}" title="{TITLE}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</a>';
+		$_profile_cache['tpl_profile_title'] = '<a rel="nofollow" href="{PROFILE_URL}" title="{TITLE}">{USERNAME}</a>';
+		$_profile_cache['tpl_profile_colour_title'] = '<a rel="nofollow" href="{PROFILE_URL}" title="{TITLE}" style="color: {USERNAME_COLOUR};" class="username-coloured">{USERNAME}</a>';
 	}
 
 	global $user, $auth;

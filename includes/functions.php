@@ -2228,6 +2228,14 @@ function generate_board_url($without_script_path = false)
 {
 	global $config, $user, $request;
 
+	static $board_url;
+	static $domain_url;
+
+	if (!empty($board_url))
+	{
+		return $without_script_path ? $domain_url : $board_url;
+	}
+
 	$server_name = $user->host;
 	$server_port = $request->server('SERVER_PORT', 0);
 
@@ -2260,18 +2268,11 @@ function generate_board_url($without_script_path = false)
 		}
 	}
 
-	if (!$without_script_path)
-	{
-		$url .= $script_path;
-	}
-
 	// Strip / from the end
-	if (substr($url, -1, 1) == '/')
-	{
-		$url = substr($url, 0, -1);
-	}
+	$domain_url = rtrim($url, '/');
+	$board_url = rtrim($url . $script_path, '/');
 
-	return $url;
+	return $without_script_path ? $domain_url : $board_url;
 }
 
 /**
@@ -3394,8 +3395,8 @@ function get_preg_expression($mode)
 		case 'bbcode_htm':
 			return array(
 				'#<!\-\- e \-\-><a href="mailto:(.*?)">.*?</a><!\-\- e \-\->#',
-				'#<!\-\- l \-\-><a (?:class="[\w-]+" )?href="(.*?)(?:(&amp;|\?)sid=[0-9a-f]{32})?">.*?</a><!\-\- l \-\->#',
-				'#<!\-\- ([mw]) \-\-><a (?:class="[\w-]+" )?href="(.*?)">.*?</a><!\-\- \1 \-\->#',
+				'#<!\-\- l \-\-><a [-= "\w]*href="(.*?)(?:(&amp;|\?)sid=[0-9a-f]{32})?">.*?</a><!\-\- l \-\->#',
+				'#(?|<!\-\- (m) \-\-><a [-= "\w]*href="(.*?)">.*?</a><!\-\- m \-\->|<!\-\- (w) \-\-><a [-= "\w]*href="(?:http://)?(.*?)">.*?</a><!\-\- w \-\->)#',
 				'#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/.*? \/><!\-\- s\1 \-\->#',
 				'#<!\-\- .*? \-\->#s',
 				'#<.*?>#s',
@@ -5237,6 +5238,8 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	$settings = array(
 		// general
 		'display_raters',
+		'external_links_newwindow',
+		'external_links_nofollow',
 		'rate_no_positive',
 		'rate_no_negative',
 		'style_back_to_top',
@@ -5484,6 +5487,9 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 	$copyright = $phpbb_container->get('config_text');
 	$copyright = $copyright->get('copyright_notice');
 	$powered_by = defined('POWERED_BY_ALT') ? POWERED_BY_ALT : POWERED_BY;
+	if (!empty($config['external_links_newwindow'])) $powered_by = str_replace('<a ', '<a target="_blank" ', $powered_by);
+	if (!empty($config['external_links_nofollow']))  $powered_by = str_replace('<a ', '<a rel="nofollow" ', $powered_by);
+
 	if (strpos($copyright, '{POWERED_BY}') === false && stripos($copyright, 'phpBBex') === false)
 	{
 		$copyright .= "\n" . $user->lang('POWERED_BY', $powered_by);

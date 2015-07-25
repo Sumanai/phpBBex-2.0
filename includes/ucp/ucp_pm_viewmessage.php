@@ -360,10 +360,12 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 
 			if ($cp_block_row['S_PROFILE_CONTACT'])
 			{
+				$u_contact = get_attrs_for_external_link($cp_block_row['PROFILE_FIELD_CONTACT']);
+				$u_contact = $cp_block_row['PROFILE_FIELD_CONTACT'] . ($u_contact ? '"' . rtrim($u_contact, '"') : '');
 				$template->assign_block_vars('contact', array(
 					'ID'		=> $cp_block_row['PROFILE_FIELD_IDENT'],
 					'NAME'		=> $cp_block_row['PROFILE_FIELD_NAME'],
-					'U_CONTACT'	=> $cp_block_row['PROFILE_FIELD_CONTACT'],
+					'U_CONTACT'	=> $u_contact,
 				));
 			}
 		}
