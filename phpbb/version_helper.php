@@ -76,7 +76,7 @@ class version_helper
 			$this->force_stability = 'unstable';
 		}
 
-		$this->current_version = $this->config['version'];
+		$this->current_version = $this->config['phpbbex_version'];
 	}
 
 	/**
@@ -255,6 +255,14 @@ class version_helper
 		else if ($info === false || $force_update)
 		{
 			try {
+				$user_agent = 'phpBBex/' . (isset($this->config['phpbbex_version']) ? $this->config['phpbbex_version'] : '?')
+					. ' phpBB/' . (isset($this->config['version']) ? $this->config['version'] : '?')
+					. ' PHP/' . PHP_VERSION . ' ' . PHP_OS
+					. ' (' . $this->config['num_posts'] . '; ' . $this->config['num_topics'] . '; ' . $this->config['num_users'] . ')';
+
+				$this->file_downloader->allow_referrer(true);
+				$this->file_downloader->set_user_agent($user_agent);
+
 				$info = $this->file_downloader->get($this->host, $this->path, $this->file);
 			}
 			catch (\phpbb\exception\runtime_exception $exception)

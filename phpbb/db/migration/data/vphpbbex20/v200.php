@@ -78,6 +78,29 @@ class v200 extends \phpbb\db\migration\migration
 				),
 			)),
 
+			// Reinstalling Automation module in order to position it at the end.
+			array('module.remove', array(
+				'acp',
+				'ACP_CAT_SYSTEM',
+				'ACP_AUTOMATION',
+			)),
+			array('module.add', array(
+				'acp',
+				'ACP_CAT_SYSTEM',
+				'ACP_AUTOMATION',
+			)),
+
+			array('module.add', array(
+				'acp',
+				'ACP_AUTOMATION',
+				array(
+					'module_basename'	=> 'acp_update',
+					'module_langname'	=> 'ACP_VERSION_CHECK',
+					'module_mode'		=> 'version_check',
+					'module_auth'		=> 'acl_a_board',
+				),
+			)),
+
 			array('config.update', array('load_jquery_url', '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')),
 			array('config.add', array('load_jquery_v2_url', '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')),
 

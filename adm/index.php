@@ -73,6 +73,12 @@ $module->list_modules('acp');
 // Select the active module
 $module->set_active($module_id, $mode);
 
+// Hide some of the options if we don't have the relevant information to use them
+if ($mode != 'version_check')
+{
+	$module->set_display('acp_update', 'version_check', false);
+}
+
 // Assign data to the template engine for the list of modules
 // We do this before loading the active module for correct menu display in trigger_error
 $module->assign_tpl_vars(append_sid("{$phpbb_admin_path}index.$phpEx"));

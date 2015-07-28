@@ -447,7 +447,7 @@ class acp_main
 		{
 			$template->assign_vars(array(
 				'S_PHP_VERSION_OLD'	=> true,
-				'L_PHP_VERSION_OLD'	=> sprintf($user->lang['PHP_VERSION_OLD'], '<a href="https://www.phpbb.com/community/viewtopic.php?f=14&amp;t=2152375">', '</a>'),
+				'L_PHP_VERSION_OLD'	=> $user->lang('PHP_VERSION_OLD', '<a href="http://phpbbex.com/forum/viewtopic.php?t=53">', '</a>'),
 			));
 		}
 
@@ -455,6 +455,7 @@ class acp_main
 		try
 		{
 			$recheck = $request->variable('versioncheck_force', false);
+			$version_helper->set_file_location('sumanai.github.io', '');
 			$updates_available = $version_helper->get_suggested_updates($recheck);
 
 			$template->assign_var('S_VERSION_UP_TO_DATE', empty($updates_available));
@@ -568,6 +569,7 @@ class acp_main
 			'GZIP_COMPRESSION'	=> ($config['gzip_compress'] && @extension_loaded('zlib')) ? $user->lang['ON'] : $user->lang['OFF'],
 			'DATABASE_INFO'		=> $db->sql_server_info(),
 			'BOARD_VERSION'		=> $config['version'],
+			'PHPBBEX_VERSION'	=> $config['phpbbex_version'],
 
 			'U_ACTION'			=> $this->u_action,
 			'U_ADMIN_LOG'		=> append_sid("{$phpbb_admin_path}index.$phpEx", 'i=logs&amp;mode=admin'),

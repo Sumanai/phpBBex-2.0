@@ -37,6 +37,7 @@ class acp_update
 		try
 		{
 			$recheck = $request->variable('versioncheck_force', false);
+			$version_helper->set_file_location('sumanai.github.io', '');
 			$updates_available = $version_helper->get_suggested_updates($recheck);
 		}
 		catch (\RuntimeException $e)
@@ -51,16 +52,13 @@ class acp_update
 			$template->assign_block_vars('updates_available', $version_data);
 		}
 
-		$update_link = append_sid($phpbb_root_path . 'install/index.' . $phpEx, 'mode=update');
-
 		$template->assign_vars(array(
 			'S_UP_TO_DATE'			=> empty($updates_available),
 			'U_ACTION'				=> $this->u_action,
 			'U_VERSIONCHECK_FORCE'	=> append_sid($this->u_action . '&amp;versioncheck_force=1'),
 
-			'CURRENT_VERSION'		=> $config['version'],
-
-			'UPDATE_INSTRUCTIONS'	=> sprintf($user->lang['UPDATE_INSTRUCTIONS'], $update_link),
+			'CURRENT_PHPBB_VERSION'	=> $config['version'],
+			'CURRENT_VERSION'		=> $config['phpbbex_version'],
 		));
 	}
 }

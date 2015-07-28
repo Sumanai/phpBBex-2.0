@@ -255,6 +255,17 @@ class v140 extends \phpbb\db\migration\migration
 				),
 			)),
 
+			array('module.remove', array(
+				'acp',
+				'ACP_AUTOMATION',
+				array(
+					'module_basename'	=> 'acp_update',
+					'module_langname'	=> 'ACP_VERSION_CHECK',
+					'module_mode'		=> 'version_check',
+					'module_auth'		=> 'acl_a_board',
+				),
+			)),
+
 			// New phpBBex ACL rights
 			array('permission.add', array('u_ignoreedittime', true)),
 			array('permission.add', array('u_ignorefpedittime', true)),

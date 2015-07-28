@@ -22,6 +22,16 @@ class file_downloader
 	protected $error_number = 0;
 
 	/**
+	* @var	bool	Appends referrer
+	*/
+	protected $allow_referrer = false;
+
+	/**
+	* @var	string	Specified user agent
+	*/
+	protected $user_agent = '';
+
+	/**
 	 * Retrieve contents from remotely stored file
 	 *
 	 * @param string	$host			File host
@@ -45,7 +55,17 @@ class file_downloader
 		if ($socket = @fsockopen($host, $port, $this->error_number, $this->error_string, $timeout))
 		{
 			@fputs($socket, "GET $directory/$filename HTTP/1.0\r\n");
-			@fputs($socket, "HOST: $host\r\n");
+			@fputs($socket, "Host: $host\r\n");
+
+			if ($this->allow_referrer)
+			{
+				@fputs($socket, 'Referer: ' . generate_board_url() . "\r\n");
+			}
+			if ($this->user_agent)
+			{
+				@fputs($socket, 'User-Agent: ' . $this->user_agent . "\r\n");
+			}
+
 			@fputs($socket, "Connection: close\r\n\r\n");
 
 			$timer_stop = time() + $timeout;
@@ -116,5 +136,25 @@ class file_downloader
 	public function get_error_number()
 	{
 		return $this->error_number;
+	}
+
+	/**
+	 * Set allow referrer
+	 *
+	 * @param	bool	$allow			Allow referrer
+	 */
+	public function allow_referrer($allow = false)
+	{
+		$this->allow_referrer = (bool) $allow;
+	}
+
+	/**
+	 * Set user agent
+	 *
+	 * @param	string	$user_agent		Specified user agent
+	 */
+	public function set_user_agent($user_agent = '')
+	{
+		$this->user_agent = (string) $user_agent;
 	}
 }
