@@ -77,7 +77,7 @@ class tools
 				'VCHAR_UNI:'=> 'varchar(%d)',
 				'VCHAR_CI'	=> 'varchar(255)',
 				'VARBINARY'	=> 'varbinary(255)',
-				'ENUM'		=> "enum('%s')",
+				'ENUM:'		=> "enum('%s')",
 			),
 
 			'mysql_40'	=> array(
@@ -108,7 +108,7 @@ class tools
 				'VCHAR_UNI:'=> array('varbinary(%d)', 'limit' => array('mult', 3, 255, 'blob')),
 				'VCHAR_CI'	=> 'blob',
 				'VARBINARY'	=> 'varbinary(255)',
-				'ENUM'		=> "enum('%s')",
+				'ENUM:'		=> "enum('%s')",
 			),
 
 			'mssql'		=> array(
@@ -139,7 +139,7 @@ class tools
 				'VCHAR_UNI:'=> '[varchar] (%d)',
 				'VCHAR_CI'	=> '[varchar] (255)',
 				'VARBINARY'	=> '[varchar] (255)',
-				'ENUM'		=> '[varchar] (255)',
+				'ENUM:'		=> '[varchar] (255)',
 			),
 
 			'mssqlnative'	=> array(
@@ -170,7 +170,7 @@ class tools
 				'VCHAR_UNI:'=> '[varchar] (%d)',
 				'VCHAR_CI'	=> '[varchar] (255)',
 				'VARBINARY'	=> '[varchar] (255)',
-				'ENUM'		=> '[varchar] (255)',
+				'ENUM:'		=> '[varchar] (255)',
 			),
 
 			'oracle'	=> array(
@@ -201,7 +201,7 @@ class tools
 				'VCHAR_UNI:'=> array('varchar2(%d)', 'limit' => array('mult', 3, 765, 'clob')),
 				'VCHAR_CI'	=> 'varchar2(255)',
 				'VARBINARY'	=> 'raw(255)',
-				'ENUM'		=> 'varchar2(255)',
+				'ENUM:'		=> 'varchar2(255)',
 			),
 
 			'sqlite'	=> array(
@@ -232,7 +232,7 @@ class tools
 				'VCHAR_UNI:'=> 'varchar(%d)',
 				'VCHAR_CI'	=> 'varchar(255)',
 				'VARBINARY'	=> 'blob',
-				'ENUM'		=> 'varchar(255)',
+				'ENUM:'		=> 'varchar(255)',
 			),
 
 			'sqlite3'	=> array(
