@@ -1680,6 +1680,19 @@ class install_install extends module
 
 				$_module->move_module_by($row, 'move_up', 5);
 
+				// Move attachments settings module 3 down...
+				$sql = 'SELECT *
+					FROM ' . MODULES_TABLE . "
+					WHERE module_basename = 'attachments'
+						AND module_class = 'acp'
+						AND module_mode = 'attach'
+					ORDER BY module_id";
+				$result = $db->sql_query($sql);
+				$row = $db->sql_fetchrow($result);
+				$db->sql_freeresult($result);
+
+				$_module->move_module_by($row, 'move_down', 3);
+
 				// Move extension management module 1 up...
 				$sql = 'SELECT *
 					FROM ' . MODULES_TABLE . "
@@ -2014,13 +2027,13 @@ class install_install extends module
 		}
 
 		// And finally, add a note to the log
-		add_log('admin', 'LOG_INSTALL_INSTALLED', $config['version']);
+		add_log('admin', 'LOG_INSTALL_INSTALLED', $config['phpbbex_version']);
 
 		$template->assign_vars(array(
 			'TITLE'		=> $lang['INSTALL_CONGRATS'],
-			'BODY'		=> sprintf($lang['INSTALL_CONGRATS_EXPLAIN'], $config['version'], append_sid($phpbb_root_path . 'install/index.' . $phpEx, 'mode=convert&amp;language=' . $data['language']), '../docs/README.html'),
+			'BODY'		=> sprintf($lang['INSTALL_CONGRATS_EXPLAIN'], $config['phpbbex_version'], append_sid($phpbb_root_path . 'install/index.' . $phpEx, 'mode=convert&amp;language=' . $data['language']), '../docs/README.html'),
 			'L_SUBMIT'	=> $lang['INSTALL_LOGIN'],
-			'U_ACTION'	=> append_sid($phpbb_admin_path . 'index.' . $phpEx, 'i=send_statistics&amp;mode=send_statistics'),
+			'U_ACTION'	=> append_sid($phpbb_admin_path . 'index.' . $phpEx),
 		));
 	}
 
@@ -2125,7 +2138,7 @@ class install_install extends module
 		'dbport'				=> array('lang' => 'DB_PORT',		'type' => 'text:25:100', 'explain' => true),
 		'dbname'				=> array('lang' => 'DB_NAME',		'type' => 'text:25:100', 'explain' => false),
 		'dbuser'				=> array('lang' => 'DB_USERNAME',	'type' => 'text:25:100', 'explain' => false),
-		'dbpasswd'				=> array('lang' => 'DB_PASSWORD',	'type' => 'password:25:100', 'explain' => false),
+		'dbpasswd'				=> array('lang' => 'DB_PASSWORD',	'type' => 'text:25:100', 'explain' => false),
 		'table_prefix'			=> array('lang' => 'TABLE_PREFIX',	'type' => 'text:25:100', 'explain' => true),
 	);
 	var $admin_config_options = array(
@@ -2143,7 +2156,7 @@ class install_install extends module
 		'smtp_host'				=> array('lang' => 'SMTP_SERVER',		'type' => 'text:25:50', 'explain' => false),
 		'smtp_auth'				=> array('lang' => 'SMTP_AUTH_METHOD',	'type' => 'select', 'options' => '$this->module->mail_auth_select(\'{VALUE}\')', 'explain' => true),
 		'smtp_user'				=> array('lang' => 'SMTP_USERNAME',		'type' => 'text:25:255', 'explain' => true, 'options' => array('autocomplete' => 'off')),
-		'smtp_pass'				=> array('lang' => 'SMTP_PASSWORD',		'type' => 'password:25:255', 'explain' => true, 'options' => array('autocomplete' => 'off')),
+		'smtp_pass'				=> array('lang' => 'SMTP_PASSWORD',		'type' => 'text:25:255', 'explain' => true, 'options' => array('autocomplete' => 'off')),
 
 		'legend2'				=> 'SERVER_URL_SETTINGS',
 		'cookie_secure'			=> array('lang' => 'COOKIE_SECURE',		'type' => 'radio:enabled_disabled', 'explain' => true),

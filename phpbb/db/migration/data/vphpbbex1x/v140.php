@@ -111,6 +111,12 @@ class v140 extends \phpbb\db\migration\migration
 					'post_id'			=> array('post_id'),
 				),
 			),
+
+			'add_unique_index'	=> array(
+				$this->table_prefix . 'extensions'		=> array(
+					'extension'			=> array('extension'),
+				),
+			),
 		);
 	}
 
