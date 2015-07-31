@@ -142,7 +142,7 @@ class session
 			'script_path'		=> str_replace(' ', '%20', htmlspecialchars($script_path)),
 			'root_script_path'	=> str_replace(' ', '%20', htmlspecialchars($root_script_path)),
 
-			'page'				=> $page,
+			'page'				=> preg_replace('/[^\x00-\x7F]+/e', 'urlencode("$0")', $page),
 			'forum'				=> $forum_id,
 		);
 
@@ -449,6 +449,7 @@ class session
 						// Only update session DB a minute or so after last update or if page changes
 						if ($this->time_now - $this->data['session_time'] > 60 || ($this->update_session_page && $this->data['session_page'] != $this->page['page']))
 						{
+							$this->data['session_time'] = $this->time_now;
 							$sql_ary = array('session_time' => $this->time_now);
 
 							// Do not update the session page for ajax requests, so the view online still works as intended
@@ -456,6 +457,17 @@ class session
 							{
 								$sql_ary['session_page'] = substr($this->page['page'], 0, 199);
 								$sql_ary['session_forum_id'] = $this->page['forum'];
+							}
+
+							// Update the last visit time once an hour
+							if ($this->data['user_id'] != ANONYMOUS && $this->time_now - $this->data['user_lastvisit'] > 3600)
+							{
+								$sql_ary['session_last_visit'] = $this->data['user_lastvisit'] ? $this->data['user_lastvisit'] : $this->time_now;
+								$this->data['user_lastvisit'] = $this->time_now;
+								$sql = 'UPDATE ' . USERS_TABLE . '
+									SET user_lastvisit = ' . (int) $this->time_now . '
+									WHERE user_id = ' . (int) $this->data['user_id'];
+								$db->sql_query($sql);
 							}
 
 							$db->sql_return_on_error(true);

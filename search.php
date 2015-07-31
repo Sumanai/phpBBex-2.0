@@ -446,7 +446,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				{
 					$sql = 'SELECT p.post_id
 						FROM ' . POSTS_TABLE . ' p
-						WHERE p.post_time > ' . $user->data['user_lastvisit'] . '
+						WHERE p.post_time > ' . $user->data['session_last_visit'] . '
 							AND ' . $m_approve_posts_fid_sql . '
 							' . ((sizeof($ex_fid_ary)) ? ' AND ' . $db->sql_in_set('p.forum_id', $ex_fid_ary, true) : '') . "
 						$sql_sort";
@@ -456,7 +456,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				{
 					$sql = 'SELECT t.topic_id
 						FROM ' . TOPICS_TABLE . ' t
-						WHERE t.topic_last_post_time > ' . $user->data['user_lastvisit'] . '
+						WHERE t.topic_last_post_time > ' . $user->data['session_last_visit'] . '
 							AND t.topic_moved_id = 0
 							AND ' . $m_approve_topics_fid_sql . '
 							' . ((sizeof($ex_fid_ary)) ? 'AND ' . $db->sql_in_set('t.forum_id', $ex_fid_ary, true) : '') . "
