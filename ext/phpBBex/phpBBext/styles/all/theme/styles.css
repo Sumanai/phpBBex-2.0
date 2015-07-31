@@ -188,7 +188,7 @@
 
 .online .postprofile:after {
 	content: '';
-	background-image: url("./en/icon_user_online.gif");
+	background-image: url("./../../../../../../styles/prosilver_ex/theme/en/icon_user_online.gif");
 	position: absolute;
 	right: -10px;
 	top: -5px;
@@ -197,7 +197,7 @@
 }
 
 html[lang="ru"] .online .postprofile:after {
-	background-image: url("./ru/icon_user_online.gif");
+	background-image: url("./../../../../../../styles/prosilver_ex/theme/ru/icon_user_online.gif");
 }
 
 .mp-on-left div.postbody {

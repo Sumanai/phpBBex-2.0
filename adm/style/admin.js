@@ -236,11 +236,6 @@ function parse_document(container)
 		// Swap .nojs and .hasjs
 		$('body.nojs').toggleClass('nojs hasjs');
 
-		// Focus forms
-		$('form[data-focus]:first').each(function() {
-			$('#' + this.getAttribute('data-focus')).focus();
-		});
-
 		parse_document($('body'));
 
 		// Hide configlist and success message in send statistics page
