@@ -142,6 +142,7 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('max_sig_imgs', 0)),
 			array('config.add', array('max_sig_lines', 4)),
 			array('config.add', array('merge_interval', 18)),
+			array('config.add', array('no_sid', 0)),
 			array('config.add', array('override_user_lang', 0)),
 			array('config.add', array('override_user_dateformat', 0)),
 			array('config.add', array('override_user_timezone', 0)),

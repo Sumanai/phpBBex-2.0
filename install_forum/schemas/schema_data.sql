@@ -233,6 +233,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('min_search_author_
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('mime_triggers', 'body|head|html|img|plaintext|a href|pre|script|table|title');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('new_member_post_limit', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('new_member_group_default', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('no_sid', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_style', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('pass_complex', 'PASS_TYPE_ANY');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('plupload_salt', 'phpbb_plupload');

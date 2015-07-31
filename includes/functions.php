@@ -2076,7 +2076,7 @@ function tracking_unserialize($string, $max_depth = 3)
 */
 function append_sid($url, $params = false, $is_amp = true, $session_id = false, $is_route = false)
 {
-	global $_SID, $_EXTRA_URL, $phpbb_hook, $phpbb_path_helper;
+	global $_SID, $_EXTRA_URL, $phpbb_hook, $phpbb_path_helper, $user;
 	global $phpbb_dispatcher;
 
 	if ($params === '' || (is_array($params) && empty($params)))
@@ -2163,7 +2163,7 @@ function append_sid($url, $params = false, $is_amp = true, $session_id = false, 
 	}
 
 	// Assign sid if session id is not specified
-	if ($session_id === false)
+	if ($session_id === false && empty($config['no_sid']) && !empty($user) && !$user->data['is_bot'] || $session_id === false && defined('NEED_SID'))
 	{
 		$session_id = $_SID;
 	}
