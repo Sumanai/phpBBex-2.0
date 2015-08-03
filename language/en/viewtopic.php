@@ -104,7 +104,9 @@ $lang = array_merge($lang, array(
 	'RESTORE_TOPIC'			=> 'Restore topic',
 	'RETURN_POST'			=> '%sReturn to the post%s',
 
-	'SUBMIT_VOTE'			=> 'Submit vote',
+	'SUBMIT_VOTE'			=> 'Vote',
+	'SUBMIT_REVOTE'			=> 'Revote',
+	'SUBMIT_UNVOTE'			=> 'Cancel vote',
 
 	'TOPIC_TOOLS'			=> 'Topic tools',
 	'TOTAL_VOTES'			=> 'Total votes',
@@ -122,6 +124,7 @@ $lang = array_merge($lang, array(
 	),
 	'VIEW_UNREAD_POST'		=> 'First unread post',
 	'VOTE_SUBMITTED'		=> 'Your vote has been cast.',
+	'VOTE_CANCELLED'		=> 'Your vote has been cancelled.',
 	'VOTE_CONVERTED'		=> 'Changing votes is not supported for converted polls.',
 
 	'MP_ON_LEFT'		=> 'Profiles on left',

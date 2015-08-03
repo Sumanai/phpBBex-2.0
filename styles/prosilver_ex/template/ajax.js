@@ -222,6 +222,12 @@ phpbb.addAjaxCallback('vote_poll', function(res) {
 		} else {
 			// If the user can still vote, simply slide down the results
 			poll.find('.resultbar, .poll_option_percent, .poll_total_votes').show(500);
+			poll.find('input[name="update"]').val(res.SUBMIT);
+			if (res.unvote) {
+				poll.find('input[name="unvote"]').hide();
+			} else {
+				poll.find('input[name="unvote"]').show();
+			}
 		}
 
 		// Get the votes count of the highest poll option
@@ -246,6 +252,12 @@ phpbb.addAjaxCallback('vote_poll', function(res) {
 			$this.toggleClass('voted', voted);
 			$this.toggleClass('most-votes', mostVoted);
 
+			if (res.poll_voters[optionId]) {
+				$this.find('.poll_voters_box').html(res.poll_voters[optionId]);
+			} else {
+				$this.find('.poll_voters_box').html('');
+			}
+
 			// Update the bars
 			var bar = $this.find('.resultbar div');
 			var barTimeLapse = (res.can_vote) ? 500 : 1500;
@@ -268,7 +280,7 @@ phpbb.addAjaxCallback('vote_poll', function(res) {
 
 		// Display "Your vote has been cast." message. Disappears after 5 seconds.
 		var confirmationDelay = (res.can_vote) ? 300 : 900;
-		poll.find('.vote-submitted').delay(confirmationDelay).slideDown(200, function() {
+		poll.find('.vote-submitted').text(res.VOTED).delay(confirmationDelay).slideDown(200, function() {
 			if (resultsVisible) {
 				updatePanelHeight();
 			}

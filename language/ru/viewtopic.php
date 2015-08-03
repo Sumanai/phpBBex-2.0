@@ -107,6 +107,8 @@ $lang = array_merge($lang, array(
 	'RETURN_POST'			=> '%sВернуться к сообщению%s',
 
 	'SUBMIT_VOTE'			=> 'Проголосовать',
+	'SUBMIT_REVOTE'			=> 'Переголосовать',
+	'SUBMIT_UNVOTE'			=> 'Снять голос',
 
 	'TOPIC_TOOLS'			=> 'Управление темой',
 	'TOTAL_VOTES'			=> 'Всего голосов',
@@ -125,6 +127,7 @@ $lang = array_merge($lang, array(
 	),
 	'VIEW_UNREAD_POST'		=> 'Первое новое сообщение',
 	'VOTE_SUBMITTED'		=> 'Спасибо, ваш голос учтён.',
+	'VOTE_CANCELLED'		=> 'Ваш голос отменён.',
 	'VOTE_CONVERTED'		=> 'Изменение голосов в сконвертированных опросах не поддерживается.',
 
 	'MP_ON_LEFT'		=> 'Минипрофили слева',

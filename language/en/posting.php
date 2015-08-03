@@ -184,7 +184,7 @@ $lang = array_merge($lang, array(
 
 	'NOTIFY_REPLY'				=> 'Notify me when a reply is posted',
 	'NOT_UPLOADED'				=> 'File could not be uploaded.',
-	'NO_DELETE_POLL_OPTIONS'	=> 'You cannot delete existing poll options.',
+	'NO_DELETE_POLL_OPTIONS'	=> 'You cannot delete existing poll options without resetting previous votes.',
 	'NO_PM_ICON'				=> 'No PM icon',
 	'NO_POLL_TITLE'				=> 'You have to enter a poll title.',
 	'NO_POST'					=> 'The requested post does not exist.',
@@ -195,6 +195,7 @@ $lang = array_merge($lang, array(
 	'PHP_SIZE_OVERRUN'			=> 'The attachment’s file size is too large, the maximum upload size is %1$d %2$s.<br />Please note this is set in php.ini and cannot be overridden.',
 	'PLACE_INLINE'				=> 'Place inline',
 	'POLL_DELETE'				=> 'Delete poll',
+	'POLL_RESET'				=> 'Reset all previous votes',
 	'POLL_FOR'					=> 'Run poll for',
 	'POLL_FOR_EXPLAIN'			=> 'Enter 0 for a never ending poll.',
 	'POLL_MAX_OPTIONS'			=> 'Options per user',
@@ -205,8 +206,8 @@ $lang = array_merge($lang, array(
 		2	=> 'Place each option on a new line. You may enter up to <strong>%d</strong> options.',
 	),
 	'POLL_OPTIONS_EDIT_EXPLAIN'		=> array(
-		1	=> 'Place each option on a new line. You may enter <strong>%d</strong> option. If you remove or add options all previous votes will be reset.',
-		2	=> 'Place each option on a new line. You may enter up to <strong>%d</strong> options. If you remove or add options all previous votes will be reset.',
+		1	=> 'Place each option on a new line. You may enter <strong>%d</strong> option. If you remove options you have to reset all previous votes.',
+		2	=> 'Place each option on a new line. You may enter up to <strong>%d</strong> options. If you remove options you have to reset all previous votes.',
 	),
 	'POLL_QUESTION'				=> 'Poll question',
 	'POLL_TITLE_TOO_LONG'		=> 'The poll title must contain fewer than 100 characters.',

@@ -1,4 +1,10 @@
-<!-- IF S_VIEWTOPIC -->
+<!-- IF S_HAS_POLL -->
+<div id="poll_bittons" style="display:none;">
+	<input type="submit" name="update" value="<!-- IF POLL_VOTED -->{L_SUBMIT_REVOTE}<!-- ELSE -->{L_SUBMIT_VOTE}<!-- ENDIF -->" class="button1" />
+	<input type="submit" name="unvote" value="{L_SUBMIT_UNVOTE}" class="button2<!-- IF not POLL_VOTED --> hidden<!-- ENDIF -->" />
+</div>
+<!-- ENDIF -->
+
 <style>
 .profile-warnings { display: none; }
 <!-- IF not STYLE_MP_SHOW_POSTS -->
@@ -11,4 +17,3 @@
 .profile-contact { display: none; }
 <!-- ENDIF -->
 </style>
-<!-- ENDIF -->

@@ -467,6 +467,12 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 	margin-top: 5px;
 }
 
+.poll_voters_box {
+	display: block;
+	width: 180%;
+	width: calc(200% - 40px);
+}
+
 /* Post
 ----------------------------------------*/
 .postprofile, .postbody, .search .postbody, .mp-on-left .postprofile, .mp-on-left .postbody, .mp-on-left .search .postbody {

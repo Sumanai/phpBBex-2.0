@@ -227,8 +227,9 @@ html[lang="ru"] .online .postprofile:after {
 }
 
 /* Poll option voters */
-.poll_option_voters {
+.poll_voters_box {
 	margin-left: 30%;
+	margin-left: calc(30% + 27px);
 }
 
 /* Inline code block */
@@ -576,7 +577,7 @@ a.icon-header-unlock { background-position: 0 -234px; }
 	}
 
 	/* Poll option voters */
-	.poll_option_voters {
+	.poll_voters_box {
 		margin-left: 20px;
 	}
 

@@ -80,17 +80,24 @@ jQuery(function($)
 <!-- ENDIF -->
 
 <!-- IF S_SHOW_POLL_BOX -->
-jQuery(function($)
-{
-	$("#postform input[name=poll_title]").blur(function()
-	{
-		if ($(this).val() == "") $("#poll_hidden").hide(); else $("#poll_hidden").show();
+jQuery(function($) {
+	$('#poll_title, #poll_option_text').on('blur', function() {
+		if ($('#poll_title').val() == '' && $('#poll_option_text').val() == '') $('#poll_hidden').hide(); else $('#poll_hidden').show();
 	});
-	$("#postform input[name=poll_title]").keyup(function()
-	{
-		if ($(this).val() != "") $("#poll_hidden").show();
+	$('#poll_title').keyup(function() {
+		if ($(this).val() != '') $('#poll_hidden').show();
 	});
-	$("#postform input[name=poll_title]").blur();
+	$('#poll_title').blur();
+
+	$('#poll_delete').change(function() {
+		if($(this).is(':checked')) {
+			$('#poll_hidden').hide();
+			$('#poll_title').parents('dl').hide();
+		} else {
+			$('#poll_title').blur().parents('dl').show();
+		}
+	});
+	$('#poll_delete').change();
 });
 <!-- ENDIF -->
 

@@ -7,7 +7,7 @@
 	<!-- IF S_POLL_DELETE -->
 		<dl>
 			<dt><label for="poll_delete">{L_POLL_DELETE}{L_COLON}</label></dt>
-			<dd><label for="poll_delete"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /> </label></dd>
+			<dd><label><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /> </label></dd>
 		</dl>
 	<!-- ENDIF -->
 
@@ -21,7 +21,10 @@
 
 		<dl>
 			<dt><label for="poll_option_text">{L_POLL_OPTIONS}{L_COLON}</label><br /><span>{L_POLL_OPTIONS_EXPLAIN}</span></dt>
-			<dd><textarea name="poll_option_text" id="poll_option_text" rows="7" cols="35" class="inputbox">{POLL_OPTIONS}</textarea></dd>
+			<dd>
+				<textarea name="poll_option_text" id="poll_option_text" rows="7" cols="35" class="inputbox">{POLL_OPTIONS}</textarea>
+				<!-- IF S_POLL_RESET --><br /><label><input type="checkbox" name="poll_reset" id="poll_reset"<!-- IF S_POLL_RESET_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_POLL_RESET}</label><!-- ENDIF -->
+			</dd>
 		</dl>
 
 		<hr class="dashed" />
@@ -33,7 +36,7 @@
 		</dl>
 		<dl>
 			<dt><label for="poll_length">{L_POLL_FOR}{L_COLON}</label></dt>
-			<dd><label for="poll_length"><input type="number" min="0" max="999" name="poll_length" id="poll_length" size="3" maxlength="3" value="{POLL_LENGTH}" class="inputbox" /> {L_DAYS}</label></dd>
+			<dd><label><input type="number" min="0" max="999" name="poll_length" id="poll_length" size="3" maxlength="3" value="{POLL_LENGTH}" class="inputbox" /> {L_DAYS}</label></dd>
 			<dd>{L_POLL_FOR_EXPLAIN}</dd>
 		</dl>
 
@@ -42,14 +45,14 @@
 
 			<dl>
 				<dt><label for="poll_vote_change">{L_POLL_VOTE_CHANGE}{L_COLON}</label></dt>
-				<dd><label for="poll_vote_change"><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /> {L_POLL_VOTE_CHANGE_EXPLAIN}</label></dd>
+				<dd><label><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /> {L_POLL_VOTE_CHANGE_EXPLAIN}</label></dd>
 			</dl>
 		<!-- ENDIF -->
 
 		<!-- IF S_POLL_SHOW_VOTERS -->
 			<dl>
 				<dt><label for="poll_show_voters">{L_POLL_SHOW_VOTERS}:</label></dt>
-				<dd><label for="poll_show_voters"><input type="checkbox" id="poll_show_voters" name="poll_show_voters"{SHOW_VOTERS_CHECKED} /> {L_POLL_SHOW_VOTERS_EXPLAIN}</label></dd>
+				<dd><label><input type="checkbox" id="poll_show_voters" name="poll_show_voters"{SHOW_VOTERS_CHECKED} /> {L_POLL_SHOW_VOTERS_EXPLAIN}</label></dd>
 			</dl>
 		<!-- ENDIF -->
 

@@ -47,6 +47,7 @@ $sort_key	= request_var('sk', $default_sort_key);
 $sort_dir	= request_var('sd', $default_sort_dir);
 
 $update		= request_var('update', false);
+$unvote		= request_var('unvote', false);
 
 $pagination = $phpbb_container->get('pagination');
 
@@ -867,19 +868,19 @@ if (!empty($topic_data['poll_start']))
 	);
 	extract($phpbb_dispatcher->trigger_event('core.viewtopic_modify_poll_data', compact($vars)));
 
-	if ($update && $s_can_vote)
+	if (($update || $unvote) && $s_can_vote)
 	{
 
-		if (!sizeof($voted_id) || sizeof($voted_id) > $topic_data['poll_max_options'] || in_array(VOTE_CONVERTED, $cur_voted_id) || !check_form_key('posting'))
+		if (!$unvote && (!sizeof($voted_id) || sizeof($voted_id) > $topic_data['poll_max_options']) || in_array(VOTE_CONVERTED, $cur_voted_id) || !check_form_key('posting'))
 		{
 			$redirect_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start"));
 
 			meta_refresh(5, $redirect_url);
-			if (!sizeof($voted_id))
+			if (!$unvote && !sizeof($voted_id))
 			{
 				$message = 'NO_VOTE_OPTION';
 			}
-			else if (sizeof($voted_id) > $topic_data['poll_max_options'])
+			else if (!$unvote && sizeof($voted_id) > $topic_data['poll_max_options'])
 			{
 				$message = 'TOO_MANY_VOTE_OPTIONS';
 			}
@@ -892,8 +893,19 @@ if (!empty($topic_data['poll_start']))
 				$message = 'FORM_INVALID';
 			}
 
-			$message = $user->lang[$message] . '<br /><br />' . sprintf($user->lang['RETURN_TOPIC'], '<a href="' . $redirect_url . '">', '</a>');
+			$message = $user->lang[$message];
+
+			if (!$request->is_ajax())
+			{
+				$message .= '<br /><br />' . sprintf($user->lang['RETURN_TOPIC'], '<a href="' . $redirect_url . '">', '</a>');
+			}
+
 			trigger_error($message);
+		}
+
+		if ($unvote)
+		{
+			$voted_id = array();
 		}
 
 		foreach ($voted_id as $option)
@@ -951,7 +963,7 @@ if (!empty($topic_data['poll_start']))
 
 		if ($user->data['user_id'] == ANONYMOUS && !$user->data['is_bot'])
 		{
-			$user->set_cookie('poll_' . $topic_id, implode(',', $voted_id), time() + 31536000);
+			$user->set_cookie('poll_' . $topic_id, implode(',', $voted_id), time() + 31536000 * ($unvote ? -1 : 1));
 		}
 
 		$sql = 'UPDATE ' . TOPICS_TABLE . '
@@ -961,27 +973,13 @@ if (!empty($topic_data['poll_start']))
 		$db->sql_query($sql);
 
 		$redirect_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id" . (($start == 0) ? '' : "&amp;start=$start"));
-		$message = $user->lang['VOTE_SUBMITTED'] . '<br /><br />' . sprintf($user->lang['RETURN_TOPIC'], '<a href="' . $redirect_url . '">', '</a>');
+		$message = $user->lang[($unvote ? 'VOTE_CANCELLED' : 'VOTE_SUBMITTED')] . '<br /><br />' . sprintf($user->lang['RETURN_TOPIC'], '<a href="' . $redirect_url . '">', '</a>');
 
-		if ($request->is_ajax())
+		if (!$request->is_ajax())
 		{
-			// Filter out invalid options
-			$valid_user_votes = array_intersect(array_keys($vote_counts), $voted_id);
-
-			$data = array(
-				'NO_VOTES'			=> $user->lang['NO_VOTES'],
-				'success'			=> true,
-				'user_votes'		=> array_flip($valid_user_votes),
-				'vote_counts'		=> $vote_counts,
-				'total_votes'		=> array_sum($vote_counts),
-				'can_vote'			=> !sizeof($valid_user_votes) || ($auth->acl_get('f_votechg', $forum_id) && $topic_data['poll_vote_change']),
-			);
-			$json_response = new \phpbb\json_response();
-			$json_response->send($data);
+			meta_refresh(5, $redirect_url);
+			trigger_error($message);
 		}
-
-		meta_refresh(5, $redirect_url);
-		trigger_error($message);
 	}
 
 	$poll_total = 0;
@@ -1045,7 +1043,7 @@ if (!empty($topic_data['poll_start']))
 		$db->sql_freeresult($result);
 	}
 
-	$poll_template_data = $poll_options_template_data = array();
+	$poll_template_data = $poll_options_template_data = $poll_voters = array();
 	foreach ($poll_info as $poll_option)
 	{
 		$option_pct = ($voters_total > 0) ? $poll_option['poll_option_total'] / $voters_total : 0;
@@ -1062,16 +1060,44 @@ if (!empty($topic_data['poll_start']))
 			'POLL_OPTION_PERCENT_REL'	=> $option_pct_rel_txt,
 			'POLL_OPTION_PCT'			=> round($option_pct * 100),
 			'POLL_OPTION_WIDTH'			=> round($option_pct * 250),
-			'POLL_OPTION_VOTERS'	=> isset($poll_option['poll_option_voters']) ? $poll_option['poll_option_voters'] : '',
+			'POLL_OPTION_VOTERS'		=> isset($poll_option['poll_option_voters']) ? $poll_option['poll_option_voters'] : '',
 			'POLL_OPTION_VOTED'			=> (in_array($poll_option['poll_option_id'], $cur_voted_id)) ? true : false,
 			'POLL_OPTION_MOST_VOTES'	=> $option_most_votes,
 		);
+		if ($poll_option['poll_option_voters'])
+		{
+			$poll_voters[$poll_option['poll_option_id']] = $poll_option['poll_option_voters'];
+		}
 	}
+
+	if (($update || $unvote) && $s_can_vote && $request->is_ajax())
+	{
+		// Filter out invalid options
+		$valid_user_votes = array_intersect(array_keys($vote_counts), $voted_id);
+
+		$data = array(
+			'NO_VOTES'			=> $user->lang['NO_VOTES'],
+			'SUBMIT'			=> $user->lang[(!sizeof($voted_id) ? 'SUBMIT_VOTE' : 'SUBMIT_REVOTE')],
+			'VOTED'				=> $user->lang[($unvote ? 'VOTE_CANCELLED' : 'VOTE_SUBMITTED')],
+			'success'			=> true,
+			'user_votes'		=> array_flip($valid_user_votes),
+			'vote_counts'		=> $vote_counts,
+			'total_votes'		=> $voters_total,
+			'poll_most'			=> $poll_most,
+			'poll_voters'		=> $topic_data['poll_show_voters'] ? $poll_voters : '',
+			'can_vote'			=> !sizeof($valid_user_votes) || ($auth->acl_get('f_votechg', $forum_id) && $topic_data['poll_vote_change']),
+			'unvote'			=> $unvote,
+		);
+		$json_response = new \phpbb\json_response();
+		$json_response->send($data);
+	}
+	unset($poll_voters);
 
 	$poll_end = $topic_data['poll_length'] + $topic_data['poll_start'];
 
 	$poll_template_data = array(
 		'POLL_QUESTION'		=> $topic_data['poll_title'],
+		'POLL_VOTED'		=> count($cur_voted_id) > 0,
 		'TOTAL_VOTES'		=> $poll_total,
 		'TOTAL_VOTERS'		=> $voters_total,
 		'POLL_LEFT_CAP_IMG'	=> $user->img('poll_left'),

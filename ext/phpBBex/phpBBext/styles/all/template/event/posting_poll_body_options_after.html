@@ -1,6 +1,12 @@
 <!-- IF S_POLL_SHOW_VOTERS -->
 <dl>
 	<dt><label for="poll_show_voters">{L_POLL_SHOW_VOTERS}{L_COLON}</label></dt>
-	<dd><label for="poll_show_voters"><input type="checkbox" id="poll_show_voters" name="poll_show_voters"{SHOW_VOTERS_CHECKED} /> {L_POLL_SHOW_VOTERS_EXPLAIN}</label></dd>
+	<dd><label><input type="checkbox" id="poll_show_voters" name="poll_show_voters"{SHOW_VOTERS_CHECKED} /> {L_POLL_SHOW_VOTERS_EXPLAIN}</label></dd>
+</dl>
+<!-- ENDIF -->
+<!-- IF S_POLL_RESET -->
+<dl>
+	<dt><label for="poll_reset">{L_POLL_RESET}{L_COLON}</label></dt>
+	<dd><label><input type="checkbox" id="poll_reset" name="poll_reset"<!-- IF S_POLL_RESET_CHECKED --> checked="checked"<!-- ENDIF --> /></label></dd>
 </dl>
 <!-- ENDIF -->
