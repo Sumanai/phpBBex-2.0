@@ -70,9 +70,8 @@ $lang = array_merge($lang, array(
 
 	'CAT_FLASH_FILES'			=> 'Файлы Flash',
 	'CAT_IMAGES'				=> 'Рисунки',
-	'CAT_QUICKTIME_FILES'		=> 'Файлы Quicktime',
-	'CAT_RM_FILES'				=> 'Файлы RealMedia',
-	'CAT_WM_FILES'				=> 'Файлы Windows Media',
+	'CAT_AUDIO_FILES'			=> 'HTML5 аудио',
+	'CAT_VIDEO_FILES'			=> 'HTML5 видео',
 	'CHECK_CONTENT'				=> 'Проверять вложения',
 	'CHECK_CONTENT_EXPLAIN'		=> 'Некоторые браузеры могут быть обмануты при определении MIME-типа загружаемых файлов. Включение данной опции гарантирует, что такие файлы, вероятнее всего, будут отклоняться во время загрузки.',
 	'CREATE_GROUP'				=> 'Создать группу',
@@ -105,9 +104,8 @@ $lang = array_merge($lang, array(
 	'EXT_GROUP_FLASH_FILES'			=> 'Файлы Flash',
 	'EXT_GROUP_IMAGES'				=> 'Изображения',
 	'EXT_GROUP_PLAIN_TEXT'			=> 'Текстовые файлы',
-	'EXT_GROUP_QUICKTIME_MEDIA'		=> 'Файлы Quicktime Media',
-	'EXT_GROUP_REAL_MEDIA'			=> 'Файлы Real Media',
-	'EXT_GROUP_WINDOWS_MEDIA'		=> 'Файлы Windows Media',
+	'EXT_GROUP_AUDIO'				=> 'HTML5 аудио',
+	'EXT_GROUP_VIDEO'				=> 'HTML5 видео',
 
 	'FILES_GONE'			=> 'Некоторые вложения из выбранных для удаления не существуют. Возможно, они уже были удалены ранее. Существующие вложения успешно удалены.',
 	'FILES_STATS_WRONG'		=> 'Возможно, статистика вложений неверна и требует синхронизации. Правильные значения: количество вложений = %1$d, общий размер вложений = %2$s.<br />Нажмите %3$sздесь%4$s для синхронизации статистики вложений.',

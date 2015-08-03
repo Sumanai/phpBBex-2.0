@@ -44,6 +44,10 @@
 	<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('<script src="{T_ASSETS_PATH}/javascript/jquery.v2.js?assets_version={T_ASSETS_VERSION}"><\/script>')</script><!-- ENDIF -->
 <!--<![endif]-->
 
+<!-- IF MEJS -->
+	<script src="{ROOT_PATH}assets/mejs/mediaelement.js?assets_version={T_ASSETS_VERSION}"></script>
+<!-- ENDIF -->
+
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->
@@ -150,6 +154,15 @@ jQuery(function($)
 		});
 	});
 });
+<!-- ENDIF -->
+
+<!-- IF MEJS -->
+(function(){
+	var s = document.createElement('link');
+	s.setAttribute('rel', 'stylesheet');
+	s.setAttribute('href', '{T_ROOT_PATH}/assets/mejs/mediaelement.css');
+	document.getElementsByTagName("head")[0].appendChild(s);
+})();
 <!-- ENDIF -->
 </script>
 

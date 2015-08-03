@@ -72,6 +72,12 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 		$attachment['mimetype'] = (strpos(strtolower($user->browser), 'msie') !== false || strpos(strtolower($user->browser), 'opera') !== false) ? 'application/octetstream' : 'application/octet-stream';
 	}
 
+	// Forced MIME type for audio and video files
+	if ($mime = get_attachment_mime($category, $attachment['extension']))
+	{
+		$attachment['mimetype'] = $mime;
+	}
+
 	if (@ob_get_length())
 	{
 		@ob_end_clean();
@@ -134,7 +140,7 @@ function send_file_to_browser($attachment, $upload_dir, $category)
 		}
 		else
 		{
-			header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
+			header('Content-Disposition: ' . ((strpos($attachment['mimetype'], 'image') === 0 || strpos($attachment['mimetype'], 'audio') === 0 || strpos($attachment['mimetype'], 'video') === 0) ? 'inline' : 'attachment') . '; ' . header_filename(htmlspecialchars_decode($attachment['real_filename'])));
 			if (phpbb_is_greater_ie_version($user->browser, 7) && (strpos($attachment['mimetype'], 'image') !== 0))
 			{
 				header('X-Download-Options: noopen');
@@ -668,4 +674,53 @@ function phpbb_is_greater_ie_version($user_agent, $version)
 	{
 		return false;
 	}
+}
+
+function get_attachment_mime($category, $extension)
+{
+	if ($category == ATTACHMENT_CATEGORY_AUDIO)
+	{
+		switch ($extension)
+		{
+			case 'ogg':
+			case 'oga':
+				return 'audio/ogg';
+			case 'mp4':
+			case 'm4a':
+				return 'audio/mp4';
+			case 'webm':
+			case 'webma':
+				return 'audio/webm';
+			case 'opus':
+				return 'audio/opus';
+			case 'flac':
+				return 'audio/flac';
+			case 'mp1':
+			case 'mp2':
+			case 'mp3':
+			case 'mpg':
+			case 'mpeg':
+				return 'audio/mpeg';
+			case 'wav':
+				return 'audio/wav';
+		}
+	}
+
+	if ($category == ATTACHMENT_CATEGORY_VIDEO)
+	{
+		switch ($extension)
+		{
+			case 'ogg':
+			case 'ogv':
+				return 'video/ogg';
+			case 'mp4':
+			case 'm4v':
+				return 'video/mp4';
+			case 'webm':
+			case 'webmv':
+				return 'video/webm';
+		}
+	}
+
+	return false;
 }

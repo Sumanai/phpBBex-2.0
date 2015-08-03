@@ -34,8 +34,22 @@ class v170 extends \phpbb\db\migration\migration
 			array('config.add', array('min_post_font_size', 85)),
 			array('config.add', array('min_sig_font_size', 100)),
 
+			array('custom', array(array($this, 'extensions'))),
+
 			// phpBBex version
 			array('config.update', array('phpbbex_version', '1.7.0')),
 		);
+	}
+
+	public function extensions()
+	{
+		$sql = 'UPDATE ' . $this->table_prefix . "extension_groups SET group_name = 'AUDIO' WHERE cat_id = 3";
+		$this->sql_query($sql);
+
+		$sql = 'UPDATE ' . $this->table_prefix . "extension_groups SET group_name = 'VIDEO' WHERE cat_id = 2";
+		$this->sql_query($sql);
+
+		$sql = 'UPDATE ' . $this->table_prefix . "extension_groups SET cat_id = 0 WHERE cat_id = 6";
+		$this->sql_query($sql);
 	}
 }

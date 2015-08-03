@@ -1,0 +1,45 @@
+<!-- IF _file.S_AUDIO_FILE or _file.S_VIDEO_FILE -->
+<dl class="file">
+	<dt>
+		<script>
+		function addListener(obj, type, listener) {
+			if (obj.addEventListener) {
+				obj.addEventListener(type, listener, false);
+				return true;
+			} else if(obj.attachEvent) {
+				obj.attachEvent('on' + type, listener);
+				return true;
+			}
+			return false;
+		}
+		</script>
+		<!-- IF _file.S_AUDIO_FILE -->
+		<audio id="attach_audio_{_file.ATTACH_ID}" preload="none" controls>
+			<source src="{_file.U_DOWNLOAD_LINK}" type="{_file.MIME}">
+		</audio>
+		<script>
+		addListener(window, 'load', function() {
+			jQuery(function($)
+			{
+				$('#attach_audio_{_file.ATTACH_ID}').mediaelementplayer();
+			});
+		});
+		</script>
+		<!-- ELSE -->
+		<video id="attach_video_{_file.ATTACH_ID}" preload="none" controls>
+			<source src="{_file.U_DOWNLOAD_LINK}" type="{_file.MIME}">
+		</video>
+		<script>
+		addListener(window, 'load', function() {
+			jQuery(function($)
+			{
+				$('#attach_video_{_file.ATTACH_ID}').mediaelementplayer();
+			});
+		});
+		</script>
+		<!-- ENDIF -->
+	</dt>
+	<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+	<dd<!-- IF _file.S_FLASH_FILE --> class="hide-in-inline"<!-- ENDIF -->><a href="{_file.U_DOWNLOAD_LINK}">{_file.DOWNLOAD_NAME}</a> ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
+</dl>
+<!-- ENDIF -->
