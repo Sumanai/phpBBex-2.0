@@ -118,7 +118,7 @@ class user extends \phpbb\session
 
 			if (!empty($config['auto_guest_lang']) && !$lang_override && $request->header('Accept-Language'))
 			{
-				if (($lang_allowed = $cache->get("_lang_allowed")) === false)
+				if (($lang_allowed = $cache->get('lang_allowed')) === false)
 				{
 					$sql = 'SELECT * FROM ' . LANG_TABLE;
 					$result = $db->sql_query($sql);
@@ -131,7 +131,7 @@ class user extends \phpbb\session
 							$lang_allowed[$row['lang_iso']] = substr($row['lang_iso'], 0, 2);
 						}
 					}
-					$cache->put('_lang_allowed', $lang_allowed, 3600);
+					$cache->put('lang_allowed', $lang_allowed, 3600);
 				}
 
 				$accept_lang_ary = explode(',', $request->header('Accept-Language'));
@@ -797,7 +797,7 @@ class user extends \phpbb\session
 	*/
 	function get_iso_lang_id()
 	{
-		global $config, $db;
+		global $config, $db, $cache;
 
 		if (!empty($this->lang_id))
 		{
@@ -809,12 +809,22 @@ class user extends \phpbb\session
 			$this->lang_name = $config['default_lang'];
 		}
 
-		$sql = 'SELECT lang_id
-			FROM ' . LANG_TABLE . "
-			WHERE lang_iso = '" . $db->sql_escape($this->lang_name) . "'";
-		$result = $db->sql_query($sql);
-		$this->lang_id = (int) $db->sql_fetchfield('lang_id');
-		$db->sql_freeresult($result);
+		if (($iso_lang_id = $cache->get('iso_lang_id')) === false)
+		{
+			$sql = 'SELECT lang_id, lang_iso
+				FROM ' . LANG_TABLE;
+			$result = $db->sql_query($sql);
+
+			while ($row = $db->sql_fetchrow($result))
+			{
+				$iso_lang_id[$row['lang_iso']] = (int) $row['lang_id'];
+			}
+			$db->sql_freeresult($result);
+
+			$cache->put('iso_lang_id', $iso_lang_id);
+		}
+
+		$this->lang_id = $iso_lang_id[$this->lang_name];
 
 		return $this->lang_id;
 	}

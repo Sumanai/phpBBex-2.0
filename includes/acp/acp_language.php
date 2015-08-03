@@ -31,7 +31,7 @@ class acp_language
 
 	function main($id, $mode)
 	{
-		global $config, $db, $user, $template;
+		global $config, $db, $user, $template, $cache;
 		global $phpbb_root_path, $phpEx, $request;
 
 		include_once($phpbb_root_path . 'includes/functions_user.' . $phpEx);
@@ -224,6 +224,8 @@ class acp_language
 					$sql = 'DELETE FROM ' . PROFILE_FIELDS_LANG_TABLE . ' WHERE lang_id = ' . $lang_id;
 					$db->sql_query($sql);
 
+					$cache->destroy('iso_lang_id');
+
 					add_log('admin', 'LOG_LANGUAGE_PACK_DELETED', $row['lang_english_name']);
 
 					trigger_error(sprintf($user->lang['LANGUAGE_PACK_DELETED'], $row['lang_english_name']) . adm_back_link($this->u_action));
@@ -328,6 +330,8 @@ class acp_language
 					$notify_cpf_update = true;
 				}
 				$db->sql_freeresult($result);
+
+				$cache->destroy('iso_lang_id');
 
 				add_log('admin', 'LOG_LANGUAGE_PACK_INSTALLED', $lang_pack['name']);
 
