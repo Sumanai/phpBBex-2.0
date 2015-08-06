@@ -30,7 +30,16 @@ class plugin
 	 * @var array
 	 * @access private
 	 */
-	var $ignore_tools = array('index.htm', 'tutorial.php');
+	var $ignore_tools = array(
+		'clear_extensions.php',
+		'config_list.php',
+		'prune_attachments.php',
+		'resync_attachments.php',
+
+		'database_cleaner.php',
+		'remove_orphaned_permissions.php',
+		'resync_report_flags.php',
+	);
 
 	/**
 	 * List containing all available tools and in which category they belong.
@@ -94,7 +103,14 @@ class plugin
 			// Don't want the extension
 			foreach ($tools as $key => $tool)
 			{
-				$tools[$key] = (($pos = strpos($tool, '.' . PHP_EXT)) !== false) ? substr($tool, 0, $pos) : $tool;
+				if (!in_array($tool, $this->ignore_tools))
+				{
+					$tools[$key] = (($pos = strpos($tool, '.' . PHP_EXT)) !== false) ? substr($tool, 0, $pos) : $tool;
+				}
+				else
+				{
+					unset($tools[$key]);
+				}
 			}
 
 			$this->plugin_list[$cat] = $tools;
