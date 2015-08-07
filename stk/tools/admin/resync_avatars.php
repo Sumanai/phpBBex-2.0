@@ -75,7 +75,7 @@ class resync_avatars
 			if ($mode != RESYNC_GROUP_AVATARS)
 			{
 				$template->assign_var('U_BACK_TOOL', false);
-				meta_refresh(3, append_sid(STK_INDEX, array('c' => 'admin', 't' => 'resync_avatars', 'step' => 0, 'mode' => RESYNC_GROUP_AVATARS, 'submit' => true)));
+				meta_refresh(1, append_sid(STK_INDEX, array('c' => 'admin', 't' => 'resync_avatars', 'step' => 0, 'mode' => RESYNC_GROUP_AVATARS, 'submit' => true)));
 				trigger_error('RESYNC_AVATARS_NEXT_MODE');
 			}
 
@@ -90,12 +90,22 @@ class resync_avatars
 			$path	= '';
 			if ($row['avatar_type'] == 'avatar.driver.upload')
 			{
-				// Group avatars are handled slightly different
-				$avatar_group = (isset($row['avatar'][0]) && $row['avatar'][0] === 'g') ? true : false;
+				$path = PHPBB_ROOT_PATH . $config['avatar_path'] . '/' . $row['avatar'];
 
-				$ext		= substr(strrchr($row['avatar'], '.'), 1);
-				$filename	= ($avatar_group) ? $row['group_id'] : $row['id'];
-				$path		= PHPBB_ROOT_PATH . $config['avatar_path'] . '/' . $config['avatar_salt'] . '_' . (($avatar_group) ? 'g' : '') . $filename . '.' . $ext;
+				if (!file_exists($path))
+				{
+					// Group avatars are handled slightly different
+					$avatar_group = (isset($row['avatar'][0]) && $row['avatar'][0] === 'g') ? true : false;
+
+					$ext		= substr(strrchr($row['avatar'], '.'), 1);
+					$filename	= ($avatar_group) ? $row['group_id'] : $row['id'];
+					$oldstyle = PHPBB_ROOT_PATH . $config['avatar_path'] . '/' . $config['avatar_salt'] . '_' . (($avatar_group) ? 'g' : '') . $filename . '.' . $ext;
+var_dump($oldstyle);
+					if (file_exists($oldstyle))
+					{
+						if (!rename($oldstyle, $path)) continue;
+					}
+				}
 			}
 			else if ($row['avatar_type'] == AVATAR_GALLERY)
 			{
@@ -117,7 +127,7 @@ class resync_avatars
 							group_avatar_type = 0,
 							group_avatar_width = 0,
 							group_avatar_height = 0
-							WHERE group_id = ' . (int) $row['id'];
+							WHERE group_id = ' . (int) $row['group_id'];
 				break;
 
 				case RESYNC_USER_AVATARS :
@@ -142,7 +152,7 @@ class resync_avatars
 
 		// Next step
 		$template->assign_var('U_BACK_TOOL', false);
-		meta_refresh(3, append_sid(STK_INDEX, array('c' => 'admin', 't' => 'resync_avatars', 'step' => ++$step, 'mode' => $mode, 'submit' => true)));
+		meta_refresh(1, append_sid(STK_INDEX, array('c' => 'admin', 't' => 'resync_avatars', 'step' => ++$step, 'mode' => $mode, 'submit' => true)));
 		trigger_error('RESYNC_AVATARS_PROGRESS');
 	}
 }

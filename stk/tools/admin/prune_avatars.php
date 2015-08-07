@@ -40,7 +40,7 @@ class prune_avatars
 			ignore_user_abort(true);
 			set_time_limit(0);
 
-			$dir = '' . PHPBB_ROOT_PATH . '' . $config['avatar_path'] . '/';
+			$dir = PHPBB_ROOT_PATH . $config['avatar_path'] . '/';
 			$files = $cache->get('_stk_prune_avatar'); // Try get data from cache
 			if(!$files)
 			{
@@ -48,15 +48,13 @@ class prune_avatars
 				$files = array_diff(scandir($dir), array('..', '.', '.htaccess', 'index.htm'));
 
 				$sql = 'SELECT user_id, user_avatar
-						FROM ' . USERS_TABLE . '
-						WHERE user_avatar_type = \'avatar.driver.upload\'';
+						FROM ' . USERS_TABLE . "
+						WHERE user_avatar_type = 'avatar.driver.upload'";
 				$result = $db->sql_query($sql);
 
 				while($data = $db->sql_fetchrow($result))
 				{
-					$ext = explode('.', $data['user_avatar']);
-					$filename = explode('_', $data['user_avatar']);
-					$bd_files[] = '' . $config['avatar_salt'] . '_' . $filename[0] . '.' . $ext[1] . '';
+					$bd_files[] = $data['user_avatar'];
 				}
 				$db->sql_freeresult($result);
 				$files = array_diff($files, $bd_files);
@@ -105,7 +103,7 @@ class prune_avatars
 
 			if(sizeof($unsuccess))
 			{
-				$list .= '' . $user->lang['PRUNE_AVATARS_FAIL'] . '<br />' . implode('<br />', $unsuccess) . '';
+				$list .= $user->lang['PRUNE_AVATARS_FAIL'] . '<br />' . implode('<br />', $unsuccess);
 			}
 
 			if($exit)
@@ -113,17 +111,17 @@ class prune_avatars
 				$cache->destroy('_stk_prune_avatar');
 				if ((sizeof($unsuccess)))
 				{
-					trigger_error(''.$list.'', E_USER_WARNING);
+					trigger_error($list, E_USER_WARNING);
 				}
 				else
 				{
-					trigger_error(''.$list.'');
+					trigger_error($list);
 				}
 			}
 			else
 			{
-				meta_refresh(3, append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=prune_avatars&sa=true'));
-				trigger_error('' . $user->lang['PRUNE_AVATARS_PROGRESS'] . '<br />' . $list . '');
+				meta_refresh(3, append_sid(STK_ROOT_PATH . "index." . PHP_EXT, 'c=admin&amp;t=prune_avatars&sa=true'));
+				trigger_error($user->lang['PRUNE_AVATARS_PROGRESS'] . '<br />' . $list);
 			}
 		}
 
