@@ -250,8 +250,7 @@ class gd_wave
 		// Output image
 		header('Content-Type: image/png');
 		header('Cache-control: no-cache, no-store');
-		//$mtime = explode(' ', microtime());
-		//$totaltime = $mtime[0] + $mtime[1] - $starttime;
+		//$totaltime = microtime(true) - $starttime;
 
 		//echo $totaltime . "<br />\n";
 		//echo memory_get_usage() - $tmp;

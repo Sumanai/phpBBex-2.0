@@ -1241,9 +1241,7 @@ class install_convert extends module
 
 				if (!empty($batch_time))
 				{
-					$mtime = explode(' ', microtime());
-					$mtime = $mtime[0] + $mtime[1];
-					$rows = ceil($counting/($mtime - $batch_time)) . " rows/s ($counting rows) | ";
+					$rows = ceil($counting/(microtime(true) - $batch_time)) . " rows/s ($counting rows) | ";
 				}
 
 				$template->assign_block_vars('checks', array(
@@ -1251,8 +1249,7 @@ class install_convert extends module
 					'RESULT'	=> $rows . ((defined('DEBUG') && function_exists('memory_get_usage')) ? ceil(memory_get_usage()/1024) . ' ' . $user->lang['KIB'] : ''),
 				));
 
-				$mtime = explode(' ', microtime());
-				$batch_time = $mtime[0] + $mtime[1];
+				$batch_time = microtime(true);
 
 				if ($convert->mysql_convert && $same_db)
 				{

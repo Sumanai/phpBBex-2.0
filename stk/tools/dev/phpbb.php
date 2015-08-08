@@ -56,7 +56,7 @@ class phpbb
 		}
 		else
 		{
-			$time_start = $this->microtime_float();
+			$time_start = microtime(true);
 			global $list_dir_count, $filecount, $list, $root_path, $exclude_paths, $exclude_ext, $root_dir_files, $root_dir_folders, $dirs;
 			$list_dir_count = $filecount = 0;
 			$dirs = $list = array();
@@ -78,7 +78,7 @@ class phpbb
 			$template->assign_vars(array(
 				'TREE'	=> $code,
 				'ROOT'	=> $user->lang['ROOT'],
-				'TIME'	=> sprintf($user->lang['G_TIME'], $this->microtime_float() - $time_start),
+				'TIME'	=> sprintf($user->lang['G_TIME'], microtime(true) - $time_start),
 			));
 		}
 
@@ -171,11 +171,5 @@ class phpbb
 			}
 		}
 		return $f_count;
-	}
-
-	function microtime_float()
-	{
-		list($usec, $sec) = explode(' ', microtime());
-		return ((float)$usec + (float)$sec);
 	}
 }

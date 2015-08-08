@@ -783,8 +783,7 @@ class oracle extends \phpbb\db\driver\driver
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @ociparse($this->db_connect_id, $query);
 				$success = @ociexecute($result, OCI_DEFAULT);
@@ -796,8 +795,7 @@ class oracle extends \phpbb\db\driver\driver
 				}
 				@ocifreestatement($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

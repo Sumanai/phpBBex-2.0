@@ -394,8 +394,7 @@ class mssqlnative extends \phpbb\db\driver\mssql_base
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @sqlsrv_query($this->db_connect_id, $query);
 				while ($void = @sqlsrv_fetch_array($result))
@@ -404,8 +403,7 @@ class mssqlnative extends \phpbb\db\driver\mssql_base
 				}
 				@sqlsrv_free_stmt($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

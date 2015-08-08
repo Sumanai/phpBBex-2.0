@@ -213,8 +213,7 @@ if (defined('DEBUG') && request_var('explain', 0) && $auth->acl_get('a_'))
 	header('Cache-Control: private, no-cache="set-cookie"');
 	header('Expires: ' . gmdate('D, d M Y H:i:s', time()) . ' GMT');
 
-	$mtime = explode(' ', microtime());
-	$totaltime = $mtime[0] + $mtime[1] - $starttime;
+	$totaltime = microtime(true) - $starttime;
 
 	if (method_exists($db, 'sql_report'))
 	{

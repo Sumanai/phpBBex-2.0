@@ -890,8 +890,7 @@ abstract class driver implements driver_interface
 				}
 				$this->sql_close();
 
-				$mtime = explode(' ', microtime());
-				$totaltime = $mtime[0] + $mtime[1] - $starttime;
+				$totaltime = microtime(true) - $starttime;
 
 				echo '<!DOCTYPE html>
 					<html dir="ltr">
@@ -933,8 +932,7 @@ abstract class driver implements driver_interface
 			break;
 
 			case 'stop':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$this->sql_report .= '
 
@@ -981,8 +979,7 @@ abstract class driver implements driver_interface
 
 				$this->_sql_report($mode, $query);
 
-				$this->curtime = explode(' ', microtime());
-				$this->curtime = $this->curtime[0] + $this->curtime[1];
+				$this->curtime = microtime(true);
 
 			break;
 

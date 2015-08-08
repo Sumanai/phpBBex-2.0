@@ -469,8 +469,7 @@ class postgres extends \phpbb\db\driver\driver
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @pg_query($this->db_connect_id, $query);
 				while ($void = @pg_fetch_assoc($result, null))
@@ -479,8 +478,7 @@ class postgres extends \phpbb\db\driver\driver
 				}
 				@pg_free_result($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

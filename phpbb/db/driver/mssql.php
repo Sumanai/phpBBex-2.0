@@ -455,8 +455,7 @@ class mssql extends \phpbb\db\driver\driver
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @mssql_query($query, $this->db_connect_id);
 				while ($void = @mssql_fetch_assoc($result))
@@ -465,8 +464,7 @@ class mssql extends \phpbb\db\driver\driver
 				}
 				@mssql_free_result($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

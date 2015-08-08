@@ -358,8 +358,7 @@ class sqlite extends \phpbb\db\driver\driver
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @sqlite_query($query, $this->db_connect_id);
 				while ($void = @sqlite_fetch_array($result, SQLITE_ASSOC))
@@ -367,8 +366,7 @@ class sqlite extends \phpbb\db\driver\driver
 					// Take the time spent on parsing rows into account
 				}
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

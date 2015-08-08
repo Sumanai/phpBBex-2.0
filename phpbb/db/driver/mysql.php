@@ -464,8 +464,7 @@ class mysql extends \phpbb\db\driver\mysql_base
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @mysql_query($query, $this->db_connect_id);
 				while ($void = @mysql_fetch_assoc($result))
@@ -474,8 +473,7 @@ class mysql extends \phpbb\db\driver\mysql_base
 				}
 				@mysql_free_result($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 

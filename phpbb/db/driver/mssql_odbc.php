@@ -356,8 +356,7 @@ class mssql_odbc extends \phpbb\db\driver\mssql_base
 			break;
 
 			case 'fromcache':
-				$endtime = explode(' ', microtime());
-				$endtime = $endtime[0] + $endtime[1];
+				$endtime = microtime(true);
 
 				$result = @odbc_exec($this->db_connect_id, $query);
 				while ($void = @odbc_fetch_array($result))
@@ -366,8 +365,7 @@ class mssql_odbc extends \phpbb\db\driver\mssql_base
 				}
 				@odbc_free_result($result);
 
-				$splittime = explode(' ', microtime());
-				$splittime = $splittime[0] + $splittime[1];
+				$splittime = microtime(true);
 
 				$this->sql_report('record_fromcache', $query, $endtime, $splittime);
 
