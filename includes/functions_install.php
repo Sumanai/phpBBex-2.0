@@ -53,7 +53,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'mssql',
 			'DELIM'			=> 'GO',
 			'DRIVER'		=> 'phpbb\db\driver\mssql',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> true,
 		),
 		'mssql_odbc'=>	array(
@@ -62,7 +62,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'odbc',
 			'DELIM'			=> 'GO',
 			'DRIVER'		=> 'phpbb\db\driver\mssql_odbc',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> true,
 		),
 		'mssqlnative'		=> array(
@@ -71,7 +71,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'sqlsrv',
 			'DELIM'			=> 'GO',
 			'DRIVER'		=> 'phpbb\db\driver\mssqlnative',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> false,
 		),
 		'oracle'	=>	array(
@@ -80,7 +80,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'oci8',
 			'DELIM'			=> '/',
 			'DRIVER'		=> 'phpbb\db\driver\oracle',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> false,
 		),
 		'postgres' => array(
@@ -89,7 +89,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'pgsql',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\postgres',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> true,
 		),
 		'sqlite'		=> array(
@@ -98,7 +98,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'sqlite',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\sqlite',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> false,
 		),
 		'sqlite3'		=> array(
@@ -107,7 +107,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'sqlite3',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\sqlite3',
-			'AVAILABLE'		=> true,
+			'AVAILABLE'		=> false,
 			'2.0.x'			=> false,
 		),
 	);
