@@ -32,7 +32,7 @@ img, .noprint, #sub-header, #sub-footer, .navbar, .box1, .divider, .signature { 
 
 p { font-size: 85%; }
 .copyright { font-size: 75%; }
-.page-number { float:right; width: auto; text-align: right; font-size: 75%; }
+.page-number { text-align: right; font-size: 75%; }
 
 h1, h2, h3, h1 a, h2 a, h3 a {
 	font-family: "Trebuchet MS",georgia,Verdana,Sans-serif;
@@ -104,7 +104,6 @@ html>body .postbody h1 a:link:after, html>body .postbody h2 a:link:after {
 
 /* Poster profile */
 .postprofile { display: none; }
-.grip-show { display:none; }
 
 /* Quote */
 .postquote, blockquote {
@@ -134,6 +133,4 @@ ol, ul {
 div.spacer { clear: both; }
 
 /* Accessibility tweaks: Mozilla.org */
-.skip_link { display: none; }
-
-.codebox p { display: none; }
+.codebox > p { display: none; }

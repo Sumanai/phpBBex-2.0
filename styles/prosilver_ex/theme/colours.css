@@ -394,7 +394,7 @@ blockquote blockquote blockquote {
 	border-color: #C9D2D8;
 }
 
-.codebox p {
+.codebox > p {
 	border-bottom-color: #CCCCCC;
 }
 

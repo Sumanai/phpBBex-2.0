@@ -147,8 +147,8 @@ function selectCode(a) {
 	'use strict';
 
 	// Get ID of code block
-	var e = a.parentNode.parentNode.getElementsByTagName('CODE')[0];
-	var s, r;
+	var e = a.parentNode.parentNode.getElementsByTagName('CODE')[0],
+		s, r;
 
 	// Not IE and IE9+
 	if (window.getSelection) {

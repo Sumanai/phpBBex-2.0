@@ -478,7 +478,7 @@ blockquote.uncited {
 	font-size: 1em;
 }
 
-.codebox p {
+.codebox > p {
 	text-transform: uppercase;
 	border-bottom: 1px solid transparent;
 	margin-bottom: 3px;

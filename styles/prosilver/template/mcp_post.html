@@ -48,7 +48,7 @@
 	<div class="inner">
 
 	<div class="postbody">
-		<h3><a href="{U_VIEW_POST}">{POST_SUBJECT}</a></h3>
+		<!-- IF postrow.POST_SUBJECT --><h3><a href="{U_VIEW_POST}">{POST_SUBJECT}</a></h3><!-- ENDIF -->
 
 		<ul class="post-buttons">
 			<li id="expand">
@@ -288,7 +288,7 @@
 			</tr>
 			<!-- BEGINELSE -->
 				<tr>
-					<td colspan="2">{L_NO_MATCHES_FOUND}</td>
+					<td class="bg1" colspan="2">{L_NO_MATCHES_FOUND}</td>
 				</tr>
 			<!-- END userrow -->
 			</tbody>

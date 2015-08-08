@@ -355,20 +355,6 @@ fieldset.quick-login label[for="autologin"] {
 		min-height: 55px;
 	}
 
-	.post-buttons > li {
-		display: block;
-		margin: 5px;
-		float: right;
-	}
-
-	.postbody .post-buttons {
-		top: 0;
-	}
-
-	h3 + .post-buttons {
-		margin-top: 0;
-	}
-
 	.post-guest .post-buttons {
 		max-width: none;
 	}
@@ -420,7 +406,15 @@ fieldset.quick-login label[for="autologin"] {
 
 	.postbody .post-buttons {
 		max-width: 120px;
-		top: 0;
+	}
+
+	.post-buttons > li {
+		float: right;
+		margin: 0 3px 3px;
+	}
+
+	.hastouch .post-buttons > li {
+		margin: 0 5px 5px;
 	}
 }
 
@@ -507,7 +501,7 @@ fieldset.polls dd.resultbar, fieldset.polls dd.poll_option_percent {
 	max-height: 32px;
 }
 
-.post-buttons {
+.post .post-buttons {
 	float: none;
 	position: absolute;
 	right: 0;

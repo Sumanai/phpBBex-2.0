@@ -781,7 +781,6 @@ dl.details dd {
 	margin-left: 0;
 	padding-left: 5px;
 	margin-bottom: 5px;
-	float: left;
 	width: 65%;
 	overflow: hidden;
 	text-overflow: ellipsis;
