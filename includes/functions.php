@@ -4828,15 +4828,8 @@ function phpbb_get_avatar($row, $alt, $ignore_config = false)
 		return '';
 	}
 
-	$avatar_data = array(
-		'src' => $row['avatar'],
-		'width' => $row['avatar_width'],
-		'height' => $row['avatar_height'],
-	);
-
 	$phpbb_avatar_manager = $phpbb_container->get('avatar.manager');
 	$driver = $phpbb_avatar_manager->get_driver($row['avatar_type'], $ignore_config);
-	$html = '';
 
 	if ($driver)
 	{
@@ -4850,37 +4843,33 @@ function phpbb_get_avatar($row, $alt, $ignore_config = false)
 	}
 	else
 	{
-		$avatar_data['src'] = '';
+		// No the allowed types of avatars, returns an empty string
+		return '';
 	}
 
 	$avatar_width = $row['avatar_width'];
 	$avatar_height = $row['avatar_height'];
 
-	if (!$ignore_config)
+	if (!$ignore_config && $avatar_width && $avatar_height &&
+		($avatar_width > $config['avatar_max_width'] || $avatar_height > $config['avatar_max_height']))
 	{
-		if ($row['avatar_width'] > $config['avatar_max_width'] && $row['avatar_width'] && $row['avatar_height'])
-		{
-			$avatar_height = round($config['avatar_max_width']*($row['avatar_height']/$row['avatar_width']));
-			$avatar_width = $config['avatar_max_width'];
-		}
-		if ($row['avatar_height'] > $config['avatar_max_height'] && $row['avatar_width'] && $row['avatar_height'])
-		{
-			$avatar_width = round($config['avatar_max_height']*($row['avatar_width']/$row['avatar_height']));
-			$avatar_height = $config['avatar_max_height'];
-		}
+		$k1 = $config['avatar_max_width'] / $avatar_width;
+		$k2 = $config['avatar_max_height'] / $avatar_height;
+		$k = $k1 > $k2 ? $k2 : $k1;
+
+		$avatar_width = round($avatar_width * $k);
+		$avatar_height = round($avatar_height * $k);
+
 		if (!$avatar_width || !$avatar_height)
 		{
 			return '';
 		}
 	}
 
-	if (!empty($avatar_data['src']))
-	{
-		$html = '<img src="' . $avatar_data['src'] . '" ' .
-			($avatar_width ? ('width="' . $avatar_width . '" ') : '') .
-			($avatar_height ? ('height="' . $avatar_height . '" ') : '') .
-			'alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
-	}
+	$html = '<img src="' . $avatar_data['src'] . '" ' .
+		($avatar_width ? ('width="' . $avatar_width . '" ') : '') .
+		($avatar_height ? ('height="' . $avatar_height . '" ') : '') .
+		'alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 
 	return $html;
 }
