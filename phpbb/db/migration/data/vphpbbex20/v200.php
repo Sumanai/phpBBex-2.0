@@ -21,7 +21,7 @@ class v200 extends \phpbb\db\migration\migration
 	{
 		return array(
 			'\phpbb\db\migration\data\v310\gold',
-			'\phpbb\db\migration\data\vphpbbex1x\v180',
+			'\phpbb\db\migration\data\vphpbbex1x\v191',
 			'\phpbb\db\migration\data\vphpbbex20\add_phpbbex_style',
 			'\phpbb\db\migration\data\vphpbbex20\cached_config_text',
 			'\phpbb\db\migration\data\vphpbbex20\update_profile_field',

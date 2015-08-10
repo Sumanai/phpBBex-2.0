@@ -20,6 +20,7 @@ class v170 extends \phpbb\db\migration\migration
 	static public function depends_on()
 	{
 		return array(
+			'\phpbb\db\migration\data\v30x\release_3_0_12',
 			'\phpbb\db\migration\data\vphpbbex1x\v160',
 		);
 	}

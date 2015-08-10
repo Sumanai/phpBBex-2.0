@@ -15,7 +15,7 @@ class add_phpbbex_style extends \phpbb\db\migration\migration
 	static public function depends_on()
 	{
 		return array(
-			'\phpbb\db\migration\data\v31x\v312',
+			'\phpbb\db\migration\data\v31x\style_update',
 		);
 	}
 

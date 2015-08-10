@@ -19,7 +19,9 @@ class v140 extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\phpbb\db\migration\data\v30x\release_3_0_13');
+		return array(
+			'\phpbb\db\migration\data\v30x\release_3_0_11',
+		);
 	}
 
 	public function update_schema()
