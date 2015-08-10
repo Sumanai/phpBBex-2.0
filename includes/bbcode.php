@@ -361,20 +361,21 @@ class bbcode
 
 				case 15:
 					$this->bbcode_cache[$bbcode_id] = array(
+						'preg' => array(
+							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#e' => "\$this->bbcode_second_pass_upd('\$1', '\$2')",
+						)
+					);
+
+				break;
+
+				case 16:
+					$this->bbcode_cache[$bbcode_id] = array(
 						'str' => array(
 							"[/spoiler:\$uid]\n"	=> $this->bbcode_tpl('spoiler_close', $bbcode_id),
 							'[/spoiler:$uid]'		=> $this->bbcode_tpl('spoiler_close', $bbcode_id)
 						),
 						'preg' => array(
 							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#ise'	=> "\$this->bbcode_second_pass_spoiler('\$1', '\$2')"
-						)
-					);
-				break;
-
-				case 16:
-					$this->bbcode_cache[$bbcode_id] = array(
-						'preg' => array(
-							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#e' => "\$this->bbcode_second_pass_upd('\$1', '\$2')",
 						)
 					);
 				break;
@@ -635,8 +636,8 @@ class bbcode
 		if (empty($tpls))
 		{
 			$tpls = array(
-				'upd_merged'	=> $this->bbcode_tpl('upd_merged', 16),
-				'upd_subject'	=> $this->bbcode_tpl('upd_subject', 16),
+				'upd_merged'	=> $this->bbcode_tpl('upd_merged', 15),
+				'upd_subject'	=> $this->bbcode_tpl('upd_subject', 15),
 			);
 		}
 
@@ -722,7 +723,7 @@ class bbcode
 			$text = '';
 		}
 
-		$text = (($title) ? str_replace('$1', $title, $this->bbcode_tpl('spoiler_title_open', 15)) : $this->bbcode_tpl('spoiler_open', 15)) . $text;
+		$text = (($title) ? str_replace('$1', $title, $this->bbcode_tpl('spoiler_title_open', 16)) : $this->bbcode_tpl('spoiler_open', 16)) . $text;
 
 		return $text;
 	}
