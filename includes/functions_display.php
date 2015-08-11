@@ -1314,7 +1314,7 @@ function display_custom_bbcodes()
 	// Start counting from 26 for the bbcode ids (every bbcode takes two ids - opening/closing)
 	$num_predefined_bbcodes = 26;
 
-	if ($user->style['style_name'] !== 'prosilverEx')
+	if (!$user->style['phpbbex_compatible'])
 	{
 		$num_predefined_bbcodes -= 4;
 	}
@@ -1342,7 +1342,7 @@ function display_custom_bbcodes()
 
 	$i = 0;
 
-	if ($user->style['style_name'] !== 'prosilverEx' && $config['allow_bbcode'])
+	if (!$user->style['phpbbex_compatible'] && $config['allow_bbcode'])
 	{
 		if (isset($config['max_spoiler_depth']) && $config['max_spoiler_depth'] >= 0)
 		{

@@ -128,6 +128,18 @@ class dev extends \phpbb\db\migration\migration
 					'modes'				=> array('position'),
 				),
 			)),
+
+			// Remove the module from the mod Manage attachments ACP module for phpBB3
+			array('module.remove', array(
+				'acp',
+				'ACP_ATTACHMENTS',
+				array(
+					'module_basename'	=> 'acp_manage_attachments',
+					'module_langname'	=> 'ACP_ATTACHMENTS',
+					'module_mode'		=> 'attachments',
+					'module_auth'		=> 'acl_a_attach',
+				),
+			)),
 			array('module.add', array(
 				'acp',
 				'ACP_ATTACHMENTS',

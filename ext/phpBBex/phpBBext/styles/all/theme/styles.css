@@ -202,12 +202,10 @@ html[lang="ru"] .online .postprofile:after {
 
 .mp-on-left div.postbody {
 	float: right;
-	width: 79%;
 }
 
 .mp-on-left .postprofile {
 	float: left;
-	width: 20%;
 	border-left: none;
 	border-right: 1px solid #FFF;
 }
