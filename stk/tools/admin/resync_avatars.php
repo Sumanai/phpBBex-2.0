@@ -106,6 +106,7 @@ var_dump($oldstyle);
 						if (!rename($oldstyle, $path)) continue;
 					}
 				}
+				@chmod($path, 0644);
 			}
 			else if ($row['avatar_type'] == AVATAR_GALLERY)
 			{
