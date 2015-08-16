@@ -12,6 +12,10 @@
 	padding: 5px 0;
 }
 
+.phpbb_vk-icon {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAllBMVEVJdqRMdqJMdaNMdaP///9tjrS1xtlNdqT+/v+kudCzxdhrjbO8y9xReaZ1lbh4l7qJpMKKpcOUrMhUe6enu9KuwNVWfai0xdhZf6lbgKu8zN2/zt7C0ODD0eDG0+LL1+TM2OXW4Ord5e7j6fHm7PLp7vTr7/Xr8PXx9Pjy9fj2+Pr3+fv4+vv5+/z8/f7+/v5ghK1liLCUoqt3AAAAA3RSTlMcmvTeNMpfAAAAf0lEQVR4XmXP1w7CMBBE0bVn3BJ67713/v/nkAkgBd/Ho32YFVEav7QSUSilRJdBC/4SZOPMDVfX7QCmMgoQTMkm+mSOORnBeK6rHdLUyWMPAljSLsiwj6cR2ht+2rk3oHb/SigArTPJ7oz0jQLwmBxOT2cvtyWSYcn05Lnk/RfpEQd5amoPNwAAAABJRU5ErkJggg==");
+}
+
 /* Buttons used in the editor */
 #format-buttons {
 	margin: 5px 0 2px;
@@ -94,14 +98,6 @@
 	line-height: 16px;
 	min-width: 16px;
 	text-align: center;
-}
-
-.rate-box .rate-value:hover, .rate-box .rate-no-minus:hover, .rate-box .rate-no-plus:hover {
-	background-color: #FFFFFF;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAAAAAAkral2AAAAEklEQVQI12P4z/SP6T8xkOE/AOXGFhLZEy7EAAAAAElFTkSuQmCC");
-	background-image: -webkit-linear-gradient(#FFFFFF, #E9E9E9);
-	background-image: linear-gradient(#FFFFFF, #E9E9E9);
-	border-color: #C7C3BF;
 }
 
 .rate-value:before, .rate-no-minus:before, .rate-no-plus:before {
@@ -284,7 +280,7 @@ dl.spoilerbox.spoilerbox-on > dd {
 /* Top menu */
 #top-menu {
 	margin: 0 auto;
-	padding: 0 30px;
+	padding: 0 20px;
 	max-width: 1152px
 }
 
@@ -503,7 +499,7 @@ a.icon-header-unlock { background-position: 0 -234px; }
 }
 
 /* Other */
-#wrap, body #top-menu {
+#wrap, body #top-menu, .page-width {
 	box-sizing: border-box;
 }
 

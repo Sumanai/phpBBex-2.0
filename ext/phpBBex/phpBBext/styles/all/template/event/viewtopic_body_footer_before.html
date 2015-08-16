@@ -5,3 +5,19 @@
 }
 </style>
 <!-- ENDIF -->
+<script>
+(function(){
+	if(document.getElementsByClassName) {
+		var buttonStyle = document.getElementsByClassName('button icon-button')[0];
+		if (buttonStyle !== undefined) {
+			var buttonComputedStyle = getComputedStyle(buttonStyle);
+			var style = '<style>.rate-box .rate-value:hover, .rate-box .rate-no-minus:hover, .rate-box .rate-no-plus:hover {\
+				background-color: ' + buttonComputedStyle.backgroundColor + ';\
+				background-image: ' + buttonComputedStyle.backgroundImage + ';\
+				border-color: ' + buttonComputedStyle.borderLeftColor + ' !important;\
+			}</style>';
+			document.write(style);
+		}
+	}
+})();
+</script>

@@ -523,21 +523,17 @@ if ($config['allow_bookmarks'] && $user->data['is_registered'] && request_var('b
 			$db->sql_query($sql);
 		}
 		$message = (($topic_data['bookmarked']) ? $user->lang['BOOKMARK_REMOVED'] : $user->lang['BOOKMARK_ADDED']);
-
-		if (!$request->is_ajax())
-		{
-			$message .= '<br /><br />' . $user->lang('RETURN_TOPIC', '<a href="' . $viewtopic_url . '">', '</a>');
-		}
 	}
 	else
 	{
 		$message = $user->lang['BOOKMARK_ERR'];
-
-		if (!$request->is_ajax())
-		{
-			$message .= '<br /><br />' . $user->lang('RETURN_TOPIC', '<a href="' . $viewtopic_url . '">', '</a>');
-		}
 	}
+
+	if (!$request->is_ajax())
+	{
+		$message .= '<br /><br />' . $user->lang('RETURN_TOPIC', '<a href="' . $viewtopic_url . '">', '</a>');
+	}
+
 	meta_refresh(3, $viewtopic_url);
 
 	trigger_error($message);

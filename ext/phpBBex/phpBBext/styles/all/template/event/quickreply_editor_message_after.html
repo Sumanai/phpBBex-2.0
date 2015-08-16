@@ -3,5 +3,17 @@
 	document.getElementById('message-box').getElementsByTagName('textarea')[0].setAttribute('id', 'message');
 	document.getElementById('message').setAttribute('style', '');
 	document.getElementById('qr_postform').id = 'postform';
+	if(document.getElementsByClassName) {
+		quote = document.getElementsByClassName('bbcode-quote')[0];
+		if (quote) {
+			onclickquote = quote.getAttribute('onclick').replace(')', ', event)');
+			quote.setAttribute('onclick', onclickquote);
+		}
+		spoiler = document.getElementsByClassName('bbcode-Spoiler')[0];
+		if (spoiler) {
+			onclickspoiler = spoiler.getAttribute('onclick').replace(')', ', event)');
+			spoiler.setAttribute('onclick', onclickspoiler);
+		}
+	}
 })();
 </script>
