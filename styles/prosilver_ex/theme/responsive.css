@@ -521,7 +521,7 @@ html[lang="ru"] .online .postprofile:after {
 	background-image: url("./ru/icon_user_online_responsive.png");
 }
 
-.postbody h3 {
+.postbody h3, .post_icon {
 	display: none;
 }
 

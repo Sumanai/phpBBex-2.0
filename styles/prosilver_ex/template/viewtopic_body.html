@@ -209,7 +209,8 @@
 			<!-- ENDIF -->
 			<div id="post_content{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 
-			<!-- IF postrow.POST_SUBJECT and postrow.POST_SUBJECT != TOPIC_TITLE --><h3><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3><!-- ENDIF -->
+			<!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" class="post_icon" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /><!-- ENDIF -->
+			<!-- IF postrow.POST_SUBJECT and postrow.POST_SUBJECT != TOPIC_TITLE --><h3><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3><!-- ENDIF -->
 
 		<!-- EVENT viewtopic_body_post_buttons_list_before -->
 		<!-- IF not S_IS_BOT -->

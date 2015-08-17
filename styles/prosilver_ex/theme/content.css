@@ -245,16 +245,15 @@ dd.option {
 	display: inline-block;
 	font-size: 1.5em;
 	padding: 0;
-	margin-top: 0 !important;
-	margin-bottom: 0.3em !important;
+	margin: 0;
 	text-transform: none;
 	border: none;
 	font-family: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
-	line-height: 125%;
 }
 
-.postbody h3 img {
-	vertical-align: bottom;
+.post_icon {
+	float: left;
+	margin-right: 5px;
 }
 
 .postbody .content {
