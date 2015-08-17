@@ -526,7 +526,7 @@ $lang = array_merge($lang, array(
 	'UCP_MAIN_FRONT'			=> 'Начало',
 	'UCP_MAIN_SUBSCRIBED'		=> 'Подписки',
 
-	'UCP_NO_ATTACHMENTS'		=> 'Вы не создали ни одного вложения.',
+	'UCP_NO_ATTACHMENTS'		=> 'Вы не разместили ни одного вложения.',
 
 	'UCP_NOTIFICATION_LIST'				=> 'Управление уведомлениями',
 	'UCP_NOTIFICATION_LIST_EXPLAIN'		=> 'Здесь можно просмотреть полученные уведомления.',

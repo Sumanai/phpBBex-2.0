@@ -647,7 +647,7 @@ $lang = array_merge($lang, array(
 	'PRIVATE_MESSAGING'		=> 'Личные сообщения',
 	'PROFILE'				=> 'Личная панель управления',
 
-	'QUICK_LINKS'			=> 'Ссылки',
+	'QUICK_LINKS'	=> 'Меню',
 
 	'RANK'						=> 'Звание',
 	'READING_FORUM'				=> 'Просмотр раздела «%s»',
