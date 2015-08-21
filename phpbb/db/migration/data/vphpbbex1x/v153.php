@@ -29,7 +29,7 @@ class v153 extends \phpbb\db\migration\migration
 		return array(
 			'add_columns' => array(
 				$this->table_prefix . 'poll_votes' => array(
-					'vote_time' => array('VCHAR:40', '', 'after' => 'vote_user_ip'),
+					'vote_time'		=> array('VCHAR:40', '', 'after' => 'vote_user_ip'),
 				),
 			),
 			'change_columns'	=> array(

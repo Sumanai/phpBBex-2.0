@@ -29,31 +29,31 @@ class v140 extends \phpbb\db\migration\migration
 		return array(
 			'add_tables' => array(
 				$this->table_prefix . 'post_rates' => array(
-					'COLUMNS' => array(
+					'COLUMNS'		=> array(
 						'user_id'		=> array('UINT', 0),
 						'post_id'		=> array('UINT', 0),
 						'rate'			=> array('TINT:4', 0),
 						'rate_time'		=> array('TIMESTAMP', 0),
 					),
-					'PRIMARY_KEY' => 'user_id,post_id',
+					'PRIMARY_KEY'	=> 'user_id,post_id',
 					'KEYS' => array(
 						'post_id' => array('INDEX', 'post_id'),
 						'user_id' => array('INDEX', 'user_id'),
 					),
 				),
 				$this->table_prefix . 'user_confirm_keys' => array(
-					'COLUMNS' => array(
+					'COLUMNS'		=> array(
 						'confirm_key'	=> array('VCHAR:10', ''),
 						'user_id'		=> array('UINT', 0),
 						'confirm_time'	=> array('TIMESTAMP', 0),
 					),
-					'PRIMARY_KEY' => 'confirm_key',
-					'KEYS' => array(
+					'PRIMARY_KEY'	=> 'confirm_key',
+					'KEYS'			=> array(
 						'user_id' => array('INDEX', 'user_id'),
 					),
 				),
 				$this->table_prefix . 'user_browser_ids' => array(
-					'COLUMNS' => array(
+					'COLUMNS'		=> array(
 						'browser_id'	=> array('CHAR:32', ''),
 						'user_id'		=> array('UINT', 0),
 						'created'		=> array('TIMESTAMP', 0),
@@ -62,13 +62,13 @@ class v140 extends \phpbb\db\migration\migration
 						'agent'			=> array('VCHAR:150', ''),
 						'last_ip'		=> array('VCHAR:40', ''),
 					),
-					'PRIMARY_KEY' => array('browser_id', 'user_id'),
+					'PRIMARY_KEY'	=> array('browser_id', 'user_id'),
 				),
 			),
 
 			'add_columns' => array(
 				$this->table_prefix . 'bbcodes' => array(
-					'bbcode_order' => array('TINT:4', 0, 'after' => 'bbcode_id'),
+					'bbcode_order'			=> array('TINT:4', 0, 'after' => 'bbcode_id'),
 				),
 				$this->table_prefix . 'posts' => array(
 					'poster_browser_id'		=> array('CHAR:32', '', 'after' => 'poster_ip'),

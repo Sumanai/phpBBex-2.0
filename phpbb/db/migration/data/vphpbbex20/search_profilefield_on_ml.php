@@ -29,7 +29,7 @@ class search_profilefield_on_ml extends \phpbb\db\migration\migration
 		return array(
 			'add_columns'		=> array(
 				$this->table_prefix . 'profile_fields'	=> array(
-					'field_search_on_ml'		=> array('BOOL', 0),
+					'field_search_on_ml'	=> array('BOOL', 0, 'after' => 'field_show_profile'),
 				),
 			),
 		);

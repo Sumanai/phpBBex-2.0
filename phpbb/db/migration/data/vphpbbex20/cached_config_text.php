@@ -35,10 +35,9 @@ class cached_config_text extends \phpbb\db\migration\migration
 
 			'add_index'		=> array(
 				$this->table_prefix . 'config_text'		=> array(
-					'is_dynamic'		=> array('is_dynamic'),
+					'is_dynamic'	=> array('is_dynamic'),
 				),
 			),
 		);
 	}
-
 }

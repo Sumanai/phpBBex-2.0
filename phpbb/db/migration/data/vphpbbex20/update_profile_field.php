@@ -23,7 +23,7 @@ class update_profile_field extends \phpbb\db\migration\migration
 			'add_columns' => array(
 				$this->table_prefix . 'profile_fields' => array(
 					'field_input_maxlen'	=> array('VCHAR', '', 'after' => 'field_maxlen'),
-					'field_regexp'	=> array('VCHAR:255', '', 'after' => 'field_validation'),
+					'field_regexp'			=> array('VCHAR:255', '', 'after' => 'field_validation'),
 				),
 			),
 		);

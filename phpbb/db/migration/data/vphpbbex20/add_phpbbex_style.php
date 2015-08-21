@@ -49,8 +49,8 @@ class add_phpbbex_style extends \phpbb\db\migration\migration
 		if (!$style_ex)
 		{
 			$sql = 'SELECT style_id
-					FROM ' . $this->table_prefix . 'styles
-					WHERE style_name = "prosilver"';
+				FROM ' . $this->table_prefix . 'styles
+				WHERE style_name = "prosilver"';
 			$result = $this->db->sql_query($sql);
 			$prosilver_id = (int) $this->db->sql_fetchfield('style_id');
 			$this->db->sql_freeresult($result);
@@ -69,7 +69,7 @@ class add_phpbbex_style extends \phpbb\db\migration\migration
 			);
 
 			$sql = 'INSERT INTO ' . $this->table_prefix . 'styles
-					' . $this->db->sql_build_array('INSERT', $style);
+				' . $this->db->sql_build_array('INSERT', $style);
 			$this->db->sql_query($sql);
 
 			$style_id = $this->db->sql_nextid();
