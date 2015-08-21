@@ -231,6 +231,8 @@ class permissions
 		'u_pm_img'		=> array('lang' => 'ACL_U_PM_IMG', 'cat' => 'pm'),
 		'u_pm_flash'	=> array('lang' => 'ACL_U_PM_FLASH', 'cat' => 'pm'),
 
+		'u_canminus'	=> array('lang' => 'ACL_U_CANMINUS', 'cat' => 'misc'),
+		'u_canplus'		=> array('lang' => 'ACL_U_CANPLUS', 'cat' => 'misc'),
 		'u_sendemail'	=> array('lang' => 'ACL_U_SENDEMAIL', 'cat' => 'misc'),
 		'u_sendim'		=> array('lang' => 'ACL_U_SENDIM', 'cat' => 'misc'),
 		'u_ignoreflood'	=> array('lang' => 'ACL_U_IGNOREFLOOD', 'cat' => 'misc'),
