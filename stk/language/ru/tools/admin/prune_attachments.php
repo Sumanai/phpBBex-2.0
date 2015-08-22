@@ -1,15 +1,15 @@
 <?php
 /**
- *
- * @package Support Toolkit - Prune Attachments Russian language Sheer
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Prune Attachments Russian language Sheer
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * DO NOT CHANGE
- */
+* DO NOT CHANGE
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;

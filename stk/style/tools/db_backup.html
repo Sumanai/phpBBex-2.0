@@ -1,6 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<script type="text/javascript">
-//<![CDATA[
+<script>
 var onload_functions = new Array();
 var expand_collapse = ['{L_EXPAND}', '{L_COLLAPSE}'];
 
@@ -36,14 +35,13 @@ onload_functions.push('expand_code_init()');
 function setSelectOptions(the_form, the_select, do_check)
 {
 	var selectObject = document.forms[the_form].elements[the_select];
-	var selectCount  = selectObject.length;
+	var selectCount = selectObject.length;
 	for (var i = 0; i < selectCount; i++) {
 		selectObject.options[i].selected = do_check;
 	}
 	return true;
 }
 
-//]]>
 </script>
 
 	<h1>{L_DB_BACKUP}</h1>

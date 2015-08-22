@@ -1,38 +1,38 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resynchronise report flags
- * @copyright (c) 2011 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resynchronise report flags
+* @copyright (c) 2011 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * This class resynchronises the report flags in topics/posts/pms
- * all checks should be ran in order as they expect that the data
- * in the database is correct when ran
- */
+* This class resynchronises the report flags in topics/posts/pms
+* all checks should be ran in order as they expect that the data
+* in the database is correct when ran
+*/
 class resync_report_flags
 {
 	/**
-	 * Display Options
-	 */
+	* Display Options
+	*/
 	function display_options()
 	{
 		return 'RESYNC_REPORT_FLAGS';
 	}
 
 	/**
-	 * Run tool
-	 */
+	* Run tool
+	*/
 	function run_tool()
 	{
 		$this->mode = request_var('m', 'pf');
@@ -66,11 +66,11 @@ class resync_report_flags
 	}
 
 	/**
-	 * Reset report flags for pm's or posts
-	 *
-	 * @param String $type Resync posts|pms
-	 * @return void
-	 */
+	* Reset report flags for pm's or posts
+	*
+	* @param String $type Resync posts|pms
+	* @return void
+	*/
 	function _resync_pms_posts($type)
 	{
 		global $db;
@@ -147,11 +147,11 @@ class resync_report_flags
 	}
 
 	/**
-	 * Get all reports for a given type
-	 *
-	 * @param  String $type The type that gets resynced
-	 * @return Array        All report data
-	 */
+	* Get all reports for a given type
+	*
+	* @param	String	$type	The type that gets resynced
+	* @return	Array			All report data
+	*/
 	function _get_reported($type)
 	{
 		global $db;
@@ -173,12 +173,12 @@ class resync_report_flags
 	}
 
 	/**
-	 * Make sure that the post flags are correct, this will adjust
-	 * flags based upon the status of the report. This method
-	 * assumes that all pms/posts are correctly flagged as reported
-	 *
-	 * @return void
-	 */
+	* Make sure that the post flags are correct, this will adjust
+	* flags based upon the status of the report. This method
+	* assumes that all pms/posts are correctly flagged as reported
+	*
+	* @return void
+	*/
 	function _resync_reports()
 	{
 		global $db;
@@ -236,8 +236,8 @@ class resync_report_flags
 	}
 
 	/**
-	 * Make sure that all topics have the appropriate flags set
-	 */
+	* Make sure that all topics have the appropriate flags set
+	*/
 	function _resync_topics()
 	{
 		global $db;
@@ -282,8 +282,8 @@ class resync_report_flags
 	}
 
 	/**
-	 * Switch modes
-	 */
+	* Switch modes
+	*/
 	function _next_mode()
 	{
 		global $template;

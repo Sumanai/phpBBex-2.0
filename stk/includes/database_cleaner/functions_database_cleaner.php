@@ -1,11 +1,11 @@
 <?php
 /**
- *
- * @package Support Toolkit - Database Cleaner
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Database Cleaner
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
 * @ignore
@@ -57,7 +57,7 @@ function get_extension_groups_rows(&$extension_groups_data, &$extension_groups_r
 		),
 	);
 	$sql = $db->sql_build_query('SELECT', $sql_ary);
-	$result	= $db->sql_query($sql);
+	$result = $db->sql_query($sql);
 	while ($row = $db->sql_fetchrow($result))
 	{
 		// Since phpBB 3.0.8 the module extensions are translatable,

@@ -1,29 +1,29 @@
 <?php
 /**
- *
- * @package Support Toolkit - Prune Avatars
- * @copyright (c) 2015 phpBBGuru Sheer
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Prune Avatars
+* @copyright (c) 2015 phpBBGuru Sheer
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * Make sure that all avatar files on the database
- */
+* Make sure that all avatar files on the database
+*/
 class prune_avatars
 {
 	/**
-	 * The number of files
-	 * @var Integer
-	 */
+	* The number of files
+	* @var Integer
+	*/
 	var $_batch_size = 500;
 
 	function display_options()
@@ -120,7 +120,7 @@ class prune_avatars
 			}
 			else
 			{
-				meta_refresh(3, append_sid(STK_ROOT_PATH . "index." . PHP_EXT, 'c=admin&amp;t=prune_avatars&sa=true'));
+				meta_refresh(3, append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=admin&amp;t=prune_avatars&sa=true'));
 				trigger_error($user->lang['PRUNE_AVATARS_PROGRESS'] . '<br />' . $list);
 			}
 		}

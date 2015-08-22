@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -19,9 +19,9 @@ if (!defined('IN_PHPBB'))
 class readd_module_management
 {
 	/**
-	 * The modules this class will check and re-add and/or enable if required.
-	 * The array contains all information we feed into $umil->module_exists and $umil->module_add
-	 */
+	* The modules this class will check and re-add and/or enable if required.
+	* The array contains all information we feed into $umil->module_exists and $umil->module_add
+	*/
 	var $check_modules = array(
 		array(
 			'class' 	=> 'acp',

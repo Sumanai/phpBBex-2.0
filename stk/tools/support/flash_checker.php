@@ -1,47 +1,47 @@
 <?php
 /**
- *
- * @package Support Toolkit - Flash Checker
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Flash Checker
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * A tool that checks the database for vulnerable
- * flash BBCodes.
- * This tool is requested by the dev team to resolve an flash bbcode issue that
- * was fixed in phpBB 3.0.8.
- * @author phpBB development team
- */
+* A tool that checks the database for vulnerable
+* flash BBCodes.
+* This tool is requested by the dev team to resolve an flash bbcode issue that
+* was fixed in phpBB 3.0.8.
+* @author phpBB development team
+*/
 class flash_checker
 {
 	/**
-	 * Vulnerable
-	 * @var array
-	 */
+	* Vulnerable
+	* @var array
+	*/
 	var $_vulnerable = array();
 
 	/**
-	 * Display options
-	 * @return string
-	 */
+	* Display options
+	* @return string
+	*/
 	function display_options()
 	{
 		return 'FLASH_CHECKER';
 	}
 
 	/**
-	 * Run the checks
-	 */
+	* Run the checks
+	*/
 	function run_tool()
 	{
 		$this->check_table_flash_bbcodes(POSTS_TABLE, 'post_id', 'post_text', 'bbcode_uid', 'bbcode_bitfield');

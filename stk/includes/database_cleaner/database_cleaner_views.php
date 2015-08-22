@@ -203,7 +203,7 @@ class database_cleaner_views
 		$last_output_table = '';
 		foreach ($this->db_cleaner->data->tables as $table_name => $data)
 		{
-			// We shouldn't mess with profile fields here.  Users probably will not know what this table does or what would happen if they remove fields added to it.
+			// We shouldn't mess with profile fields here. Users probably will not know what this table does or what would happen if they remove fields added to it.
 			if ($table_name == PROFILE_FIELDS_DATA_TABLE)
 			{
 				continue;
@@ -244,7 +244,7 @@ class database_cleaner_views
 						'NAME'			=> $column,
 						'FIELD_NAME'	=> $table_name . '_' . $column,
 						'MISSING'		=> (!in_array($column, $existing_columns)) ? true : false,
-						'FIND'			=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 'col=' . $column . ''),
+						'FIND'			=> append_sid(STK_ROOT_PATH . 'finder.' . PHP_EXT, 'col=' . $column),
 					);
 
 					if ($this->_has_changes === false)
@@ -287,7 +287,7 @@ class database_cleaner_views
 				'NAME'			=> $name,
 				'FIELD_NAME'	=> $name,
 				'MISSING'		=> (!in_array($name, $existing_config)) ? true : false,
-				'FIND'		=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 'c=' . $name . ''),
+				'FIND'		=> append_sid(STK_ROOT_PATH . 'finder.' . PHP_EXT, 'c=' . $name),
 			);
 
 			if ($this->_has_changes === false)
@@ -504,7 +504,7 @@ class database_cleaner_views
 				'NAME'			=> $name,
 				'FIELD_NAME'	=> $name,
 				'MISSING'		=> (!in_array($name, $existing_permissions)) ? true : false,
-				'FIND'			=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 'p=' . $name . ''),
+				'FIND'			=> append_sid(STK_ROOT_PATH . 'finder.' . PHP_EXT, 'p=' . $name),
 			);
 
 			if ($this->_has_changes === false)
@@ -621,7 +621,7 @@ class database_cleaner_views
 						'NAME'			=> $table,
 						'FIELD_NAME'	=> $table,
 						'MISSING'		=> isset($req_tables[$table]) ? true : false,
-						'FIND'		=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 't=' . $table . ''),
+						'FIND'		=> append_sid(STK_ROOT_PATH . 'finder.' . PHP_EXT, 't=' . $table),
 					);
 
 					if ($this->_has_changes === false)
@@ -697,7 +697,7 @@ class database_cleaner_views
 
 			$sql = 'SELECT *
 				FROM ' . MODULES_TABLE . '
-				WHERE module_id = ' . $row['parent_id'] . '';
+				WHERE module_id = ' . $row['parent_id'];
 			$res = $db->sql_query($sql);
 			$row = $db->sql_fetchrow($res);
 			$parent = $row['module_langname'];
@@ -706,21 +706,21 @@ class database_cleaner_views
 
 			if ($parent)
 			{
-				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '&parent_id='. $parent_id .'');
+				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '&parent_id='. $parent_id);
 				$module_mame = (isset($user->lang[$parent])) ? '<b>' . $user->lang[$parent] . '</b>' : '<i>' . $user->lang['UNDEFINED'] . '</i>';
 			}
 			else
 			{
-				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '');
+				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class);
 				$module_mame = '';
 			}
 			$db->sql_freeresult($res);
 
 			$this->_section_data['acp_modules']['ITEMS'][] = array(
-				'NAME'			=> '' . $module . ' (' . $module_id . ')' . $user->lang['GO_TO_ACP'] . ' <a href="' . $link . '" target="_blank">' . $module_mame . '</a> [' . $parent . ' (' . $parent_id . ')]',
+				'NAME'			=> $module . ' (' . $module_id . ')' . $user->lang['GO_TO_ACP'] . ' <a href="' . $link . '" target="_blank">' . $module_mame . '</a> [' . $parent . ' (' . $parent_id . ')]',
 				'FIELD_NAME'	=> $module_id,
 				'MISSING'		=> false,
-				'FIND'			=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 'm=' . $module . ''),
+				'FIND'			=> append_sid(STK_ROOT_PATH . 'finder.' . PHP_EXT, 'm=' . $module),
 			);
 
 			if ($this->_has_changes === false)
@@ -765,12 +765,12 @@ class database_cleaner_views
 				$db->sql_freeresult($result);
 
 				// Link to ACP manage module
-				$link = ($parent_id) ? '<a style="color:#70AED3;" href="'. append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $mode . '&parent_id='. $parent_id .'') .'" " target="_blank">' : '';
+				$link = ($parent_id) ? '<a style="color:#70AED3;" href="'. append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $mode . '&parent_id='. $parent_id) .'" " target="_blank">' : '';
 				$module_langname = $user->lang($module);
 				$parent_module_langname = $user->lang($key);
 
 				$this->_section_data['acp_modules']['ITEMS'][] = array(
-					'NAME'			=> '' . $module_langname . ' ('.$module.')' . $user->lang['GO_TO_ACP'] .  $link . ''. $parent_module_langname .'</a>',
+					'NAME'			=> $module_langname . ' ('.$module.')' . $user->lang['GO_TO_ACP'] . $link . $parent_module_langname . '</a>',
 					'FIELD_NAME'	=> strtolower($module),
 					'MISSING'		=> true,
 				);

@@ -13,12 +13,12 @@
 */
 if (!defined('IN_PHPBB'))
 {
-   exit;
+	exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-   $lang = array();
+	$lang = array();
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -114,9 +114,9 @@ $lang = array_merge($lang, array(
 	'ERK_REMOVE_DIR'					=> 'The Support Toolkit has tried to remove the repaired file storage directory of this tool but wasn\'t able to do so. In order for this tool to run correctly the \'<c>%s</c>\' must be removed from the server. Please remove this directory manually and release the Support Toolkit.',
 	'BOM_SNIFFER_WRITABLE'				=> 'The BOM sniffer requires the ' . STK_ROOT_PATH . 'cache directory to exist and to be writable!',
 	'STK_FATAL_ERROR'					=> '<strong style="color: #ff0000;">The Support Toolkit encountered a fatal error.</strong><br /><br />
-											 The Support Toolkit includes an Emergency Repair Kit (ERK), a tool designed to resolve certain errors that prevent phpBB from functioning.
-											 It is advised that you run the ERK now so it can attempt to repair the error it has detected.<br />
-											 To run the ERK, click <a href="' . STK_ROOT_PATH . 'erk.' . PHP_EXT . '"><b>here</b></a>.',
+											The Support Toolkit includes an Emergency Repair Kit (ERK), a tool designed to resolve certain errors that prevent phpBB from functioning.
+											It is advised that you run the ERK now so it can attempt to repair the error it has detected.<br />
+											To run the ERK, click <a href="' . STK_ROOT_PATH . 'erk.' . PHP_EXT . '"><b>here</b></a>.',
 	'CONFIG_REPAIR'						=> 'Repair config.php',
 	'CONFIG_REPAIR_EXPLAIN'				=> 'Through this tool you can regenerate your configuration file',
 	'CONFIG_REPAIR_NO_TABLES'			=> 'phpBB3 tables could not be found on this database with this table prefix.',

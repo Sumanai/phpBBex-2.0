@@ -540,28 +540,28 @@ class erk_bom_sniffer
 	//-- Wrappers
 
 	/**
-	 * Global function for chmodding directories and files for internal use
-	 *
-	 * This function determines owner and group whom the file belongs to and user and group of PHP and then set safest possible file permissions.
-	 * The function determines owner and group from common.php file and sets the same to the provided file.
-	 * The function uses bit fields to build the permissions.
-	 * The function sets the appropiate execute bit on directories.
-	 *
-	 * Supported constants representing bit fields are:
-	 *
-	 * CHMOD_ALL - all permissions (7)
-	 * CHMOD_READ - read permission (4)
-	 * CHMOD_WRITE - write permission (2)
-	 * CHMOD_EXECUTE - execute permission (1)
-	 *
-	 * NOTE: The function uses POSIX extension and fileowner()/filegroup() functions. If any of them is disabled, this function tries to build proper permissions, by calling is_readable() and is_writable() functions.
-	 *
-	 * @param string	$filename	The file/directory to be chmodded
-	 * @param int	$perms		Permissions to set
-	 *
-	 * @return bool	true on success, otherwise false
-	 * @author faw, phpBB Group
-	 */
+	* Global function for chmodding directories and files for internal use
+	*
+	* This function determines owner and group whom the file belongs to and user and group of PHP and then set safest possible file permissions.
+	* The function determines owner and group from common.php file and sets the same to the provided file.
+	* The function uses bit fields to build the permissions.
+	* The function sets the appropiate execute bit on directories.
+	*
+	* Supported constants representing bit fields are:
+	*
+	* CHMOD_ALL - all permissions (7)
+	* CHMOD_READ - read permission (4)
+	* CHMOD_WRITE - write permission (2)
+	* CHMOD_EXECUTE - execute permission (1)
+	*
+	* NOTE: The function uses POSIX extension and fileowner()/filegroup() functions. If any of them is disabled, this function tries to build proper permissions, by calling is_readable() and is_writable() functions.
+	*
+	* @param string	$filename	The file/directory to be chmodded
+	* @param int	$perms		Permissions to set
+	*
+	* @return bool	true on success, otherwise false
+	* @author faw, phpBB Group
+	*/
 	function phpbb_chmod($filename, $perms = CHMOD_READ)
 	{
 		static $_chmod_info;
@@ -714,14 +714,14 @@ class erk_bom_sniffer
 	}
 
 	/**
-	 * Test if a file/directory is writable
-	 *
-	 * This function calls the native is_writable() when not running under
-	 * Windows and it is not disabled.
-	 *
-	 * @param string $file Path to perform write test on
-	 * @return bool True when the path is writable, otherwise false.
-	 */
+	* Test if a file/directory is writable
+	*
+	* This function calls the native is_writable() when not running under
+	* Windows and it is not disabled.
+	*
+	* @param string $file Path to perform write test on
+	* @return bool True when the path is writable, otherwise false.
+	*/
 	function phpbb_is_writable($file)
 	{
 		if (strtolower(substr(PHP_OS, 0, 3)) === 'win' || !function_exists('is_writable'))
@@ -775,8 +775,8 @@ class erk_bom_sniffer
 	}
 
 	/**
-	 * A wrapper for realpath
-	 */
+	* A wrapper for realpath
+	*/
 	function phpbb_realpath($path)
 	{
 		if (!function_exists('realpath'))
@@ -805,11 +805,11 @@ class erk_bom_sniffer
 	}
 
 	/**
-	 * @author Chris Smith <chris@project-minerva.org>
-	 * @copyright 2006 Project Minerva Team
-	 * @param string $path The path which we should attempt to resolve.
-	 * @return mixed
-	 */
+	* @author Chris Smith <chris@project-minerva.org>
+	* @copyright 2006 Project Minerva Team
+	* @param string $path The path which we should attempt to resolve.
+	* @return mixed
+	*/
 	function phpbb_own_realpath($path)
 	{
 		// Now to perform funky shizzle

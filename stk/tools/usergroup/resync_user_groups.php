@@ -1,15 +1,15 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resynchronise Users groups
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resynchronise Users groups
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -18,36 +18,36 @@ if (!defined('IN_PHPBB'))
 class resync_user_groups
 {
 	/**
-	 * Batch size of the ammount of users we move around per run
-	 * @var Integer
-	 */
+	* Batch size of the ammount of users we move around per run
+	* @var Integer
+	*/
 	var $batch_size = 500;
 
 	/**
-	 * The `resync_registered` object
-	 * @var resync_registered
-	 */
+	* The `resync_registered` object
+	* @var resync_registered
+	*/
 	var $rr = null;
 
 	/**
-	 * The `resync_newly_registered` object
-	 * @var resync_newly_registered
-	 */
+	* The `resync_newly_registered` object
+	* @var resync_newly_registered
+	*/
 	var $rnr = null;
 
 	/**
-	 * Keep track of the `rr` and `rnr` statuses
-	 * for redirect
-	 * @var Boolean
-	 */
+	* Keep track of the `rr` and `rnr` statuses
+	* for redirect
+	* @var Boolean
+	*/
 	var $run_rr		= false;
 	var $run_rnr	= false;
 
 	/**
-	 * Display Options
-	 *
-	 * @return void
-	 */
+	* Display Options
+	*
+	* @return void
+	*/
 	function display_options()
 	{
 		$this->_load_classes();
@@ -83,8 +83,8 @@ class resync_user_groups
 	}
 
 	/**
-	 * Run the required resync actions
-	 */
+	* Run the required resync actions
+	*/
 	function run_tool(&$error)
 	{
 		$this->_load_classes();
@@ -122,9 +122,9 @@ class resync_user_groups
 	}
 
 	/**
-	 * Make sure that the classes used by this tool are available
-	 * @retrun void
-	 */
+	* Make sure that the classes used by this tool are available
+	* @retrun void
+	*/
 	function _load_classes()
 	{
 		foreach (array('resync_registered', 'resync_newly_registered') as $class)

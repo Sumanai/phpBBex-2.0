@@ -98,7 +98,7 @@ class orphaned_posts
 		$sql = 'SELECT post_id, post_time, post_username, post_subject, post_text, bbcode_uid, bbcode_bitfield, p.forum_id, u.user_id, u.username, u.user_colour
 			FROM ' . POSTS_TABLE . ' p
 			JOIN ' . USERS_TABLE . ' u ON (u.user_id = p.poster_id)
-			WHERE  NOT EXISTS (SELECT forum_id FROM ' . FORUMS_TABLE . ' WHERE forum_id = p.forum_id)';
+			WHERE NOT EXISTS (SELECT forum_id FROM ' . FORUMS_TABLE . ' WHERE forum_id = p.forum_id)';
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -236,7 +236,7 @@ class orphaned_posts
 					// Update the topics with their new IDs
 					foreach ($post_map as $post_id => $topic_id)
 					{
-						$sql = 'SELECT forum_id FROM ' . TOPICS_TABLE . ' WHERE topic_id = ' . (int) $topic_id . '';
+						$sql = 'SELECT forum_id FROM ' . TOPICS_TABLE . ' WHERE topic_id = ' . (int) $topic_id;
 						$result = $db->sql_query_limit($sql, 1);
 						$forum_id = (int) $db->sql_fetchfield('forum_id');
 						$db->sql_freeresult($result);

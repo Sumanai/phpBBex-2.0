@@ -9,11 +9,31 @@
 
 define('IN_PHPBB', true);
 
-if (!defined('PHPBB_ROOT_PATH')) { define('PHPBB_ROOT_PATH', './../'); }
-if (!defined('PHP_EXT')) { define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1)); }
-if (!defined('STK_DIR_NAME')) { define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1)); }	// Get the name of the stk directory
-if (!defined('STK_ROOT_PATH')) { define('STK_ROOT_PATH', './'); }
-if (!defined('STK_INDEX')) { define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT); }
+if (!defined('PHPBB_ROOT_PATH'))
+{
+	define('PHPBB_ROOT_PATH', './../');
+}
+
+if (!defined('PHP_EXT'))
+{
+	define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1));
+}
+
+// Get the name of the stk directory
+if (!defined('STK_DIR_NAME'))
+{
+	define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1));
+}
+
+if (!defined('STK_ROOT_PATH'))
+{
+	define('STK_ROOT_PATH', './');
+}
+
+if (!defined('STK_INDEX'))
+{
+	define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT);
+}
 
 require STK_ROOT_PATH . 'common.' . PHP_EXT;
 
@@ -33,7 +53,7 @@ else
 		trigger_error('BOARD_FOUNDER_ONLY');
 	}
 
-// Language path.  We are using a custom language path to keep all the files within the stk/ folder.  First check if the $user->data['user_lang'] path exists, if not, check if the default lang path exists, and if still not use english.
+// Language path. We are using a custom language path to keep all the files within the stk/ folder. First check if the $user->data['user_lang'] path exists, if not, check if the default lang path exists, and if still not use english.
 stk_add_lang('common');
 stk_add_lang('tools/ext/ext_finder');
 
@@ -86,16 +106,16 @@ if (!$extra_data)
 	$db_tools = new \phpbb\db\tools($db);
 
 	// Get migrations schema
-	$dir = '' . PHPBB_ROOT_PATH . 'ext';
+	$dir = PHPBB_ROOT_PATH . 'ext';
 	$files = $extensions = $vendors = array();
 	$files = array_diff(scandir($dir), array('..', '.'));
 
 	foreach($files as $key => $dir)
 	{
-		if (is_dir('' . PHPBB_ROOT_PATH . 'ext/' . $dir . ''))
+		if (is_dir(PHPBB_ROOT_PATH . 'ext/' . $dir))
 		{
 			$vendors[] = $dir;
-			$extensions[$dir] = array_diff(scandir('' . PHPBB_ROOT_PATH . 'ext/' . $dir . ''), array('..', '.'));
+			$extensions[$dir] = array_diff(scandir(PHPBB_ROOT_PATH . 'ext/' . $dir), array('..', '.'));
 		}
 	}
 
@@ -105,19 +125,19 @@ if (!$extra_data)
 		{
 			foreach($ext as $key => $extension)
 			{
-				$ext_dir = '' . $phpbb_root_path . 'ext/' . $vendor . '/'. $extension . '/migrations/';
+				$ext_dir = $phpbb_root_path . 'ext/' . $vendor . '/'. $extension . '/migrations/';
 				$migrations = (@opendir($ext_dir)) ? array_diff(scandir($ext_dir), array('..', '.')) : array();
 				$table_extra = $column_extra = $config_extra = $module_extra = $permissions_extra = array();
 				foreach($migrations as $file)
 				{
-					$file = str_replace('.' . PHP_EXT . '', '', $file);
-					$sub_dir = '' . $phpbb_root_path . 'ext/' . $vendor . '/'. $extension . '/migrations/' . $file . '';
+					$file = str_replace('.' . PHP_EXT, '', $file);
+					$sub_dir = $phpbb_root_path . 'ext/' . $vendor . '/'. $extension . '/migrations/' . $file;
 					if (is_dir($sub_dir))
 					{
 						$migrations_subdir = (@opendir($sub_dir)) ? array_diff(scandir($sub_dir), array('..', '.')) : array();
 						foreach($migrations_subdir as $key => $value)
 						{
-							$migrations[] = ''.$file.'\\'.$value.'';
+							$migrations[] = $file.'\\'.$value;
 						}
 						$migrations = array_diff($migrations, array($file));
 					}
@@ -126,8 +146,8 @@ if (!$extra_data)
 				foreach($migrations as $file)
 				{
 					$configs = $module_names = $permissions = array();
-					$file = str_replace('.' . PHP_EXT . '', '', $file);
-					$class = '' . $vendor . '\\' . $extension . '\\migrations\\' . $file . '';
+					$file = str_replace('.' . PHP_EXT, '', $file);
+					$class = $vendor . '\\' . $extension . '\\migrations\\' . $file;
 					$phpbb_ext = new $class($config, $db, $db_tools, $table_prefix, $phpEx, $errors);
 					if (!empty($phpbb_ext))
 					{
@@ -154,7 +174,7 @@ if (!$extra_data)
 							if($alue[0] == 'module.add')
 							{
 								$ext_module_name = $alue[1];
-								$name = isset($ext_module_name[2]) ? $ext_module_name[2] :  '';
+								$name = isset($ext_module_name[2]) ? $ext_module_name[2] : '';
 								if (is_array($name))
 								{
 									$module_names[] = (isset($name['module_langname'])) ? $name['module_langname'] : $ext_module_name[1];
@@ -196,7 +216,7 @@ $info = $row = array();
 if ($table)
 {
 	$info = (isset($extra_data['tables'])) ? finder($extra_data['tables'], $table) : '';
-	$extra = (isset($info['data'])) ? '' . $table_prefix . '' . $info['data'] . '' : '' . $table_prefix . '' . $table. '';
+	$extra = (isset($info['data'])) ? $table_prefix . $info['data'] : $table_prefix . $table;
 	$template->assign_vars(array(
 		'L_EXTRA_DATA_UNIT'		=> $user->lang['TABLE'],
 		'L_EXTRA_DATA'			=> $user->lang['EXT_TABLE_FINDER'],
@@ -246,10 +266,10 @@ else if($permission)
 
 if($info)
 {
-	$path = 'ext/' . $info['vendor'] . '/' . $info['ext'] . '';
-	if (file_exists('' . PHPBB_ROOT_PATH . '' . $path . '/composer.json'))
+	$path = 'ext/' . $info['vendor'] . '/' . $info['ext'];
+	if (file_exists(PHPBB_ROOT_PATH . $path . '/composer.json'))
 	{
-		$buffer =  file_get_contents('' . PHPBB_ROOT_PATH . '' . $path . '/composer.json');
+		$buffer = file_get_contents(PHPBB_ROOT_PATH . $path . '/composer.json');
 		if ($buffer)
 		{
 			$obj = json_decode($buffer);
@@ -270,7 +290,7 @@ if($info)
 $template->assign_vars(array(
 	'EXTRA_DATA'	=> (isset($extra)) ? $extra : '',
 	'PATH'			=> (isset($info['ext'])) ? $path : '',
-	'INFO'			=> (isset($info['ext'])) ? '<b style="color: '. $color .'">' . $display_name . '</b>/'.$version.' - '. $description .'' : $user->lang['NOT_IN_EXT'],
+	'INFO'			=> (isset($info['ext'])) ? '<b style="color: ' . $color . '">' . $display_name . '</b>/' . $version . ' - ' . $description : $user->lang['NOT_IN_EXT'],
 ));
 
 // Output the main page

@@ -1,35 +1,35 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resync Attachments
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resync Attachments
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * Make sure that all avatars on the forum actually have a file
- */
+* Make sure that all avatars on the forum actually have a file
+*/
 class resync_attachments
 {
 	/**
-	 * The number of users tested per run
-	 * @var Integer
-	 */
+	* The number of users tested per run
+	* @var Integer
+	*/
 	var $_batch_size = 500;
 
 	/**
-	 * Options
-	 * @return String
-	 */
+	* Options
+	* @return String
+	*/
 	function display_options()
 	{
 		return 'RESYNC_ATTACHMENTS';

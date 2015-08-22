@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -19,45 +19,45 @@ if (!defined('IN_PHPBB'))
 class srt_generator
 {
 	/**
-	 * @var		Integer	The current step
-	 * @access	public
-	 */
+	* @var		Integer	The current step
+	* @access	public
+	*/
 	var $step = 0;
 
 	/**
-	 * The data array contains all data required to build the SRT questions,
-	 * for each question the following keys can be used
-	 * <code>
-	 *		'name'			=>	Required, the identifier that is used for everything
-	 *							(field names/langauge entries/etc)
-	 *		'type'			=>	Required, the type of the input field. (dropdown ||
-	 *							text || texteara || boolean)
-	 *		'options'		=>	Only used when 'type' = dropdown. If set these
-	 *							values are used as options for the dropdown box, if
-	 *							not set the options will be red from the language files.
-	 *		'p_callback'	=>	php callback. This function/method is called before
-	 *							the question is added to the template. If the function
-	 *							returns everything else than the boolean `false`
-	 *							that value will be used as answer. If it returns
-	 *							false (strict check) the question shall be displayed.
-	 *		'hide'			=>	This question is only asked but will not be used
-	 *							when compiling the SRT.
-	 *		'depends'		=>	This question is only asked/handled if the given question
-	 *							was answered with "true", this currently only supports
-	 *							a boolean check.
-	 * </code>
-	 *
-	 * @var		Array	The data that is used to generate the questions in the template
-	 *					The array is prefilled with the main data which is filtered later
-	 * @access	private
-	 */
+	* The data array contains all data required to build the SRT questions,
+	* for each question the following keys can be used
+	* <code>
+	*		'name'			=>	Required, the identifier that is used for everything
+	*							(field names/langauge entries/etc)
+	*		'type'			=>	Required, the type of the input field. (dropdown ||
+	*							text || texteara || boolean)
+	*		'options'		=>	Only used when 'type' = dropdown. If set these
+	*							values are used as options for the dropdown box, if
+	*							not set the options will be red from the language files.
+	*		'p_callback'	=>	php callback. This function/method is called before
+	*							the question is added to the template. If the function
+	*							returns everything else than the boolean `false`
+	*							that value will be used as answer. If it returns
+	*							false (strict check) the question shall be displayed.
+	*		'hide'			=>	This question is only asked but will not be used
+	*							when compiling the SRT.
+	*		'depends'		=>	This question is only asked/handled if the given question
+	*							was answered with "true", this currently only supports
+	*							a boolean check.
+	* </code>
+	*
+	* @var		Array	The data that is used to generate the questions in the template
+	*					The array is prefilled with the main data which is filtered later
+	* @access	private
+	*/
 	var $_data = array();
 
 	/**
-	 * This method is always called, so we "abuse"
-	 * it for this tool to setup some stuff we need
-	 * later on.
-	 */
+	* This method is always called, so we "abuse"
+	* it for this tool to setup some stuff we need
+	* later on.
+	*/
 	function tool_active()
 	{
 		global $config, $request;
@@ -182,8 +182,8 @@ class srt_generator
 	}
 
 	/**
-	 * Generate all the Q/A pages
-	 */
+	* Generate all the Q/A pages
+	*/
 	function display_options()
 	{
 		global $cache, $template, $user;
@@ -280,8 +280,8 @@ class srt_generator
 	}
 
 	/**
-	 * Handle a submit
-	 */
+	* Handle a submit
+	*/
 	function run_tool()
 	{
 		global $cache, $user, $request;
@@ -378,11 +378,11 @@ class srt_generator
 	}
 
 	/**
-	 * Build the SRT and output the result
-	 *
-	 * @return	void
-	 * @access	private
-	 */
+	* Build the SRT and output the result
+	*
+	* @return	void
+	* @access	private
+	*/
 	function _build_srt()
 	{
 		global $cache, $template, $user;
@@ -434,19 +434,19 @@ class srt_generator
 	}
 
 	/**
-	 * This method build the options for dropdown boxes, if the $options paramater
-	 * contains a non-empty array the data within this array will be used for the
-	 * options. If the array is empty the options will be fetched from the language
-	 * files.
-	 *
-	 * @param	Array	$options	The array that will be used/filled with the
-	 *								options for the dropdown box
-	 * @param	String	$name		The name of the question, this is used to
-	 *								lookup the correct strings in the language
-	 *								files.
-	 * @return	void
-	 * @access	private
-	 */
+	* This method build the options for dropdown boxes, if the $options paramater
+	* contains a non-empty array the data within this array will be used for the
+	* options. If the array is empty the options will be fetched from the language
+	* files.
+	*
+	* @param	Array	$options	The array that will be used/filled with the
+	*								options for the dropdown box
+	* @param	String	$name		The name of the question, this is used to
+	*								lookup the correct strings in the language
+	*								files.
+	* @return	void
+	* @access	private
+	*/
 	function _format_options(&$options, $name = '')
 	{
 		global $user;
@@ -477,14 +477,14 @@ class srt_generator
 	}
 
 	/**
-	 * Some prefill methods
-	 * @Note, due to strict checking if a prefill should return "false" you'll
-	 * have to return the *string*, not the boolean!
-	 */
+	* Some prefill methods
+	* @Note, due to strict checking if a prefill should return "false" you'll
+	* have to return the *string*, not the boolean!
+	*/
 
 	/**
-	 * Just a wrapper to get the DBAL layer
-	 */
+	* Just a wrapper to get the DBAL layer
+	*/
 	function _prefill_dbms()
 	{
 		global $db;
@@ -493,8 +493,8 @@ class srt_generator
 	}
 
 	/**
-	 * Try to determine whether the user has EXTs installed.
-	 */
+	* Try to determine whether the user has EXTs installed.
+	*/
 	function _prefill_has_mods_installed()
 	{
 		global $db;
@@ -514,11 +514,11 @@ class srt_generator
 	}
 
 	/**
-	 * Fetch all the installed languages from the database
-	 *
-	 * @return	String			All the languages installed on this board
-	 * @access	private
-	 */
+	* Fetch all the installed languages from the database
+	*
+	* @return	String			All the languages installed on this board
+	* @access	private
+	*/
 	function _prefill_installed_languages()
 	{
 		global $db;
@@ -541,14 +541,14 @@ class srt_generator
 	}
 
 	/**
-	 * If the user has AutoMOD installed prefill the "Mods installed" field
-	 * with all MODs know by AutoMOD.
-	 *
-	 * @return	BooleanString	False if no AutoMOD was found or when no
-	 *							MODs where installed with it. Otherwise all the
-	 *							MODs that where found in the db
-	 * @access	private
-	 */
+	* If the user has AutoMOD installed prefill the "Mods installed" field
+	* with all MODs know by AutoMOD.
+	*
+	* @return	BooleanString	False if no AutoMOD was found or when no
+	*							MODs where installed with it. Otherwise all the
+	*							MODs that where found in the db
+	* @access	private
+	*/
 	function _prefill_installed_mods()
 	{
 		global $db;
@@ -561,7 +561,7 @@ class srt_generator
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$_extensions[] = ''. $row['ext_name'] .' (active)';
+			$_extensions[] = $row['ext_name'] . ' (active)';
 		}
 
 		$sql = 'SELECT ext_name
@@ -571,22 +571,22 @@ class srt_generator
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$_extensions[] = ''. $row['ext_name'] .' (disabled)';
+			$_extensions[] = $row['ext_name'] . ' (disabled)';
 		}
 
 		$db->sql_freeresult($result);
-		$ex =   implode("\n", $_extensions);
+		$ex = implode("\n", $_extensions);
 
 		return implode("\n", $_extensions);
 	}
 
 	/**
-	 * Fetch all the installed styles from the database
-	 *
-	 * @return	Boolean|String	False if for some reason no styles could be
-	 *							red from the database. Otherwise the data
-	 * @access	private
-	 */
+	* Fetch all the installed styles from the database
+	*
+	* @return	Boolean|String	False if for some reason no styles could be
+	*							red from the database. Otherwise the data
+	* @access	private
+	*/
 	function _prefill_installed_styles()
 	{
 		global $db;
@@ -606,13 +606,13 @@ class srt_generator
 	}
 
 	/**
-	 * Test whether we can rely on the board to give us the version number
-	 * This test fails if $config['version'] and PHPBB_VERSION differ.
-	 *
-	 * @return	Boolean|String	False if the version isn't relyable, otherwise
-	 *							the version number.
-	 * @access	private
-	 */
+	* Test whether we can rely on the board to give us the version number
+	* This test fails if $config['version'] and PHPBB_VERSION differ.
+	*
+	* @return	Boolean|String	False if the version isn't relyable, otherwise
+	*							the version number.
+	* @access	private
+	*/
 	function _prefill_phpbb_version()
 	{
 		global $config;

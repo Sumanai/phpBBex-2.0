@@ -1085,12 +1085,12 @@ class database_cleaner_controller
 						$module_class = $row['module_class'];
 						if (!$module_class)
 						{
-							$error[] = '' . $user->lang['MODULE_ADD'] . ' &laquo;' . $module_langname . '&raquo; ' . $user->lang['NO_PARENT'] . '';
+							$error[] = $user->lang['MODULE_ADD'] . ' &laquo;' . $module_langname . '&raquo; ' . $user->lang['NO_PARENT'];
 							continue;
 						}
 						$parent_id = $row['module_id'];
 						$k_ary = explode('_', $key);
-						$base_name = '' . $module_class . '_' . strtolower(array_pop(explode('_', $key))) . '';
+						$base_name = $module_class . '_' . strtolower(array_pop(explode('_', $key)));
 						if ($module_langname == 'ACP_SEARCH_INDEX')
 						{
 							$base_name = 'acp_search';
@@ -1098,10 +1098,10 @@ class database_cleaner_controller
 						$info_file = "$module_class/info/$base_name.$phpEx";
 						$module_mode = $module_auth = '';
 
-						if (file_exists($phpbb_root_path . 'includes/'. $info_file))
+						if (file_exists($phpbb_root_path . 'includes/' . $info_file))
 						{
-							include_once($phpbb_root_path . 'includes/'. $info_file);
-							$classname = ''.$base_name.'_info';
+							include_once($phpbb_root_path . 'includes/' . $info_file);
+							$classname = $base_name . '_info';
 							$info = new $classname;
 							$module = $info->module();
 							unset($info);
@@ -1125,7 +1125,7 @@ class database_cleaner_controller
 					);
 
 					$result = $umil->module_add($module_class, $parent_id, $data);
-					$error[] = '&laquo;' . $user->lang[$module_langname] . '&raquo; ' . $result . '';
+					$error[] = '&laquo;' . $user->lang[$module_langname] . '&raquo; ' . $result;
 				}
 			}
 		}

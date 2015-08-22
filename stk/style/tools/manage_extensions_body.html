@@ -31,14 +31,13 @@
 	<form id="acp_styles" method="post" action="{S_ACTION}">
 	<!-- IF S_TREE -->
 	<link rel="stylesheet" href="style/dtree.css" type="text/css" />
-	<script type="text/javascript" src="style/dtree.js"></script>
+	<script src="style/dtree.js"></script>
 
 	<h1>{EXT_FILES}</h1>
 
 	<div class="dtree">
 		<p><a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.openAll();">{L_EXPAND_VIEW}</a> | <a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.closeAll();">{L_COLLAPSE_VIEW}</a></p>
-		<script type="text/javascript">
-			<!--
+		<script>
 			d = new dTree('d');
 			d.add(0,-1,'{ROOT}');
 			{TREE}
@@ -46,7 +45,6 @@
 			function goBack() {
 				window.history.back()
 			}
-			//-->
 		</script>
 	</div>
 

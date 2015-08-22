@@ -20,9 +20,10 @@
 /*
 * Make sure you have this check for security reasons.
 */
+
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -67,7 +68,7 @@ class tutorial
 	*		Returning an array makes the system show a page similar to the acp_board. (More on this later)
 	*	3. Return false
 	*		Returning false makes the system do nothing with the initial display.
-	*		This may be used to display your own page.  You can do anything you'd like.
+	*		This may be used to display your own page. You can do anything you'd like.
 	*		Just be sure that your page sets 'submit' in $_POST or you will have to check that yourself and run the $this->run_tool function if required
 	*/
 	function display_options()
@@ -102,7 +103,7 @@ class tutorial
 	* This function should do what this tool was designed to do.
 	*
 	* If you did NOT return a string in display_options() you will recieve an array to put in any errors.
-	*	Using &$error allows you to put any error in the array and then return.  If this is done the system will call display_options again and output any error
+	*	Using &$error allows you to put any error in the array and then return. If this is done the system will call display_options again and output any error
 	*	If you used Method 2 for display_options the errors will be outputted automatically
 	*/
 	function run_tool(&$error)
@@ -110,7 +111,7 @@ class tutorial
 		/*
 		* If Method 2 was used you must check the form key to verify that it is sent and correct for security reasons.
 		*
-		* For the string to send for the check, use the name of this file.  The form key has already been added by the core automatically so you do not need to set it up.
+		* For the string to send for the check, use the name of this file. The form key has already been added by the core automatically so you do not need to set it up.
 		*/
 		if (!check_form_key('tutorial'))
 		{

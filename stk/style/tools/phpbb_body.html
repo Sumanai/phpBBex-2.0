@@ -1,24 +1,21 @@
 <!-- INCLUDE overall_header.html -->
-<script type="text/javascript">
-//<![CDATA[
+<script>
+
 function goBack() {
 	window.history.back()
 }
-//]]>
 </script>
 <!-- IF TREE -->
 <link rel="stylesheet" href="style/dtree.css" type="text/css" />
-<script type="text/javascript" src="style/dtree.js"></script>
+<script src="style/dtree.js"></script>
 	<h1>{L_PHPBB}</h1>
 	<div class="dtree">
 		<p><a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.openAll();">{L_EXPAND_VIEW}</a> | <a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.closeAll();">{L_COLLAPSE_VIEW}</a></p>
-		<script type="text/javascript">
-			<!--
+		<script>
 			d = new dTree('d');
 			d.add(0,-1,'{ROOT}');
 			{TREE}
 			document.write(d);
-			//-->
 		</script>
 	</div>
 	<br /><p style="font-size: 0.8em;">{TIME}</p>

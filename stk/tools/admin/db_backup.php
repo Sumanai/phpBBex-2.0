@@ -1,23 +1,23 @@
 <?php
 /**
- *
- * @package Support Toolkit - Database Backup
- * @copyright (c) 2015 phpBBGuru Sheer
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Database Backup
+* @copyright (c) 2015 phpBBGuru Sheer
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * Make backup selected tables of database
- */
+* Make backup selected tables of database
+*/
 class db_backup
 {
 	function display_options()
@@ -214,7 +214,7 @@ class db_backup
 		$tables = is_array($tables) ? $tables : explode(',', $tables);
 		$db_name = $db->get_db_name();
 
-		$sql = 'SHOW TABLE STATUS FROM '. $db_name .' WHERE '. $db->sql_in_set('Name', $tables) .'';
+		$sql = 'SHOW TABLE STATUS FROM ' . $db_name . ' WHERE ' . $db->sql_in_set('Name', $tables);
 		$result = $db->sql_query($sql);
 		$table_count = $records = 0;
 		while ($row = $db->sql_fetchrow($result))
@@ -249,7 +249,7 @@ class db_backup
 						'<br />-- Create Table `' . $table_name . '`'.
 						'<br />--<br />';
 				$data .= 'DROP TABLE IF EXISTS `' . $table_name . '`;<br />';
-				$sql = 'SHOW CREATE TABLE ' . $table_name . '';
+				$sql = 'SHOW CREATE TABLE ' . $table_name;
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
 				$data .= $row['Create Table'].";<br />";
@@ -268,7 +268,7 @@ class db_backup
 			$dump = '';
 			if ($type == 'full' || $type == 'data')
 			{
-				$sql = 'SELECT * FROM ' . $table_name . '';
+				$sql = 'SELECT * FROM ' . $table_name;
 				$result = $db->sql_query($sql);
 				$num_rows = $db->get_estimated_row_count($table_name);
 
@@ -496,7 +496,7 @@ class mysql_dumper_extractor extends dbbase_extractor
 		$tables = is_array($tables) ? $tables : explode(',', $tables);
 		$db_name = $db->get_db_name();
 
-		$sql = 'SHOW TABLE STATUS FROM '. $db_name .' WHERE '. $db->sql_in_set('Name', $tables) .'';
+		$sql = 'SHOW TABLE STATUS FROM ' . $db_name . ' WHERE ' . $db->sql_in_set('Name', $tables);
 		$result = $db->sql_query($sql);
 		$table_count = $records = 0;
 		while ($row = $db->sql_fetchrow($result))
@@ -600,7 +600,7 @@ class mysql_dumper_extractor extends dbbase_extractor
 				}
 				else
 				{
-					$query  .= ',(';
+					$query .= ',(';
 				}
 
 				for ($j = 0; $j < $fields_cnt; $j++)
@@ -684,7 +684,7 @@ class mysql_dumper_extractor extends dbbase_extractor
 				}
 				else
 				{
-					$query  .= ',(';
+					$query .= ',(';
 				}
 
 				for ($j = 0; $j < $fields_cnt; $j++)
@@ -736,7 +736,7 @@ class mysql_dumper_extractor extends dbbase_extractor
 
 		$sql_data = "\n--".
 					"\n-- Create Table `" . $table_name . "`".
-			 		"\n--\n\n";
+					"\n--\n\n";
 		$sql_data .= "DROP TABLE IF EXISTS $table_name;\n";
 		$sql_data .= $row['Create Table'] . ";\n\n";
 		$sql_data .= "--\n-- Data for Table `" . $table_name . "`\n--\n\n/*!40000 ALTER TABLE `" . $table_name . "` DISABLE KEYS */;\n";

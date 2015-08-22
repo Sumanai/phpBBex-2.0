@@ -1,29 +1,29 @@
 <?php
 /**
- *
- * @package Support Toolkit - Prune Attachments
- * @copyright (c) 2015 phpBBGuru Sheer
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Prune Attachments
+* @copyright (c) 2015 phpBBGuru Sheer
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * Make sure that all attachments files on the database
- */
+* Make sure that all attachments files on the database
+*/
 class prune_attachments
 {
 	/**
-	 * The number of files
-	 * @var Integer
-	 */
+	* The number of files
+	* @var Integer
+	*/
 	var $_batch_size = 500;
 
 	function display_options()
@@ -43,7 +43,7 @@ class prune_attachments
 			ignore_user_abort(true);
 			set_time_limit(0);
 
-			$dir = '' . PHPBB_ROOT_PATH . '' . $config['upload_path'];
+			$dir = PHPBB_ROOT_PATH . $config['upload_path'];
 			$files_list = $cache->get('_stk_prune_attachments'); // Try get data from cache
 			if(!$files_list)
 			{
@@ -62,7 +62,7 @@ class prune_attachments
 						$ais_folder_2 = substr(substr($data['attach_id'] + 1000000, -4), 0, 2);
 						$ais_path_to_add = '/' . $ais_folder_1 . '/' . $ais_folder_2;
 						$bd_files[] = $dir . $ais_path_to_add . '/' . $data['physical_filename'];
-						$bd_files[] = $dir . $ais_path_to_add . '/' .  'thumb_' . $data['physical_filename'];
+						$bd_files[] = $dir . $ais_path_to_add . '/' . 'thumb_' . $data['physical_filename'];
 					}
 					else
 					{
@@ -122,7 +122,7 @@ class prune_attachments
 
 			if(sizeof($unsuccess))
 			{
-				$list .= '' . $user->lang['PRUNE_ATTACHMENTS_FAIL'] . '<br />' . implode('<br />', $unsuccess) . '';
+				$list .= $user->lang['PRUNE_ATTACHMENTS_FAIL'] . '<br />' . implode('<br />', $unsuccess);
 			}
 
 			if($exit)
@@ -130,17 +130,17 @@ class prune_attachments
 				$cache->destroy('_stk_prune_attachments');
 				if ((sizeof($unsuccess)))
 				{
-					trigger_error(''.$list.'', E_USER_WARNING);
+					trigger_error($list, E_USER_WARNING);
 				}
 				else
 				{
-					trigger_error(''.$list.'');
+					trigger_error($list);
 				}
 			}
 			else
 			{
-				meta_refresh(3, append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=prune_attachments&sa=true'));
-				trigger_error('' . $user->lang['PRUNE_ATTACHMENTS_PROGRESS'] . '<br />' . $list . '');
+				meta_refresh(3, append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=admin&amp;t=prune_attachments&sa=true'));
+				trigger_error($user->lang['PRUNE_ATTACHMENTS_PROGRESS'] . '<br />' . $list);
 			}
 		}
 
@@ -165,7 +165,7 @@ function scan($path,&$res)
 	{
 		if($mass[$i] != '..' && $mass[$i] != '.' && $mass[$i] != 'index.htm' && $mass[$i] != '.htaccess')
 		{
-			array_push($res, '' . $path . '/' . $mass[$i] . '');
+			array_push($res, $path . '/' . $mass[$i]);
 		}
 		if(!strstr($mass[$i], '.'))
 		{

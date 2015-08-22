@@ -1,17 +1,17 @@
 <?php
 /**
- *
- * @author Nathan Guse (EXreaction) http://lithiumstudios.org
- * @author David Lewis (Highway of Life) highwayoflife@gmail.com
- * @package umil
- * @copyright (c) 2008 phpBB Group
- * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
- *
- */
+*
+* @author Nathan Guse (EXreaction) http://lithiumstudios.org
+* @author David Lewis (Highway of Life) highwayoflife@gmail.com
+* @package umil
+* @copyright (c) 2008 phpBB Group
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -93,7 +93,7 @@ class umil
 	var $command = '';
 
 	/**
-	* This will hold the text output for the result of the command.  $user->lang['SUCCESS'] if everything worked.
+	* This will hold the text output for the result of the command. $user->lang['SUCCESS'] if everything worked.
 	*
 	* @var string
 	*/
@@ -125,7 +125,7 @@ class umil
 	var $db_tools = false;
 
 	/**
-	* Do we want a custom prefix besides the phpBB table prefix?  You *probably* should not change this...
+	* Do we want a custom prefix besides the phpBB table prefix? You *probably* should not change this...
 	*/
 	var $table_prefix = false;
 
@@ -173,7 +173,7 @@ class umil
 			}
 			else
 			{*/
-				// Include the umil language file.  First we check if the language file for the user's language is available, if not we check if the board's default language is available, if not we use the english file.
+				// Include the umil language file. First we check if the language file for the user's language is available, if not we check if the board's default language is available, if not we use the english file.
 				if (isset($user->data['user_lang']) && file_exists("{$phpbb_root_path}umil/language/{$user->data['user_lang']}/umil.$phpEx"))
 				{
 					$path = $user->data['user_lang'];
@@ -233,7 +233,7 @@ class umil
 	{
 		global $user;
 
-		// Set up the command.  This will get the arguments sent to the function.
+		// Set up the command. This will get the arguments sent to the function.
 		$args = func_get_args();
 		$this->command = call_user_func_array(array($this, 'get_output_text'), $args);
 
@@ -252,7 +252,7 @@ class umil
 	{
 		global $user;
 
-		// Set up the result.  This will get the arguments sent to the function.
+		// Set up the result. This will get the arguments sent to the function.
 		$args = func_get_args();
 		$result = call_user_func_array(array($this, 'get_output_text'), $args);
 		$this->result = ($result) ? $result : $this->result;
@@ -302,7 +302,7 @@ class umil
 	{
 		global $user;
 
-		// Set up the command.  This will get the arguments sent to the function.
+		// Set up the command. This will get the arguments sent to the function.
 		$args = func_get_args();
 		if (sizeof($args))
 		{
@@ -561,8 +561,8 @@ class umil
 	*
 	* This function is for purging either phpBB3’s data cache, authorization cache, or the styles cache.
 	*
-	* @param string $type The type of cache you want purged.  Available types: auth, imageset, template, theme.  Anything else sent will purge the forum's cache.
-	* @param int $style_id The id of the item you want purged (if the type selected is imageset/template/theme, 0 for all items in that section)
+	* @param	string	$type		The type of cache you want purged. Available types: auth, imageset, template, theme. Anything else sent will purge the forum's cache.
+	* @param	int		$style_id	The id of the item you want purged (if the type selected is imageset/template/theme, 0 for all items in that section)
 	*/
 	function cache_purge($type = '', $style_id = 0)
 	{
@@ -1070,7 +1070,7 @@ class umil
 	* Check if a module exists
 	*
 	* @param string $class The module class(acp|mcp|ucp)
-	* @param int|string|bool $parent The parent module_id|module_langname (0 for no parent).  Use false to ignore the parent check and check class wide.
+	* @param int|string|bool $parent The parent module_id|module_langname (0 for no parent). Use false to ignore the parent check and check class wide.
 	* @param int|string $module The module_id|module_langname you would like to check for to see if it exists
 	*/
 	function module_exists($class, $parent, $module)
@@ -1135,8 +1135,8 @@ class umil
 	*
 	* @param string $class The module class(acp|mcp|ucp)
 	* @param int|string $parent The parent module_id|module_langname (0 for no parent)
-	* @param array $data an array of the data on the new module.  This can be setup in two different ways.
-	*	1. The "manual" way.  For inserting a category or one at a time.  It will be merged with the base array shown a bit below,
+	* @param array $data an array of the data on the new module. This can be setup in two different ways.
+	*	1. The "manual" way. For inserting a category or one at a time. It will be merged with the base array shown a bit below,
 	*		but at the least requires 'module_langname' to be sent, and, if you want to create a module (instead of just a category) you must send module_basename and module_mode.
 	* array(
 	*		'module_enabled'	=> 1,
@@ -1148,14 +1148,14 @@ class umil
 	*		'module_mode'		=> '',
 	*		'module_auth'		=> '',
 	*	)
-	*	2. The "automatic" way.  For inserting multiple at a time based on the specs in the info file for the module(s).  For this to work the modules must be correctly setup in the info file.
+	*	2. The "automatic" way. For inserting multiple at a time based on the specs in the info file for the module(s). For this to work the modules must be correctly setup in the info file.
 	*		An example follows (this would insert the settings, log, and flag modes from the includes/acp/info/acp_asacp.php file):
 	* array(
 	* 		'module_basename'	=> 'asacp',
 	* 		'modes'				=> array('settings', 'log', 'flag'),
 	* )
-	* 		Optionally you may not send 'modes' and it will insert all of the modules in that info file.
-	*  @param string|bool $include_path If you would like to use a custom include path, specify that here
+	*		Optionally you may not send 'modes' and it will insert all of the modules in that info file.
+	* @param string|bool $include_path If you would like to use a custom include path, specify that here
 	*/
 	function module_add($class, $parent = 0, $data = array(), $include_path = false)
 	{
@@ -1174,7 +1174,7 @@ class umil
 			return $this->umil_end('FAIL');
 		}
 
-        // Allows '' to be sent as 0
+		// Allows '' to be sent as 0
 		$parent = (!$parent) ? 0 : $parent;
 
 		// allow sending the name as a string in $data to create a category
@@ -1348,7 +1348,7 @@ class umil
 	* Remove a module
 	*
 	* @param string $class The module class(acp|mcp|ucp)
-	* @param int|string|bool $parent The parent module_id|module_langname (0 for no parent).  Use false to ignore the parent check and check class wide.
+	* @param int|string|bool $parent The parent module_id|module_langname (0 for no parent). Use false to ignore the parent check and check class wide.
 	* @param int|string $module The module id|module_langname
 	* @param string|bool $include_path If you would like to use a custom include path, specify that here
 	*/
@@ -1595,7 +1595,7 @@ class umil
 		}
 		$auth_admin = new auth_admin();
 
-		// We have to add a check to see if the !$global (if global, local, and if local, global) permission already exists.  If it does, acl_add_option currently has a bug which would break the ACL system, so we are having a work-around here.
+		// We have to add a check to see if the !$global (if global, local, and if local, global) permission already exists. If it does, acl_add_option currently has a bug which would break the ACL system, so we are having a work-around here.
 		if ($this->permission_exists($auth_option, !$global))
 		{
 			$sql_ary = array(
@@ -2166,7 +2166,7 @@ class umil
 		}
 		else
 		{*/
-			$dbms=  str_replace('phpbb\\db\\driver\\', '', $dbms);
+			$dbms= str_replace('phpbb\\db\\driver\\', '', $dbms);
 			$available_dbms = get_available_dbms($dbms);
 
 			$sql_query = $this->create_table_sql($table_name, $table_data);
@@ -2267,7 +2267,7 @@ class umil
 	/**
 	* Table Column Update
 	*
-	* Alter/Update a column in a table.  You can not change a column name with this.
+	* Alter/Update a column in a table. You can not change a column name with this.
 	*/
 	function table_column_update($table_name, $column_name = '', $column_data = array())
 	{
@@ -2447,7 +2447,7 @@ class umil
 	*
 	* Update a row in a table
 	*
-	* $data should be an array with the column names as keys and values as the items to check for each column.  Example:
+	* $data should be an array with the column names as keys and values as the items to check for each column. Example:
 	* array('user_id' => 123, 'user_name' => 'test user') would become:
 	* WHERE user_id = 123 AND user_name = 'test user'
 	*
@@ -2488,7 +2488,7 @@ class umil
 	*
 	* Remove a row from a table
 	*
-	* $data should be an array with the column names as keys and values as the items to check for each column.  Example:
+	* $data should be an array with the column names as keys and values as the items to check for each column. Example:
 	* array('user_id' => 123, 'user_name' => 'test user') would become:
 	* WHERE user_id = 123 AND user_name = 'test user'
 	*/
@@ -2833,10 +2833,10 @@ class umil
 				case 'mssql':
 				case 'mssqlnative':
 					$sql .= "ALTER TABLE [{$table_name}] WITH NOCHECK ADD \n";
-					$sql .= "\tCONSTRAINT [PK_{$table_name}] PRIMARY KEY  CLUSTERED \n";
+					$sql .= "\tCONSTRAINT [PK_{$table_name}] PRIMARY KEY CLUSTERED \n";
 					$sql .= "\t(\n";
 					$sql .= "\t\t[" . implode("],\n\t\t[", $table_data['PRIMARY_KEY']) . "]\n";
-					$sql .= "\t)  ON [PRIMARY] \n";
+					$sql .= "\t) ON [PRIMARY] \n";
 					$sql .= "GO\n\n";
 				break;
 
@@ -2919,8 +2919,8 @@ class umil
 
 					case 'mssql':
 					case 'mssqlnative':
-						$sql .= ($key_data[0] == 'INDEX') ? 'CREATE  INDEX' : '';
-						$sql .= ($key_data[0] == 'UNIQUE') ? 'CREATE  UNIQUE  INDEX' : '';
+						$sql .= ($key_data[0] == 'INDEX') ? 'CREATE INDEX' : '';
+						$sql .= ($key_data[0] == 'UNIQUE') ? 'CREATE UNIQUE INDEX' : '';
 						$sql .= " [{$key_name}] ON [{$table_name}]([" . implode('], [', $key_data[1]) . "]) ON [PRIMARY]\n";
 						$sql .= "GO\n\n";
 					break;

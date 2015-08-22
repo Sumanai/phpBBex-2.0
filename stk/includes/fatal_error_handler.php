@@ -34,4 +34,3 @@ function fatal_error_handler()
 }
 
 register_shutdown_function('fatal_error_handler');
-?>

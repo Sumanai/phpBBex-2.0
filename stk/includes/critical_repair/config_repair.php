@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -332,7 +332,7 @@ class erk_config_repair
 		if (is_array($db->sql_connect($dbhost, $dbuser, $dbpasswd, $dbname, $dbport, false, true)))
 		{
 			$db_error = $db->sql_error();
-			$error[] = ' '. $user->lang['INST_ERR_DB_CONNECT'] . '' . '<br />' . (($db_error['message']) ? $db_error['message'] : ''.$user->lang['INST_ERR_DB_NO_ERROR'].'');
+			$error[] = ' ' . $user->lang['INST_ERR_DB_CONNECT'] . '<br />' . (($db_error['message']) ? $db_error['message'] : $user->lang['INST_ERR_DB_NO_ERROR']);
 		}
 		else
 		{

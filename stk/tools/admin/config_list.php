@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -49,7 +49,7 @@ class config_list
 			}
 			$cache->purge();
 
-			meta_refresh(3, append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=config_list&amp;start=' . $start . ''));
+			meta_refresh(3, append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=admin&amp;t=config_list&amp;start=' . $start));
 			trigger_error('CONFIG_CHANGED_SUCCESS');
 		}
 
@@ -301,7 +301,7 @@ class config_list
 				default:
 				break;
 			}
-			$sql_where = ' WHERE ' . $db->sql_in_set('config_name', $where) . '';
+			$sql_where = ' WHERE ' . $db->sql_in_set('config_name', $where);
 		}
 
 		page_header($user->lang['CONFIG_LIST']);
@@ -360,15 +360,15 @@ class config_list
 
 		// Build Pagination URL
 		$pagination = $phpbb_container->get('pagination');
-		$base_url = append_sid(STK_INDEX, 't=config_list&amp;go=1&amp;limit=' . $limit . '&amp;display=' . $display . '');
+		$base_url = append_sid(STK_INDEX, 't=config_list&amp;go=1&amp;limit=' . $limit . '&amp;display=' . $display);
 		$pagination->generate_template_pagination($base_url, 'pagination', 'start', $count, $limit, $start);
 
 		$template->assign_vars(array(
 			'TOTAL_ITEMS'		=> $count,
 			'LIMIT'				=> $limit,
-			'A_BASE_URL'		=> append_sid(STK_INDEX, array('c' => 'admin', 't' => 'config_list', 'limit' => '' . $limit . '&amp;display=' . $display . '', 'go' => 1)),
+			'A_BASE_URL'		=> append_sid(STK_INDEX, array('c' => 'admin', 't' => 'config_list', 'limit' => $limit . '&amp;display=' . $display, 'go' => 1)),
 			'U_DISPLAY_ACTION'	=> append_sid(STK_INDEX, 't=config_list&amp;go=1'),
-			'S_ACTION'			=> append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=config_list&amp;start=' . $start . '$amp;limit=' . $limit . '&amp;display=' . $display . ''),
+			'S_ACTION'			=> append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=admin&amp;t=config_list&amp;start=' . $start . '$amp;limit=' . $limit . '&amp;display=' . $display),
 		));
 
 		$template->set_filenames(array(

@@ -1,4 +1,4 @@
-/*  phpBB 3.0 Admin Style Sheet
+/*	phpBB 3.0 Admin Style Sheet
 	------------------------------------------------------------------------
 	Original author:	subBlue ( http://www.subblue.com/ )
 	Copyright 2007 phpBB Group ( http://www.phpbb.com/ )
@@ -114,7 +114,7 @@ hr {
 	width: 49%;
 }
 
-/* General links  */
+/* General links */
 a:link, a:visited {
 	color: #105289;
 	text-decoration: none;
@@ -552,7 +552,7 @@ table.type2 td.name {
 	vertical-align: middle;
 }
 
-table.type3  {
+table.type3 {
 	float: right;
 	width: 300px;
 	border: none;
@@ -1138,7 +1138,7 @@ li.pagination ul {
 	border-color: #B4BAC0;
 }
 
-.pagination li.ellipsis  span {
+.pagination li.ellipsis span {
 	background-color: transparent;
 	color: #000000;
 }

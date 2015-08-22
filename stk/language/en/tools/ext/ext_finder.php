@@ -61,7 +61,7 @@ $lang = array_merge($lang, array(
 	'PERMISSION'				=> 'Permission',
 
 	'PATH'				=> 'PATH, RELATED ./ext',
-	'INFO'				=> 'INFO (name/version  - description)',
+	'INFO'				=> 'INFO (name/version - description)',
 	'NOT_IN_EXT'		=> '<em>Element is not part of any expansion, the appointment is unknown</em>',
 
 	'EXTRA_EXPLAIN'		=> 'the status of the extension, its name, version and brief description. Active extension <b style="color: #282">highlighted in green</b>.',

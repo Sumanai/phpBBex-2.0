@@ -1,51 +1,51 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resynchronise Users groups
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resynchronise Users groups
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**
- * The class that handles the resync of the registered users
- * group
- */
+* The class that handles the resync of the registered users
+* group
+*/
 class resync_registered
 {
 	/**
-	 * The `resync_user_groups` object
-	 * @var resync_user_groups
-	 */
+	* The `resync_user_groups` object
+	* @var resync_user_groups
+	*/
 	var $parent = null;
 
 	/**
-	 * Constructor
-	 */
+	* Constructor
+	*/
 	function resync_registered($main_object)
 	{
 		$this->parent = $main_object;
 	}
 
 	/**
-	 * Make sure that this process can/must be run
-	 */
+	* Make sure that this process can/must be run
+	*/
 	function can_run()
 	{
 		return $this->_fetch_users(true);
 	}
 
 	/**
-	 * Resync this group
-	 */
+	* Resync this group
+	*/
 	function resync()
 	{
 		global $config, $db;
@@ -89,10 +89,10 @@ class resync_registered
 	}
 
 	/**
-	 * Grep the users that aren't in the groups
-	 * @param  Boolean $missing If true this function will return whether there are users 
-	 *                          missing
-	 */
+	* Grep the users that aren't in the groups
+	* @param	Boolean	$missing	If true this function will return whether there are users 
+	*								missing
+	*/
 	function _fetch_users($missing = false)
 	{
 		global $db;
@@ -133,11 +133,11 @@ class resync_registered
 	}
 
 	/**
-	 * When coppa is enabled determine the correct group this user is
-	 * put into
-	 * @param  String $birthday The birthday of the user
-	 * @return String The correct group
-	 */
+	* When coppa is enabled determine the correct group this user is
+	* put into
+	* @param	String	$birthday	The birthday of the user
+	* @return	String	The correct group
+	*/
 	function _get_new_group($birthday)
 	{
 		// Only determine the COPPA limit once
@@ -171,9 +171,9 @@ class resync_registered
 	}
 
 	/**
-	 * Fetch the group IDs of the two groups
-	 * @return void
-	 */
+	* Fetch the group IDs of the two groups
+	* @return void
+	*/
 	function _get_group_ids()
 	{
 		global $db;

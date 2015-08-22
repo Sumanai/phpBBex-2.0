@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -67,9 +67,9 @@ class extensions
 			}
 			if(empty($error))
 			{
-				$ext_dir = '' . $phpbb_root_path . 'ext/' . $vendor;
+				$ext_dir = $phpbb_root_path . 'ext/' . $vendor;
 				$handle = @opendir($ext_dir);
-				$new_dir = '' . $ext_dir . '/' . $ext_name . '';
+				$new_dir = $ext_dir . '/' . $ext_name;
 				if(!$handle)
 				{
 					mkdir($ext_dir);
@@ -81,15 +81,15 @@ class extensions
 				if(empty($error))
 				{
 					mkdir($new_dir);
-					mkdir('' . $new_dir . '/event');
-					mkdir('' . $new_dir . '/config');
-					mkdir('' . $new_dir . '/language');
-					mkdir('' . $new_dir . '/language/en');
-					mkdir('' . $new_dir . '/migrations');
-					mkdir('' . $new_dir . '/styles');
-					mkdir('' . $new_dir . '/styles/all');
-					mkdir('' . $new_dir . '/styles/all/template');
-					mkdir('' . $new_dir . '/styles/all/template/event');
+					mkdir($new_dir . '/event');
+					mkdir($new_dir . '/config');
+					mkdir($new_dir . '/language');
+					mkdir($new_dir . '/language/en');
+					mkdir($new_dir . '/migrations');
+					mkdir($new_dir . '/styles');
+					mkdir($new_dir . '/styles/all');
+					mkdir($new_dir . '/styles/all/template');
+					mkdir($new_dir . '/styles/all/template/event');
 
 					// Create composer.json
 					$data = "{\n    \"name\": \"" . $vendor . "/" . $ext_name . "\",\n";

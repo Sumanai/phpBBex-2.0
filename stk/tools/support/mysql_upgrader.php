@@ -8,8 +8,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -18,20 +18,20 @@ if (!defined('IN_PHPBB'))
 class mysql_upgrader
 {
 	/**
-	 * The database cleaner object
-	 * @var database_cleaner
-	 */
+	* The database cleaner object
+	* @var database_cleaner
+	*/
 	var $_db_cleaner = null;
 
 	/**
-	 * The build script
-	 * @var string
-	 */
+	* The build script
+	* @var string
+	*/
 	var $_upgrader = '';
 
 	/**
-	 * Do we have a datafile for this version?
-	 */
+	* Do we have a datafile for this version?
+	*/
 	function tool_active()
 	{
 		// Only available for MySQL DBMS
@@ -54,8 +54,8 @@ class mysql_upgrader
 	}
 
 	/**
-	 * Display Options
-	 */
+	* Display Options
+	*/
 	function display_options()
 	{
 		global $cache, $error;
@@ -79,15 +79,15 @@ class mysql_upgrader
 			'title'	=> 'MYSQL_UPGRADER',
 			'vars'	=> array(
 				'legend1'	=> 'MYSQL_UPGRADER',
-				'download'	=> array('lang'  => 'MYSQL_UPGRADER_DOWNLOAD', 'type' => 'checkbox:mode', 'default' => true, 'explain' => 'true'),
-				'run'		=> array('lang'  => 'MYSQL_UPGRADER_RUN', 'type' => 'checkbox:mode', 'explain' => 'true'),
+				'download'	=> array('lang' => 'MYSQL_UPGRADER_DOWNLOAD', 'type' => 'checkbox:mode', 'default' => true, 'explain' => 'true'),
+				'run'		=> array('lang' => 'MYSQL_UPGRADER_RUN', 'type' => 'checkbox:mode', 'explain' => 'true'),
 			),
 		);
 	}
 
 	/**
-	 * Run Tool
-	 */
+	* Run Tool
+	*/
 	function run_tool()
 	{
 		global $cache, $db, $dbname, $table_prefix, $template, $umil;
@@ -285,10 +285,10 @@ class mysql_upgrader
 	}
 
 	/**
-	 * Download the MySQL Upgrader script
-	 * @access private
-	 * @return void
-	 */
+	* Download the MySQL Upgrader script
+	* @access private
+	* @return void
+	*/
 	function _download_result()
 	{
 		global $cache;
@@ -311,10 +311,10 @@ class mysql_upgrader
 	}
 
 	/**
-	 * Directly run the script
-	 * @access private
-	 * @return void
-	 */	
+	* Directly run the script
+	* @access private
+	* @return void
+	*/
 	function _run_result()
 	{
 		global $cache, $umil;

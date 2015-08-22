@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -32,13 +32,13 @@ class erk_files_repair
 		);
 
 		// Find style components folders
-		$styles_path = ''. PHPBB_ROOT_PATH .'styles/';
+		$styles_path = PHPBB_ROOT_PATH . 'styles/';
 		$tyles = $this->find_style_dirs($styles_path);
 		$styles_cheched_path = array();
 		foreach($tyles as $style)
 		{
-			$styles_cheched_path[] =  'styles/' .$style. '/template';
-			$styles_cheched_path[] =  'styles/' .$style. '/theme/images';
+			$styles_cheched_path[] = 'styles/' . $style . '/template';
+			$styles_cheched_path[] = 'styles/' . $style . '/theme/images';
 		}
 		$paths_index = array_merge($paths_index, $styles_cheched_path);
 
@@ -48,7 +48,7 @@ class erk_files_repair
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$lang_pahts[] = 'language/' . $row['lang_dir'] . '';
+			$lang_pahts[] = 'language/' . $row['lang_dir'];
 		}
 		$db->sql_freeresult($result);
 
@@ -75,13 +75,13 @@ class erk_files_repair
 	}
 
 	/**
-	 * Find specified file $searched_file in folders $paths
-	 */
+	* Find specified file $searched_file in folders $paths
+	*/
 	function find_file($paths, $searched_file)
 	{
 		foreach($paths as $path)
 		{
-			$file_path = '' . PHPBB_ROOT_PATH . '' . $path . '/' . $searched_file . '';
+			$file_path = PHPBB_ROOT_PATH . $path . '/' . $searched_file;
 			if (file_exists($file_path))
 			{
 				continue;
@@ -95,8 +95,8 @@ class erk_files_repair
 	}
 
 	/**
-	 * Find folders with phpBB styles components
-	 */
+	* Find folders with phpBB styles components
+	*/
 	function find_style_dirs($styles_path)
 	{
 		$styles = array();
@@ -123,8 +123,8 @@ class erk_files_repair
 	}
 
 	/**
-	 * Try to repair specified file $file
-	 */
+	* Try to repair specified file $file
+	*/
 	function repair_file($file)
 	{
 		preg_match("#[^/]*$#i", $file, $match);
@@ -147,7 +147,7 @@ class erk_files_repair
 
 		$written = true;
 
-		//  Try open to write
+		// Try open to write
 		if (!($fp = @fopen($file, 'w')))
 		{
 			// Something went wrong
@@ -166,7 +166,7 @@ class erk_files_repair
 
 		if(!$written)
 		{
-			trigger_error('Cannot write file ' . $file . '');
+			trigger_error('Cannot write file ' . $file);
 		}
 
 		return;

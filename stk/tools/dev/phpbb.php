@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -38,7 +38,7 @@ class phpbb
 				'FILE_NAME'		=> $file_name,
 			));
 
-			$file_name = ''. $dir . '' . $file_name . '';
+			$file_name = $dir . $file_name;
 			$handle = @fopen($file_name, 'r');
 			if($handle)
 			{
@@ -122,9 +122,9 @@ class phpbb
 				if (!in_array($extension, $exclude_ext))
 				{
 					$filecount++;
-					$this_link = '' . $path . '/'. $name;
+					$this_link = $path . '/'. $name;
 					$this_link = str_replace(PHPBB_ROOT_PATH, '', $this_link);
-					$link = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'phpbb', 'f' => '' . $this_link . ''));
+					$link = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'phpbb', 'f' => $this_link));
 					$list[] = "d.add(" . $filecount . "," . $parent . ",'" . $name . "','" . $link . "');";
 				}
 			}
@@ -146,7 +146,7 @@ class phpbb
 		global $dirs;
 		foreach($exclude_paths as $ex)
 		{
-			$exclude[] = PHPBB_ROOT_PATH . '/' . $ex . '';
+			$exclude[] = PHPBB_ROOT_PATH . '/' . $ex;
 		}
 		if (!in_array($path, $exclude))
 		{

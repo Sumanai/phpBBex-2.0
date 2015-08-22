@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -33,7 +33,7 @@ class erk_style_repair
 		$data = $db->sql_fetchrow($result);
 		if (empty($data))
 		{
-			// Styles appear to be broken.  Attempt automatic repair
+			// Styles appear to be broken. Attempt automatic repair
 			$this->repair();
 		}
 		$db->sql_freeresult($result);

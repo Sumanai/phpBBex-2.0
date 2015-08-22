@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -115,12 +115,12 @@ class critical_repair
 	}
 
 	/**
-	 * Trigger an error message, this method *must* be called when an ERK tool
-	 * encounters an error. You can not rely on msg_handler!
-	 * @param	String|Array	$msg				The error message or an string array containing multiple lines
-	 * @param	Boolean			$redirect_stk		Show a backlink to the STK, otherwise to the ERK
-	 * @return	void
-	 */
+	* Trigger an error message, this method *must* be called when an ERK tool
+	* encounters an error. You can not rely on msg_handler!
+	* @param	String|Array	$msg				The error message or an string array containing multiple lines
+	* @param	Boolean			$redirect_stk		Show a backlink to the STK, otherwise to the ERK
+	* @return	void
+	*/
 	function trigger_error($msg, $redirect_stk = false)
 	{
 		global $user;
@@ -185,7 +185,7 @@ class critical_repair
 									}
 									else
 									{
-										$msg = sprintf($user->lang['RELOAD_ARK'], ''.STK_ROOT_PATH.'erk.'.PHP_EXT.'');
+										$msg = sprintf($user->lang['RELOAD_ARK'], STK_ROOT_PATH . 'erk.' . PHP_EXT);
 										echo $msg;
 									}
 									?>
@@ -264,11 +264,11 @@ class critical_repair
 
 			$user = new \phpbb\user('\phpbb\datetime');
 			$lang_path = $user->lang_path;
-			$lang_path = '' . $lang_path . '' . $language . '';
-			$user->lang_path = '' . PHPBB_ROOT_PATH . '' . $lang_path . '';
+			$lang_path = $lang_path . $language;
+			$user->lang_path = PHPBB_ROOT_PATH . $lang_path;
 			$user->data['user_lang'] = $language;
-			$user->add_lang(array(), array(), 'install.'. PHP_EXT . '');
-			$user->add_lang(array(), array(), 'common.'. PHP_EXT . '');
+			$user->add_lang(array(), array(), 'install.'. PHP_EXT);
+			$user->add_lang(array(), array(), 'common.'. PHP_EXT);
 			$user->lang_path = $lang_path;
 		}
 		return $user;

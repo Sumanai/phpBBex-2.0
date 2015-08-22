@@ -1,42 +1,42 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resync Avatars
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resync Avatars
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
 
 /**@#+
- * Some modes
- */
+* Some modes
+*/
 define ('RESYNC_USER_AVATARS', 1);
 define ('RESYNC_GROUP_AVATARS', 2);
 /**@#-*/
 
 /**
- * Make sure that all avatars on the forum actually have a file
- */
+* Make sure that all avatars on the forum actually have a file
+*/
 class resync_avatars
 {
 	/**
-	 * The number of users tested per run
-	 * @var Integer
-	 */
+	* The number of users tested per run
+	* @var Integer
+	*/
 	var $_batch_size = 500;
 
 	/**
-	 * Options
-	 * @return String
-	 */
+	* Options
+	* @return String
+	*/
 	function display_options()
 	{
 		return 'RESYNC_AVATARS';

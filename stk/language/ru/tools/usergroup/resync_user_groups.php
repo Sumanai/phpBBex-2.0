@@ -1,11 +1,11 @@
 <?php
 /**
- *
- * @package Support Toolkit - Resynchronise Registered users groups Russian language Sheer
- * @copyright (c) 2009 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit - Resynchronise Registered users groups Russian language Sheer
+* @copyright (c) 2009 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
 * DO NOT CHANGE
@@ -50,5 +50,5 @@ $lang = array_merge($lang, array(
 	'RUN_RR_EXPLAIN'				=> 'Обнаружено что не все ваши пользователи относятся к группе Зарегистрированные пользователи. Внести их в данную группу?',
 	'RUN_RR_FINISHED'				=> 'Пользователи были успешно проверены на принадлежность к стандартным группам!',
 
-	'SELECT_RUN_GROUP'				 => 'Выделите необходимые группы для проверки.',
+	'SELECT_RUN_GROUP'				=> 'Выделите необходимые группы для проверки.',
 ));

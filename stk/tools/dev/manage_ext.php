@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -146,7 +146,7 @@ class manage_ext
 					'S_EDIT'	=> true,
 					'CONTENT'	=> $contents,
 					'FILE'		=> $file_name,
-					'S_ACTION'	=> append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'edit', 'f' => $file_name,  'e' => $ext, 'n' => $name, 'save' => 1)),
+					'S_ACTION'	=> append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'edit', 'f' => $file_name, 'e' => $ext, 'n' => $name, 'save' => 1)),
 				));
 
 			break;
@@ -274,12 +274,12 @@ class manage_ext
 				if (!in_array($extension, $exclude_ext))
 				{
 					$filecount++;
-					$this_link = '' . $path . '/'. $name;
+					$this_link = $path . '/'. $name;
 					$this_link = str_replace(PHPBB_ROOT_PATH, '', $this_link);
 
-					$link = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'edit', 'e' => $ext_path, 'n' => $ext_name, 'f' => '' . $this_link . ''));
-					$rename = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'rename', 'e' => $ext_path, 'n' => $ext_name, 'f' => '' . $this_link . ''));
-					$del = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'delete', 'e' => $ext_name, 'n' => $ext_path, 'f' => '' . $this_link . ''));
+					$link = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'edit', 'e' => $ext_path, 'n' => $ext_name, 'f' => $this_link));
+					$rename = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'rename', 'e' => $ext_path, 'n' => $ext_name, 'f' => $this_link));
+					$del = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'delete', 'e' => $ext_name, 'n' => $ext_path, 'f' => $this_link));
 
 					$list[] = "d.add(" . $filecount . ", " . $parent . ", '" . $name . "', '" . $link . "', '" . $user->lang['EDIT'] . "', '', '', '', '', '" . $del . "', '" . $rename . "', '" . $user->lang['DELETE'] . "', '" . $user->lang['RENAME'] . "');";
 				}
@@ -289,8 +289,8 @@ class manage_ext
 			{
 				$list_dir_count++;
 				$filecount++;
-				$rename = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'rename', 'e' => $ext_path, 'n' => $ext_name, 'f' => '' . $path . '/' . basename($folders[$i]) . ''));
-				$del = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'delete', 'e' => $ext_name, 'n' => $ext_path, 'f' => '' . $path . '/' . basename($folders[$i]) . ''));
+				$rename = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'rename', 'e' => $ext_path, 'n' => $ext_name, 'f' => $path . '/' . basename($folders[$i])));
+				$del = append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'delete', 'e' => $ext_name, 'n' => $ext_path, 'f' => $path . '/' . basename($folders[$i])));
 				$list[] = "d.add(" . $list_dir_count . "," . $parent . ",'" . basename($folders[$i]) . "', '', '', '', 'images/folder.gif', '', '', '" . $del . "' , '" . $rename . "', '" . $user->lang['DELETE'] . "', '" . $user->lang['RENAME'] . "');";
 				$this->list_dir($folders[$i], $list_dir_count);
 			}
@@ -304,7 +304,7 @@ class manage_ext
 		global $dirs;
 		foreach($exclude_paths as $ex)
 		{
-			$exclude[] = PHPBB_ROOT_PATH . '/' . $ex . '';
+			$exclude[] = PHPBB_ROOT_PATH . '/' . $ex;
 		}
 		if (!in_array($path, $exclude))
 		{

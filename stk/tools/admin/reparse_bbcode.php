@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -34,7 +34,7 @@ define('BBCODE_REPARSE_SIGS', 2);
 
 /**
 * @note: the backup feature currently only crates a backup of the posts that are
-* 		 being reparsed. There is not yet an interface to restore it!
+*		being reparsed. There is not yet an interface to restore it!
 */
 class reparse_bbcode
 {
@@ -59,9 +59,9 @@ class reparse_bbcode
 	var $data = array();
 
 	/**
-	 * The total number of posts when the "reparseall" flag is set
-	 * @var integer
-	 */
+	* The total number of posts when the "reparseall" flag is set
+	* @var integer
+	*/
 	var $max = 0;
 
 	/**
@@ -328,7 +328,7 @@ class reparse_bbcode
 						TOPICS_TABLE	=> 't',
 						USERS_TABLE		=> 'u',
 					),
-					'WHERE'		=> (($bitfield) ? "p.bbcode_bitfield <> '' AND " : '') . 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where . '',
+					'WHERE'		=> (($bitfield) ? "p.bbcode_bitfield <> '' AND " : '') . 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where,
 				);
 			break;
 
@@ -505,7 +505,7 @@ class reparse_bbcode
 
 		if ($next_mode === false)
 		{
-			trigger_error('' . user_lang('REPARSE_BBCODE_MODE', $mode) . '<br />' . user_lang('REPARSE_BBCODE_PROGRESS', ($_next_step * $this->step_size), $this->max) . '');
+			trigger_error(user_lang('REPARSE_BBCODE_MODE', $mode) . '<br />' . user_lang('REPARSE_BBCODE_PROGRESS', ($_next_step * $this->step_size), $this->max));
 		}
 		else
 		{
@@ -604,8 +604,8 @@ class reparse_bbcode
 
 	/**
 	* Reparse the current post
-	* @param Array $post_data All data related to this post. Will be updated by this
-	* 						  method.
+	* @param	Array	$post_data	All data related to this post. Will be updated by this
+	* 								method.
 	*/
 	function _reparse_post(&$post_data)
 	{

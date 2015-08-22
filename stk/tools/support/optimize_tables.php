@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -35,14 +35,14 @@ class optimize_tables
 				for($i = 0; $i < count($tables); $i++)
 				{
 					$fil = $tables[$i];
-					$sql = 'OPTIMIZE TABLE '.$tables[$i].'';
+					$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 					$db->sql_query($sql);
 				}
 				$message = $user->lang['SUCESS'];
 			}
 			else
 			{
-				$message =  $user->lang['NOTHING'];
+				$message = $user->lang['NOTHING'];
 			}
 			meta_refresh(3, $action);
 			trigger_error($message);

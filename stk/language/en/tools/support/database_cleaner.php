@@ -47,8 +47,8 @@ $lang = array_merge($lang, array(
 	'CONTINUE'						=> 'Continue',
 
 	'DATABASE_CLEANER'				=> 'Database Cleaner',
-	'DATABASE_CLEANER_EXTRA'		=> 'Any others are extra items added by modifications.  <strong>If the check box is selected it will be removed</strong>.',
-	'DATABASE_CLEANER_MISSING'		=> 'Any fields with a red background like this are missing items that should be added.  <strong>If the check box is selected it will be added</strong>.',
+	'DATABASE_CLEANER_EXTRA'		=> 'Any others are extra items added by modifications. <strong>If the check box is selected it will be removed</strong>.',
+	'DATABASE_CLEANER_MISSING'		=> 'Any fields with a red background like this are missing items that should be added. <strong>If the check box is selected it will be added</strong>.',
 	'DATABASE_CLEANER_SUCCESS'		=> 'The database cleaner has successfully finished all tasks!<br /><br />Please be sure to backup your database again.',
 	'DATABASE_CLEANER_WARNING'		=> 'This tool comes with NO WARRANTY and users of this tool should back up their entire database in case of a failure.<br /><br />Before continuing, make sure you have a database backup!',
 	'DATABASE_CLEANER_WELCOME'		=> 'Welcome to the Database Cleaner tool!<br /><br />This tool was designed to remove extra columns, rows, and tables from the database not present in the default installation of phpBB3, and to add missing database elements that may be needed.<br /><br />When you are ready to continue click the Continue button to start using the Database Cleaner tool (note that your board will be disabled until this is finished).',
@@ -84,7 +84,7 @@ $lang = array_merge($lang, array(
 	'QUIT'							=> 'Quit',
 
 	'RESET_BOTS'					=> 'Reset Bots',
-	'RESET_BOTS_EXPLAIN'			=> 'Would you like to reset the bots list to the default phpBB3 bot list?  All existing bots will be removed and be replaced with the default set.',
+	'RESET_BOTS_EXPLAIN'			=> 'Would you like to reset the bots list to the default phpBB3 bot list? All existing bots will be removed and be replaced with the default set.',
 	'RESET_BOTS_SKIP'				=> 'The bot reset has been skipped',
 	'RESET_BOT_SUCCESS'				=> 'The bots have been reset successfully!',
 	'RESET_MODULES'					=> 'Reset Modules',

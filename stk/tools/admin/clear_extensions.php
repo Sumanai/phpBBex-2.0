@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -96,7 +96,7 @@ class clear_extensions
 		}
 
 		$sql = 'SELECT *
-			FROM ' . EXT_TABLE . '';
+			FROM ' . EXT_TABLE;
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -104,10 +104,10 @@ class clear_extensions
 			$display_name = $root = $missing_path = '';
 			foreach($path as $key => $ext_path)
 			{
-				if($dir = @opendir('' . PHPBB_ROOT_PATH . 'ext/'.$root.''.$ext_path.''))
+				if($dir = @opendir(PHPBB_ROOT_PATH . 'ext/'.$root.$ext_path))
 				{
 					$file = readdir($dir);
-					$root = ''.$ext_path.'/';
+					$root = $ext_path.'/';
 				}
 				else
 				{
@@ -118,9 +118,9 @@ class clear_extensions
 
 			if(!$missing_path)
 			{
-				if (file_exists('' . PHPBB_ROOT_PATH . 'ext/'.$row['ext_name'].'/composer.json'))
+				if (file_exists(PHPBB_ROOT_PATH . 'ext/'.$row['ext_name'].'/composer.json'))
 				{
-					$buffer =  file_get_contents('' . PHPBB_ROOT_PATH . 'ext/'.$row['ext_name'].'/composer.json');
+					$buffer = file_get_contents(PHPBB_ROOT_PATH . 'ext/'.$row['ext_name'].'/composer.json');
 					if ($buffer)
 					{
 						$obj = json_decode($buffer);
@@ -147,7 +147,7 @@ class clear_extensions
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
-			'S_ACTION'		=> append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=clear_extensions'),
+			'S_ACTION'		=> append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=admin&amp;t=clear_extensions'),
 		));
 
 		$template->set_filenames(array(

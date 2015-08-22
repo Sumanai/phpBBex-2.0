@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -106,7 +106,7 @@ class user_copy_perm
 			if (sizeof($permissions))
 			{
 				$sql = 'DELETE FROM ' . ACL_USERS_TABLE . '
-					WHERE user_id = '. $target_id .'';
+					WHERE user_id = ' . $target_id;
 				$db->sql_query($sql);
 
 				foreach($permissions as $key => $data_sql)

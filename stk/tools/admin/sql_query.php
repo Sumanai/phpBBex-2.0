@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -54,7 +54,7 @@ class sql_query
 		$sql_query = utf8_normalize_nfc(request_var('sql_query', '', true));
 		$sql_query = htmlspecialchars_decode($sql_query);	// Need special chars like < and > see bug #59755
 
-		// Replace phpbb_ with the correct table prefix.  Do the double replace otherwise you can have issues with prefixes like phpbb_3
+		// Replace phpbb_ with the correct table prefix. Do the double replace otherwise you can have issues with prefixes like phpbb_3
 		$sql_query = str_replace('phpbb_', $table_prefix, str_replace($table_prefix, 'phpbb_', $sql_query));
 
 		if (!$sql_query)
@@ -68,7 +68,7 @@ class sql_query
 			include(PHPBB_ROOT_PATH . 'includes/functions_install.' . PHP_EXT);
 		}
 
-		$dbms=  str_replace('phpbb\\db\\driver\\', '', $dbms);
+		$dbms= str_replace('phpbb\\db\\driver\\', '', $dbms);
 		$dbmd = get_available_dbms($dbms);
 		if ($dbms == 'mysql' || $dbms == 'mysqli' || $dbms == 'sqlite' || $dbms == 'sqlite3')
 		{
@@ -140,10 +140,10 @@ class sql_query
 	}
 
 	/**
-	 * Format the error message for the failed query
-	 * @param  String $sql        The failed query
-	 * @return String the message
-	 */
+	* Format the error message for the failed query
+	* @param	String	$sql	The failed query
+	* @return	String			the message
+	*/
 	function _format_sql_error($sql)
 	{
 		global $db;

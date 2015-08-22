@@ -1,16 +1,16 @@
 <?php
 /**
- *
- * @package Support Toolkit language Russian Sheer
- * @version $Id$
- * @copyright (c) 2010 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit language Russian Sheer
+* @version $Id$
+* @copyright (c) 2010 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;

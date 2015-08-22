@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -55,7 +55,7 @@ class user_options
 		$s_options = '';
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$group_name = (isset($user->lang['G_' . $row['group_name'] . ''])) ? $user->lang['G_' . $row['group_name'] . ''] : $row['group_name'];
+			$group_name = (isset($user->lang['G_' . $row['group_name']])) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
 			$s_options .= '<option value="' . $row['group_id'] . '">' . $group_name;
 		}
 		$db->sql_freeresult($result);
@@ -90,7 +90,7 @@ class user_options
 			}
 			else
 			{
-				$sql_where = ' WHERE ' . $db->sql_in_set('group_id', $groups). '';
+				$sql_where = ' WHERE ' . $db->sql_in_set('group_id', $groups);
 			}
 			foreach($settings_value as $bit => $settings)
 			{
@@ -105,8 +105,8 @@ class user_options
 					else // on
 					{
 						$sql = 'UPDATE '. USERS_TABLE . '
-							SET user_options = user_options | '. pow(2, $bit) . ''
-							. $sql_where;
+							SET user_options = user_options | '. pow(2, $bit) .
+							$sql_where;
 					}
 					$db->sql_query($sql);
 				}

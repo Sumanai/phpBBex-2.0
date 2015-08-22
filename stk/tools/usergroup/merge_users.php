@@ -10,8 +10,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -235,11 +235,11 @@ class merge_users
 		}
 
 		/**
-		 * Ignored tables
-		 * forums_access
-		 * sessions
-		 * sessions_keys
-		 */
+		* Ignored tables
+		* forums_access
+		* sessions
+		* sessions_keys
+		*/
 		foreach (array(
 			'acl_users'		=> null,
 			'attachments'	=> 'poster_id',
@@ -689,15 +689,15 @@ class merge_users
 						// Source is not NO and target is not NEVER
 
 						/**
-						 * Source	| Target
-						 * 	Y		|	Y
-						 * 	N		|
-						 * 			|	∅
-						 *
-						 * Y => ∅
-						 * N => Y
-						 * N => ∅
-						 */
+						* Source	| Target
+						* 	Y		|	Y
+						* 	N		|
+						* 			|	∅
+						*
+						* Y => ∅
+						* N => Y
+						* N => ∅
+						*/
 
 						if (!$data['role'] && !$acls['target'][$id][$fid]['role'])
 						{

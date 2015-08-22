@@ -9,11 +9,31 @@
 
 define('IN_PHPBB', true);
 
-if (!defined('PHPBB_ROOT_PATH')) { define('PHPBB_ROOT_PATH', './../'); }
-if (!defined('PHP_EXT')) { define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1)); }
-if (!defined('STK_DIR_NAME')) { define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1)); }	// Get the name of the stk directory
-if (!defined('STK_ROOT_PATH')) { define('STK_ROOT_PATH', './'); }
-if (!defined('STK_INDEX')) { define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT); }
+if (!defined('PHPBB_ROOT_PATH'))
+{
+	define('PHPBB_ROOT_PATH', './../');
+}
+
+if (!defined('PHP_EXT'))
+{
+	define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1));
+}
+
+// Get the name of the stk directory
+if (!defined('STK_DIR_NAME'))
+{
+	define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1));
+}
+
+if (!defined('STK_ROOT_PATH'))
+{
+	define('STK_ROOT_PATH', './');
+}
+
+if (!defined('STK_INDEX'))
+{
+	define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT);
+}
 
 require STK_ROOT_PATH . 'common.' . PHP_EXT;
 
@@ -44,7 +64,7 @@ if (!defined('PHPBB_DISPLAY_LOAD_TIME'))
 ini_set('display_startup_errors', true);
 ini_set('display_errors', 'on');
 
-// Language path.  We are using a custom language path to keep all the files within the stk/ folder.  First check if the $user->data['user_lang'] path exists, if not, check if the default lang path exists, and if still not use english.
+// Language path. We are using a custom language path to keep all the files within the stk/ folder. First check if the $user->data['user_lang'] path exists, if not, check if the default lang path exists, and if still not use english.
 stk_add_lang('common');
 
 // Do not use the normal template path (to prevent issues with boards using alternate styles)
@@ -106,7 +126,7 @@ if ($stk_passwd !== false)
 		{
 			if ($cache->get('_stk_last_login') !== false)
 			{
-				// Make sure that we do not have an stk_last_login cache file (expires after 3 seconds).  To prevent a bruteforce attack
+				// Make sure that we do not have an stk_last_login cache file (expires after 3 seconds). To prevent a bruteforce attack
 				$err_msg = 'STK_LOGIN_WAIT';
 			}
 			else if (!check_form_key('stk_login_form'))
@@ -289,23 +309,23 @@ if ($plugin->get_part('t'))
 	$error = array();
 	if ($submit)
 	{
-		// In run_tool do whatever is required.  If there is an error, put it into the array and the display options will be ran again
+		// In run_tool do whatever is required. If there is an error, put it into the array and the display options will be ran again
 		$tool->run_tool($error);
 	}
 
 	if (!$submit || !empty($error))
 	{
-        /*
-        * Instead of building a page yourself you may return an array with the options you want to show.  This is outputted similar to how the acp_board is.
-        * You may also send back a string if you just want a confirm box shown with that string used for the title
-        */
+		/*
+		* Instead of building a page yourself you may return an array with the options you want to show. This is outputted similar to how the acp_board is.
+		* You may also send back a string if you just want a confirm box shown with that string used for the title
+		*/
 		$options = $tool->display_options();
 
 		if (is_array($options) && isset($options['vars']))
 		{
 			page_header($user->lang[$options['title']]);
 
-			// Go through each error and see if the key exists in the $user->lang.  If it does, use that.
+			// Go through each error and see if the key exists in the $user->lang. If it does, use that.
 			if (!empty($error))
 			{
 				array_walk($error, 'use_lang');
@@ -391,7 +411,7 @@ if ($plugin->get_part('t'))
 		}
 		else
 		{
-			// The page should have been setup by the tool.  We will exit to prevent the redirect from below.
+			// The page should have been setup by the tool. We will exit to prevent the redirect from below.
 			exit;
 		}
 	}

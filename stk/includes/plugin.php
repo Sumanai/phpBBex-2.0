@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -25,11 +25,11 @@ if (!function_exists('filelist'))
 class plugin
 {
 	/**
-	 * A list containing file and directory names that should be ignored
-	 *
-	 * @var array
-	 * @access private
-	 */
+	* A list containing file and directory names that should be ignored
+	*
+	* @var array
+	* @access private
+	*/
 	var $ignore_tools = array(
 		'clear_extensions.php',
 		'config_list.php',
@@ -42,13 +42,13 @@ class plugin
 	);
 
 	/**
-	 * List containing all available tools and in which category they belong.
-	 * Categories and tools kan de defined here to force their order on the
-	 * page listing.
-	 *
-	 * @var array
-	 * @access private
-	 */
+	* List containing all available tools and in which category they belong.
+	* Categories and tools kan de defined here to force their order on the
+	* page listing.
+	*
+	* @var array
+	* @access private
+	*/
 	var $plugin_list = array(
 		'main' 		=> array(
 			'erk',
@@ -57,25 +57,25 @@ class plugin
 	);
 
 	/**
-	 * Path to the tools directory
-	 *
-	 * @var String
-	 * @access public
-	 */
+	* Path to the tools directory
+	*
+	* @var String
+	* @access public
+	*/
 	var $tool_box_path = '';
 
 	/**
-	 * Parts, used to build the query string
-	 */
+	* Parts, used to build the query string
+	*/
 	var $_parts = array(
 		'c' => 'main',
 		't' => '',
 	);
 
 	/**
-	 * Constructor
-	 * Load the list with available plugins and assign them in the correct category
-	 */
+	* Constructor
+	* Load the list with available plugins and assign them in the correct category
+	*/
 	function plugin()
 	{
 		// Set the path
@@ -150,13 +150,13 @@ class plugin
 	}
 
 	/**
-	 * Load the requested tool
-	 *
-	 * @param String $tool_cat The category of this tool.
-	 * @param String $tool_name The name of this tool
-	 * @param Boolean $return Specify whether an object of this tool will be returned
-	 * @return The object of the requested tool if $return is set to true else this method will return true
-	 */
+	* Load the requested tool
+	*
+	* @param String $tool_cat The category of this tool.
+	* @param String $tool_name The name of this tool
+	* @param Boolean $return Specify whether an object of this tool will be returned
+	* @return The object of the requested tool if $return is set to true else this method will return true
+	*/
 	function load_tool($tool_cat, $tool_name, $return = true)
 	{
 		global $user;
@@ -195,11 +195,11 @@ class plugin
 	}
 
 	/**
-	 * Create the correct URI arguments for the current page
-	 *
-	 * @param Define whether this function returns an array with elements or a string
-	 * @return An array|String with the URI parameters
-	 */
+	* Create the correct URI arguments for the current page
+	*
+	* @param Define whether this function returns an array with elements or a string
+	* @return An array|String with the URI parameters
+	*/
 	function url_arg($string = false)
 	{
 		$args	= array();
@@ -225,8 +225,8 @@ class plugin
 	}
 
 	/**
-	 * Get a given part
-	 */
+	* Get a given part
+	*/
 	function get_part($key)
 	{
 		if (empty($this->_parts))
@@ -238,16 +238,16 @@ class plugin
 	}
 
 	/**
-	 * Add a new part
-	 */
+	* Add a new part
+	*/
 	function set_part($key, $value)
 	{
 		$this->_parts[$key] = $value;
 	}
 
 	/**
-	 * Build the top "category" navigation for every page
-	 */
+	* Build the top "category" navigation for every page
+	*/
 	function gen_top_nav()
 	{
 		global $template, $user;
@@ -275,9 +275,9 @@ class plugin
 	}
 
 	/**
-	 * Build the left "tool" navigation for every page
-	 * This is based upon the active tool
-	 */
+	* Build the left "tool" navigation for every page
+	* This is based upon the active tool
+	*/
 	function gen_left_nav()
 	{
 		global $template, $user;

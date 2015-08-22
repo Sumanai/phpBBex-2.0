@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -384,11 +384,11 @@ function stk_add_lang($lang_file)
 }
 
 /**
- * Perform all quick tasks that has to be ran before we authenticate
- *
- * @param	String	$action	The action to perform
- * @param   bool    $submit The form has been submitted
- */
+* Perform all quick tasks that has to be ran before we authenticate
+*
+* @param	String	$action	The action to perform
+* @param	bool	$submit	The form has been submitted
+*/
 function perform_unauthed_quick_tasks($action, $submit = false)
 {
 	global $template, $umil, $user;
@@ -531,10 +531,10 @@ if (!defined('IN_PHPBB') || !defined('STK_VERSION'))
 }
 
 /**
- * Perform all quick tasks that require the user to be authenticated
- *
- * @param	String	$action	The action we'll be performing
- */
+* Perform all quick tasks that require the user to be authenticated
+*
+* @param	String	$action	The action we'll be performing
+*/
 function perform_authed_quick_tasks($action)
 {
 	global $user;
@@ -567,10 +567,10 @@ function perform_authed_quick_tasks($action)
 }
 
 /**
- * Check the STK version. If out of date
- * block access to the kit
- * @return unknown_type
- */
+* Check the STK version. If out of date
+* block access to the kit
+* @return unknown_type
+*/
 function stk_version_check()
 {
 	global $cache, $template, $umil, $user;
@@ -627,20 +627,20 @@ function stk_version_check()
 }
 
 /**
- * Support Toolkit Error handler
- *
- * A wrapper for the phpBB `msg_handler` function, which is mainly used
- * to update variables before calling the actual msg_handler and is able
- * to handle various special cases.
- *
- * @global type $stk_no_error
- * @global string $phpbb_root_path
- * @param type $errno
- * @param string $msg_text
- * @param type $errfile
- * @param type $errline
- * @return boolean
- */
+* Support Toolkit Error handler
+*
+* A wrapper for the phpBB `msg_handler` function, which is mainly used
+* to update variables before calling the actual msg_handler and is able
+* to handle various special cases.
+*
+* @global type $stk_no_error
+* @global string $phpbb_root_path
+* @param type $errno
+* @param string $msg_text
+* @param type $errfile
+* @param type $errline
+* @return boolean
+*/
 function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 {
 	// First and foremost handle the case where phpBB calls trigger error
@@ -689,7 +689,7 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 		case E_USER_ERROR:
 		case E_RECOVERABLE_ERROR:
 			$backtrace = get_backtrace();
-			$msg_text = '<br /><b>[phpBB Debug] PHP '.$error_level[$errno].':</b> in file ' . phpbb_filter_root_path($errfile) . ' on line <b>'. $errline .': ' . $msg_text . '</b><br />'.$backtrace.'';
+			$msg_text = '<br /><b>[phpBB Debug] PHP ' . $error_level[$errno] . ':</b> in file ' . phpbb_filter_root_path($errfile) . ' on line <b>'. $errline . ': ' . $msg_text . '</b><br />' . $backtrace;
 		break;
 		default:
 		break;
@@ -822,14 +822,14 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 			echo '<head>';
 			echo '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
 			echo '<title>' . $msg_title . '</title>';
-			echo '<style type="text/css">' . "\n" . '/* <![CDATA[ */' . "\n";
+			echo '<style type="text/css">' . "\n";
 			echo '* { margin: 0; padding: 0; } html { font-size: 100%; height: 100%; margin-bottom: 1px; background-color: #E4EDF0; } body { font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; color: #536482; background: #E4EDF0; font-size: 62.5%; margin: 0; } ';
 			echo 'a:link, a:active, a:visited { color: #006699; text-decoration: none; } a:hover { color: #DD6900; text-decoration: underline; } ';
 			echo '#wrap { padding: 0 20px 15px 20px; min-width: 615px; } #page-header { text-align: right; height: 40px; } #page-footer { clear: both; font-size: 1em; text-align: center; } ';
-			echo '.panel { margin: 4px 0; background-color: #FFFFFF; border: solid 1px  #A9B8C2; } ';
+			echo '.panel { margin: 4px 0; background-color: #FFFFFF; border: solid 1px #A9B8C2; } ';
 			echo '#errorpage #page-header a { font-weight: bold; line-height: 6em; } #errorpage #content { padding: 10px; } #errorpage #content h1 { line-height: 1.2em; margin-bottom: 0; color: #DF075C; } ';
 			echo '#errorpage #content div { margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #CCCCCC; padding-bottom: 5px; color: #333333; font: bold 1.2em "Lucida Grande", Arial, Helvetica, sans-serif; text-decoration: none; line-height: 120%; text-align: left; } ';
-			echo "\n" . '/* ]]> */' . "\n";
+			echo "\n";
 			echo '</style>';
 			echo '</head>';
 			echo '<body id="errorpage">';
@@ -1044,7 +1044,7 @@ function _code2utf8($num)
 * wrapper for pathinfo($file, PATHINFO_FILENAME), as PATHINFO_FILENAME is
 * php > 5.2
 * Function by php [spat] hm2k.org (http://www.php.net/manual/en/function.pathinfo.php#88159)
- */
+*/
 function pathinfo_filename($file) { //file.name.ext, returns file.name
 	if (defined('PATHINFO_FILENAME'))
 	{
@@ -1058,10 +1058,10 @@ function pathinfo_filename($file) { //file.name.ext, returns file.name
 }
 
 /**
- * A function that behaves like `array_walk` but instead
- * of walking over the values this function walks
- * over the keys
- */
+* A function that behaves like `array_walk` but instead
+* of walking over the values this function walks
+* over the keys
+*/
 function stk_array_walk_keys(&$array, $callback)
 {
 	if (!is_callable($callback))

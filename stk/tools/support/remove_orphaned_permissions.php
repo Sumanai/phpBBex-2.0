@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -99,7 +99,7 @@ class remove_orphaned_permissions
 			$message = $user->lang['ORPHANED_PERMISSIONS_NOT_FIND'];
 		}
 
-		meta_refresh(3, append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=support'));
+		meta_refresh(3, append_sid(STK_ROOT_PATH . 'index.' . PHP_EXT, 'c=support'));
 		trigger_error($message);
 	}
 }

@@ -1,24 +1,24 @@
 <?php
 /**
- *
- * @package Support Toolkit
- * @version $Id$
- * @copyright (c) 2010 phpBB Group
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- */
+*
+* @package Support Toolkit
+* @version $Id$
+* @copyright (c) 2010 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
-   exit;
+	exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-   $lang = array();
+	$lang = array();
 }
 
 // DEVELOPERS PLEASE NOTE

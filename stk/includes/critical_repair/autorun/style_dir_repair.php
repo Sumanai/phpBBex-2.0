@@ -9,8 +9,8 @@
 */
 
 /**
- * @ignore
- */
+* @ignore
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -19,8 +19,8 @@ if (!defined('IN_PHPBB'))
 class erk_style_dir_repair
 {
 	/**
-	 * Instance of the acp_styles module
-	 */
+	* Instance of the acp_styles module
+	*/
 	var $ac = null;
 
 	var $sid = '';
@@ -127,9 +127,9 @@ class erk_style_dir_repair
 	}
 
 	/**
-	 * Remove all styles from the database that doesn't have their
-	 * files anymore
-	 */
+	* Remove all styles from the database that doesn't have their
+	* files anymore
+	*/
 	function refresh()
 	{
 		global $db, $stk_no_error;
