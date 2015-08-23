@@ -91,8 +91,8 @@ class srt_generator
 					'name'			=> 'phpbb_version',
 					'type'			=> 'dropdown',
 					'options'		=> array(
-						'phpBB ' . $config['version'],
-						'phpBB ' . PHPBB_VERSION,
+						'phpBBex ' . $config['phpbbex_version'] . ' (phpBB ' . $config['version'] . ')',
+						'phpBBex ? (phpBB ' . PHPBB_VERSION . ')',
 					),
 					'p_callback'	=> array($this, '_prefill_phpbb_version'),
 				),
@@ -426,7 +426,7 @@ class srt_generator
 		}
 
 		// Footer
-		$_template[] = '<br />[size=80]' . $user->lang['BY_SRT_GENERATOR'] . '[/size]';
+		$_template[] = '<br />[size=85]' . $user->lang['BY_SRT_GENERATOR'] . '[/size]';
 
 		// Output
 		$user->add_lang('viewtopic');

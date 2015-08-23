@@ -43,8 +43,8 @@ class config_list
 			foreach($is_dinamic as $key => $value)
 			{
 				$sql = 'UPDATE '. CONFIG_TABLE .'
-					SET is_dynamic = '. $value .'
-					WHERE config_name = \''. $key .'\'';
+					SET is_dynamic = ' . (int) $value . "
+					WHERE config_name = '" . $db->sql_escape($key) . "'";
 				$db->sql_query($sql);
 			}
 			$cache->purge();
@@ -186,26 +186,42 @@ class config_list
 			'fulltext_sphinx_id', 'fulltext_sphinx_data_path', 'fulltext_sphinx_indexer_mem_limit', 'fulltext_sphinx_host', 'fulltext_sphinx_port', 'fulltext_sphinx_stopwords',
 		);
 
+		$config_phpbbex = array(
+			// v. 1.4.0
+			'active_topics_days', 'active_topics_on_index', 'active_users_days', 'allow_quick_full_quote',
+			'allow_quick_post', 'allow_quick_post_options', 'allow_quick_reply_options', 'announce_index',
+			'auto_guest_lang', 'default_search_titleonly', 'load_online_bots', 'login_via_email_enable',
+			'max_post_imgs', 'max_sig_imgs', 'max_sig_lines', 'merge_interval', 'no_sid',
+			'override_user_dateformat', 'override_user_timezone', 'override_user_lang', 'phpbbex_version',
+			'rate_change_time', 'rate_no_negative', 'rate_enabled', 'rate_no_positive', 'rate_only_topics',
+			'rate_time', 'rate_topic_time', 'site_keywords', 'social_media_cover_url', 'style_ml_show_gender',
+			'style_ml_show_last_active', 'style_ml_show_posts', 'style_ml_show_joined', 'style_ml_show_rank',
+			'style_ml_show_rated', 'style_ml_show_rated_detailed', 'style_ml_show_rating',
+			'style_ml_show_rating_detailed', 'style_mp_on_left', 'style_mp_show_age', 'style_mp_show_buttons',
+			'style_mp_show_posts', 'style_mp_show_joined', 'style_mp_show_rated', 'style_mp_show_rated_detailed',
+			'style_mp_show_rating', 'style_mp_show_rating_detailed', 'style_mp_show_topic_poster',
+			'style_mp_show_gender', 'style_mp_show_warnings', 'style_mp_show_with_us', 'style_p_show_rated',
+			'style_p_show_rated_detailed', 'style_p_show_rating', 'style_p_show_rating_detailed',
+			'style_show_feeds_in_forumlist', 'style_show_sitename_in_headerbar', 'style_show_social_buttons',
+			'style_ml_show_row_numbers', 'warning_post_default',
+			// v. 1.5.3
+			'external_links_newwindow', 'external_links_newwindow_exclude', 'search_highlight_keywords', 'style_max_width',
+			// v. 1.6.0
+			'max_spoiler_depth', 'style_back_to_top', 'style_new_year', 'style_rounded_corners', 'style_vt_show_post_numbers',
+			// v. 1.7.0
+			'min_post_font_size', 'min_sig_font_size',
+			// v. 1.8.0
+			'display_raters', 'keep_admin_logs_days', 'keep_mod_logs_days', 'keep_critical_logs_days',
+			'keep_user_logs_days', 'keep_register_logs_days',
+			// v. 2.0.0
+			'load_jquery_v2_url',
+		);
+
 		$config_common = $config_all = array();
-		$config_common = array_merge($config_common, $config_cron);
-		$config_common = array_merge($config_common, $config_attachments);
-		$config_common = array_merge($config_common, $config_avatras);
-		$config_common = array_merge($config_common, $config_board_config);
-		$config_common = array_merge($config_common, $config_board_functions);
-		$config_common = array_merge($config_common, $config_pm);
-		$config_common = array_merge($config_common, $config_messages);
-		$config_common = array_merge($config_common, $config_signatures);
-		$config_common = array_merge($config_common, $config_feed);
-		$config_common = array_merge($config_common, $config_user_register);
-		$config_common = array_merge($config_common, $config_anti_spam);
-		$config_common = array_merge($config_common, $config_auth);
-		$config_common = array_merge($config_common, $config_email);
-		$config_common = array_merge($config_common, $config_config_jabber);
-		$config_common = array_merge($config_common, $config_cookies);
-		$config_common = array_merge($config_common, $config_server);
-		$config_common = array_merge($config_common, $config_security);
-		$config_common = array_merge($config_common, $config_load);
-		$config_common = array_merge($config_common, $config_search);
+		$config_common = array_merge($config_cron, $config_attachments, $config_avatras, $config_board_config,
+			$config_board_functions, $config_pm, $config_messages, $config_signatures, $config_feed,
+			$config_user_register, $config_anti_spam, $config_auth, $config_email, $config_config_jabber, $config_cookies,
+			$config_server, $config_security, $config_load, $config_search, $config_phpbbex);
 
 		$sql = 'SELECT *
 			FROM ' . CONFIG_TABLE. '

@@ -24,6 +24,12 @@ class clear_extensions
 
 		$uids = request_var('marked_name', array('', ''));
 
+		$remove_phpbbex_ext = array_keys($uids, 'phpBBex/phpBBext', true);
+		foreach ($remove_phpbbex_ext as $remove_key)
+		{
+			unset($uids[$remove_key]);
+		}
+
 		if (empty($uids))
 		{
 			$error[] = 'NO_EXT_SELECTED';
@@ -74,6 +80,13 @@ class clear_extensions
 		if ($off)
 		{
 			$uids = request_var('marked_name', array('', ''));
+
+			$remove_phpbbex_ext = array_keys($uids, 'phpBBex/phpBBext', true);
+			foreach ($remove_phpbbex_ext as $remove_key)
+			{
+				unset($uids[$remove_key]);
+			}
+
 			if (empty($uids))
 			{
 				$error[] = 'NO_EXT_SELECTED';
@@ -102,6 +115,7 @@ class clear_extensions
 		{
 			$path = explode('/', $row['ext_name']);
 			$display_name = $root = $missing_path = '';
+			$phpbbex = ($row['ext_name'] === 'phpBBex/phpBBext') ? true : false;
 			foreach($path as $key => $ext_path)
 			{
 				if($dir = @opendir(PHPBB_ROOT_PATH . 'ext/'.$root.$ext_path))
@@ -139,7 +153,7 @@ class clear_extensions
 				'MISSING_PATH'		=> ($missing_path) ? $missing_path : '',
 				'NO_COMPOSER'		=> ($no_composer) ? true : false,
 				'DISPLAY_NAME'		=> ($display_name) ? $display_name : sprintf($user->lang['NO_COMPOSER'], $row['ext_name']),
-				'NO_COMPOSER'		=> ($display_name) ? false : true,
+				'PHPBBEX_EXT'		=> $phpbbex,
 				'S_ACTIVE'			=> $row['ext_active'],
 				'EXT_MISSING_PATH'	=> ($missing_path) ? sprintf($user->lang['EXT_MISSING_PATH'], $row['ext_name']) : '',
 			));

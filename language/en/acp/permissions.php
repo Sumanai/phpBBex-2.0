@@ -176,6 +176,7 @@ $lang = array_merge($lang, array(
 	'ROLE_FORUM_POLLS_LOCK'		=> 'Standard Access + Polls + Topic Locking',
 	'ROLE_FORUM_READONLY'		=> 'Read Only Access',
 	'ROLE_FORUM_STANDARD'		=> 'Standard Access',
+	'ROLE_FORUM_NOTOPIC'		=> 'Standard Access without Topic Creation',
 	'ROLE_FORUM_NEW_MEMBER'		=> 'Newly Registered User Access',
 	'ROLE_MOD_FULL'				=> 'Full Moderator',
 	'ROLE_MOD_QUEUE'			=> 'Queue Moderator',

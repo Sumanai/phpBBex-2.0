@@ -58,9 +58,9 @@ abstract class migration
 	* @param string $phpbb_root_path
 	* @param string $php_ext
 	* @param string $table_prefix
-	* @param \phpbb\cache\driver\driver_interface $cache
+	* @param \phpbb\cache\driver\driver_interface $cache A cache instance or null
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $phpbb_root_path, $php_ext, $table_prefix, \phpbb\cache\driver\driver_interface $cache)
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $phpbb_root_path, $php_ext, $table_prefix, \phpbb\cache\driver\driver_interface $cache = null)
 	{
 		$this->config = $config;
 		$this->db = $db;

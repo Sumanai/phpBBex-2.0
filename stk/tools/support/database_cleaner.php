@@ -59,6 +59,11 @@ if (!class_exists('database_cleaner'))
 		var $phpbb_version = '';
 
 		/**
+		* @var String phpBBex version number
+		*/
+		var $phpbbex_version = '';
+
+		/**
 		* @var Integer The step that is being ran
 		*/
 		var $step = 0;
@@ -76,6 +81,8 @@ if (!class_exists('database_cleaner'))
 				define('PHPBB_VERSION_NUMBER', PHPBB_VERSION);
 			}
 			$this->phpbb_version = str_replace(array('.', '-', 'rc'), array('_', '_', 'RC'), strtolower(PHPBB_VERSION_NUMBER));
+
+			$this->phpbbex_version = str_replace(array('.', '-', 'rc'), array('_', '_', 'RC'), strtolower(PHPBBEX_VERSION_NUMBER));
 
 			// Unstable versions can only be used when debugging
 			$matches = array();
@@ -135,7 +142,7 @@ if (!class_exists('database_cleaner'))
 
 			// Load all data for this version
 			$this->data = new database_cleaner_data($db_tools);
-			fetch_cleaner_data($this->data, $this->phpbb_version);
+			fetch_cleaner_data($this->data, $this->phpbb_version, $this->phpbbex_version);
 		}
 
 		/**

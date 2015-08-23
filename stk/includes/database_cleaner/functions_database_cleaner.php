@@ -67,7 +67,7 @@ function get_extension_groups_rows(&$extension_groups_data, &$extension_groups_r
 		{
 			$key = array_keys($user->lang, $row['group_name']);
 			$extension_group_name = $key[0];
-			unset ($key);
+			unset($key);
 		}
 		$existing_extension_groups[] = $extension_group_name;
 	}
@@ -398,7 +398,7 @@ function get_phpbb_tables()
 * @param database_cleaner_data The database cleaner data object
 * @param String The version
 */
-function fetch_cleaner_data(&$data, $phpbb_version)
+function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 {
 	global $config;
 
@@ -413,8 +413,22 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 	// Add the data
 	foreach ($filelist as $file)
 	{
-		$version	= pathinfo_filename($file);
-		$class		= 'datafile_' . $version;
+		$version = pathinfo_filename($file);
+
+		// Break after our version
+		if (strpos($version, 'phpbbex_') === 0)
+		{
+			if (version_compare(substr($version, 8), $phpbbex_version, '>'))
+			{
+				continue;
+			}
+		}
+		elseif (version_compare($version, $phpbb_version, '>'))
+		{
+			continue;
+		}
+
+		$class = 'datafile_' . $version;
 		if (!class_exists($class))
 		{
 			include STK_ROOT_PATH . "includes/database_cleaner/data/{$version}." . PHP_EXT;
@@ -428,24 +442,18 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 		$data->acl_roles			= array_merge($data->acl_roles, $_datafile->acl_roles);
 		$data->acl_role_data		= array_merge_recursive($data->acl_role_data, $_datafile->acl_role_data);
 		$data->extension_groups		= array_merge($data->extension_groups, $_datafile->extension_groups);
-		$data->extensions			= array_merge($data->extensions, $_datafile->extensions);
+		$data->extensions			= array_merge_recursive($data->extensions, $_datafile->extensions);
 		$data->module_categories	= array_merge($data->module_categories, $_datafile->module_categories);
 		$data->module_extras		= array_merge($data->module_extras, $_datafile->module_extras);
 		$data->groups				= array_merge($data->groups, $_datafile->groups);
 		$data->report_reasons		= array_merge($data->report_reasons, $_datafile->report_reasons);
-		$data->acp_modules			= array_merge($data->acp_modules, $_datafile->acp_modules);
-		$data->module_categories_basenames			= array_merge($data->module_categories_basenames, $_datafile->module_categories_basenames);
+		$data->acp_modules			= array_merge_recursive($data->acp_modules, $_datafile->acp_modules);
+		$data->module_categories_basenames	= array_merge($data->module_categories_basenames, $_datafile->module_categories_basenames);
 
 		$_datafile->get_schema_struct($data->schema_data);
 
 		// Just make sure that nothing sticks
 		unset($_datafile);
-
-		// Break after our version
-		if (version_compare($version, $phpbb_version, 'eq'))
-		{
-			break;
-		}
 	}
 
 	// Perform some actions that only have to be done on given versions or on all
@@ -483,6 +491,18 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 			array_splice($data->module_extras['acp']['ACP_FORUM_BASED_PERMISSIONS'], 1, 0, $extra_add);
 
 			$data->config['version'] = $phpbb_version;		// We always need to set the version afterwards
+		break;
+	}
+
+	// Perform some actions that only have to be done on given versions or on all
+	switch($phpbbex_version)
+	{
+		case '2_0_0'	:
+			// The extension group names have been changed, remove the old ones
+			remove_obsolete_options($data->extension_groups);
+
+			// Same for the extensions
+			remove_obsolete_options($data->extensions);
 		break;
 	}
 
@@ -596,4 +616,31 @@ function recursive_keys($input, $search_value = null){
 		}
 	}
 	return $output;
+}
+
+function remove_obsolete_options(&$input)
+{
+	foreach ($input as $key => $values)
+	{
+		if (strpos($key, 'REMOVE_') === 0)
+		{
+			unset($input[$key]);
+			unset($input[substr($key, 7)]);
+		}
+		elseif (is_array($values))
+		{
+			foreach ($values as $el => $value)
+			{
+				if (strpos($value, 'REMOVE_') === 0)
+				{
+					unset($input[$key][$el]);
+					$remove_keys = array_keys($input[$key], substr($value, 7), true);
+					foreach ($remove_keys as $remove_key)
+					{
+						unset($input[$key][$remove_key]);
+					}
+				}
+			}
+		}
+	}
 }

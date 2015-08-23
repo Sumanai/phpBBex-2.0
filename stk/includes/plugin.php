@@ -31,14 +31,7 @@ class plugin
 	* @access private
 	*/
 	var $ignore_tools = array(
-		'clear_extensions.php',
-		'config_list.php',
-		'prune_attachments.php',
-		'resync_attachments.php',
-
-		'database_cleaner.php',
-		'remove_orphaned_permissions.php',
-		'resync_report_flags.php',
+		'tutorial.php',
 	);
 
 	/**

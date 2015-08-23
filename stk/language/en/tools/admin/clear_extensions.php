@@ -59,4 +59,5 @@ $lang = array_merge($lang, array(
 	'NO_COMPOSER'					=> 'File not found: ' . PHPBB_ROOT_PATH . 'ext/%s/composer.json',
 	'NO_EXTENSIONS_TITLE'			=> 'Extensions',
 	'NO_EXTENSIONS_TEXT'			=> 'No any installed extensions',
+	'PHPBBEX_EXT'					=> 'Necessary to work phpBBex, can not be disabled',
 ));

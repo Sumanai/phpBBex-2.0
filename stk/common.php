@@ -73,6 +73,15 @@ if (!isset($stk_config))
 $action = request_var('action', '');
 $submit = request_var('submit', false);
 
+if (isset($config['phpbbex_version']))
+{
+	define('PHPBBEX_VERSION_NUMBER', $config['phpbbex_version']);
+}
+else
+{
+	define('PHPBBEX_VERSION_NUMBER', '0.0.0');
+}
+
 // Try to determine the phpBB version number, we might need that down the road
 // `PHPBB_VERSION` was added in 3.0.3, for older versions just rely on the config
 if ((defined('PHPBB_VERSION') && PHPBB_VERSION == $config['version']) || !defined('PHPBB_VERSION'))

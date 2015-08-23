@@ -38,5 +38,5 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'PURGE_CACHE_COMPLETE'	=> 'Кешированные файлы из папки cache на сервере был успешно удалены.',
+	'PURGE_CACHE_COMPLETE'	=> 'Кешированные файлы из каталога cache на сервере был успешно удалены.',
 ));

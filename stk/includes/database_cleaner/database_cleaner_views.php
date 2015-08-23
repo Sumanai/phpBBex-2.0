@@ -117,7 +117,7 @@ class database_cleaner_views
 				{
 					$template->assign_block_vars('section.items', array(
 						'NAME'			=> user_lang($item['NAME']),
-						'FIELD_NAME'	=> user_lang($item['FIELD_NAME']),
+						'FIELD_NAME'	=> $item['FIELD_NAME'],
 						'MISSING'		=> $item['MISSING'],
 						'FIND'			=> (isset($item['FIND'])) ? $item['FIND'] : '',
 					));
@@ -573,7 +573,7 @@ class database_cleaner_views
 			}
 
 			$this->_section_data['roles']['ITEMS'][] = array(
-				'NAME'			=> $name,
+				'NAME'			=> user_lang($name),
 				'FIELD_NAME'	=> $name,
 				'MISSING'		=> (!in_array($name, $existing_roles)) ? true : false,
 			);

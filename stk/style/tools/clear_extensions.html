@@ -13,10 +13,15 @@
 		</tr>
 		<!-- BEGIN row -->
 		<tr <!-- IF row.MISSING_PATH or row.NO_COMPOSER -->style="background-color: #BC2A4D; color: #FFF" <!-- ENDIF -->class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
-			<td<!-- IF row.S_ACTIVE --> style="font-weight: bold;"<!-- ENDIF -->><!-- IF row.EXT_MISSING_PATH -->{row.EXT_MISSING_PATH}<!-- ENDIF --> {row.DISPLAY_NAME}<span style="color: <!-- IF row.S_ACTIVE -->#007D00;">{L_S_ACTIVE}<!-- ELSE -->#F00;">{L_S_OFF}<!-- ENDIF --></span></td>
+			<td<!-- IF row.S_ACTIVE --> style="font-weight: bold;"<!-- ENDIF -->>
+				<!-- IF row.EXT_MISSING_PATH -->{row.EXT_MISSING_PATH}<!-- ENDIF -->
+				{row.DISPLAY_NAME}
+				<span style="color: <!-- IF row.S_ACTIVE -->#007D00;">{L_S_ACTIVE}<!-- ELSE -->#F00;">{L_S_OFF}<!-- ENDIF -->
+				<!-- IF row.PHPBBEX_EXT -->{L_PHPBBEX_EXT}<!-- ENDIF --></span>
+			</td>
 			<td>{row.EXT_NAME}</td>
 			<td>{row.MISSING_PATH}</td>
-			<td class="mark"><input type="checkbox" style="cursor:default;" name="marked_name[]" value="{row.EXT_NAME}" /></td>
+			<td class="mark"><input type="checkbox" style="cursor:default;" name="marked_name[]" value="{row.EXT_NAME}"<!-- IF row.PHPBBEX_EXT --> disabled<!-- ENDIF --> /></td>
 		</tr>
 		<!-- END row -->
 	</table>

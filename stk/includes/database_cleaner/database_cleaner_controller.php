@@ -113,10 +113,11 @@ class database_cleaner_controller
 						'user_colour'			=> $group_colour,
 						'user_email'			=> '',
 						'user_lang'				=> $config['default_lang'],
-						'user_style'			=> 1,
-						'user_timezone'			=> 0,
+						'user_style'			=> $config['default_style'],
+						'user_timezone'			=> 'UTC',
 						'user_dateformat'		=> $config['default_dateformat'],
 						'user_allow_massemail'	=> 0,
+						'user_allow_pm'			=> 0,
 					);
 
 					$user_id = user_add($user_row);
@@ -131,7 +132,7 @@ class database_cleaner_controller
 							'bot_ip'		=> (string) $bot_ary[1],
 						));
 
-						$result = $db->sql_query($sql);
+						$db->sql_query($sql);
 					}
 				}
 			}
@@ -275,6 +276,7 @@ class database_cleaner_controller
 						'upload_icon'		=> $this->db_cleaner->data->extension_groups[$name][3],
 						'max_filesize'		=> $this->db_cleaner->data->extension_groups[$name][4],
 						'allowed_forums'	=> $this->db_cleaner->data->extension_groups[$name][5],
+						'allow_in_pm'		=> $this->db_cleaner->data->extension_groups[$name][6],
 					);
 
 					// Add it
@@ -581,6 +583,19 @@ class database_cleaner_controller
 					$db->sql_freeresult($result);
 
 					$_module->move_module_by($row, 'move_up', 5);
+
+					// Move attachments settings module 3 down...
+					$sql = 'SELECT *
+						FROM ' . MODULES_TABLE . "
+						WHERE module_basename = 'attachments'
+							AND module_class = 'acp'
+							AND module_mode = 'attach'
+						ORDER BY module_id";
+					$result = $db->sql_query($sql);
+					$row = $db->sql_fetchrow($result);
+					$db->sql_freeresult($result);
+
+					$_module->move_module_by($row, 'move_down', 3);
 
 					// Move extension management module 1 up...
 					$sql = 'SELECT *

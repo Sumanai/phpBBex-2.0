@@ -6,8 +6,8 @@ Open file default_lang.txt and write there abbreviation used on your board defau
 
 Start-up (example) http://your_domain.ru/forum/stk/
 
-Создать папку с именем stk в корневой папке конференции (там, где расположен файл config.php) и просто скопировать туда  все файлы из папки PHPBB3.1-STK-MASTER, сохраняя структуру папок.
+Создать каталог с именем stk в корневом каталоге форума (там, где расположен файл config.php) и просто скопировать туда все файлы из каталога PHPBB3.1-STK-MASTER, сохраняя структуру каталогов.
 
-Откройте файл default_lang.txt и впишите туда аббревиатуру используемого на конференции языка по умолчанию, например en или ru
+Откройте файл default_lang.txt и впишите туда аббревиатуру используемого на форуме языка по умолчанию, например en или ru
 
 Запуск (пример) http://your_domain.ru/forum/stk/

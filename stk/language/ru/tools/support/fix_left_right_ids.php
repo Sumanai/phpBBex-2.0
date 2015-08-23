@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'FIX_LEFT_RIGHT_IDS'			=> 'Исправление границ значений ID всей конференции',
+	'FIX_LEFT_RIGHT_IDS'			=> 'Исправление границ значений ID всего форума',
 	'FIX_LEFT_RIGHT_IDS_CONFIRM'	=> 'Вы уверены, что хотите исправить границы ID?<br /><br /><strong>Сделайте резервную копию базы данных перед использованием данного инструмента!</strong>',
 
 	'LEFT_RIGHT_IDS_FIX_SUCCESS'	=> 'Границы ID были успешно обновлены.',

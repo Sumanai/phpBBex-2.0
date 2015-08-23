@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'CHANGE_PASSWORD'			=> 'Смена паролей пользователей конференции',
+	'CHANGE_PASSWORD'			=> 'Смена паролей пользователей форума',
 	'CHANGE_PASSWORD_EXPLAIN'	=> 'Сменить пароль пользователя.',
 	'CHANGE_PASSWORD_SUCCESS'	=> 'Пароль для <a href="%s">%s</a> успешно изменён.',
 
