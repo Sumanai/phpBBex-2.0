@@ -42,7 +42,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'REPARSE_ALL'				=> 'Reparse all BBCodes',
-	'REPARSE_ALL_EXPLAIN'		=> 'When checked the BBCode reparse will reparse all content on the board; by default, the tool will only reparse posts/private messages/signatures that have been previously parsed by phpBB. This option will be ignored if specific posts, PMs or forums are specified above. Please note that this tool has the potential to damage your database beyond repair; therefore, <strong>be sure to backup your database before proceeding</strong>. Moreover, note that this tool may take some time to complete.',
+	'REPARSE_ALL_EXPLAIN'		=> 'When checked the BBCode reparse will reparse all content on the board; by default, the tool will only reparse posts/private messages/signatures that have been previously parsed by phpBBex. This option will be ignored if specific posts, PMs or forums are specified above. Please note that this tool has the potential to damage your database beyond repair; therefore, <strong>be sure to backup your database before proceeding</strong>. Moreover, note that this tool may take some time to complete.',
 	'REPARSE_BBCODE'			=> 'Reparse BBCode',
 	'REPARSE_BBCODE_COMPLETE'	=> 'BBCodes have been reparsed.',
 	'REPARSE_BBCODE_PROGRESS'	=> 'Step %1$d completed. Moving on to step %2$d in a moment...',

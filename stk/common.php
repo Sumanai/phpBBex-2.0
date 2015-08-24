@@ -87,24 +87,6 @@ else
 if ((defined('PHPBB_VERSION') && PHPBB_VERSION == $config['version']) || !defined('PHPBB_VERSION'))
 {
 	define('PHPBB_VERSION_NUMBER', $config['version']);
-	// Try to determine the phpBB actually version number
-	$updates_available = false;
-	$version_helper = $phpbb_container->get('version_helper');
-	try
-	{
-		$updates_available = $version_helper->get_suggested_updates(false);
-	}
-	catch (\RuntimeException $e)
-	{
-		$template->assign_vars(array(
-			'S_VERSIONCHECK_FAIL'		=> true,
-			'VERSIONCHECK_FAIL_REASON'	=> $user->lang('VERSIONCHECK_FAIL'),
-		));
-	}
-	if ($updates_available)
-	{
-		check_phpbb_version();
-	}
 }
 // Cant correctly determine the version, let the user define it.
 // As the `perform_unauthed_quick_tasks` function is used skip this

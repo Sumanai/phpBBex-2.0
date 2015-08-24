@@ -46,7 +46,7 @@ $lang = array_merge($lang, array(
 	'SRT_GENERATOR'					=> 'Support Request Template Generator',
 	'SRT_GENERATOR_LANDING'			=> 'Support Request Template Generator',
 	'SRT_GENERATOR_LANDING_CONFIRM'	=> 'Welcome to the Support Team’s Support Request Template Generator. This is the quickest and most efficient way to complete our Support Request Template. The generator will ask you a series of eight to ten questions that are useful for diagnosing most issues. It will then compile your answers into a list that may be copied and pasted into your support topic.<br />This STK tool does the same thing as the <a href="http://www.phpbb.com/support/stk/">SRT Generator on www.phpbb.com</a> but attempts to pre-fill certain questions.<br /><br />Do you wish run the SRT Generator?',
-	'SRT_NO_CACHE'					=> 'The Support Request Template generator uses the phpBB cache system to store information while going through all the steps. You’re using the phpBB null cache which isn’t compatible with this tool. Please switch to one of the other caching backends to use this tool or use the <a href="http://www.phpbb.com/support/srt/">online SRT Generator</a>',
+	'SRT_NO_CACHE'					=> 'The Support Request Template generator uses the phpBBex cache system to store information while going through all the steps. You’re using the phpBBex null cache which isn’t compatible with this tool. Please switch to one of the other caching backends to use this tool or use the <a href="http://www.phpbb.com/support/srt/">online SRT Generator</a>',
 	'START_OVER'					=> 'Start over',
 ));
 
@@ -66,7 +66,7 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'SRT_QUESTIONS'			=> array(
 		'step2'	=> array(
-			'phpbb_version'		=> 'What version of phpBB are you using?',
+			'phpbb_version'		=> 'What version of phpBBex are you using?',
 			'board_url'			=> 'What is your board’s URL?',
 			'dbms'				=> 'Which database type/version are you using?',
 			'php'				=> 'Which PHP version are you using?',
@@ -93,14 +93,14 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'SRT_QUESTIONS_EXPLAIN'	=> array(
 		'step2'	=> array(
-			'phpbb_version'		=> 'The SRT Generator couldn’t determine which phpBB version you are using, please select the correct version. To find this information, login to your board and scroll down to the bottom of the page. Click "Administration Control Panel". Click the "System" tab.',
+			'phpbb_version'		=> 'The SRT Generator couldn’t determine which phpBBex version you are using, please select the correct version. To find this information, login to your board and scroll down to the bottom of the page. Click "Administration Control Panel". Click the "System" tab.',
 			'board_url'			=> 'Your board URL is the address that you use to access your board. Most problems are more easily fixed when one can view your board. If you do not want to give out this information, please enter "n/a".',
 			'dbms'				=> 'To determine which database version and type you are using, go to the Administration Control Panel. On the "General" tab, locate "Database server:" in the statistics table.',
 			'php'				=> 'To determine which PHP version you are using, go to the Administration Control Panel. On the "General" tab, click on "PHP Information", here you’ll find "PHP Version x.y.z"',
-			'host_name'			=> 'Some problems experienced with phpBB boards can be attributed to particular hosts. This field should be filled with the company that is providing your webhosting package (like GoDaddy, Yahoo!, 1&1, etc.). If you are hosting the board yourself, please indicate this. Likewise, if you do not know who is hosting your board, please indicate this as well.',
-			'install_type'		=> 'If you installed your board by downloading the phpBB files, uploading them to your host, then browsing to the installer, select "I installed the board by myself." If you had someone do the installation for you, select "Someone else installed my board for me." If you used an automated tool like Fantastico, select "I used a tool provided by my host."',
-			'inst_converse'		=> 'If your board was a fresh install, this means your board did not exist prior to installing phpBB. If you recently updated your board from an older version of phpBB3 prior to your problem beginning, then selected "Update from a previous version of phpBB3". If it is a conversion, this means your board was installed previously as another piece of software then later converted to phpBB.',
-			'mods_installed'	=> 'MODs are often the cause of many problems with phpBB. This information can help to determine the exact cause of your issue.',
+			'host_name'			=> 'Some problems experienced with phpBBex boards can be attributed to particular hosts. This field should be filled with the company that is providing your webhosting package (like GoDaddy, Yahoo!, 1&1, etc.). If you are hosting the board yourself, please indicate this. Likewise, if you do not know who is hosting your board, please indicate this as well.',
+			'install_type'		=> 'If you installed your board by downloading the phpBBex files, uploading them to your host, then browsing to the installer, select "I installed the board by myself." If you had someone do the installation for you, select "Someone else installed my board for me." If you used an automated tool like Fantastico, select "I used a tool provided by my host."',
+			'inst_converse'		=> 'If your board was a fresh install, this means your board did not exist prior to installing phpBBex. If you recently updated your board from an older version of phpBBex prior to your problem beginning, then selected "Update from a previous version of phpBBex". If it is a conversion, this means your board was installed previously as another piece of software then later converted to phpBBex.',
+			'mods_installed'	=> 'MODs are often the cause of many problems with phpBBex. This information can help to determine the exact cause of your issue.',
 			'registration_req'	=> 'Select "Yes" if one must be registered and logged in to experience this problem.',
 		),
 		'step3'	=> array(
@@ -122,7 +122,8 @@ $lang = array_merge($lang, array(
 		'step2'	=> array(
 			'install_type'	=> array(
 				null			=> 'Please select your answer',
-				'myself'		=> 'I used the download package from phpBB.com',
+				'myself'		=> 'I used the download package from phpbbex.com',
+				'repo'			=> 'I used the installation from the repository',
 				'third'			=> 'I used a download package provided by another website',
 				'someone_else'	=> 'Someone else installed my board for me',
 				'automated'		=> 'I used a tool provided by my host',
@@ -130,7 +131,7 @@ $lang = array_merge($lang, array(
 			'inst_converse'	=> array(
 				null			=> 'Please select your answer',
 				'fresh'				=> 'Fresh Install',
-				'phpbb_update'		=> 'Update from a previous version of phpBB3',
+				'phpbb_update'		=> 'Update from a previous version of phpBB or phpBBex',
 				'convert_phpbb2'	=> 'Conversion from phpBB2',
 				'convert_other'		=> 'Conversion from another software',
 			)
@@ -138,11 +139,11 @@ $lang = array_merge($lang, array(
 		'step3'	=> array(
 			'xp_level'		=> array(
 				null			=> 'Please select your answer',
-				'new_both'		=> 'New to PHP and phpBB',
-				'new_phpbb'		=> 'New to phpBB but not PHP',
-				'new_php'		=> 'New to PHP but not phpBB',
-				'comfort'		=> 'Comfortable with PHP and phpBB',
-				'experienced'	=> 'Experienced with PHP and phpBB',
+				'new_both'		=> 'New to PHP and phpBBex',
+				'new_phpbb'		=> 'New to phpBBex but not PHP',
+				'new_php'		=> 'New to PHP but not phpBBex',
+				'comfort'		=> 'Comfortable with PHP and phpBBex',
+				'experienced'	=> 'Experienced with PHP and phpBBex',
 			),
 		),
 	),

@@ -40,8 +40,8 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'PHPBB'				=> 'Файлы phpBB3.1x',
-	'ROOT'				=> 'phpBB3.1x',
+	'PHPBB'				=> 'Файлы phpBBex 2.x',
+	'ROOT'				=> 'phpBBex 2.x',
 	'G_TIME'			=> 'Время генерации дерева файлов %01.2f сек',
 	'FILE_NOT_FOUND'	=> 'Запрашиваемый файл не найден',
 ));

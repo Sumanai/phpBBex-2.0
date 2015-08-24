@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'DB_BACKUP'					=> 'Database backup',
-	'DB_BACKUP_EXPLAIN'			=> 'Here you can backup all your phpBB related data. You may store the resulting archive in your <samp>store/</samp> folder, download or see on screen. Depending on your server configuration you may be able to compress the file in a number of formats.',
+	'DB_BACKUP_EXPLAIN'			=> 'Here you can backup all your phpBBex related data. You may store the resulting archive in your <samp>store/</samp> folder, download or see on screen. Depending on your server configuration you may be able to compress the file in a number of formats.',
 	'DB_BACKUP_EXPLAIN_DUMPER'	=> 'The resulting backup is compatible with the format utility <a href ="http://www.mysqldumper.net/" target="_blank" /><strong>MySQLDumper</strong></a>, which supports granular recovery of database tables.',
 
 	'SELECT_TABLE'		=> 'Tables',
