@@ -32,6 +32,9 @@ class v201 extends \phpbb\db\migration\migration
 			array('config.remove', array('style_ml_show_website')),
 			array('config.remove', array('style_mp_show_from')),
 
+			// New phpBBex options
+			array('config.add', array('active_topics_on_index_exclude', 0)),
+
 			// phpBBex version
 			array('config.update', array('phpbbex_version', '2.0.1')),
 		);

@@ -169,6 +169,7 @@ class acp_board
 						'legend2'							=> 'STYLE_SETTINGS_INDEX',
 						'announce_index'					=> array('lang'	=> 'ANNOUNCE_INDEX',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'active_topics_on_index'			=> array('lang' => 'ACTIVE_TOPICS_ON_INDEX',			'validate' => 'int:0:100',	'type' => 'number:0:100', 'explain' => true),
+						'active_topics_on_index_exclude'	=> array('lang' => 'ACTIVE_TOPICS_ON_INDEX_EXCLUDE',	'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'load_birthdays'					=> array('lang' => 'YES_BIRTHDAYS',						'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_moderators'					=> array('lang' => 'YES_MODERATORS',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_show_feeds_in_forumlist'		=> array('lang' => 'STYLE_SHOW_FEEDS_IN_FORUMLIST',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),

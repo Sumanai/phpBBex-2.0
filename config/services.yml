@@ -95,6 +95,22 @@ services:
         calls:
             - [find, [%core.root_path%]]
 
+    display_topics:
+        class: phpbb\display_topics
+        arguments:
+            - @auth
+            - @cache
+            - @config
+            - @content.visibility
+            - @dbal.conn
+            - @dispatcher
+            - @pagination
+            - @request
+            - @template
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
+
     ext.manager:
         class: phpbb\extension\manager
         arguments:

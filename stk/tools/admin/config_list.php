@@ -215,6 +215,8 @@ class config_list
 			'keep_user_logs_days', 'keep_register_logs_days',
 			// v. 2.0.0
 			'load_jquery_v2_url',
+			// v. 2.0.1
+			'active_topics_on_index_exclude',
 		);
 
 		$config_common = $config_all = array();

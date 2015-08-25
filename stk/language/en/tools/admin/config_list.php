@@ -375,6 +375,7 @@ $lang = array_merge($lang, array(
 	// phpBBex
 	'active_topics_days'				=> 'Default activity period for "Active topics" page',
 	'active_topics_on_index'			=> 'Display active topics',
+	'active_topics_on_index_exclude'	=> 'The IDs of topics to exclude',
 	'active_users_days'					=> 'The user is considered active for entered number of days',
 	'announce_index'					=> 'Display global annoucements',
 	'allow_quick_full_quote'			=> 'Allow full quote',

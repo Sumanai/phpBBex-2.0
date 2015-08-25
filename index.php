@@ -169,18 +169,23 @@ $template->assign_vars(array(
 	'DELETED_IMG'				=> $user->img('icon_topic_deleted', 'TOPIC_DELETED'),
 ));
 
+if (!(empty($config['announce_index']) && empty($config['active_topics_on_index'])))
+{
+	$display_topics = $phpbb_container->get('display_topics');
+}
+
 // Global announcements
-$template->assign_var('S_ANNOUNCE_INDEX', !empty($config['announce_index']));
 if (!empty($config['announce_index']))
 {
-	display_global_announcements('announcetopic');
+	$template->assign_var('S_ANNOUNCE_INDEX', true);
+	$display_topics->global_announcements('announcetopic');
 }
 
 // Last active topics
-$template->assign_var('S_ACTIVE_TOPICS_ON_INDEX', !empty($config['active_topics_on_index']));
 if (!empty($config['active_topics_on_index']))
 {
-	display_active_topics('activetopic', $config['active_topics_on_index']);
+	$template->assign_var('S_ACTIVE_TOPICS_ON_INDEX', true);
+	$display_topics->active('activetopic', $config['active_topics_on_index']);
 }
 
 // Assign index specific vars

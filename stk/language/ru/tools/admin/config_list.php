@@ -378,6 +378,7 @@ $lang = array_merge($lang, array(
 	// phpBBex
 	'active_topics_days'				=> 'Тема активна',
 	'active_topics_on_index'			=> 'Показывать активные темы',
+	'active_topics_on_index_exclude'	=> 'Список id тем, которые не должны отображаться в списке активных тем',
 	'active_users_days'					=> 'Пользователь активен',
 	'announce_index'					=> 'Показывать важные объявления',
 	'allow_quick_full_quote'			=> 'Разрешить полное цитирование',

@@ -109,6 +109,8 @@ $lang = array_merge($lang, array(
 	'ANNOUNCE_INDEX'					=> 'Показывать важные объявления',
 	'ACTIVE_TOPICS_ON_INDEX'			=> 'Показывать активные темы',
 	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'	=> 'Введите количество отображаемых активных тем или 0 для отключения функции.',
+	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE'	=> 'Исключённые темы',
+	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE_EXPLAIN'	=> 'Разделённый запятыми список id тем, которые не должны отображаться в списке активных тем (например: 7, 9)<br />Установите 0 для отключения данной функции.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Отображать кнопки RSS в списке разделов',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'Просмотр темы',
