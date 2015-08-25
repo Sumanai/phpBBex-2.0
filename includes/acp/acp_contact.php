@@ -125,6 +125,7 @@ class acp_contact
 			'S_SMILIES_ALLOWED'		=> true,
 			'S_BBCODE_IMG'			=> true,
 			'S_BBCODE_FLASH'		=> true,
+			'S_BBCODE_SPOILER'		=> true,
 			'S_LINKS_ALLOWED'		=> true,
 		));
 
