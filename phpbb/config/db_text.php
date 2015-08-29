@@ -33,27 +33,34 @@ class db_text
 	protected $table;
 
 	/**
-	* phpBB configuration
-	* @var \phpbb\config\config
-	*/
-	protected $config;
-
-	/**
-	* Cache instance
+	* A cache instance or null
 	* @var \phpbb\cache\driver\driver_interface
 	*/
 	protected $cache;
 
 	/**
+	* Cached text configuration
+	* @var array
+	*/
+	protected $cache_config_text;
+
+	/**
 	* @param \phpbb\db\driver\driver_interface $db        Database connection
 	* @param string          $table     Table name
+	* @param \phpbb\cache\driver\driver_interface $cache  A cache instance or null
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, $table, \phpbb\config\config $config, \phpbb\cache\driver\driver_interface $cache)
+	public function __construct(\phpbb\db\driver\driver_interface $db, $table, \phpbb\cache\driver\driver_interface $cache = null)
 	{
 		$this->db = $db;
 		$this->table = $this->db->sql_escape($table);
-		$this->config = $config;
 		$this->cache = $cache;
+
+		$this->cache_config_text = ($this->cache) ? $this->cache->get('config_text') : array();
+
+		if ($this->cache_config_text === false)
+		{
+			$this->cache_config_text = array();
+		}
 	}
 
 	/**
@@ -135,9 +142,9 @@ class db_text
 
 		$this->db->sql_transaction('commit');
 
-		if ($use_cache)
+		if ($use_cache && $this->cache)
 		{
-			$this->cache->destroy('config');
+			$this->cache->destroy('config_text');
 		}
 	}
 
@@ -153,14 +160,14 @@ class db_text
 	*/
 	public function get_array(array $keys)
 	{
-		$map = $cached_config = array();
+		$map = array();
 
 		// Get cached values
 		foreach ($keys as $key => $config_name)
 		{
-			if (isset($this->config[$config_name]))
+			if (isset($this->cache_config_text[$config_name]))
 			{
-				$map[$config_name] = $this->config[$config_name];
+				$map[$config_name] = $this->cache_config_text[$config_name];
 				unset($keys[$key]);
 			}
 		}
@@ -176,22 +183,23 @@ class db_text
 			WHERE ' . $this->db->sql_in_set('config_name', $keys, false, true);
 		$result = $this->db->sql_query($sql);
 
+		$update_cache = false;
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$map[$row['config_name']] = $row['config_value'];
 
-			if (!$row['is_dynamic'])
+			if (!$row['is_dynamic'] && $this->cache)
 			{
-				$cached_config[$row['config_name']] = $row['config_value'];
+				$update_cache = true;
+				$this->cache_config_text[$row['config_name']] = $row['config_value'];
 			}
 		}
 		$this->db->sql_freeresult($result);
 
 		// Set cached values
-		if (!empty($cached_config))
+		if ($update_cache)
 		{
-			$cached_config = array_merge($cached_config, $this->cache->get('config'));
-			$this->cache->put('config', $cached_config);
+			$this->cache->put('config_text', $this->cache_config_text);
 		}
 
 		return $map;
@@ -211,9 +219,9 @@ class db_text
 			WHERE ' . $this->db->sql_in_set('config_name', $keys, false, true);
 		$this->db->sql_query($sql);
 
-		if ($use_cache)
+		if ($use_cache && $this->cache)
 		{
-			$this->cache->destroy('config');
+			$this->cache->destroy('config_text');
 		}
 	}
 }

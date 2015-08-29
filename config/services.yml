@@ -65,7 +65,6 @@ services:
         arguments:
             - @dbal.conn
             - %tables.config_text%
-            - @config
             - @cache.driver
 
     controller.helper:

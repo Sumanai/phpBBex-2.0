@@ -28,7 +28,6 @@ services:
             - %core.table_prefix%
             - @migrator.tool_collection
             - @migrator.helper
-            - @cache.driver
 
     migrator.helper:
         class: phpbb\db\migration\helper

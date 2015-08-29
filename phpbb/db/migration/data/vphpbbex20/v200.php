@@ -111,7 +111,7 @@ class v200 extends \phpbb\db\migration\migration
 
 	public function config_text_configuration()
 	{
-		$text_config = new \phpbb\config\db_text($this->db, $this->table_prefix . 'config_text', $this->config, $this->cache);
+		$text_config = new \phpbb\config\db_text($this->db, $this->table_prefix . 'config_text');
 
 		$style_counters_html = $this->config['style_counter_html_1'] . $this->config['style_counter_html_2'] . $this->config['style_counter_html_3'] . $this->config['style_counter_html_4'] . $this->config['style_counter_html_5'];
 

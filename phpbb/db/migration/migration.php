@@ -46,9 +46,6 @@ abstract class migration
 	/** @var array List of queries executed through $this->sql_query() */
 	protected $queries = array();
 
-	/** @var \phpbb\cache\driver\driver_interface */
-	protected $cache;
-
 	/**
 	* Constructor
 	*
@@ -58,9 +55,8 @@ abstract class migration
 	* @param string $phpbb_root_path
 	* @param string $php_ext
 	* @param string $table_prefix
-	* @param \phpbb\cache\driver\driver_interface $cache A cache instance or null
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $phpbb_root_path, $php_ext, $table_prefix, \phpbb\cache\driver\driver_interface $cache = null)
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\db\tools $db_tools, $phpbb_root_path, $php_ext, $table_prefix)
 	{
 		$this->config = $config;
 		$this->db = $db;
@@ -71,8 +67,6 @@ abstract class migration
 		$this->php_ext = $php_ext;
 
 		$this->errors = array();
-
-		$this->cache = $cache;
 	}
 
 	/**
