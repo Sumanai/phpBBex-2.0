@@ -150,9 +150,9 @@ class v140 extends \phpbb\db\migration\migration
 			array('config.add', array('override_user_timezone', 0)),
 			array('config.add', array('rate_enabled', '1')),
 			array('config.add', array('rate_only_topics', '0')),
-			array('config.add', array('rate_time', 3600*24*30)),
+			array('config.add', array('rate_time', 2592000)), // 3600*24*30
 			array('config.add', array('rate_topic_time', -1)),
-			array('config.add', array('rate_change_time', 60*5)),
+			array('config.add', array('rate_change_time', 300)), // 60*5
 			array('config.add', array('rate_no_negative', '0')),
 			array('config.add', array('rate_no_positive', '0')),
 			array('config.add', array('site_keywords', '')),

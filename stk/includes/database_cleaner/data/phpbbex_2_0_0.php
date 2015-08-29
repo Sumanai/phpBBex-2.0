@@ -66,11 +66,11 @@ class datafile_phpbbex_2_0_0
 		'override_user_dateformat'				=> array('config_value' => '0', 'is_dynamic' => '0'),
 		'override_user_lang'					=> array('config_value' => '0', 'is_dynamic' => '0'),
 		'override_user_timezone'				=> array('config_value' => '0', 'is_dynamic' => '0'),
-		'rate_change_time'						=> array('config_value' => 60*5, 'is_dynamic' => '0'),
+		'rate_change_time'						=> array('config_value' => 300, 'is_dynamic' => '0'), // 60*5
 		'rate_enabled'							=> array('config_value' => '1', 'is_dynamic' => '0'),
 		'rate_no_negative'						=> array('config_value' => '0', 'is_dynamic' => '0'),
 		'rate_no_positive'						=> array('config_value' => '0', 'is_dynamic' => '0'),
-		'rate_only_topics'						=> array('config_value' => 3600*24*30, 'is_dynamic' => '0'),
+		'rate_only_topics'						=> array('config_value' => 2592000, 'is_dynamic' => '0'), // 3600*24*30
 		'rate_time'								=> array('config_value' => '1', 'is_dynamic' => '0'),
 		'rate_topic_time'						=> array('config_value' => '-1', 'is_dynamic' => '0'),
 		'site_keywords'							=> array('config_value' => '', 'is_dynamic' => '0'),
@@ -274,6 +274,10 @@ class datafile_phpbbex_2_0_0
 			'ogg',
 		),
 
+		'FLASH_FILES'			=> array(
+			'REMOVE_swf',
+		),
+
 		'DOWNLOADABLE_FILES'	=> array(
 			'avi',
 			'mka',
@@ -287,8 +291,15 @@ class datafile_phpbbex_2_0_0
 			'webp',
 			'wma',
 			'wmv',
+			'3g2',
+			'3gp',
+			'mov',
+			'qt',
 			// mp3 moved in AUDIO
 			'REMOVE_mp3',
+			// ogg moved in AUDIO
+			'REMOVE_ogg',
+			'REMOVE_ogm',
 		),
 
 		// Remove obsolete extension groups

@@ -289,6 +289,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_expire_da
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '14400');
 
 # New style options
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('display_raters', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1280');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_row_numbers', '1');
