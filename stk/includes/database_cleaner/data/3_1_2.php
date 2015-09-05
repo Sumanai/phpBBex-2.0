@@ -311,7 +311,6 @@ class datafile_3_1_2
 		'posts_per_page'				=> array('config_value' => '10', 'is_dynamic' => '0'),
 		'print_pm'						=> array('config_value' => '1', 'is_dynamic' => '0'),
 		'queue_interval'				=> array('config_value' => '600', 'is_dynamic' => '0'),
-		'questionnaire_unique_id'		=> array('config_value' => '4aab8fd271d95e2c', 'is_dynamic' => '0'),
 		'ranks_path'					=> array('config_value' => 'images/ranks', 'is_dynamic' => '0'),
 		'read_notification_expire_days'	=> array('config_value' => '30', 'is_dynamic' => '0'),
 		'read_notification_gc'			=> array('config_value' => '86400', 'is_dynamic' => '0'),
