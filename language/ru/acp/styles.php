@@ -81,4 +81,6 @@ $lang = array_merge($lang, array(
 	'STYLE_USED_BY'				=> 'Используют (с ботами)',
 
 	'UNINSTALL_DEFAULT'		=> 'Нельзя удалить стиль по умолчанию.',
+
+	'BROWSE_STYLES_DATABASE'	=> 'Перейти в базу данных стилей',
 ));
