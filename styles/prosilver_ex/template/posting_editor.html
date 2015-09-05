@@ -100,6 +100,8 @@
 
 	<!-- IF S_SHOW_ATTACH_BOX or S_HAS_ATTACHMENTS --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
 	<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
+			<!-- EVENT posting_editor_submit_buttons -->
+				<!-- EVENT posting_editor_add_panel_tab -->
 
 	<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
 	<div class="panel bg2">

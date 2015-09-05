@@ -68,6 +68,12 @@ $lang = array_merge($lang, array(
 	'EXTENSION_NAME'			=> 'Имя расширения',
 	'EXTENSION_ACTIONS'			=> 'Действия',
 	'EXTENSION_OPTIONS'			=> 'Настройки',
+	'EXTENSION_INSTALL_HEADLINE'=> 'Установка расширения',
+	'EXTENSION_INSTALL_EXPLAIN'	=> '<ol>
+			<li>Скачайте расширение из базы данных расширений phpBB</li>
+			<li>Разархивируйте расширение и закачайте файлы на сервер в папку <samp>ext/</samp> конференции</li>
+			<li>Включите расширение здесь, в Управлении расширениями</li>
+		</ol>',
 	'EXTENSION_UPDATE_HEADLINE'	=> 'Обновление расширения',
 	'EXTENSION_UPDATE_EXPLAIN'	=> '<ol>
 			<li>Отключите расширение</li>
@@ -118,6 +124,8 @@ $lang = array_merge($lang, array(
 	'VERSIONCHECK_FORCE_UPDATE_ALL'		=> 'Перепроверить все версии',
 	'FORCE_UNSTABLE'					=> 'Сообщать о выходе бета-версий',
 	'EXTENSIONS_VERSION_CHECK_SETTINGS'	=> 'Настройка параметров обновления',
+
+	'BROWSE_EXTENSIONS_DATABASE'		=> 'Перейти в базу данных расширений',
 
 	'META_FIELD_NOT_SET'	=> 'Обязательное метаполе %s не задано.',
 	'META_FIELD_INVALID'	=> 'Метаполе %s имеет неправильный формат.',

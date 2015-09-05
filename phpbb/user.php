@@ -326,6 +326,14 @@ class user extends \phpbb\session
 		// After calling it we continue script execution...
 		phpbb_user_session_handler();
 
+		/**
+		* Execute code at the end of user setup
+		*
+		* @event core.user_setup_after
+		* @since 3.1.6-RC1
+		*/
+		$phpbb_dispatcher->dispatch('core.user_setup_after');
+
 		if($this->data['is_registered'] && !defined('ADMIN_START'))
 		{
 			$config['topics_per_page_default'] = $config['topics_per_page'];

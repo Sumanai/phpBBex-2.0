@@ -614,7 +614,7 @@ $quickmod_array = array(
 
 $mod_lock = ($quickmod_array['lock'][1]) ? 'lock' : (($quickmod_array['unlock'][1]) ? 'unlock' : false);
 
-foreach($quickmod_array as $option => $qm_ary)
+foreach ($quickmod_array as $option => $qm_ary)
 {
 	if (!empty($qm_ary[1]))
 	{

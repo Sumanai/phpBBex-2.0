@@ -29,6 +29,7 @@
 	</div>
 
 	<!-- INCLUDE viewtopic_topic_tools.html -->
+	<!-- EVENT viewtopic_dropdown_top_custom -->
 
 	<!-- IF S_DISPLAY_SEARCHBOX -->
 		<div class="search-box" role="search">
@@ -55,6 +56,8 @@
 	<!-- ENDIF -->
 	<!-- EVENT viewtopic_body_pagination_top_after -->
 </div>
+
+<!-- EVENT viewtopic_body_poll_before -->
 
 <!-- IF S_HAS_POLL -->
 	<form method="post" action="{S_POLL_ACTION}" data-ajax="vote_poll" class="topic_poll">
@@ -114,6 +117,8 @@
 	</form>
 <!-- ENDIF -->
 
+<!-- EVENT viewtopic_body_poll_after -->
+
 <!-- BEGIN postrow -->
 	<!-- EVENT viewtopic_body_postrow_post_before -->
 	<!-- IF $LAST_POST_FIRST && postrow.POST_NUMBER != 2 --><hr /><!-- ENDIF -->
@@ -145,9 +150,10 @@
 			<!-- EVENT viewtopic_body_post_author_after -->
 			</dd>
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-show"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
+			<!-- EVENT viewtopic_body_postrow_rank_before -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-show">{postrow.RANK_IMG}</dd><!-- ENDIF -->
 			<!-- IF STYLE_MP_SHOW_WARNINGS and postrow.POSTER_WARNINGS -->
-				<dd class="wcards">
+			<!-- EVENT viewtopic_body_postrow_rank_after -->
 				<!-- BEGIN postrow.userwarning -->
 					<!-- IF postrow.userwarning.U_POST -->
 						<a rel="nofollow" href="{postrow.userwarning.U_POST}"
@@ -212,9 +218,10 @@
 			<!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" class="post_icon" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /><!-- ENDIF -->
 			<!-- IF postrow.POST_SUBJECT and postrow.POST_SUBJECT != TOPIC_TITLE --><h3><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3><!-- ENDIF -->
 
+		<!-- DEFINE $SHOW_POST_BUTTONS = (postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE or postrow.POST_RATING_SHOW) -->
 		<!-- EVENT viewtopic_body_post_buttons_list_before -->
 		<!-- IF not S_IS_BOT -->
-			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE or postrow.POST_RATING_SHOW -->
+			<!-- IF $SHOW_POST_BUTTONS -->
 				<ul class="post-buttons">
 					<!-- EVENT viewtopic_body_post_buttons_before -->
 					<!-- IF postrow.U_INFO -->
@@ -395,6 +402,8 @@
 			</div>
 		</div>
 	<!-- ENDIF -->
+	
+	<!-- EVENT viewtopic_dropdown_bottom_custom -->
 
 	<!-- IF .pagination or TOTAL_POSTS -->
 		<div class="pagination">

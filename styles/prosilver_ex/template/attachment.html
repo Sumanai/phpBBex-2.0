@@ -1,8 +1,10 @@
+<!-- EVENT attachment_file_before -->
 
 <!-- BEGIN _file -->
 	<!-- IF _file.S_DENIED -->
 	<p>[{_file.DENIED_MESSAGE}]</p>
 	<!-- ELSE -->
+		<!-- EVENT attachment_file_prepend -->
 
 		<!-- IF _file.S_THUMBNAIL -->
 		<dl class="thumbnail">
@@ -10,7 +12,6 @@
 			<!-- IF _file.COMMENT --><dd> {_file.COMMENT}</dd><!-- ENDIF -->
 		</dl>
 		<!-- ENDIF -->
-
 
 		<!-- IF _file.S_IMAGE -->
 		<dl class="file">
@@ -31,7 +32,6 @@
 		<!-- IF _file.S_AUDIO_FILE or _file.S_VIDEO_FILE or _file.S_FLASH_FILE -->
 		<dl class="file">
 			<dt>
-
 			<!-- IF _file.S_AUDIO_FILE or _file.S_VIDEO_FILE -->
 				<script>
 				function addListener(obj, type, listener) {
@@ -87,5 +87,7 @@
 		</dl>
 		<!-- ENDIF -->
 
+		<!-- EVENT attachment_file_append -->
 	<!-- ENDIF -->
 <!-- END _file -->
+<!-- EVENT attachment_file_after -->
