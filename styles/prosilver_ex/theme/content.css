@@ -276,7 +276,7 @@ dd.option {
 #topicreview {
 	padding-right: 5px;
 	overflow: auto;
-	height: 300px;
+	max-height: 300px;
 }
 
 #topicreview .postbody, #postreview .postbody {

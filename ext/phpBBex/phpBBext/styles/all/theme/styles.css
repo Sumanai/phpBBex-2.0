@@ -343,6 +343,7 @@ input.nano	{ width: 50px; }
 .header-icons > li {
 	margin: 0 3px;
 	float: right;
+	background-image: none;
 }
 
 a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus,

@@ -20,7 +20,7 @@
 <!-- BEGIN announcetopic -->
 		<li class="row<!-- IF announcetopic.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --> global-announce<!-- IF announcetopic.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<dl class="icon {announcetopic.TOPIC_IMG_STYLE}">
-				<dt<!-- IF announcetopic.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{announcetopic.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{announcetopic.TOPIC_FOLDER_IMG_ALT}">
+				<dt<!-- IF announcetopic.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{announcetopic.TOPIC_ICON_IMG});"<!-- ENDIF --> title="{announcetopic.TOPIC_FOLDER_IMG_ALT}">
 					<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
@@ -91,7 +91,7 @@
 <!-- BEGIN activetopic -->
 		<li class="row<!-- IF activetopic.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF activetopic.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF activetopic.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF activetopic.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<dl class="icon {activetopic.TOPIC_IMG_STYLE}">
-				<dt<!-- IF activetopic.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{activetopic.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{activetopic.TOPIC_FOLDER_IMG_ALT}">
+				<dt<!-- IF activetopic.TOPIC_ICON_IMG --> style="background-image: url({T_ICONS_PATH}{activetopic.TOPIC_ICON_IMG});"<!-- ENDIF --> title="{activetopic.TOPIC_FOLDER_IMG_ALT}">
 					<!-- IF activetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{activetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->

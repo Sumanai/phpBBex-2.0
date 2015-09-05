@@ -20,7 +20,7 @@
     "extra": {
         "display-name": "phpBBext",
         "soft-require": {
-		    "phpbb/phpbb": "3.1.*"
+            "phpbb/phpbb": "3.1.*"
         }
     }
 }

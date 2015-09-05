@@ -1378,30 +1378,20 @@ ul.linklist:after,
 	float: right;
 }
 
-a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus,
-.header-icons .icon-bump > a, a.icon-header-sendemail, a.icon-header-print,
-.header-icons .icon-bookmark > a, .header-icons .icon-unbookmark > a, .header-icons .icon-subscribe > a, .header-icons .icon-unsubscribe > a,
-a.icon-header-lock, a.icon-header-unlock
-{
+.header-icons > li > a {
 	display: block;
 	overflow: hidden;
 	padding: 0;
 	width: 26px;
 	height: 26px;
-	text-indent: -500px;
+	text-indent: -250px;
 	text-align: left;
 	background-repeat: no-repeat;
+	background-image: url("./images/header_icons.png");
 }
 
 a.icon-vkontakte, a.icon-facebook, a.icon-twitter, a.icon-google-plus {
-	background-image: url("./images/social_icons.png");
-}
-
-.header-icons .icon-bump > a, a.icon-header-sendemail, a.icon-header-print,
-.header-icons .icon-bookmark > a, .header-icons .icon-unbookmark > a, .header-icons .icon-subscribe > a, .header-icons .icon-unsubscribe > a,
-a.icon-header-lock, a.icon-header-unlock
-{
-	background-image: url("./images/header_icons.png");
+	background-image: url("./images/social_icons.png") !important;
 }
 
 a.icon-facebook { background-position: 0 -26px; }
