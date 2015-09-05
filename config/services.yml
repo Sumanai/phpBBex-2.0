@@ -139,7 +139,6 @@ services:
         class: phpbb\log\log
         arguments:
             - @dbal.conn
-            - @config
             - @user
             - @auth
             - @dispatcher
@@ -147,6 +146,7 @@ services:
             - %core.adm_relative_path%
             - %core.php_ext%
             - %tables.log%
+            - @config
 
     path_helper:
         class: phpbb\path_helper

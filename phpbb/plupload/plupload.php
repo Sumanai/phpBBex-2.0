@@ -49,6 +49,7 @@ class plupload
 	protected $mimetype_guesser;
 
 	/**
+	* Auth object or null
 	* @var \phpbb\auth\auth
 	*/
 	protected $auth;
@@ -74,8 +75,9 @@ class plupload
 	* @param \phpbb\user $user
 	* @param \phpbb\php\ini $php_ini
 	* @param \phpbb\mimetype\guesser $mimetype_guesser
+	* @param \phpbb\auth\auth $auth
 	*/
-	public function __construct($phpbb_root_path, \phpbb\config\config $config, \phpbb\request\request_interface $request, \phpbb\user $user, \phpbb\php\ini $php_ini, \phpbb\mimetype\guesser $mimetype_guesser, \phpbb\auth\auth $auth)
+	public function __construct($phpbb_root_path, \phpbb\config\config $config, \phpbb\request\request_interface $request, \phpbb\user $user, \phpbb\php\ini $php_ini, \phpbb\mimetype\guesser $mimetype_guesser, \phpbb\auth\auth $auth = null)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->config = $config;
@@ -272,11 +274,14 @@ class plupload
 	function get_allowed_extension_sizes(\phpbb\cache\service $cache, $forum_id = false)
 	{
 		$result = array();
-		$can_ignore = $this->auth->acl_get('a_') || $forum_id !== false && $this->auth->acl_get('m_', $forum_id);
 
-		if ($can_ignore)
+		if ($this->auth)
 		{
-			return $result;
+			$can_ignore = $this->auth->acl_get('a_') || $forum_id !== false && $this->auth->acl_get('m_', $forum_id);
+			if ($can_ignore)
+			{
+				return $result;
+			}
 		}
 
 		$extensions = $cache->obtain_attach_extensions($forum_id);

@@ -718,22 +718,37 @@ function validate_range($value_ary, &$error)
 */
 function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 {
+	$replace_config = array(
+		// legend1 => (search, replace),
+		'ACP_BOARD_FEATURES'    => array('allow_quick_reply', 'display_last_subject'),
+		'GENERAL_OPTIONS'       => array('allow_quick_reply', 'enable_post_confirm'),
+
+		'ACP_BOARD_FEATURES'    => array('load_birthdays', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_moderators', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_jumpbox', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_cpf_memberlist', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_cpf_pm', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_cpf_viewprofile', 'load_db_track'),
+		'ACP_BOARD_FEATURES'    => array('load_cpf_viewtopic', 'load_db_track'),
+
+		'GENERAL_SETTINGS'      => array('load_online_time', 'active_sessions'),
+		'GENERAL_SETTINGS'      => array('load_online_guests', 'load_online'),
+	);
+
 	if (is_array($where))
 	{
-		if (array_key_exists(current($where), $display_vars))
+		foreach ($replace_config as $legend => $vars)
 		{
-			$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
+			if (($display_vars['legend1'] == $legend) && (current($where) == $vars[0]))
+			{
+				(key($where) == 'before') ? $where['before'] = $vars[1] : $where['after'] = $vars[1];
+			}
 		}
-		else
-		{
-			$position = end($display_vars) - 1;
-		}
+	}
 
-		if(is_array(reset($add_config_vars)))
-		{
-			$add_config_vars = array_merge(array('acp_legend_ext'	=> 'ACP_LEGEND_EXT'), $add_config_vars);
-		}
-
+	if (is_array($where) && array_key_exists(current($where), $display_vars))
+	{
+		$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
 		$display_vars = array_merge(
 			array_slice($display_vars, 0, $position),
 			$add_config_vars,

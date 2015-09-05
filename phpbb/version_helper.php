@@ -76,7 +76,7 @@ class version_helper
 			$this->force_stability = 'unstable';
 		}
 
-		$this->current_version = $this->config['phpbbex_version'];
+		$this->current_version = $this->config['version'];
 	}
 
 	/**

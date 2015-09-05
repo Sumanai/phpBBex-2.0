@@ -38,6 +38,7 @@ class acp_update
 		{
 			$recheck = $request->variable('versioncheck_force', false);
 			$version_helper->set_file_location('sumanai.github.io', '');
+			$version_helper->set_current_version($config['phpbbex_version']);
 			$updates_available = $version_helper->get_suggested_updates($recheck);
 		}
 		catch (\RuntimeException $e)

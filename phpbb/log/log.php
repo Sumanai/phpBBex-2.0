@@ -57,7 +57,7 @@ class log implements \phpbb\log\log_interface
 	protected $db;
 
 	/**
-	* Config object
+	* Config object or null
 	* @var \phpbb\config\config
 	*/
 	protected $config;
@@ -102,7 +102,6 @@ class log implements \phpbb\log\log_interface
 	* Constructor
 	*
 	* @param	\phpbb\db\driver\driver_interface	$db		Database object
-	* @param	\phpbb\config\config		$config		Config object
 	* @param	\phpbb\user		$user	User object
 	* @param	\phpbb\auth\auth		$auth	Auth object
 	* @param	\phpbb\event\dispatcher_interface	$phpbb_dispatcher	Event dispatcher
@@ -110,11 +109,11 @@ class log implements \phpbb\log\log_interface
 	* @param	string		$relative_admin_path	Relative admin root path
 	* @param	string		$php_ext			PHP Extension
 	* @param	string		$log_table		Name of the table we use to store our logs
+	* @param	\phpbb\config\config	$config		Config object or null
 	*/
-	public function __construct($db, $config, $user, $auth, $phpbb_dispatcher, $phpbb_root_path, $relative_admin_path, $php_ext, $log_table)
+	public function __construct($db, $user, $auth, $phpbb_dispatcher, $phpbb_root_path, $relative_admin_path, $php_ext, $log_table, $config = null)
 	{
 		$this->db = $db;
-		$this->config = $config;
 		$this->user = $user;
 		$this->auth = $auth;
 		$this->dispatcher = $phpbb_dispatcher;
@@ -122,6 +121,7 @@ class log implements \phpbb\log\log_interface
 		$this->phpbb_admin_path = $this->phpbb_root_path . $relative_admin_path;
 		$this->php_ext = $php_ext;
 		$this->log_table = $log_table;
+		$this->config = $config ? $config : array();
 
 		/*
 		* IN_ADMIN is set after the session is created,
