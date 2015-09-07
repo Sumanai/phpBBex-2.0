@@ -21,8 +21,10 @@
 		<dt class="<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF --> responsive-hide">
 			{MESSAGE_AUTHOR_FULL}<!-- IF STYLE_MP_SHOW_GENDER --><!-- IF postrow.S_POSTER_GENDER_M --> <img src="{T_THEME_PATH}/images/icon_gender_m.gif" title="{L_GENDER}{L_COLON} {L_GENDER_M}" alt="M" /><!-- ELSEIF postrow.S_POSTER_GENDER_F --> <img src="{T_THEME_PATH}/images/icon_gender_f.gif" title="{L_GENDER}{L_COLON} {L_GENDER_F}" alt="F" /><!-- ENDIF --><!-- ENDIF -->
 		</dt>
+		<!-- EVENT ucp_pm_viewmessage_rank_before -->
 		<!-- IF RANK_TITLE --><dd class="profile-rank responsive-hide">{RANK_TITLE}</dd><!-- ENDIF -->
 		<!-- IF RANK_IMG --><dd class="profile-rank responsive-hide">{RANK_IMG}</dd><!-- ENDIF -->
+		<!-- EVENT ucp_pm_viewmessage_rank_after -->
 		<dd class="avatar-container <!-- IF postrow.POSTER_AVATAR -->has-avatar<!-- ELSE -->no-avatar<!-- ENDIF -->">
 			<!-- EVENT ucp_pm_viewmessage_avatar_before -->
 			<!-- IF AUTHOR_AVATAR --><a href="{U_MESSAGE_AUTHOR}" class="avatar">{AUTHOR_AVATAR}</a><!-- ENDIF -->
@@ -31,8 +33,10 @@
 		<dd class="responsive-show <!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF -->">
 			{MESSAGE_AUTHOR_FULL}<!-- IF STYLE_MP_SHOW_GENDER --><!-- IF postrow.S_POSTER_GENDER_M --> <img src="{T_THEME_PATH}/images/icon_gender_m.gif" title="{L_GENDER}{L_COLON} {L_GENDER_M}" alt="M" /><!-- ELSEIF postrow.S_POSTER_GENDER_F --> <img src="{T_THEME_PATH}/images/icon_gender_f.gif" title="{L_GENDER}{L_COLON} {L_GENDER_F}" alt="F" /><!-- ENDIF --><!-- ENDIF -->
 		</dt>
+		<!-- EVENT ucp_pm_viewmessage_rank_before -->
 		<!-- IF RANK_TITLE --><dd class="profile-rank responsive-show">{RANK_TITLE}</dd><!-- ENDIF -->
 		<!-- IF RANK_IMG --><dd class="profile-rank responsive-show">{RANK_IMG}</dd><!-- ENDIF -->
+		<!-- EVENT ucp_pm_viewmessage_rank_after -->
 		<!-- IF STYLE_MP_SHOW_WARNINGS and AUTHOR_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {AUTHOR_WARNINGS}</dd><!-- ENDIF -->
 		<!-- IF STYLE_MP_SHOW_AGE and AUTHOR_AGE and AUTHOR_AGE < 65 and AUTHOR_AGE > 10 --><dd class="profile-age"><strong>{L_AGE}{L_COLON}</strong> {AUTHOR_AGE}</dd><!-- ENDIF -->
 		<!-- IF S_RATE_ENABLED and (STYLE_MP_SHOW_RATING or STYLE_MP_SHOW_RATING_DETAILED) --><dd><strong>{L_USER_RATING}:</strong> <!-- IF not RATE_NO_POSITIVE and not RATE_NO_NEGATIVE --><!-- IF STYLE_MP_SHOW_RATING and STYLE_MP_SHOW_RATING_DETAILED -->{AUTHOR_RATING} (+{AUTHOR_RATING_POSITIVE}/−{AUTHOR_RATING_NEGATIVE})<!-- ELSEIF STYLE_MP_SHOW_RATING_DETAILED -->+{AUTHOR_RATING_POSITIVE}/−{AUTHOR_RATING_NEGATIVE}<!-- ELSE --><span title="+{AUTHOR_RATING_POSITIVE}/−{AUTHOR_RATING_NEGATIVE}">{AUTHOR_RATING}</span><!-- ENDIF --><!-- ELSE -->{AUTHOR_RATING}<!-- ENDIF --></dd><!-- ENDIF -->

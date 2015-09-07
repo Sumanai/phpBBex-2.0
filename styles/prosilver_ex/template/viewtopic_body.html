@@ -152,8 +152,9 @@
 			<!-- IF postrow.RANK_TITLE or STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER --><dd class="profile-rank responsive-show"><!-- IF STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->{L_TOPIC_POSTER}<!-- ENDIF --><!-- IF postrow.RANK_TITLE and STYLE_MP_SHOW_TOPIC_POSTER and postrow.S_TOPIC_POSTER -->, <!-- ENDIF --><!-- IF postrow.RANK_TITLE -->{postrow.RANK_TITLE}<!-- ENDIF --></dd><!-- ENDIF -->
 			<!-- EVENT viewtopic_body_postrow_rank_before -->
 			<!-- IF postrow.RANK_IMG --><dd class="profile-rank responsive-show">{postrow.RANK_IMG}</dd><!-- ENDIF -->
-			<!-- IF STYLE_MP_SHOW_WARNINGS and postrow.POSTER_WARNINGS -->
 			<!-- EVENT viewtopic_body_postrow_rank_after -->
+			<!-- IF STYLE_MP_SHOW_WARNINGS and postrow.POSTER_WARNINGS -->
+			<dd class="wcards">
 				<!-- BEGIN postrow.userwarning -->
 					<!-- IF postrow.userwarning.U_POST -->
 						<a rel="nofollow" href="{postrow.userwarning.U_POST}"
