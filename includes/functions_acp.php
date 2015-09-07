@@ -718,35 +718,40 @@ function validate_range($value_ary, &$error)
 */
 function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 {
-	$replace_config = array(
-		// legend1 => (search, replace),
-		'ACP_BOARD_FEATURES'    => array('allow_quick_reply', 'display_last_subject'),
-		'GENERAL_OPTIONS'       => array('allow_quick_reply', 'enable_post_confirm'),
-
-		'ACP_BOARD_FEATURES'    => array('load_birthdays', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_moderators', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_jumpbox', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_cpf_memberlist', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_cpf_pm', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_cpf_viewprofile', 'load_db_track'),
-		'ACP_BOARD_FEATURES'    => array('load_cpf_viewtopic', 'load_db_track'),
-
-		'GENERAL_SETTINGS'      => array('load_online_time', 'active_sessions'),
-		'GENERAL_SETTINGS'      => array('load_online_guests', 'load_online'),
-	);
-
-	if (is_array($where))
+	if (!is_array($where))
 	{
-		foreach ($replace_config as $legend => $vars)
-		{
-			if (($display_vars['legend1'] == $legend) && (current($where) == $vars[0]))
-			{
-				(key($where) == 'before') ? $where['before'] = $vars[1] : $where['after'] = $vars[1];
-			}
-		}
+		return $display_vars;
 	}
 
-	if (is_array($where) && array_key_exists(current($where), $display_vars))
+	$replace_config = array(
+		'ACP_BOARD_FEATURES'    => array(
+			'allow_quick_reply'     => 'display_last_subject',
+			'load_birthdays'        => 'load_db_track',
+			'load_moderators'       => 'load_db_track',
+			'load_jumpbox'          => 'load_db_track',
+			'load_cpf_memberlist'   => 'load_db_track',
+			'load_cpf_pm'           => 'load_db_track',
+			'load_cpf_viewprofile'  => 'load_db_track',
+			'load_cpf_viewtopic'    => 'load_db_track',
+		),
+
+		'GENERAL_OPTIONS'       => array(
+			'allow_quick_reply'     => 'enable_post_confirm',
+		),
+
+		'GENERAL_SETTINGS'      => array(
+			'load_online_time'      => 'active_sessions',
+			'load_online_guests'    => 'load_online',
+		),
+	);
+
+	if (isset($replace_config[$display_vars['legend1']]) &&
+		array_key_exists(current($where), $replace_config[$display_vars['legend1']]))
+	{
+		$where[(key($where) == 'before') ? 'before' : 'after'] = $replace_config[$display_vars['legend1']][current($where)];
+	}
+
+	if (array_key_exists(current($where), $display_vars))
 	{
 		$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
 		$display_vars = array_merge(
