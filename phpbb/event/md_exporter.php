@@ -99,7 +99,7 @@ class md_exporter
 	{
 		$this->crawl_eventsmd($md_file, 'styles');
 
-		$styles = array('prosilver', 'subsilver2');
+		$styles = array('prosilver', 'prosilver_ex');
 		foreach ($styles as $style)
 		{
 			$file_list = $this->get_recursive_file_list(
@@ -280,7 +280,7 @@ class md_exporter
 			}
 			else
 			{
-				$wiki_page .= implode(', ', $event['files']['prosilver']) . ' || ' . implode(', ', $event['files']['subsilver2']);
+				$wiki_page .= implode(', ', $event['files']['prosilver']) . ' || ' . implode(', ', $event['files']['prosilver_ex']);
 			}
 
 			$wiki_page .= " || {$event['since']} || " . str_replace("\n", ' ', $event['description']) . "\n";
@@ -371,7 +371,7 @@ class md_exporter
 	{
 		$files_list = array(
 			'prosilver'		=> array(),
-			'subsilver2'	=> array(),
+			'prosilver_ex'	=> array(),
 			'adm'			=> array(),
 		);
 
@@ -391,9 +391,9 @@ class md_exporter
 				{
 					$files_list['prosilver'][] = substr($file, strlen('styles/prosilver/template/'));
 				}
-				else if (($this->filter !== 'adm') && strpos($file, 'styles/subsilver2/template/') === 0)
+				else if (($this->filter !== 'adm') && strpos($file, 'styles/prosilver_ex/template/') === 0)
 				{
-					$files_list['subsilver2'][] = substr($file, strlen('styles/subsilver2/template/'));
+					$files_list['prosilver_ex'][] = substr($file, strlen('styles/prosilver_ex/template/'));
 				}
 				else if (($this->filter === 'adm') && strpos($file, 'adm/style/') === 0)
 				{
