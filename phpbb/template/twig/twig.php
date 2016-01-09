@@ -90,7 +90,7 @@ class twig extends \phpbb\template\base
 		$this->context = $context;
 		$this->extension_manager = $extension_manager;
 
-		$this->cachepath = $this->phpbb_root_path . 'cache/twig/';
+		$this->cachepath = $this->phpbb_root_path . 'cache/twig';
 
 		// Initiate the loader, __main__ namespace paths will be setup later in set_style_names()
 		$loader = new \phpbb\template\twig\loader('');
