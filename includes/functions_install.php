@@ -127,6 +127,13 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 	// now perform some checks whether they are really available
 	foreach ($available_dbms as $db_name => $db_ary)
 	{
+		// If the database is initially disabled, it is not supported in phpBBex, and should not be displayed anywhere.
+		if (!$available_dbms[$db_name]['AVAILABLE'])
+		{
+			unset($available_dbms[$db_name]);
+			continue;
+		}
+
 		if ($only_20x_options && !$db_ary['2.0.x'])
 		{
 			if ($return_unavailable)
