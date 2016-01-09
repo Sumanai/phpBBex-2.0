@@ -1199,7 +1199,7 @@ class install_install extends module
 				->get_classes();
 
 			$sqlite_db = new \phpbb\db\driver\sqlite();
-			$schema_generator = new \phpbb\db\migration\schema_generator($classes, new \phpbb\config\config(array()), $sqlite_db, new \phpbb\db\tools($sqlite_db, true), $phpbb_root_path, $phpEx, $table_prefix, new \phpbb\cache\driver\null);
+			$schema_generator = new \phpbb\db\migration\schema_generator($classes, new \phpbb\config\config(array()), $sqlite_db, new \phpbb\db\tools($sqlite_db, true), $phpbb_root_path, $phpEx, $table_prefix);
 			$db_table_schema = $schema_generator->get_schema();
 		}
 
@@ -1491,7 +1491,7 @@ class install_install extends module
 		include_once($phpbb_root_path . 'phpbb/search/fulltext_native.' . $phpEx);
 
 		// We need to fill the config to let internal functions correctly work
-		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\null, CONFIG_TABLE);
+		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\dummy, CONFIG_TABLE);
 		set_config(null, null, null, $config);
 		set_config_count(null, null, null, $config);
 
@@ -1920,7 +1920,7 @@ class install_install extends module
 		$data = $this->get_submitted_data();
 
 		// We need to fill the config to let internal functions correctly work
-		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\null, CONFIG_TABLE);
+		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\dummy, CONFIG_TABLE);
 		set_config(null, null, null, $config);
 		set_config_count(null, null, null, $config);
 
@@ -1994,7 +1994,7 @@ class install_install extends module
 		$data = $this->get_submitted_data();
 
 		// We need to fill the config to let internal functions correctly work
-		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\null, CONFIG_TABLE);
+		$config = new \phpbb\config\db($db, new \phpbb\cache\driver\dummy, CONFIG_TABLE);
 		set_config(null, null, null, $config);
 		set_config_count(null, null, null, $config);
 

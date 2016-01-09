@@ -142,7 +142,7 @@ class session
 			'script_path'		=> str_replace(' ', '%20', htmlspecialchars($script_path)),
 			'root_script_path'	=> str_replace(' ', '%20', htmlspecialchars($root_script_path)),
 
-			'page'				=> preg_replace('/[^\x00-\x7F]+/e', 'urlencode("$0")', $page),
+			'page'				=> preg_replace_callback('/[^\x00-\x7F]+/', function ($matches) {return urlencode($matches);}, $page),
 			'forum'				=> $forum_id,
 		);
 

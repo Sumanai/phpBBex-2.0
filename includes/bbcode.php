@@ -115,7 +115,18 @@ class bbcode
 							$undid_bbcode_specialchars = true;
 						}
 
-						$message = preg_replace($preg['search'], $preg['replace'], $message);
+						foreach ($preg['search'] as $key => $search)
+						{
+							if (is_callable($preg['replace'][$key]))
+							{
+								$message = preg_replace_callback($search, $preg['replace'][$key], $message);
+							}
+							else
+							{
+								$message = preg_replace($search, $preg['replace'][$key], $message);
+							}
+						}
+
 						$preg = array('search' => array(), 'replace' => array());
 					}
 				}
@@ -200,7 +211,13 @@ class bbcode
 							'[/quote:$uid]'	=> $this->bbcode_tpl('quote_close', $bbcode_id)
 						),
 						'preg' => array(
-							'#\[quote(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[quote(?:=&quot;.*?&quot;)?:$uid\]).)?#ise'	=> "\$this->bbcode_second_pass_quote('\$1', '\$2')"
+							'#\[quote(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[quote(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=> function ($match) {
+								if (!isset($match[2]))
+								{
+									$match[2] = '';
+								}
+								return $this->bbcode_second_pass_quote($match[1], $match[2]);
+							},
 						)
 					);
 				break;
@@ -226,8 +243,12 @@ class bbcode
 				case 3:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[url:$uid\]((.*?))\[/url:$uid\]#se'			=> "\$this->bbcode_second_pass_url('\$1', '\$2')",
-							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#se'	=> "\$this->bbcode_second_pass_url('\$1', '\$2')",
+							'#\[url:$uid\]((.*?))\[/url:$uid\]#s'			=> function ($match) {
+								return $this->bbcode_second_pass_url($match[1], $match[2]);
+							},
+							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#s'	=> function ($match) {
+								return $this->bbcode_second_pass_url($match[1], $match[2]);
+							},
 						)
 					);
 				break;
@@ -245,7 +266,9 @@ class bbcode
 					{
 						$this->bbcode_cache[$bbcode_id] = array(
 							'preg' => array(
-								'#\[img:$uid\](.*?)\[/img:$uid\]#se'	=> "\$this->bbcode_second_pass_url('\$1', '[ img ]')",
+								'#\[img:$uid\](.*?)\[/img:$uid\]#s'	=> function ($match) {
+									return $this->bbcode_second_pass_url($match[1], $match[2]);
+								},
 							)
 						);
 					}
@@ -279,7 +302,9 @@ class bbcode
 				case 8:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\][\n]?#ise'	=> "\$this->bbcode_second_pass_code('\$1', '\$2')",
+							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\]#is'	=> function ($match) {
+								return $this->bbcode_second_pass_code($match[1], $match[2]);
+							},
 						)
 					);
 				break;
@@ -289,7 +314,9 @@ class bbcode
 						'preg' => array(
 							'#(\[\/?(list|\*):[mou]?:?$uid\])[\n]{1}#'	=> "\$1",
 							'#(\[list=([^\[]+):$uid\])[\n]{1}#'			=> "\$1",
-							'#\[list=([^\[]+):$uid\]#e'					=> "\$this->bbcode_list('\$1')",
+							'#\[list=([^\[]+):$uid\]#'					=> function ($match) {
+								return $this->bbcode_list($match[1]);
+							},
 						),
 						'str' => array(
 							'[list:$uid]'		=> $this->bbcode_tpl('ulist_open_default', $bbcode_id),
@@ -324,7 +351,7 @@ class bbcode
 					{
 						$this->bbcode_cache[$bbcode_id] = array(
 							'preg' => array(
-								'#\[flash=([0-9]+),([0-9]+):$uid\](.*?)\[/flash:$uid\]#e'	=> "\$this->bbcode_second_pass_url('\$3', '[ flash ]')",
+								'#\[flash=([0-9]+),([0-9]+):$uid\](.*?)\[/flash:$uid\]#'	=> str_replace('$1', '$3', str_replace('$2', '[ flash ]', $this->bbcode_tpl('url', $bbcode_id, true)))
 							)
 						);
 					}
@@ -362,7 +389,9 @@ class bbcode
 				case 15:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#e' => "\$this->bbcode_second_pass_upd('\$1', '\$2')",
+							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#' => function ($match) {
+								return $this->bbcode_second_pass_upd($match[1], $match[2]);
+							},
 						)
 					);
 
@@ -375,7 +404,13 @@ class bbcode
 							'[/spoiler:$uid]'		=> $this->bbcode_tpl('spoiler_close', $bbcode_id)
 						),
 						'preg' => array(
-							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#ise'	=> "\$this->bbcode_second_pass_spoiler('\$1', '\$2')"
+							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=>function ($match) {
+								if (!isset($match[2]))
+								{
+									$match[2] = '';
+								}
+								return $this->bbcode_second_pass_spoiler($match[1], $match[2]);
+							},
 						)
 					);
 				break;
@@ -412,7 +447,9 @@ class bbcode
 						}
 
 						// Replace {L_*} lang strings
-						$bbcode_tpl = preg_replace('/{L_([A-Z0-9_]+)}/e', "(!empty(\$user->lang['\$1'])) ? \$user->lang['\$1'] : ucwords(strtolower(str_replace('_', ' ', '\$1')))", $bbcode_tpl);
+						$bbcode_tpl = preg_replace_callback('/{L_([A-Z0-9_]+)}/', function ($match) use ($user) {
+							return (!empty($user->lang[$match[1]])) ? $user->lang($match[1]) : ucwords(strtolower(str_replace('_', ' ', $match[1])));
+						}, $bbcode_tpl);
 
 						if (!empty($rowset[$bbcode_id]['second_pass_replace']))
 						{
@@ -548,7 +585,9 @@ class bbcode
 			'upd_subject'			=> array('{SUBJECT}'	=> '$1'),
 		);
 
-		$tpl = preg_replace('/{L_([A-Z0-9_]+)}/e', "(!empty(\$user->lang['\$1'])) ? \$user->lang['\$1'] : ucwords(strtolower(str_replace('_', ' ', '\$1')))", $tpl);
+		$tpl = preg_replace_callback('/{L_([A-Z0-9_]+)}/', function ($match) use ($user) {
+			return (!empty($user->lang[$match[1]])) ? $user->lang($match[1]) : ucwords(strtolower(str_replace('_', ' ', $match[1])));
+		}, $tpl);
 
 		if (!empty($replacements[$tpl_name]))
 		{

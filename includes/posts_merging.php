@@ -94,7 +94,9 @@ $username = (!$user->data['is_registered'] && $post_data['username']) ? $post_da
 // Handle with inline attachments
 if ($num_new_attach)
 {
-	$merge_post_data['post_text'] = preg_replace('#\[attachment=([0-9]+)\](.*?)\[\/attachment\]#e', "'[attachment='.(\\1 + $num_new_attach).']\\2[/attachment]'", $merge_post_data['post_text']);
+	$merge_post_data['post_text'] = preg_replace_callback('#\[attachment=([0-9]+)\](.*?)\[\/attachment\]#', function($matches) use ($num_new_attach) {
+		return '[attachment=' . ($matches[1] + $num_new_attach) . ']' . $matches[2] . '[/attachment]';
+	}, $merge_post_data['post_text']);
 }
 
 // Make sure the message is safe
