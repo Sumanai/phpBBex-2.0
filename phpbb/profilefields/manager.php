@@ -222,7 +222,10 @@ class manager
 				$cp_error[] = $cp_result;
 			}
 
-			$cp_data['pf_' . $row['field_ident']] = $check_value;
+			if ($row['field_regexp'])
+			{
+				$cp_data['pf_' . $row['field_ident']] = $check_value;
+			}
 		}
 		$this->db->sql_freeresult($result);
 	}
