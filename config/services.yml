@@ -104,7 +104,7 @@ services:
             - @dbal.conn
             - @dispatcher
             - @pagination
-            - @request
+            - @service_container
             - @template
             - @user
             - %core.root_path%

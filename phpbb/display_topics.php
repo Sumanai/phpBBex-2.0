@@ -62,31 +62,36 @@ class display_topics
 	protected $pagination;
 
 	/**
-	* Request object
-	* @var \phpbb\request\request_interface
+	* DI container
+	*
+	* @var \Symfony\Component\DependencyInjection\ContainerInterface
 	*/
-	protected $request;
+	protected $phpbb_container;
 
 	/**
 	* Template object
+	*
 	* @var \phpbb\template\template
 	*/
 	protected $template;
 
 	/**
 	* User object
+	*
 	* @var \phpbb\user
 	*/
 	protected $user;
 
 	/**
 	* phpBB root path
+	*
 	* @var string
 	*/
 	protected $root_path;
 
 	/**
 	* PHP file extension
+	*
 	* @var string
 	*/
 	protected $phpEx;
@@ -94,8 +99,20 @@ class display_topics
 	/**
 	* Constructor
 	*/
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\content_visibility $content_visibility, \phpbb\db\driver\driver_interface $db, \phpbb\event\dispatcher_interface $dispatcher, \phpbb\pagination $pagination, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $phpEx)
-	{
+	public function __construct(
+		\phpbb\auth\auth $auth,
+		\phpbb\cache\service $cache,
+		\phpbb\config\config $config,
+		\phpbb\content_visibility $content_visibility,
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\event\dispatcher_interface $dispatcher,
+		\phpbb\pagination $pagination,
+		\Symfony\Component\DependencyInjection\ContainerInterface $phpbb_container,
+		\phpbb\template\template $template,
+		\phpbb\user $user,
+		$root_path,
+		$phpEx
+	) {
 		$this->auth = $auth;
 		$this->cache = $cache;
 		$this->config = $config;
@@ -103,7 +120,7 @@ class display_topics
 		$this->db = $db;
 		$this->dispatcher = $dispatcher;
 		$this->pagination = $pagination;
-		$this->request = $request;
+		$this->phpbb_container = $phpbb_container;
 		$this->template = $template;
 		$this->user = $user;
 		$this->root_path = $root_path;
@@ -170,16 +187,15 @@ class display_topics
 		}
 
 		$sql_where = 't.topic_status <> ' . ITEM_MOVED . '
-			AND ' . $this->content_visibility->get_forums_visibility_sql('topic', $forum_ids, $table_alias = 't.');
+			AND ' . $this->content_visibility->get_forums_visibility_sql('topic', $forum_ids, 't.');
 
 		if ($this->config['announce_index'])
 		{
-			$sql_where .= 'AND t.topic_type <> ' . POST_GLOBAL;
+			$sql_where .= ' AND t.topic_type <> ' . POST_GLOBAL;
 		}
 
 		if ($this->config['active_topics_on_index_exclude'])
 		{
-
 			$excluded_topics = explode(',', str_replace(' ', '', $this->config['active_topics_on_index_exclude']));
 			$sql_where .= ' AND ' . $this->db->sql_in_set('t.topic_id', $excluded_topics, true);
 		}
@@ -266,7 +282,7 @@ class display_topics
 			}
 			else if ($this->config['load_anon_lastread'] || $this->user->data['is_registered'])
 			{
-				$this->request = $phpbb_container->get('request');
+				$this->request = $this->phpbb_container->get('request');
 				$tracking_topics = $this->request->variable($this->config['cookie_name'] . '_track', '', true, \phpbb\request\request_interface::COOKIE);
 				$tracking_topics = ($tracking_topics) ? tracking_unserialize($tracking_topics) : array();
 
