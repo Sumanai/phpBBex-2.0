@@ -668,15 +668,7 @@ function add_warning($user_row, $warning, $send_pm = true, $post_id = 0, $warnin
 	global $phpEx, $phpbb_root_path, $config;
 	global $template, $db, $user, $auth;
 
-	if (!is_numeric($warning_days))
-	{
-		$warning_days = $config['warnings_expire_days'];
-	}
-
-	if (!in_array($warning_type, array('remark', 'warning', 'ban')))
-	{
-		$warning_type = 'warning';
-	}
+	correct_warning_data($warning_days, $warning_type);
 
 	$warning_active = ($warning_type == 'remark') ? 0 : 1;
 
@@ -757,15 +749,7 @@ function edit_warning($warning_row, $warning, $warning_days, $warning_type)
 	global $db, $cache, $config;
 	if(empty($warning_row))	return false;
 
-	if (!is_numeric($warning_days))
-	{
-		$warning_days = $config['warnings_expire_days'];
-	}
-
-	if (!in_array($warning_type, array('remark', 'warning', 'ban')))
-	{
-		$warning_type = 'warning';
-	}
+	correct_warning_data($warning_days, $warning_type);
 
 	$warning_end = ($warning_days) ? ($warning_row['warning_time'] + $warning_days * 86400) : 0;
 	$warning_active = ($warning_type == 'remark' || ($warning_days && $warning_end < time())) ? 0 : 1;
@@ -815,4 +799,18 @@ function recalc_user_warnings($user_id)
 			)
 		WHERE user_id = {$user_id}";
 	$db->sql_query($sql);
+}
+
+function correct_warning_data(&$days, &$type)
+{
+	if (!is_numeric($days))
+	{
+		$days = $config['warnings_expire_days'];
+	}
+	$days = abs($days);
+
+	if (!in_array($type, array('remark', 'warning', 'ban')))
+	{
+		$type = 'warning';
+	}
 }
