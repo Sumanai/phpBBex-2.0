@@ -1,0 +1,148 @@
+<!-- IF S_ANNOUNCE_INDEX and .announcetopic -->
+<div class="forumbg announcement">
+	<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_ANNOUNCEMENTS}</dt>
+					<dd class="posts">{L_STATISTICS}</dd>
+					<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+<!-- BEGIN announcetopic -->
+		<li class="row<!-- IF announcetopic.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --> global-announce<!-- IF announcetopic.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+			<dl class="icon {announcetopic.TOPIC_IMG_STYLE}">
+				<dt title="{announcetopic.TOPIC_FOLDER_IMG_ALT}" class="icon {announcetopic.TOPIC_IMG_STYLE}"><!-- IF announcetopic.TOPIC_ICON_IMG and S_TOPIC_ICONS --><img src="{T_ICONS_PATH}{announcetopic.TOPIC_ICON_IMG}" alt="" title="" /><!-- ENDIF --></dt>
+				<dd>
+					<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
+					<div class="list-inner">
+						<!-- EVENT topiclist_row_prepend -->
+						<!-- IF announcetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{announcetopic.U_VIEW_TOPIC}" class="topictitle">{announcetopic.TOPIC_TITLE}</a>
+						<!-- IF announcetopic.S_TOPIC_UNAPPROVED or announcetopic.S_POSTS_UNAPPROVED --><a href="{announcetopic.U_MCP_QUEUE}">{announcetopic.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+						<!-- IF announcetopic.S_TOPIC_DELETED --><a href="{announcetopic.U_MCP_QUEUE}">{DELETED_IMG}</a> <!-- ENDIF -->
+						<!-- IF announcetopic.S_TOPIC_REPORTED --><a href="{announcetopic.U_MCP_REPORT}">{announcetopic.REPORTED_IMG}</a><!-- ENDIF --><br />
+
+						<!-- IF not S_IS_BOT -->
+						<div class="responsive-show" style="display: none;">
+							{L_LAST_POST} {L_POST_BY_AUTHOR} {announcetopic.LAST_POST_AUTHOR_FULL} &laquo; <a rel="nofollow" href="{announcetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{announcetopic.LAST_POST_TIME}</a>
+							<!-- IF announcetopic.S_POST_GLOBAL and FORUM_ID != announcetopic.FORUM_ID --><br />{L_POSTED} {L_IN} <a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a><!-- ENDIF -->
+						</div>
+						<!-- IF announcetopic.REPLIES --><span class="responsive-show left-box" style="display: none;">{L_REPLIES}{L_COLON} <strong>{announcetopic.REPLIES}</strong></span><!-- ENDIF -->
+						<!-- ENDIF -->
+
+						<!-- IF .announcetopic.pagination -->
+						<div class="pagination">
+							<ul>
+							<!-- BEGIN pagination -->
+								<!-- IF announcetopic.pagination.S_IS_CURRENT --><li class="active"><span>{announcetopic.pagination.PAGE_NUMBER}</span></li>
+								<!-- ELSEIF announcetopic.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li>
+								<!-- ELSEIF announcetopic.pagination.S_IS_NEXT -->
+								<!-- ELSE --><li><a href="{announcetopic.pagination.PAGE_URL}">{announcetopic.pagination.PAGE_NUMBER}</a></li>
+								<!-- ENDIF -->
+							<!-- END pagination -->
+							</ul>
+						</div>
+						<!-- ENDIF -->
+
+						<div class="responsive-hide">
+							<!-- IF announcetopic.S_HAS_POLL -->{POLL_IMG} <!-- ENDIF -->
+							{L_POST_BY_AUTHOR} {announcetopic.TOPIC_AUTHOR_FULL} &raquo; {announcetopic.FIRST_POST_TIME}
+							<!-- IF announcetopic.S_POST_GLOBAL and FORUM_ID != announcetopic.FORUM_ID --> &raquo; {L_IN} <a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a>
+							<!-- ELSEIF announcetopic.U_VIEW_FORUM and announcetopic.FORUM_NAME --> &raquo; {L_IN} <!-- BEGIN parent_forums --><a href="{announcetopic.parent_forums.U_VIEW_FORUM}">{announcetopic.parent_forums.FORUM_NAME}</a> &raquo; <!-- END parent_forums --><a href="{announcetopic.U_VIEW_FORUM}">{announcetopic.FORUM_NAME}</a><!-- ENDIF -->
+						</div>
+
+						<!-- EVENT topiclist_row_append -->
+					</div>
+				</dd>
+				<dd class="posts">
+					{L_REPLIES}{L_COLON} <strong>{announcetopic.REPLIES}</strong><br />
+					{L_VIEWS}{L_COLON} <strong>{announcetopic.VIEWS}</strong>
+				</dd>
+				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {announcetopic.LAST_POST_AUTHOR_FULL}
+					<!-- IF not S_IS_BOT --><a rel="nofollow" href="{announcetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{announcetopic.LAST_POST_TIME}</span>
+				</dd>
+			</dl>
+		</li>
+<!-- END announcetopic -->
+		</ul>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_ACTIVE_TOPICS_ON_INDEX and .activetopic -->
+<div class="forumbg">
+	<div class="inner">
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt><!-- IF S_DISPLAY_SEARCH --><a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a><!-- ELSE -->{L_SEARCH_ACTIVE_TOPICS}<!-- ENDIF --></dt>
+				<dd class="posts">{L_STATISTICS}</dd>
+				<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist topics">
+<!-- BEGIN activetopic -->
+		<li class="row<!-- IF activetopic.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF activetopic.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF activetopic.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF activetopic.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+			<dl class="icon {activetopic.TOPIC_IMG_STYLE}">
+				<dt title="{activetopic.TOPIC_FOLDER_IMG_ALT}" class="icon {activetopic.TOPIC_IMG_STYLE}"><!-- IF activetopic.TOPIC_ICON_IMG and S_TOPIC_ICONS --><img src="{T_ICONS_PATH}{activetopic.TOPIC_ICON_IMG}" alt="" title="" /><!-- ENDIF --></dt>
+				<dd>
+					<!-- IF activetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{activetopic.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
+					<div class="list-inner">
+						<!-- EVENT topiclist_row_prepend -->
+						<!-- IF activetopic.S_UNREAD_TOPIC and not S_IS_BOT --><a rel="nofollow" href="{activetopic.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{activetopic.U_VIEW_TOPIC}" class="topictitle">{activetopic.TOPIC_TITLE}</a>
+						<!-- IF activetopic.S_TOPIC_UNAPPROVED or activetopic.S_POSTS_UNAPPROVED --><a href="{activetopic.U_MCP_QUEUE}">{activetopic.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+						<!-- IF activetopic.S_TOPIC_DELETED --><a href="{activetopic.U_MCP_QUEUE}">{DELETED_IMG}</a> <!-- ENDIF -->
+						<!-- IF activetopic.S_TOPIC_REPORTED --><a href="{activetopic.U_MCP_REPORT}">{activetopic.REPORTED_IMG}</a><!-- ENDIF --><br />
+
+						<!-- IF not S_IS_BOT -->
+						<div class="responsive-show" style="display: none;">
+							{L_LAST_POST} {L_POST_BY_AUTHOR} {activetopic.LAST_POST_AUTHOR_FULL} &laquo; <a rel="nofollow" href="{activetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{activetopic.LAST_POST_TIME}</a>
+							<!-- IF activetopic.S_POST_GLOBAL and FORUM_ID != activetopic.FORUM_ID --><br />{L_POSTED} {L_IN} <a href="{activetopic.U_VIEW_FORUM}">{activetopic.FORUM_NAME}</a><!-- ENDIF -->
+						</div>
+						<!-- IF activetopic.REPLIES --><span class="responsive-show left-box" style="display: none;">{L_REPLIES}{L_COLON} <strong>{activetopic.REPLIES}</strong></span><!-- ENDIF -->
+						<!-- ENDIF -->
+
+						<!-- IF .activetopic.pagination -->
+						<div class="pagination">
+							<ul>
+							<!-- BEGIN pagination -->
+								<!-- IF activetopic.pagination.S_IS_CURRENT --><li class="active"><span>{activetopic.pagination.PAGE_NUMBER}</span></li>
+								<!-- ELSEIF activetopic.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li>
+								<!-- ELSEIF activetopic.pagination.S_IS_NEXT -->
+								<!-- ELSE --><li><a href="{activetopic.pagination.PAGE_URL}">{activetopic.pagination.PAGE_NUMBER}</a></li>
+								<!-- ENDIF -->
+							<!-- END pagination -->
+							</ul>
+						</div>
+						<!-- ENDIF -->
+
+						<div class="responsive-hide">
+							<!-- IF activetopic.S_HAS_POLL -->{POLL_IMG} <!-- ENDIF -->
+							{L_POST_BY_AUTHOR} {activetopic.TOPIC_AUTHOR_FULL} &raquo; {activetopic.FIRST_POST_TIME}
+							<!-- IF not activetopic.S_TOPIC_GLOBAL -->{L_IN} <a href="{activetopic.U_VIEW_FORUM}">{activetopic.FORUM_NAME}</a><!-- ELSE --> ({L_GLOBAL})<!-- ENDIF -->
+						</div>
+
+						<!-- EVENT topiclist_row_append -->
+					</div>
+				</dd>
+				<dd class="posts">
+					{L_REPLIES}{L_COLON} <strong>{activetopic.REPLIES}</strong><br />
+					{L_VIEWS}{L_COLON} <strong>{activetopic.VIEWS}</strong>
+				</dd>
+				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {activetopic.LAST_POST_AUTHOR_FULL}
+					<!-- IF not S_IS_BOT --><a rel="nofollow" href="{activetopic.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{activetopic.LAST_POST_TIME}</span>
+				</dd>
+			</dl>
+		</li>
+<!-- END activetopic -->
+		</ul>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_ACTIVE_TOPICS_ON_INDEX or S_ANNOUNCE_INDEX -->
+<div style="height: 0.8em"></div>
+<!-- ENDIF -->

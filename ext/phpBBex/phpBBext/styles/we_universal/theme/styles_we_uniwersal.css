@@ -1,0 +1,13 @@
+/* Special for we_uniwersal */
+.inventea-credits {
+	clear: both;
+	float: none;
+}
+
+.online .postprofile:after {
+	background-image: none !important;
+}
+
+.postprofile, .post .postbody {
+	padding: 18px;
+}

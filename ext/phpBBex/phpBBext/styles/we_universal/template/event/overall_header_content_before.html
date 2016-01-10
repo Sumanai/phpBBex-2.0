@@ -1,0 +1,48 @@
+<!-- IF not S_IS_BOT and (S_VIEWTOPIC or S_VIEWFORUM) -->
+<ul class="header-icons">
+	<!-- IF STYLE_SHOW_SOCIAL_BUTTONS -->
+	<script>
+	(function(){
+		var url = encodeURIComponent(document.location.href);
+		var title = encodeURIComponent(document.title);
+		document.write('<li><a rel="nofollow" target="_blank" href="https://vk.com/share.php?url='+url+'&amp;title='+title+'" title="{L_SOCIAL_SHARE_IN} vk.com" class="icon-vkontakte">{L_SOCIAL_SHARE_IN} vk.com</a></li>');
+		document.write('<li><a rel="nofollow" target="_blank" href="https://plus.google.com/share?url='+url+'" title="{L_SOCIAL_SHARE_IN} Google Plus" class="icon-google-plus">{L_SOCIAL_SHARE_IN} Google Plus</a></li>');
+		document.write('<li><a rel="nofollow" target="_blank" href="https://facebook.com/sharer.php?u='+url+'" title="{L_SOCIAL_SHARE_IN} facebook.com" class="icon-facebook">{L_SOCIAL_SHARE_IN} facebook.com</a></li>');
+		document.write('<li<!-- IF U_WATCH_FORUM_LINK or U_PRINT_TOPIC or U_EMAIL_TOPIC or U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_LOCK_TOPIC or U_BUMP_TOPIC --> class="divider"<!-- ENDIF -->><a rel="nofollow" target="_blank" href="https://twitter.com/intent/tweet?text='+title+'&amp;url='+url+'" title="{L_SOCIAL_SHARE_IN} twitter.com" class="icon-twitter">{L_SOCIAL_SHARE_IN} twitter.com</a></li>');
+	})();
+	</script>
+	<!-- ENDIF -->
+
+	<!-- IF U_WATCH_FORUM_LINK -->
+		<li class="icon-<!-- IF S_WATCHING_FORUM -->unsubscribe<!-- ELSE -->subscribe<!-- ENDIF -->">
+			<a href="{U_WATCH_FORUM_LINK}" data-ajax="toggle_link" title="{S_WATCH_FORUM_TITLE}" data-toggle-class="icon-<!-- IF not S_WATCHING_FORUM -->unsubscribe<!-- ELSE -->subscribe<!-- ENDIF -->" data-toggle-text="{S_WATCH_FORUM_TOGGLE}" data-toggle-url="{U_WATCH_FORUM_TOGGLE}">{S_WATCH_FORUM_TITLE}</a>
+		</li>
+	<!-- ENDIF -->
+
+	<!-- IF U_PRINT_TOPIC --><li><a rel="nofollow" href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" class="icon-header-print">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
+
+	<!-- IF U_EMAIL_TOPIC --><li><a rel="nofollow" href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}" class="icon-header-sendemail">{L_EMAIL_TOPIC}</a></li><!-- ENDIF -->
+
+	<!-- IF U_WATCH_TOPIC -->
+		<li class="small-icon icon-<!-- IF S_WATCHING_TOPIC -->unsubscribe<!-- ELSE -->subscribe<!-- ENDIF -->">
+			<a href="{U_WATCH_TOPIC}" class="watch-topic-link" title="{S_WATCH_TOPIC_TITLE}" data-ajax="toggle_link" data-toggle-class="small-icon icon-<!-- IF not S_WATCHING_TOPIC -->unsubscribe<!-- ELSE -->subscribe<!-- ENDIF -->" data-toggle-text="{S_WATCH_TOPIC_TOGGLE}" data-toggle-url="{U_WATCH_TOPIC_TOGGLE}" data-update-all=".watch-topic-link">{S_WATCH_TOPIC_TITLE}</a>
+		</li>
+	<!-- ENDIF -->
+
+	<!-- IF U_BOOKMARK_TOPIC -->
+		<li class="small-icon icon-<!-- IF S_BOOKMARKED_TOPIC -->unbookmark<!-- ELSE -->bookmark<!-- ENDIF -->">
+			<a href="{U_BOOKMARK_TOPIC}" class="bookmark-link" title="{L_BOOKMARK_TOPIC}" data-ajax="toggle_link" data-toggle-class="small-icon icon-<!-- IF not S_BOOKMARKED_TOPIC -->unbookmark<!-- ELSE -->bookmark<!-- ENDIF -->" data-toggle-text="{S_BOOKMARK_TOGGLE}" data-update-all=".bookmark-link">{S_BOOKMARK_TOPIC}</a>
+		</li>
+	<!-- ENDIF -->
+
+	<!-- IF U_LOCK_TOPIC -->
+		<li><!-- IF not S_IS_LOCKED --><a data-refresh="true" data-ajax="true" href="{U_LOCK_TOPIC}" title="{L_LOCK_TOPIC}" class="icon-header-lock">{L_LOCK_TOPIC}</a><!-- ELSE --><a data-refresh="true" data-ajax="true" href="{U_LOCK_TOPIC}" title="{L_UNLOCK_TOPIC}" class="icon-header-unlock">{L_UNLOCK_TOPIC}</a><!-- ENDIF --></li>
+	<!-- ENDIF -->
+
+	<!-- IF U_BUMP_TOPIC -->
+		<li class="small-icon icon-bump responsive-hide">
+			<a href="{U_BUMP_TOPIC}" class="bump-link" title="{L_BUMP_TOPIC}" data-ajax="toggle_link" data-toggle-class="hidden" data-update-all=".bump-link">{L_BUMP_TOPIC}</a>
+		</li>
+	<!-- ENDIF -->
+</ul>
+<!-- ENDIF -->

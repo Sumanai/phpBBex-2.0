@@ -109,7 +109,8 @@
 .rate-zero		{ color: #666666 !important; }
 
 .button.left-button {
-	border-radius: 4px 0 0 4px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 .button.center-button {
@@ -118,7 +119,8 @@
 }
 
 .button.right-button {
-	border-radius: 0 4px 4px 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 /* Hides inner text and shows preloader 10×2 pixels */
