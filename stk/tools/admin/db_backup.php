@@ -80,14 +80,53 @@ class db_backup
 			'TYPE'	=> $user->lang['NO']
 		));
 
-		$db_name = $db->get_db_name();
-		$sql = 'SHOW TABLE STATUS FROM '. $db_name;
+		switch ($sql_layer)
+		{
+			case 'mysql':
+			case 'mysql4':
+			case 'mysqli':
+				$sql = 'SHOW TABLES';
+			break;
+
+			case 'sqlite':
+				$sql = 'SELECT name
+					FROM sqlite_master
+					WHERE type = "table"';
+			break;
+
+			case 'sqlite3':
+				$sql = 'SELECT name
+					FROM sqlite_master
+					WHERE type = "table"
+						AND name <> "sqlite_sequence"';
+			break;
+
+			case 'mssql':
+			case 'mssql_odbc':
+			case 'mssqlnative':
+				$sql = "SELECT name
+					FROM sysobjects
+					WHERE type='U'";
+			break;
+
+			case 'postgres':
+				$sql = 'SELECT relname
+					FROM pg_stat_user_tables';
+			break;
+
+			case 'oracle':
+				$sql = 'SELECT table_name
+					FROM USER_TABLES';
+			break;
+		}
+
 		$result = $db->sql_query($sql);
+
 		$option_list = '';
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$table_name = $row['Name'];
-			$option_list .= "<option value='{$row['Name']}'>{$table_name}</option>";
+			$name = current($row);
+			$option_list .= "<option value='{$name}'>{$name}</option>";
 		}
 		$db->sql_freeresult($result);
 

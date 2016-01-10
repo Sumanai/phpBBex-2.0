@@ -407,7 +407,9 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 	{
 		include PHPBB_ROOT_PATH . 'includes/functions_admin.' . PHP_EXT;
 	}
-	$filelist = array_shift(filelist(STK_ROOT_PATH . 'includes/database_cleaner/', 'data/', PHP_EXT));
+
+	$filelist = filelist(STK_ROOT_PATH . 'includes/database_cleaner/', 'data/', PHP_EXT);
+	$filelist = array_shift($filelist);
 	usort($filelist, 'version_compare');
 
 	// Add the data
@@ -462,6 +464,8 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 		case '3_1_2'	:
 		case '3_1_3'	:
 		case '3_1_4'	:
+		case '3_1_5'	:
+		case '3_1_6'	:
 			// The extension group names have been changed, remove the old ones
 			foreach ($data->extension_groups as $key => $null)
 			{
@@ -498,6 +502,7 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 	switch($phpbbex_version)
 	{
 		case '2_0_0'	:
+		case '2_0_1'	:
 			// The extension group names have been changed, remove the old ones
 			remove_obsolete_options($data->extension_groups);
 

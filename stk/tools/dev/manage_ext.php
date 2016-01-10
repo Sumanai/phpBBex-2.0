@@ -125,6 +125,7 @@ class manage_ext
 			break;
 
 			case 'edit':
+				$template->assign_block_vars('row', array());
 				if($save)
 				{
 					$fp = fopen($phpbb_root_path.$file_name, 'w');
@@ -168,6 +169,7 @@ class manage_ext
 				foreach($reversed as $item)
 				{
 					$code .= "\t\t$item\n";
+					$template->assign_block_vars('row', array());
 				}
 
 				$template->assign_vars(array(
@@ -207,18 +209,21 @@ class manage_ext
 					}
 				}
 
-				uasort($available_extension_meta_data, array('self', 'sort_extension_meta_data_table'));
-
-				foreach ($available_extension_meta_data as $name => $block_vars)
+				if(isset($available_extension_meta_data))
 				{
-					$template->assign_block_vars('row', array(
-						'EXT_PATH'		=> $name,
-						'EXT_NAME'		=> $block_vars['META_DISPLAY_NAME'],
-						'EXT_VERSION'	=> $block_vars['META_VERSION'],
-						'S_ENABLED'		=> ($phpbb_extension_manager->is_enabled($name)) ? true : false,
-						'S_DISABLED'	=> ($phpbb_extension_manager->is_disabled($name)) ? true : false,
-						'U_EXT_NAME'	=> append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'view', 'e' => $name, 'n' => $block_vars['META_DISPLAY_NAME'])),
-					));
+					uasort($available_extension_meta_data, array('self', 'sort_extension_meta_data_table'));
+
+					foreach ($available_extension_meta_data as $name => $block_vars)
+					{
+						$template->assign_block_vars('row', array(
+							'EXT_PATH'		=> $name,
+							'EXT_NAME'		=> $block_vars['META_DISPLAY_NAME'],
+							'EXT_VERSION'	=> $block_vars['META_VERSION'],
+							'S_ENABLED'		=> ($phpbb_extension_manager->is_enabled($name)) ? true : false,
+							'S_DISABLED'	=> ($phpbb_extension_manager->is_disabled($name)) ? true : false,
+							'U_EXT_NAME'	=> append_sid(STK_INDEX, array('c' => 'dev', 't' => 'manage_ext', 'm' => 'view', 'e' => $name, 'n' => $block_vars['META_DISPLAY_NAME'])),
+						));
+					}
 				}
 			break;
 		}
