@@ -1166,7 +1166,6 @@ ul.linklist:after,
 }
 
 .dropdown-extended ul {
-	max-height: 350px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	clear: both;
