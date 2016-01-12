@@ -451,22 +451,30 @@ class acp_main
 			));
 		}
 
-		$version_helper = $phpbb_container->get('version_helper');
-		try
+		if ($auth->acl_get('a_board'))
 		{
-			$recheck = $request->variable('versioncheck_force', false);
+			$version_helper = $phpbb_container->get('version_helper');
+			try
+			{
+				$recheck = $request->variable('versioncheck_force', false);
 			$version_helper->set_file_location('sumanai.github.io', '');
 			$version_helper->set_current_version($config['phpbbex_version']);
-			$updates_available = $version_helper->get_suggested_updates($recheck);
+				$updates_available = $version_helper->get_suggested_updates($recheck);
 
-			$template->assign_var('S_VERSION_UP_TO_DATE', empty($updates_available));
+				$template->assign_var('S_VERSION_UP_TO_DATE', empty($updates_available));
+			}
+			catch (\RuntimeException $e)
+			{
+				$template->assign_vars(array(
+					'S_VERSIONCHECK_FAIL'		=> true,
+					'VERSIONCHECK_FAIL_REASON'	=> ($e->getMessage() !== $user->lang('VERSIONCHECK_FAIL')) ? $e->getMessage() : '',
+				));
+			}
 		}
-		catch (\RuntimeException $e)
+		else
 		{
-			$template->assign_vars(array(
-				'S_VERSIONCHECK_FAIL'		=> true,
-				'VERSIONCHECK_FAIL_REASON'	=> ($e->getMessage() !== $user->lang('VERSIONCHECK_FAIL')) ? $e->getMessage() : '',
-			));
+			// We set this template var to true, to not display an outdated version notice.
+			$template->assign_var('S_VERSION_UP_TO_DATE', true);
 		}
 
 		/**
@@ -578,6 +586,7 @@ class acp_main
 			'U_VERSIONCHECK'	=> append_sid("{$phpbb_admin_path}index.$phpEx", 'i=update&amp;mode=version_check'),
 			'U_VERSIONCHECK_FORCE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", 'versioncheck_force=1'),
 
+			'S_VERSIONCHECK'	=> ($auth->acl_get('a_board')) ? true : false,
 			'S_ACTION_OPTIONS'	=> ($auth->acl_get('a_board')) ? true : false,
 			'S_FOUNDER'			=> ($user->data['user_type'] == USER_FOUNDER) ? true : false,
 			)

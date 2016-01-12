@@ -4828,7 +4828,7 @@ function phpbb_get_avatar($row, $alt, $ignore_config = false, $lazy = false)
 	);
 
 	$phpbb_avatar_manager = $phpbb_container->get('avatar.manager');
-	$driver = $phpbb_avatar_manager->get_driver($row['avatar_type'], $ignore_config);
+	$driver = $phpbb_avatar_manager->get_driver($row['avatar_type'], !$ignore_config);
 	$html = '';
 
 	if ($driver)
@@ -4839,7 +4839,7 @@ function phpbb_get_avatar($row, $alt, $ignore_config = false, $lazy = false)
 			return $html;
 		}
 
-		$avatar_data = $driver->get_data($row, $ignore_config);
+		$avatar_data = $driver->get_data($row);
 	}
 	else
 	{
@@ -5503,6 +5503,8 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 	{
 		return;
 	}
+
+	$user->update_session_infos();
 
 	phpbb_check_and_display_sql_report($request, $auth, $db);
 
