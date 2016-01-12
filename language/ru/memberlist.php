@@ -102,6 +102,7 @@ $lang = array_merge($lang, array(
 	'LOGIN_EXPLAIN_SEARCHUSER'	=> 'Для поиска пользователей вы должны быть авторизованы.',
 	'LOGIN_EXPLAIN_VIEWPROFILE'	=> 'Для просмотра профилей вы должны быть авторизованы.',
 
+	'MANAGE_GROUP'			=> 'Управление группой',
 	'MORE_THAN'				=> 'больше',
 
 	'NO_CONTACT_FORM'		=> 'Форма для связи с администрацией отключена.',

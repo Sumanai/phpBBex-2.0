@@ -344,7 +344,7 @@ $lang = array_merge($lang, array(
 	'NOTIFICATION_TYPE_QUOTE'							=> 'Вас процитировали в сообщении',
 	'NOTIFICATION_TYPE_REPORT'							=> 'Жалобы на сообщения',
 	'NOTIFICATION_TYPE_TOPIC'							=> 'В форуме, на который вы подписаны, появились новые темы',
-	'NOTIFICATION_TYPE_ADMIN_ACTIVATE_USER'				=> 'Недавно зарегистрированный пользователь требует активации',
+	'NOTIFICATION_TYPE_ADMIN_ACTIVATE_USER'				=> 'Пользователь, требующий активации',
 
 	'NOTIFY_METHOD'					=> 'Способ уведомления',
 	'NOTIFY_METHOD_BOTH'			=> 'Оба способа',
