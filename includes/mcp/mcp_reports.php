@@ -199,7 +199,8 @@ class mcp_reports
 					$report['reported_post_uid'],
 					$report['reported_post_bitfield'],
 					$parse_post_flags,
-					false
+					false,
+					$post_info['post_time']
 				);
 
 				$report['report_text'] = make_clickable(bbcode_nl2br($report['report_text']));
