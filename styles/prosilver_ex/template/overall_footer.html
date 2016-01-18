@@ -45,7 +45,7 @@
 <!--<![endif]-->
 
 <!-- IF MEJS -->
-	<script src="{ROOT_PATH}assets/mejs/mediaelement.js?assets_version={T_ASSETS_VERSION}"></script>
+	<script src="{T_ASSETS_PATH}/mejs/mediaelement.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- ENDIF -->
 
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
@@ -160,7 +160,7 @@ jQuery(function($)
 (function(){
 	var s = document.createElement('link');
 	s.setAttribute('rel', 'stylesheet');
-	s.setAttribute('href', '{T_ROOT_PATH}/assets/mejs/mediaelement.css');
+	s.setAttribute('href', '{T_ASSETS_PATH}/mejs/mediaelement.css');
 	document.getElementsByTagName("head")[0].appendChild(s);
 })();
 <!-- ENDIF -->
