@@ -3104,9 +3104,9 @@ function get_database_size()
 			{
 				$version = $row['mysql_version'];
 
-				if (preg_match('#(3\.23|[45]\.|10\..+Maria)#', $version))
+				if (preg_match('#(3\.23|[45]\.|10\.[0-9]\.[0-9]{1,2}-+Maria)#', $version))
 				{
-					$db_name = (preg_match('#^(?:3\.23\.(?:[6-9]|[1-9]{2}))|[45]\.|10\..+Maria#', $version)) ? "`{$db->get_db_name()}`" : $db->get_db_name();
+					$db_name = (preg_match('#^(?:3\.23\.(?:[6-9]|[1-9]{2}))|[45]\.|10\.[0-9]\.[0-9]{1,2}-+Maria#', $version)) ? "`{$db->get_db_name()}`" : $db->get_db_name();
 					$sql = 'SHOW TABLE STATUS
 						FROM ' . $db_name;
 					$result = $db->sql_query($sql, 7200);
@@ -3114,7 +3114,7 @@ function get_database_size()
 					$database_size = 0;
 					while ($row = $db->sql_fetchrow($result))
 					{
-						if ((isset($row['Type']) && $row['Type'] != 'MRG_MyISAM') || (isset($row['Engine']) && ($row['Engine'] == 'MyISAM' || $row['Engine'] == 'InnoDB')))
+						if ((isset($row['Type']) && $row['Type'] != 'MRG_MyISAM') || (isset($row['Engine']) && ($row['Engine'] == 'MyISAM' || $row['Engine'] == 'InnoDB' || $row['Engine'] == 'Aria')))
 						{
 							if ($table_prefix != '')
 							{
