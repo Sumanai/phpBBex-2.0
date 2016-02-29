@@ -725,6 +725,29 @@ function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 		return $display_vars;
 	}
 
+	$where = phpbb_replace_insert_config($where);
+
+	if (array_key_exists(current($where), $display_vars))
+	{
+		$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
+		$display_vars = array_merge(
+			array_slice($display_vars, 0, $position),
+			$add_config_vars,
+			array_slice($display_vars, $position)
+		);
+	}
+
+	return $display_vars;
+}
+
+/**
+* Transfers the point of adding new configurations from remote in phpBBex locations in other places
+*
+* @param array $where An array of where
+* @return array The array of where
+*/
+function phpbb_replace_insert_config($where)
+{
 	$replace_config = array(
 		'ACP_BOARD_FEATURES'    => array(
 			'allow_quick_reply'     => 'display_last_subject',
@@ -752,16 +775,5 @@ function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 	{
 		$where[(key($where) == 'before') ? 'before' : 'after'] = $replace_config[$display_vars['legend1']][current($where)];
 	}
-
-	if (array_key_exists(current($where), $display_vars))
-	{
-		$position = array_search(current($where), array_keys($display_vars)) + ((key($where) == 'before') ? 0 : 1);
-		$display_vars = array_merge(
-			array_slice($display_vars, 0, $position),
-			$add_config_vars,
-			array_slice($display_vars, $position)
-		);
-	}
-
-	return $display_vars;
+	return $where;
 }
