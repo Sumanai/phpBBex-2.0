@@ -106,12 +106,18 @@ $lang = array_merge($lang, array(
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Путь к изображению для ссылок в социальных сетях',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Главная страница',
-	'ANNOUNCE_INDEX'					=> 'Показывать важные объявления',
+	'GLOBAL_ANNOUNCE_ON_INDEX'			=> 'Показывать глобальные объявления',
+	'SIMPLE_ANNOUNCE_ON_INDEX'			=> 'Показывать простые объявления',
 	'ACTIVE_TOPICS_ON_INDEX'			=> 'Показывать активные темы',
 	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'	=> 'Введите количество отображаемых активных тем или 0 для отключения функции.',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE'	=> 'Исключённые темы',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE_EXPLAIN'	=> 'Разделённый запятыми список id тем, которые не должны отображаться в списке активных тем (например: 7, 9)<br />Установите 0 для отключения данной функции.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Отображать кнопки RSS в списке разделов',
+
+	'STYLE_SETTINGS_VIEWFORUM'			=> 'Просмотр раздела',
+	'THROUGH_ANNOUNCE'					=> 'Сквозные объявления',
+	'THROUGH_ANNOUNCE_EXPLAIN'			=> 'Разрешает отображать объявления из дочерних разделов в родительском.',
+	'GLOBAL_ANNOUNCE_IN_ALL_FORUMS'		=> 'Отображать глобальные объявления во всех разделах',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'Просмотр темы',
 	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Отображать кнопки социальных сетей',

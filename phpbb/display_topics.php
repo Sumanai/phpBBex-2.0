@@ -128,9 +128,9 @@ class display_topics
 	}
 
 	/**
-	* Display global announcements
+	* Display announcements
 	*/
-	public function global_announcements($tpl_loopname)
+	public function announcements($tpl_loopname = 'announcetopic')
 	{
 		$forum_ary = $this->auth->acl_getf('f_read', true);
 		$forum_ary = array_unique(array_keys($forum_ary));
@@ -140,14 +140,31 @@ class display_topics
 			return;
 		}
 
-		$sql_where = $this->db->sql_in_set('t.forum_id', $forum_ary) . '
-			AND t.topic_type = ' . POST_GLOBAL;
+		$sql_where = $this->db->sql_in_set('t.forum_id', $forum_ary) . ' AND (';
+
+		if ($this->config['global_announce_on_index'])
+		{
+			$sql_where .= 't.topic_type = ' . POST_GLOBAL;
+		}
+
+		if ($this->config['global_announce_on_index'] && $this->config['simple_announce_on_index'])
+		{
+			$sql_where .= ' OR ';
+		}
+
+		if ($this->config['simple_announce_on_index'])
+		{
+			$sql_where .= 't.topic_type = ' . POST_ANNOUNCE;
+		}
+
+		$sql_where .= ')';
+
 		$sql_order = 't.topic_priority DESC, t.topic_time DESC';
 
 		$this->display_topic_rows($tpl_loopname, $sql_where, $sql_order);
 	}
 
-	public function active($tpl_loopname, $total_limit)
+	public function active($tpl_loopname = 'activetopic')
 	{
 		// Get the allowed forums
 		$forum_ary = array();
@@ -189,9 +206,14 @@ class display_topics
 		$sql_where = 't.topic_status <> ' . ITEM_MOVED . '
 			AND ' . $this->content_visibility->get_forums_visibility_sql('topic', $forum_ids, 't.');
 
-		if ($this->config['announce_index'])
+		if ($this->config['global_announce_on_index'])
 		{
 			$sql_where .= ' AND t.topic_type <> ' . POST_GLOBAL;
+		}
+
+		if ($this->config['simple_announce_on_index'])
+		{
+			$sql_where .= ' AND t.topic_type <> ' . POST_ANNOUNCE;
 		}
 
 		if ($this->config['active_topics_on_index_exclude'])
@@ -202,7 +224,7 @@ class display_topics
 
 		$sql_order = 't.topic_last_post_time DESC';
 
-		$this->display_topic_rows($tpl_loopname, $sql_where, $sql_order, $total_limit);
+		$this->display_topic_rows($tpl_loopname, $sql_where, $sql_order, $this->config['active_topics_on_index']);
 	}
 
 	/**

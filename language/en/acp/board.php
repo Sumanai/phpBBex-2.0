@@ -106,12 +106,18 @@ $lang = array_merge($lang, array(
 	'SOCIAL_MEDIA_COVER_URL'			=> 'Path to an image for links in social media',
 
 	'STYLE_SETTINGS_INDEX'				=> 'Board Index',
-	'ANNOUNCE_INDEX'					=> 'Display global annoucements',
+	'GLOBAL_ANNOUNCE_ON_INDEX'			=> 'Display global annoucements',
+	'SIMPLE_ANNOUNCE_ON_INDEX'			=> 'Display simple annoucements',
 	'ACTIVE_TOPICS_ON_INDEX'			=> 'Display active topics',
 	'ACTIVE_TOPICS_ON_INDEX_EXPLAIN'	=> 'Leave empty or 0 to disable active topics on index.',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE'	=> 'Excluded topics',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE_EXPLAIN'	=> 'The IDs of topics to exclude, seperated by ", " (Example: 7, 9)<br />If you don’t want to exclude a topic, just enter 0.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
+
+	'STYLE_SETTINGS_VIEWFORUM'			=> 'View Forum',
+	'THROUGH_ANNOUNCE'					=> 'Cross cutting announcements',
+	'THROUGH_ANNOUNCE_EXPLAIN'			=> 'Allows to display announcements from the subforums in the parent forum.',
+	'GLOBAL_ANNOUNCE_IN_ALL_FORUMS'		=> 'Display global announcements in all forums',
 
 	'STYLE_SETTINGS_VIEWTOPIC'			=> 'View Topic',
 	'STYLE_SHOW_SOCIAL_BUTTONS'			=> 'Display social buttons',

@@ -335,11 +335,12 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_full_q
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_post_options', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_quick_reply_options', '20');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('announce_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('auto_guest_lang', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_search_titleonly', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('external_links_newwindow', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('external_links_newwindow_exclude', '');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('global_announce_in_all_forums', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('global_announce_on_index', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('load_online_bots', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('login_via_email_enable', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_lines', '4');
@@ -359,7 +360,9 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_change_time',
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_no_negative', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_no_positive', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('search_highlight_keywords', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('simple_announce_on_index', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('social_media_cover_url', '');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('through_announce', '1');
 
 # Is dynamic config
 INSERT INTO phpbb_config (config_name, config_value, is_dynamic) VALUES ('cache_last_gc', '0', 1);

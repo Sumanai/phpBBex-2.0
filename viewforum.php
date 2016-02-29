@@ -451,18 +451,19 @@ if ($user->data['is_registered'])
 
 if ($forum_data['forum_type'] == FORUM_POST || $s_display_active)
 {
-	// Get global announcement forums
-	$forum_ids = array($forum_id, 0);
-	if ($forum_data['forum_type'] == FORUM_CAT && sizeof($active_forum_ary))
+	$forum_ids = array($forum_id);
+
+	if ($config['through_announce'] && $forum_data['forum_type'] == FORUM_CAT && sizeof($active_forum_ary))
 	{
 		$forum_ids = empty($active_forum_ary['exclude_forum_id'])
 			? $active_forum_ary['forum_id']
 			: array_diff($active_forum_ary['forum_id'], $active_forum_ary['exclude_forum_id']);
-		if (empty($forum_ids)) $forum_ids = array($forum_id, 0);
-	}
 
-	$g_forum_ary = $auth->acl_getf('f_read', true);
-	$g_forum_ary = array_unique(array_keys($g_forum_ary));
+		if (empty($forum_ids))
+		{
+			$forum_ids = array($forum_id);
+		}
+	}
 
 	$sql_anounce_array['LEFT_JOIN'] = $sql_array['LEFT_JOIN'];
 	$sql_anounce_array['LEFT_JOIN'][] = array('FROM' => array(FORUMS_TABLE => 'f'), 'ON' => 'f.forum_id = t.forum_id');
@@ -473,14 +474,22 @@ if ($forum_data['forum_type'] == FORUM_POST || $s_display_active)
 		'SELECT'	=> $sql_anounce_array['SELECT'],
 		'FROM'		=> $sql_array['FROM'],
 		'LEFT_JOIN'	=> $sql_anounce_array['LEFT_JOIN'],
-
-		'WHERE'		=> '(' . $db->sql_in_set('t.forum_id', $forum_ids) . '
-				AND t.topic_type = ' . POST_ANNOUNCE . ') OR
-			(' . $db->sql_in_set('t.forum_id', $g_forum_ary) . '
-				AND t.topic_type = ' . POST_GLOBAL . ')',
-
+		'WHERE'		=> '(' . $db->sql_in_set('t.forum_id', $forum_ids) . ' AND t.topic_type = ' . POST_ANNOUNCE . ')',
 		'ORDER_BY'	=> 't.topic_priority DESC, t.topic_time DESC',
 	);
+
+	if ($config['global_announce_in_all_forums'])
+	{
+		// Get global announcement forums
+		$g_forum_ary = $auth->acl_getf('f_read', true);
+		$g_forum_ary = array_unique(array_keys($g_forum_ary));
+		$sql_ary['WHERE'] .= ' OR (' . $db->sql_in_set('t.forum_id', $g_forum_ary) . ' AND t.topic_type = ' . POST_GLOBAL . ')';
+	}
+	else
+	{
+		$sql_ary['WHERE'] .= ' OR (' . $db->sql_in_set('t.forum_id', $forum_ids) . ' AND t.topic_type = ' . POST_GLOBAL . ')';
+	}
+
 	$sql = $db->sql_build_query('SELECT', $sql_ary);
 	$result = $db->sql_query($sql);
 

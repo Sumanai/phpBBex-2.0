@@ -1,5 +1,5 @@
 <!-- IF S_ANNOUNCE_INDEX and .announcetopic -->
-<div class="forumbg announcement">
+<div class="forumbg announcement"<!-- IF not S_ACTIVE_TOPICS_ON_INDEX --> style="margin-bottom: 15px"<!-- ENDIF -->>
 	<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
@@ -70,7 +70,7 @@
 <!-- ENDIF -->
 
 <!-- IF S_ACTIVE_TOPICS_ON_INDEX and .activetopic -->
-<div class="forumbg">
+<div class="forumbg" style="margin-bottom: 15px">
 	<div class="inner">
 	<ul class="topiclist">
 		<li class="header">
@@ -137,8 +137,4 @@
 		</ul>
 	</div>
 </div>
-<!-- ENDIF -->
-
-<!-- IF S_ACTIVE_TOPICS_ON_INDEX or S_ANNOUNCE_INDEX -->
-<div style="height: 0.8em"></div>
 <!-- ENDIF -->
