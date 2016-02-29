@@ -1347,26 +1347,24 @@ phpbb.toggleDropdown = function() {
 		var windowWidth = $(window).width();
 
 		options.dropdown.find('.dropdown-contents').each(function() {
-			var $this = $(this);
-
-			$this.css({
+			var $this = $(this),
+			css = {
 				marginLeft: 0,
 				left: 0,
 				maxWidth: (windowWidth - 4) + 'px'
-			});
+			};
 
 			var offset = $this.offset().left,
 				width = $this.outerWidth(true);
 
 			if (offset < 2) {
-				$this.css('left', (2 - offset) + 'px');
+				css['left'] = (2 - offset) + 'px';
 			} else if ((offset + width + 2) > windowWidth) {
-				$this.css('margin-left', (windowWidth - offset - width - 2) + 'px');
+				css['margin-left'] = (windowWidth - offset - width - 2) + 'px';
 			}
 
 			// Check whether the vertical scrollbar is present.
-			$this.toggleClass('dropdown-nonscroll', this.scrollHeight === $this.innerHeight());
-
+			$this.toggleClass('dropdown-nonscroll', this.scrollHeight === $this.innerHeight()).css(css);
 		});
 		var freeSpace = parent.offset().left - 4;
 

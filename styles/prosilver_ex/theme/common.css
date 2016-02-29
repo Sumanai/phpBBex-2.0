@@ -469,7 +469,6 @@ ul.linklist.bulletin > li.no-bulletin:before {
 	border: 1px solid transparent;
 	border-radius: 5px;
 	padding: 9px 0 0;
-	margin-right: -500px;
 }
 
 .dropdown.live-search {
