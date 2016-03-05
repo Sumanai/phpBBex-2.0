@@ -1101,6 +1101,7 @@ navbar_header_user_profile_append
 ===
 * Locations:
     + styles/prosilver/template/navbar_header.html
+    + styles/prosilver_ex/template/navbar_header.html
 * Since: 3.1.8-RC1
 * Purpose: Add links to the right of the user drop down area
 
@@ -1108,6 +1109,7 @@ navbar_header_user_profile_prepend
 ===
 * Locations:
     + styles/prosilver/template/navbar_header.html
+    + styles/prosilver_ex/template/navbar_header.html
 * Since: 3.1.8-RC1
 * Purpose: Add links to the left of the notification area
 
@@ -1516,7 +1518,7 @@ posting_topic_title_after
 ===
 * Locations:
     + styles/prosilver/template/posting_layout.html
-    + styles/prosilver_ex/template/posting_body.html
+    + styles/prosilver_ex/template/posting_layout.html
 * Since: 3.1.7-RC1
 * Purpose: Allows to add some information after the topic title in the posting form
 
@@ -2484,7 +2486,7 @@ viewtopic_body_postrow_back2top_after
 ===
 * Locations:
     + styles/prosilver/template/viewtopic_body.html
-    + styles/subsilver2/template/viewtopic_body.html
+    + styles/prosilver_ex/template/viewtopic_body.html
 * Since: 3.1.8-RC1
 * Purpose: Add content to the post's bottom after the back to top link 
 
@@ -2492,7 +2494,7 @@ viewtopic_body_postrow_back2top_append
 ===
 * Locations:
     + styles/prosilver/template/viewtopic_body.html
-    + styles/subsilver2/template/viewtopic_body.html
+    + styles/prosilver_ex/template/viewtopic_body.html
 * Since: 3.1.8-RC1
 * Purpose: Add content to the post's bottom directly after the back to top link 
 
@@ -2500,7 +2502,7 @@ viewtopic_body_postrow_back2top_before
 ===
 * Locations:
     + styles/prosilver/template/viewtopic_body.html
-    + styles/subsilver2/template/viewtopic_body.html
+    + styles/prosilver_ex/template/viewtopic_body.html
 * Since: 3.1.8-RC1
 * Purpose: Add content to the post's bottom before the back to top link 
 
@@ -2508,7 +2510,7 @@ viewtopic_body_postrow_back2top_prepend
 ===
 * Locations:
     + styles/prosilver/template/viewtopic_body.html
-    + styles/subsilver2/template/viewtopic_body.html
+    + styles/prosilver_ex/template/viewtopic_body.html
 * Since: 3.1.8-RC1
 * Purpose: Add content to the post's bottom directly before the back to top link 
 
