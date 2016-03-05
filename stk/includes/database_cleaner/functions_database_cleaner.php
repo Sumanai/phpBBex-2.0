@@ -512,6 +512,7 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 		case '2_0_0'	:
 		case '2_0_1'	:
 		case '2_0_2'	:
+		case '2_0_3'	:
 			// The extension group names have been changed, remove the old ones
 			remove_obsolete_options($data->extension_groups);
 
