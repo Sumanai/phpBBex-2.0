@@ -73,6 +73,7 @@ class config_list
 			'security'			=> 'SECURITY',
 			'load'				=> 'LOAD',
 			'search'			=> 'SEARCH',
+			'phpbbex'			=> 'CONFIG_PHPBBEX',
 			'misc'				=> 'MISC',
 		);
 
@@ -217,6 +218,8 @@ class config_list
 			'load_jquery_v2_url',
 			// v. 2.0.1
 			'active_topics_on_index_exclude',
+			// v. 2.0.3
+			'global_announce_on_index', 'global_announce_in_all_forums', 'simple_announce_on_index', 'through_announce',
 		);
 
 		$config_common = $config_all = array();
@@ -313,6 +316,9 @@ class config_list
 				case 'search'		:
 					$where = $config_search;
 				break;
+				case 'phpbbex'		:
+					$where = $config_phpbbex;
+				break;
 				case 'misc'		:
 					$where = $config_misc;
 				break;
@@ -340,6 +346,7 @@ class config_list
 		$not_bool = array('assets_version', 'form_token_mintime', 'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width', 'max_attachments_pm', 'max_autologin_time', 'max_post_img_height',
 			'max_post_img_width', 'max_post_smilies', 'max_post_urls', 'max_sig_img_height', 'max_sig_img_width', 'max_sig_smilies', 'num_files', 'default_style', 'cron_lock', 'upload_dir_size',
 			'num_posts', 'num_topics', 'num_users', 'pm_edit_time', 'pm_max_recipients', 'search_interval', 'search_anonymous_interval', 'search_indexing_state', 'plupload_last_gc', 'warnings_expire_days',
+			'active_topics_days', 'active_topics_on_index', 'active_topics_on_index_exclude', 'active_users_days', 'allow_quick_post_options', 'allow_quick_reply_options', 'keep_admin_logs_days', 'keep_critical_logs_days', 'keep_mod_logs_days', 'keep_register_logs_days', 'keep_user_logs_days', 'max_post_imgs', 'max_sig_imgs', 'max_sig_lines', 'max_spoiler_depth', 'merge_interval', 'min_post_font_size', 'min_sig_font_size', 'rate_change_time', 'rate_time', 'rate_topic_time', 'style_max_width',
 		);
 		$ex_time_gc = array('database_gc', 'cache_gc', 'session_gc', 'search_gc', 'warnings_gc', 'read_notification_gc');
 

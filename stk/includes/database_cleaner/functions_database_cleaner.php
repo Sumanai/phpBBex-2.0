@@ -452,6 +452,11 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 		$data->acp_modules			= array_merge_recursive($data->acp_modules, $_datafile->acp_modules);
 		$data->module_categories_basenames	= array_merge($data->module_categories_basenames, $_datafile->module_categories_basenames);
 
+		if (isset($_datafile->removed_config))
+		{
+			$data->removed_config	= array_merge($data->removed_config, $_datafile->removed_config);
+		}
+
 		$_datafile->get_schema_struct($data->schema_data);
 
 		// Just make sure that nothing sticks
@@ -468,6 +473,7 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 		case '3_1_6'	:
 		case '3_1_7'	:
 		case '3_1_7_pl1'	:
+		case '3_1_8'	:
 			// The extension group names have been changed, remove the old ones
 			foreach ($data->extension_groups as $key => $null)
 			{
@@ -513,6 +519,8 @@ function fetch_cleaner_data(&$data, $phpbb_version, $phpbbex_version)
 			remove_obsolete_options($data->extensions);
 		break;
 	}
+
+	$data->config = array_diff_key($data->config, $data->removed_config);
 
 	// Call init
 	$data->init();
