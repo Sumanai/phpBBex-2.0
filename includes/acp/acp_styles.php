@@ -449,7 +449,7 @@ class acp_styles
 			}
 
 			$update = array(
-				'style_name'		=> trim($this->request->variable('style_name', $style['style_name'])),
+				'style_name'		=> trim($this->request->variable('style_name', $style['style_name'], true)),
 				'style_parent_id'	=> $this->request->variable('style_parent', (int) $style['style_parent_id']),
 				'style_active'		=> $this->request->variable('style_active', (int) $style['style_active']),
 			);
