@@ -482,10 +482,11 @@ $fileList.on('click', '.file-error', function(e) {
  */
 plupload.addFileFilter('max_file_size', function(maxSize, file, cb) {
 	var undef,
+		allowed = phpbb.plupload.allowed || [],
 		ext = file.name.match(/\.[\w\d]+$/)[0].substring(1).toLowerCase();
 
-	if (phpbb.plupload.allowed[ext] !== undef) {
-		maxSize = phpbb.plupload.allowed[ext];
+	if (allowed[ext] !== undef) {
+		maxSize = allowed[ext];
 	} else {
 		maxSize = plupload.parseSize(maxSize);
 	}
