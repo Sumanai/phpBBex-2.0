@@ -524,6 +524,22 @@ a.icon-header-unlock { background-position: 0 -234px; }
 	margin-bottom: 3px;
 }
 
+.hide-icon > .icon {
+	background-image: none;
+}
+
+.hide-icon > dl.icon dt .list-inner {
+	padding-left: 5px;
+}
+
+.forum-image {
+	transition: opacity 0.5s;
+}
+
+.forum_read:hover .forum-image {
+	opacity: 1;
+}
+
 /* Responsive
 ---------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {

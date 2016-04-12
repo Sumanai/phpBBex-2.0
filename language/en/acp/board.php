@@ -113,6 +113,8 @@ $lang = array_merge($lang, array(
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE'	=> 'Excluded topics',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE_EXPLAIN'	=> 'The IDs of topics to exclude, seperated by ", " (Example: 7, 9)<br />If you don’t want to exclude a topic, just enter 0.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Display RSS feeds in forum list',
+	'STYLE_FORUM_IMAGE_OPACITY'			=> 'Transparency additional images reads forums',
+	'STYLE_FORUM_IMAGE_OPACITY_EXPLAIN'	=> '0 to 1, in increments of 0.01, where 1 is completely opaque icon<br />Set to 0 to disable this feature.',
 
 	'STYLE_SETTINGS_VIEWFORUM'			=> 'View Forum',
 	'THROUGH_ANNOUNCE'					=> 'Cross cutting announcements',

@@ -291,6 +291,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_gc', '144
 # New style options
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('display_raters', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_back_to_top', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_forum_image_opacity', '0.6');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_max_width', '1280');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_row_numbers', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('style_ml_show_gender', '1');

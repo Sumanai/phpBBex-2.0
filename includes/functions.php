@@ -5236,6 +5236,7 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		'rate_no_positive',
 		'rate_no_negative',
 		'style_back_to_top',
+		'style_forum_image_opacity',
 		'style_max_width',
 		'style_new_year',
 		'style_rounded_corners',

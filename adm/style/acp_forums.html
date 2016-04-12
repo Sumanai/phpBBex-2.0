@@ -166,6 +166,11 @@
 		<!-- ENDIF -->
 	</dl>
 	<dl>
+		<dt><label for="forum_icon_replace">{L_FORUM_ICON_REPLACE}{L_COLON}</label><br /><span>{L_FORUM_ICON_REPLACE_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="forum_icon_replace" value="1"<!-- IF S_FORUM_ICON_REPLACE --> id="forum_icon_replace" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="forum_icon_replace" value="0"<!-- IF not S_FORUM_ICON_REPLACE --> id="forum_icon_replace" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>
+	<dl>
 		<dt><label for="forum_password">{L_FORUM_PASSWORD}{L_COLON}</label><br /><span>{L_FORUM_PASSWORD_EXPLAIN}</span></dt>
 		<dd><input type="text" id="forum_password" name="forum_password" value="<!-- IF S_FORUM_PASSWORD_SET -->&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;<!-- ENDIF -->" autocomplete="off" /></dd>
 	</dl>

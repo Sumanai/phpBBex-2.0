@@ -174,6 +174,7 @@ class acp_board
 						'load_birthdays'					=> array('lang' => 'YES_BIRTHDAYS',						'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_moderators'					=> array('lang' => 'YES_MODERATORS',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'style_show_feeds_in_forumlist'		=> array('lang' => 'STYLE_SHOW_FEEDS_IN_FORUMLIST',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+						'style_forum_image_opacity'			=> array('lang' => 'STYLE_FORUM_IMAGE_OPACITY',			'validate' => 'float:0:1:2',	'type' => 'float:0:1:0.01', 'explain' => true),
 
 						'legend3'							=> 'STYLE_SETTINGS_VIEWFORUM',
 						'through_announce'					=> array('lang' => 'THROUGH_ANNOUNCE',					'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),

@@ -93,6 +93,11 @@ ul.topiclist li.row dt a.subforum {
 	float: left;
 	padding-top: 5px;
 	margin-right: 5px;
+	transition: opacity 0.5s;
+}
+
+.forum_read:hover .forum-image {
+	opacity: 1;
 }
 
 li.row {
@@ -136,6 +141,10 @@ li.header dl.icon dt, li.header dl.icon dd {
 	min-height: 0;
 }
 
+.icon.hide-icon {
+	background-image: none;
+}
+
 li.header dl.icon dt .list-inner {
 	/* Tweak for headers alignment when folder icon used */
 	padding-left: 0;
@@ -155,6 +164,10 @@ dl.icon dt {
 
 dl.icon dt .list-inner {
 	padding-left: 45px;					/* Space for folder icon */
+}
+
+.icon.hide-icon dt .list-inner {
+	padding-left: 5px;
 }
 
 dl.icon dt, dl.icon dd {

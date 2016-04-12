@@ -113,6 +113,8 @@ $lang = array_merge($lang, array(
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE'	=> 'Исключённые темы',
 	'ACTIVE_TOPICS_ON_INDEX_EXCLUDE_EXPLAIN'	=> 'Разделённый запятыми список id тем, которые не должны отображаться в списке активных тем (например: 7, 9)<br />Установите 0 для отключения данной функции.',
 	'STYLE_SHOW_FEEDS_IN_FORUMLIST'		=> 'Отображать кнопки RSS в списке разделов',
+	'STYLE_FORUM_IMAGE_OPACITY'			=> 'Прозрачность дополнительных значков прочитанных разделов',
+	'STYLE_FORUM_IMAGE_OPACITY_EXPLAIN'	=> 'От 0 до 1, с шагом в 0.01, где 1 это полностью непрозрачная иконка<br />Установите 0 для отключения данной функции.',
 
 	'STYLE_SETTINGS_VIEWFORUM'			=> 'Просмотр раздела',
 	'THROUGH_ANNOUNCE'					=> 'Сквозные объявления',

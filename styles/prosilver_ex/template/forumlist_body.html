@@ -31,13 +31,13 @@
 		<!-- EVENT forumlist_body_forum_row_before -->
 		<li class="row">
 			<!-- EVENT forumlist_body_forum_row_prepend -->
-			<dl class="icon {forumrow.FORUM_IMG_STYLE}">
+			<dl class="icon {forumrow.FORUM_IMG_STYLE}<!-- IF forumrow.FORUM_IMAGE and forumrow.S_FORUM_ICON_REPLACE --> hide-icon<!-- ENDIF -->">
 				<dt title="{forumrow.FORUM_FOLDER_IMG_ALT}">
-					<!-- IF forumrow.S_UNREAD_FORUM --><a href="{forumrow.U_VIEWFORUM}" class="icon-link"></a><!-- ENDIF -->
+					<!-- IF forumrow.S_UNREAD_FORUM and forumrow.FORUM_IMAGE and forumrow.S_FORUM_ICON_REPLACE --><a href="{forumrow.U_VIEWFORUM}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- IF STYLE_SHOW_FEEDS_IN_FORUMLIST and S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED --><a class="feed-icon-forum" title="{L_FEED} - {forumrow.FORUM_NAME}" href="{U_FEED}?f={forumrow.FORUM_ID}"><img src="{T_THEME_PATH}/images/feed.gif" alt="{L_FEED} - {forumrow.FORUM_NAME}" /></a><!-- ENDIF -->
 
-						<!-- IF forumrow.FORUM_IMAGE --><span class="forum-image">{forumrow.FORUM_IMAGE}</span><!-- ENDIF -->
+						<!-- IF forumrow.FORUM_IMAGE --><a href="{forumrow.U_VIEWFORUM}" class="forum-image">{forumrow.FORUM_IMAGE}</a><!-- ENDIF -->
 						<a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a>
 						<!-- IF forumrow.FORUM_DESC --><br />{forumrow.FORUM_DESC}<!-- ENDIF -->
 						<!-- IF forumrow.MODERATORS -->
