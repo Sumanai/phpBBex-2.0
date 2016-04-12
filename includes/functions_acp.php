@@ -286,6 +286,27 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 			$tpl = '<input id="' . $key . '" type="number" maxlength="' . (( $maxlength != '' ) ? $maxlength : 255) . '"' . (( $min != '' ) ? ' min="' . $min . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="' . $name . '" value="' . $new[$config_key] . '" />';
 		break;
 
+		case 'float':
+			$min = $max = $maxlength = '';
+			$min = ( isset($tpl_type[1]) ) ? (float) $tpl_type[1] : false;
+			if ( isset($tpl_type[2]) )
+			{
+				$max = (float) $tpl_type[2];
+				$maxlength = strlen( (string) $max );
+			}
+
+			if ( isset($tpl_type[3]) )
+			{
+				$step = (float) $tpl_type[3];
+			}
+			else
+			{
+				$step = $min;
+			}
+
+			$tpl = '<input id="' . $key . '" type="number" maxlength="' . (( $maxlength != '' ) ? $maxlength : 255) . '"' . (( $min != '' ) ? ' min="' . $min . '"' : '') . (( $step != '' ) ? ' step="' . $step . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="' . $name . '" value="' . $new[$config_key] . '" />';
+		break;
+
 		case 'dimension':
 			$min = $max = $maxlength = $size = '';
 
@@ -421,6 +442,7 @@ function validate_config_vars($config_vars, &$cfg_array, &$error)
 	$type	= 0;
 	$min	= 1;
 	$max	= 2;
+	$precis	= 3;
 
 	foreach ($config_vars as $config_name => $config_definition)
 	{
@@ -498,6 +520,38 @@ function validate_config_vars($config_vars, &$cfg_array, &$error)
 					{
 						// A minimum value exists and the maximum value is less than it
 						$error[] = sprintf($user->lang['SETTING_TOO_LOW'], $user->lang[$config_definition['lang']], (int) $cfg_array[$min_name]);
+					}
+				}
+			break;
+
+			case 'float':
+				$cfg_array[$config_name] = (float) $cfg_array[$config_name];
+
+				if (isset($validator[$precis]))
+				{
+					$cfg_array[$config_name] = round($cfg_array[$config_name], $validator[$precis]);
+				}
+
+				if (isset($validator[$min]) && $cfg_array[$config_name] < $validator[$min])
+				{
+					$error[] =$user->lang('SETTING_TOO_LOW', $user->lang[$config_definition['lang']], $validator[$min]);
+				}
+				else if (isset($validator[$max]) && $cfg_array[$config_name] > $validator[$max])
+				{
+					$error[] = $user->lang('SETTING_TOO_BIG', $user->lang[$config_definition['lang']], $validator[$max]);
+				}
+
+				if (strpos($config_name, '_max') !== false)
+				{
+					// Min/max pairs of settings should ensure that min <= max
+					// Replace _max with _min to find the name of the minimum
+					// corresponding configuration variable
+					$min_name = str_replace('_max', '_min', $config_name);
+
+					if (isset($cfg_array[$min_name]) && is_float($cfg_array[$min_name]) && $cfg_array[$config_name] < $cfg_array[$min_name])
+					{
+						// A minimum value exists and the maximum value is less than it
+						$error[] = $user->lang('SETTING_TOO_LOW', $user->lang[$config_definition['lang']], (float) $cfg_array[$min_name]);
 					}
 				}
 			break;

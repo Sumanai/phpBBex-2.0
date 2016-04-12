@@ -468,7 +468,7 @@ class acp_board
 					'title'	=> 'ACP_LOAD_SETTINGS',
 					'vars'	=> array(
 						'legend1'			=> 'GENERAL_SETTINGS',
-						'limit_load'		=> array('lang' => 'LIMIT_LOAD',		'validate' => 'int:0:9999',	'type' => 'number:0:9999', 'explain' => true),
+						'limit_load'		=> array('lang' => 'LIMIT_LOAD',		'validate' => 'float:0:9999:2',	'type' => 'float:0:9999:0.01', 'explain' => true),
 						'session_length'	=> array('lang' => 'SESSION_LENGTH',	'validate' => 'int:60:9999999999',	'type' => 'number:60:9999999999', 'explain' => true, 'append' => ' ' . $user->lang['SECONDS']),
 						'active_sessions'	=> array('lang' => 'LIMIT_SESSIONS',	'validate' => 'int:0:9999',	'type' => 'number:0:9999', 'explain' => true),
 						'read_notification_expire_days'	=> array('lang' => 'READ_NOTIFICATION_EXPIRE_DAYS',	'validate' => 'int:0',	'type' => 'number:0', 'explain' => true, 'append' => ' ' . $user->lang['DAYS']),
