@@ -725,7 +725,7 @@ function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 		return $display_vars;
 	}
 
-	$where = phpbb_replace_insert_config($where);
+	$where = phpbb_replace_insert_config($display_vars['legend1'], $where);
 
 	if (array_key_exists(current($where), $display_vars))
 	{
@@ -746,7 +746,7 @@ function phpbb_insert_config_array($display_vars, $add_config_vars, $where)
 * @param array $where An array of where
 * @return array The array of where
 */
-function phpbb_replace_insert_config($where)
+function phpbb_replace_insert_config($legend1, $where)
 {
 	$replace_config = array(
 		'ACP_BOARD_FEATURES'    => array(
@@ -770,10 +770,9 @@ function phpbb_replace_insert_config($where)
 		),
 	);
 
-	if (isset($replace_config[$display_vars['legend1']]) &&
-		array_key_exists(current($where), $replace_config[$display_vars['legend1']]))
+	if (isset($replace_config[$legend1]) && array_key_exists(current($where), $replace_config[$legend1]))
 	{
-		$where[(key($where) == 'before') ? 'before' : 'after'] = $replace_config[$display_vars['legend1']][current($where)];
+		$where[(key($where) == 'before') ? 'before' : 'after'] = $replace_config[$legend1][current($where)];
 	}
 	return $where;
 }
