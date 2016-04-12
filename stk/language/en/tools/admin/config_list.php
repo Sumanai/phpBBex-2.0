@@ -66,7 +66,7 @@ $lang = array_merge($lang, array(
 	'SECURITY'							=> 'Security',
 	'LOAD'								=> 'Load',
 	'SEARCH'							=> 'Search',
-	'CONFIG_PHPBBEX'					=> 'Settings specific to phpBBex'
+	'CONFIG_PHPBBEX'					=> 'Settings specific to phpBBex',
 	'MISC'								=> 'Misc',
 
 	'active_sessions'					=> 'Restrict session',
