@@ -205,20 +205,20 @@ $template->assign_vars(array(
 if (!(empty($config['global_announce_on_index']) && empty($config['simple_announce_on_index']) && empty($config['active_topics_on_index'])))
 {
 	$display_topics = $phpbb_container->get('display_topics');
-}
 
-// Announcements
-if (!(empty($config['global_announce_on_index']) && empty($config['simple_announce_on_index'])))
-{
-	$template->assign_var('S_ANNOUNCE_INDEX', true);
-	$display_topics->announcements();
-}
+	// Announcements
+	if (!(empty($config['global_announce_on_index']) && empty($config['simple_announce_on_index'])))
+	{
+		$template->assign_var('S_ANNOUNCE_INDEX', true);
+		$display_topics->announcements();
+	}
 
-// Last active topics
-if (!empty($config['active_topics_on_index']))
-{
-	$template->assign_var('S_ACTIVE_TOPICS_ON_INDEX', true);
-	$display_topics->active();
+	// Last active topics
+	if (!empty($config['active_topics_on_index']))
+	{
+		$template->assign_var('S_ACTIVE_TOPICS_ON_INDEX', true);
+		$display_topics->active();
+	}
 }
 
 // Assign index specific vars

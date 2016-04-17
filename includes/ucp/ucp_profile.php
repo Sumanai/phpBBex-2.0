@@ -246,8 +246,6 @@ class ucp_profile
 				}
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
-
 					'USERNAME'			=> $data['username'],
 					'EMAIL'				=> $data['email'],
 					'PASSWORD_CONFIRM'	=> $data['password_confirm'],
@@ -440,7 +438,6 @@ class ucp_profile
 				}
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
 					'S_JABBER_ENABLED'	=> $config['jab_enable'],
 					'JABBER'			=> $data['jabber'],
 
@@ -465,10 +462,6 @@ class ucp_profile
 
 				include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 				include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-
-				$enable_bbcode	= ($config['allow_sig_bbcode']) ? (bool) $user->optionget('sig_bbcode') : false;
-				$enable_smilies	= ($config['allow_sig_smilies']) ? (bool) $user->optionget('sig_smilies') : false;
-				$enable_urls	= ($config['allow_sig_links']) ? (bool) $user->optionget('sig_links') : false;
 
 				$signature		= utf8_normalize_nfc(request_var('signature', (string) $user->data['user_sig'], true));
 
@@ -541,6 +534,12 @@ class ucp_profile
 					// Replace "error" strings with their real, localised form
 					$error = array_map(array($user, 'lang'), $error);
 				}
+				else
+				{
+					$enable_bbcode	= ($this->config['allow_sig_bbcode']) ? (bool) $user->optionget('sig_bbcode') : false;
+					$enable_smilies	= ($this->config['allow_sig_smilies']) ? (bool) $user->optionget('sig_smilies') : false;
+					$enable_urls	= ($this->config['allow_sig_links']) ? (bool) $user->optionget('sig_links') : false;
+				}
 
 				$signature_preview = '';
 				if ($preview)
@@ -553,7 +552,6 @@ class ucp_profile
 				decode_message($signature, $user->data['user_sig_bbcode_uid']);
 
 				$template->assign_vars(array(
-					'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
 					'SIGNATURE'			=> $signature,
 					'SIGNATURE_PREVIEW'	=> $signature_preview,
 
@@ -569,7 +567,7 @@ class ucp_profile
 					'MIN_FONT_SIZE'			=> (int) $config['min_post_font_size'],
 					'MAX_FONT_SIZE'			=> (int) $config['max_sig_font_size'],
 
-					'L_SIGNATURE_EXPLAIN'	=> $user->lang('SIGNATURE_EXPLAIN', (int) $config['max_sig_chars'], (int) $config['max_sig_lines'] ? (int) $config['max_sig_lines'] : $user->lang['NO']),
+					'L_SIGNATURE_EXPLAIN'	=> $user->lang('SIGNATURE_EXPLAIN', (int) $config['max_sig_chars'], ($config['max_sig_lines'] ? (string) $config['max_sig_lines'] : $user->lang['NO'])),
 
 					'S_BBCODE_ALLOWED'		=> $config['allow_sig_bbcode'],
 					'S_SMILIES_ALLOWED'		=> $config['allow_sig_smilies'],
@@ -694,7 +692,6 @@ class ucp_profile
 				$avatar = phpbb_get_user_avatar($user->data, 'USER_AVATAR', true);
 
 				$template->assign_vars(array(
-					'ERROR'			=> (sizeof($error)) ? implode('<br />', $error) : '',
 					'AVATAR'		=> $avatar,
 
 					'S_FORM_ENCTYPE'	=> ' enctype="multipart/form-data"',
@@ -771,8 +768,8 @@ class ucp_profile
 			'L_TITLE'	=> $user->lang['UCP_PROFILE_' . strtoupper($mode)],
 
 			'S_HIDDEN_FIELDS'	=> $s_hidden_fields,
-			'S_UCP_ACTION'		=> $this->u_action)
-		);
+			'S_UCP_ACTION'		=> $this->u_action,
+		));
 
 		// Set desired template
 		$this->tpl_name = 'ucp_profile_' . $mode;
