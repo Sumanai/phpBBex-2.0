@@ -198,6 +198,8 @@ class bbcode
 			$db->sql_freeresult($result);
 		}
 
+		$bbcode_class = $this;
+
 		// To perform custom second pass in extension, use $this->bbcode_second_pass_by_extension()
 		// method which accepts variable number of parameters
 		foreach ($bbcode_ids as $bbcode_id)
@@ -211,12 +213,12 @@ class bbcode
 							'[/quote:$uid]'	=> $this->bbcode_tpl('quote_close', $bbcode_id)
 						),
 						'preg' => array(
-							'#\[quote(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[quote(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=> function ($match) {
+							'#\[quote(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[quote(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=> function ($match) use($bbcode_class) {
 								if (!isset($match[2]))
 								{
 									$match[2] = '';
 								}
-								return $this->bbcode_second_pass_quote($match[1], $match[2]);
+								return $bbcode_class->bbcode_second_pass_quote($match[1], $match[2]);
 							},
 						)
 					);
@@ -243,11 +245,11 @@ class bbcode
 				case 3:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[url:$uid\]((.*?))\[/url:$uid\]#s'			=> function ($match) {
-								return $this->bbcode_second_pass_url($match[1], $match[2]);
+							'#\[url:$uid\]((.*?))\[/url:$uid\]#s'			=> function ($match) use($bbcode_class) {
+								return $bbcode_class->bbcode_second_pass_url($match[1], $match[2]);
 							},
-							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#s'	=> function ($match) {
-								return $this->bbcode_second_pass_url($match[1], $match[2]);
+							'#\[url=([^\[]+?):$uid\](.*?)\[/url:$uid\]#s'	=> function ($match) use($bbcode_class) {
+								return $bbcode_class->bbcode_second_pass_url($match[1], $match[2]);
 							},
 						)
 					);
@@ -266,8 +268,8 @@ class bbcode
 					{
 						$this->bbcode_cache[$bbcode_id] = array(
 							'preg' => array(
-								'#\[img:$uid\](.*?)\[/img:$uid\]#s'	=> function ($match) {
-									return $this->bbcode_second_pass_url($match[1], $match[2]);
+								'#\[img:$uid\](.*?)\[/img:$uid\]#s'	=> function ($match) use($bbcode_class) {
+									return $bbcode_class->bbcode_second_pass_url($match[1], $match[2]);
 								},
 							)
 						);
@@ -302,8 +304,8 @@ class bbcode
 				case 8:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\]#is'	=> function ($match) {
-								return $this->bbcode_second_pass_code($match[1], $match[2]);
+							'#\[code(?:=([a-z]+))?:$uid\](.*?)\[/code:$uid\]#is'	=> function ($match) use($bbcode_class) {
+								return $bbcode_class->bbcode_second_pass_code($match[1], $match[2]);
 							},
 						)
 					);
@@ -314,8 +316,8 @@ class bbcode
 						'preg' => array(
 							'#(\[\/?(list|\*):[mou]?:?$uid\])[\n]{1}#'	=> "\$1",
 							'#(\[list=([^\[]+):$uid\])[\n]{1}#'			=> "\$1",
-							'#\[list=([^\[]+):$uid\]#'					=> function ($match) {
-								return $this->bbcode_list($match[1]);
+							'#\[list=([^\[]+):$uid\]#'					=> function ($match) use($bbcode_class) {
+								return $bbcode_class->bbcode_list($match[1]);
 							},
 						),
 						'str' => array(
@@ -389,8 +391,8 @@ class bbcode
 				case 15:
 					$this->bbcode_cache[$bbcode_id] = array(
 						'preg' => array(
-							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#' => function ($match) {
-								return $this->bbcode_second_pass_upd($match[1], $match[2]);
+							'#\[upd=([\d]{9,10}|[+]\d+(?:[:]\d+){0,3}):$uid\](.*?)\[/upd:$uid\]#' => function ($match) use($bbcode_class) {
+								return $bbcode_class->bbcode_second_pass_upd($match[1], $match[2]);
 							},
 						)
 					);
@@ -404,12 +406,12 @@ class bbcode
 							'[/spoiler:$uid]'		=> $this->bbcode_tpl('spoiler_close', $bbcode_id)
 						),
 						'preg' => array(
-							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=>function ($match) {
+							'#\[spoiler(?:=&quot;(.*?)&quot;)?:$uid\]((?!\[spoiler(?:=&quot;.*?&quot;)?:$uid\]).)?#isu'	=>function ($match) use($bbcode_class) {
 								if (!isset($match[2]))
 								{
 									$match[2] = '';
 								}
-								return $this->bbcode_second_pass_spoiler($match[1], $match[2]);
+								return $bbcode_class->bbcode_second_pass_spoiler($match[1], $match[2]);
 							},
 						)
 					);
