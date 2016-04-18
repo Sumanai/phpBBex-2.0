@@ -220,6 +220,8 @@ class config_list
 			'active_topics_on_index_exclude',
 			// v. 2.0.3
 			'global_announce_on_index', 'global_announce_in_all_forums', 'simple_announce_on_index', 'through_announce',
+			// v. 2.0.4
+			'style_forum_image_opacity',
 		);
 
 		$config_common = $config_all = array();

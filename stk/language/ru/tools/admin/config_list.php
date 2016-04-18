@@ -410,6 +410,7 @@ $lang = array_merge($lang, array(
 	'site_keywords'						=> 'Ключевые слова форума',
 	'social_media_cover_url'			=> 'Путь к изображению для ссылок в социальных сетях',
 	'warning_post_default'				=> 'Шаблон причины предупреждения',
+	'style_forum_image_opacity'			=> 'Полупрозрачность изображения форума',
 	'style_ml_show_row_numbers'			=> 'Отображать номера строк',
 	'style_ml_show_gender'				=> 'Отображать пол',
 	'style_ml_show_rank'				=> 'Отображать звание',

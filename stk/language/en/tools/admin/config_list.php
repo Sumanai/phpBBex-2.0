@@ -407,6 +407,7 @@ $lang = array_merge($lang, array(
 	'site_keywords'						=> 'Site keywords',
 	'social_media_cover_url'			=> 'Path to an image for links in social media',
 	'warning_post_default'				=> 'Default warning message',
+	'style_forum_image_opacity'			=> 'Forum_image opacity',
 	'style_ml_show_row_numbers'			=> 'Display sequential numbers',
 	'style_ml_show_gender'				=> 'Display gender',
 	'style_ml_show_rank'				=> 'Display user rank',

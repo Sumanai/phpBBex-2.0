@@ -17,64 +17,64 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* phpBB 3.1.8 data file
+* phpBB 3.1.9 data file
 */
-class datafile_3_1_8
+class datafile_3_1_9
 {
 	/**
 	* @var Array The bots
 	*/
 	var $bots = array(
-		// No bots changes 3.1.7-pl1 -> 3.1.8
+		// No bots changes 3.1.8 -> 3.1.9
 	);
 
 	/**
-	* @var Array 3.1.8 config data
+	* @var Array 3.1.9 config data
 	*/
 	var $config = array(
-		// No config changes 3.1.7-pl1 -> 3.1.8
+		// No config changes 3.1.8 -> 3.1.9
 	);
 
 	/**
-	* @var Array Config entries that were removed by the 3.1.8 update
+	* @var Array Config entries that were removed by the 3.1.9 update
 	*/
 	var $removed_config = array(
-		// No config entries removed 3.1.7-pl1 -> 3.1.8
+		// No config entries removed 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default permission settings
 	*/
 	var $acl_options = array(
-		// No permission changes 3.1.7-pl1 -> 3.1.8
+		// No permission changes 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default roles
 	*/
 	var $acl_roles = array(
-		// No role changes 3.1.7-pl1 -> 3.1.8
+		// No role changes 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default role data
 	*/
 	var $acl_role_data = array(
-		// No role data changes 3.1.7-pl1 -> 3.1.8
+		// No role data changes 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default extension groups
 	*/
 	var $extension_groups = array(
-		// No extension group changes 3.1.7-pl1 -> 3.1.8
+		// No extension group changes 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default extensions
 	*/
 	var $extensions = array(
-		// No extension changes 3.1.7-pl1 -> 3.1.8
+		// No extension changes 3.1.8 -> 3.1.9
 	);
 
 	/**
@@ -82,32 +82,32 @@ class datafile_3_1_8
 	* needing to hard-code module_id values
 	*/
 	var $module_categories = array(
-		// No Module categories changes 3.1.7-pl1 -> 3.1.8
+		// No Module categories changes 3.1.8 -> 3.1.9
 	);
 
 	var $module_extras = array(
-		// No Module extra changes 3.1.7-pl1 -> 3.1.8
+		// No Module extra changes 3.1.8 -> 3.1.9
 	);
 
 	var $module_categories_basenames = array(
-		// No Categories basenames changes 3.1.7-pl1 -> 3.1.8
+		// No Categories basenames changes 3.1.8 -> 3.1.9
 	);
 
 	/**
 	* @var Array All default groups
 	*/
 	var $groups = array(
-		// No Group changes 3.1.7-pl1 -> 3.1.8
+		// No Group changes 3.1.8 -> 3.1.9
 	);
 	/**
 	* @var Array All default report reasons
 	*/
 	var $report_reasons = array(
-		// No reason changes 3.1.7-pl1 -> 3.1.8
+		// No reason changes 3.1.8 -> 3.1.9
 	);
 
 	var $acp_modules = array(
-		// No ACP modules changes 3.1.7-pl1 -> 3.1.8
+		// No ACP modules changes 3.1.8 -> 3.1.9
 	);
 
 	/**
@@ -144,6 +144,6 @@ class datafile_3_1_8
 	*/
 	function get_schema_struct(&$schema_data)
 	{
-		$schema_data['phpbb_users']['COLUMNS']['user_dateformat'] = array('VCHAR_UNI:64', 'd M Y H:i');
+		// No schema changes 3.1.8 -> 3.1.9
 	}
 }
