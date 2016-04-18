@@ -536,7 +536,7 @@ a.icon-header-unlock { background-position: 0 -234px; }
 	transition: opacity 0.5s;
 }
 
-.forum_read:hover .forum-image {
+.hide-icon > .forum_read:hover .forum-image {
 	opacity: 1;
 }
 
