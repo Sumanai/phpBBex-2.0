@@ -707,7 +707,7 @@ $lang = array_merge($lang, array(
 	'SEARCH_POSTS_BY'			=> 'Искать сообщения',
 	'SEARCH_SELF'				=> 'Ваши сообщения',
 	'SEARCH_TOPIC'				=> 'Поиск в теме…',
-	'SEARCH_UNANSWERED'			=> 'Сообщения без ответов',
+	'SEARCH_UNANSWERED'			=> 'Темы без ответов',
 	'SEARCH_UNREAD'				=> 'Непрочитанные сообщения',
 	'SEARCH_USER_POSTS'			=> 'Найти сообщения пользователя',
 	'SECONDS'					=> 'секунд',
@@ -859,7 +859,7 @@ $lang = array_merge($lang, array(
 	'USERS'					=> 'Пользователи',
 	'USE_PERMISSIONS'		=> 'Проверить права пользователя',
 
-	'USER_NEW_PERMISSION_DISALLOWED'	=> 'Вам не разрешено использовать данную возможность. Возможно, вы недавно зарегистрировались на конференции или вам необходимо проявить больше активности на ней, чтобы получить такое право.',
+	'USER_NEW_PERMISSION_DISALLOWED'	=> 'Вам не разрешено использовать данную возможность. Возможно, вы недавно зарегистрировались на конференции или вам необходимо активнее участвовать в обсуждениях, чтобы получить такое право.',
 
 	'VARIANT_DATE_SEPARATOR'	=> ' / ',	// Used in date format dropdown, eg: "Today, 13:37 / 01 Jan 2007, 13:37" ... to join a relative date with calendar date
 	'VIEWED'					=> 'Просмотров:',
