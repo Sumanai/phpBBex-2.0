@@ -332,7 +332,7 @@ class display_topics
 				),
 			),
 			'WHERE'     => $this->db->sql_in_set('t.topic_id', $topic_list),
-			'ORDER_BY'  => 't.topic_last_post_time DESC',
+			'ORDER_BY'  => $sql_order,
 		);
 
 		/**
