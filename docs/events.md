@@ -997,7 +997,7 @@ memberlist_view_contact_custom_fields_after
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content after the user contact related custom fields
 
@@ -1005,7 +1005,7 @@ memberlist_view_contact_custom_fields_before
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content before the user contact related custom fields
 
@@ -1029,7 +1029,7 @@ memberlist_view_non_contact_custom_fields_after
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content after the user not contact related custom fields
 
@@ -1037,7 +1037,7 @@ memberlist_view_non_contact_custom_fields_before
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content before the user not contact related custom fields
 
@@ -1093,7 +1093,7 @@ memberlist_view_zebra_after
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content after the user friends/foes links
 
@@ -1101,7 +1101,7 @@ memberlist_view_zebra_before
 ===
 * Locations:
     + styles/prosilver/template/memberlist_view.html
-    + styles/subsilver2/template/memberlist_view.html
+    + styles/prosilver_ex/template/memberlist_view.html
 * Since: 3.1.9-RC1
 * Purpose: Add content before the user friends/foes links
 
