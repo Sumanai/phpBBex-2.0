@@ -352,7 +352,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('max_sig_imgs', '0'
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_lang', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_dateformat', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('override_user_timezone', '0');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('phpbbex_version', '2.0.3');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('phpbbex_version', '2.0.4');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_enabled', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_only_topics', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rate_time', 0);
