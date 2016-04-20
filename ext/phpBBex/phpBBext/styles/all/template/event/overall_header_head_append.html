@@ -18,7 +18,10 @@
 	}
 <!-- ENDIF -->
 <!-- IF STYLE_FORUM_IMAGE_OPACITY -->
-	.hide-icon > .forum_read .forum-image {
+	.hide-icon > .forum_read .forum-image,
+	.hide-icon > .forum_read_subforum .forum-image,
+	.hide-icon > .forum_read_locked .forum-image
+	{
 		opacity: {STYLE_FORUM_IMAGE_OPACITY};
 	}
 <!-- ENDIF -->

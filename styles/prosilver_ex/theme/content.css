@@ -96,7 +96,7 @@ ul.topiclist li.row dt a.subforum {
 	transition: opacity 0.5s;
 }
 
-.forum_read.hide-icon:hover .forum-image {
+.icon.hide-icon:hover .forum-image {
 	opacity: 1;
 }
 
