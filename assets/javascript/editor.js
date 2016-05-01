@@ -484,12 +484,6 @@ function getCaretPosition(txtarea) {
 		if ($('#attach-panel').length) {
 			phpbb.showDragNDrop(textarea);
 		}
-
-		$('textarea').on('keydown', function (e) {
-			if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
-				$(this).closest('form').submit();
-			}
-		});
 	});
 })(jQuery);
 
