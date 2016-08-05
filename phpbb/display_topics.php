@@ -187,7 +187,7 @@ class display_topics
 		$sql = 'SELECT forum_id
 			FROM ' . FORUMS_TABLE . '
 			WHERE ' . $this->db->sql_in_set('forum_id', $forum_ids) . '
-				AND forum_flags & ' . FORUM_FLAG_ACTIVE_TOPICS;
+				AND ' . $this->db->sql_bit_and('forum_flags', log(FORUM_FLAG_ACTIVE_TOPICS, 2), '<> 0');
 		$result = $this->db->sql_query($sql);
 
 		$forum_ids = array();

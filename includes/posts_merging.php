@@ -67,7 +67,8 @@ if (!$do_merge) return;
 $sql = 'SELECT attach_id, COUNT(*) as num_attach
 	FROM ' . ATTACHMENTS_TABLE . "
 	WHERE post_msg_id = $merge_post_id
-		AND in_message = 0";
+		AND in_message = 0
+		GROUP BY attach_id";
 $result = $db->sql_query($sql);
 $num_old_attach = (int) $db->sql_fetchfield('num_attach');
 

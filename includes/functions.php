@@ -4237,11 +4237,10 @@ function obtain_users_online($item_id = 0, $item = 'forum')
 	// a little discrete magic to cache this for 30 seconds
 	$time = (time() - (intval($config['load_online_time']) * 60));
 
-	$sql = 'SELECT s.session_user_id AS user_id, s.session_viewonline, u.username, u.user_type, u.user_colour
+	$sql = 'SELECT DISTINCT s.session_user_id AS user_id, s.session_viewonline, u.username, u.username_clean, u.user_type, u.user_colour
 		FROM ' . SESSIONS_TABLE . ' s
 		LEFT JOIN ' . USERS_TABLE . ' u ON s.session_user_id = u.user_id
 		WHERE s.session_time >= ' . ($time - ((int) ($time % 30))) . $reading_sql . ' AND s.session_user_id <> ' . ANONYMOUS . '
-		GROUP BY s.session_user_id
 		ORDER BY u.username_clean';
 	$result = $db->sql_query($sql);
 

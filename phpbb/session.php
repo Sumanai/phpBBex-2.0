@@ -480,7 +480,7 @@ class session
 	{
 		global $db, $config, $request;
 
-		$user_id = $this->data['user_id'];
+		$user_id = (int) $this->data['user_id'];
 		$agent = trim(substr($request->server('HTTP_USER_AGENT', ''), 0, 149));
 		$browser_id = request_var($config['cookie_name'] . '_bid', '', false, true);
 
@@ -493,12 +493,56 @@ class session
 		}
 
 		// Update stats
-		$sql = "INSERT INTO " . USER_BROWSER_IDS_TABLE . "
-			SET browser_id='" . $db->sql_escape($browser_id) . "', user_id='" . $db->sql_escape($user_id) . "',
-				created=" . $this->time_now . ", last_visit=" . $this->time_now . ", visits=1,
-				agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'
-			ON DUPLICATE KEY UPDATE last_visit=" . $this->time_now . ", visits=visits+1,
-				agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'";
+		switch ($db->get_sql_layer())
+		{
+			case 'mysqli':
+			case 'mysql4':
+			case 'mysql':
+				$sql = "INSERT INTO " . USER_BROWSER_IDS_TABLE . "
+					SET browser_id = '" . $db->sql_escape($browser_id) . "', user_id = " . $user_id . ",
+						created = " . $this->time_now . ", last_visit = " . $this->time_now . ", visits = 1,
+						agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'
+					ON DUPLICATE KEY UPDATE last_visit = " . $this->time_now . ", visits = visits + 1,
+						agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'";
+			break;
+
+			case 'sqlite3':
+			case 'sqlite':
+				// Two query at once to avoid synchronization errors.
+				$sql = "UPDATE " . USER_BROWSER_IDS_TABLE . "
+					SET last_visit = " . $this->time_now . ", visits = visits + 1,
+						agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'
+					WHERE browser_id = '" . $db->sql_escape($browser_id) . "' AND user_id = " . $user_id . ";
+					INSERT OR IGNORE INTO " . USER_BROWSER_IDS_TABLE . " (browser_id, user_id, created, last_visit, visits, agent, last_ip)
+						VALUES ('" . $db->sql_escape($browser_id) . "', " . $user_id . ", " . $this->time_now . ", " . $this->time_now . ", 1, '" . $db->sql_escape($agent) . "', '" . $db->sql_escape($this->ip) . "')";
+			break;
+
+			case 'postgres':
+				if (version_compare($db->sql_server_info(true), '9.5.0', '>='))
+				{
+					$sql = "INSERT INTO " . USER_BROWSER_IDS_TABLE . " (browser_id, user_id, created, last_visit, visits, agent, last_ip)
+						VALUES ('" . $db->sql_escape($browser_id) . "', " . $user_id . ", " . $this->time_now . ", " . $this->time_now . ", 1, '" . $db->sql_escape($agent) . "', '" . $db->sql_escape($this->ip) . "')
+						ON CONFLICT (browser_id, user_id) DO UPDATE SET last_visit = " . $this->time_now . ", visits = " . USER_BROWSER_IDS_TABLE . ".visits + 1,
+							agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'";
+				}
+				else
+				{
+					// Two query at once to avoid synchronization errors.
+					$sql = "UPDATE " . USER_BROWSER_IDS_TABLE . "
+						SET last_visit = " . $this->time_now . ", visits = " . USER_BROWSER_IDS_TABLE . ".visits + 1,
+							agent = '" . $db->sql_escape($agent) . "', last_ip = '" . $db->sql_escape($this->ip) . "'
+						WHERE browser_id = '" . $db->sql_escape($browser_id) . "' AND user_id = " . $user_id . ";
+					INSERT INTO " . USER_BROWSER_IDS_TABLE . " (browser_id, user_id, created, last_visit, visits, agent, last_ip)
+						SELECT '" . $db->sql_escape($browser_id) . "', " . $user_id . ", " . $this->time_now . ", " . $this->time_now . ", 1, '" . $db->sql_escape($agent) . "', '" . $db->sql_escape($this->ip) . "'
+						WHERE NOT EXISTS (SELECT 1 FROM " . USER_BROWSER_IDS_TABLE . "
+							WHERE browser_id = '" . $db->sql_escape($browser_id) . "' AND user_id=" . $user_id . ")";
+				}
+			break;
+
+			default:
+				throw new \phpbb\extension\exception('Not suppored database');
+			break;
+		}
 		$db->sql_query($sql);
 
 		// Garbage collection

@@ -89,7 +89,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'pgsql',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\postgres',
-			'AVAILABLE'		=> false,
+			'AVAILABLE'		=> true,
 			'2.0.x'			=> true,
 		),
 		'sqlite'		=> array(
@@ -98,7 +98,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'sqlite',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\sqlite',
-			'AVAILABLE'		=> false,
+			'AVAILABLE'		=> true,
 			'2.0.x'			=> false,
 		),
 		'sqlite3'		=> array(
@@ -107,7 +107,7 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			'MODULE'		=> 'sqlite3',
 			'DELIM'			=> ';',
 			'DRIVER'		=> 'phpbb\db\driver\sqlite3',
-			'AVAILABLE'		=> false,
+			'AVAILABLE'		=> true,
 			'2.0.x'			=> false,
 		),
 	);
@@ -123,6 +123,8 @@ function get_available_dbms($dbms = false, $return_unavailable = false, $only_20
 			return array();
 		}
 	}
+
+	$any_db_support = false;
 
 	// now perform some checks whether they are really available
 	foreach ($available_dbms as $db_name => $db_ary)

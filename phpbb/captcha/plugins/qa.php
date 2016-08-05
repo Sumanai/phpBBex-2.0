@@ -108,7 +108,7 @@ class qa
 			$sql = 'SELECT q.question_id, q.lang_iso
 				FROM ' . $this->table_captcha_questions . ' q, ' . $this->table_captcha_answers . ' a
 				WHERE q.question_id = a.question_id
-				GROUP BY lang_iso';
+				GROUP BY q.lang_iso, q.question_id';
 			$result = $db->sql_query($sql, 7200);
 
 			while ($row = $db->sql_fetchrow($result))
