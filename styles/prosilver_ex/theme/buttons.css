@@ -254,7 +254,7 @@ button::-moz-focus-inner {
 .rate-value {
 	padding: 0px 4px;
 	font-weight: bold;
-	line-height: 16px;
+	line-height: 18px;
 	min-width: 16px;
 	text-align: center;
 }
