@@ -314,6 +314,8 @@ $add_anchor = '#p' . $merge_post_id;
 $url = "{$phpbb_root_path}viewtopic.$phpEx";
 $url = append_sid($url, 'f=' . $forum_id . $params) . $add_anchor;
 
+$data['post_id'] = (int) $merge_post_data['post_id'];
+
 /**
 * For compatibility with third-party extensions.
 * Modify the data for post submitting
