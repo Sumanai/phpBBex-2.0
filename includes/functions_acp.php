@@ -308,7 +308,7 @@ function build_cfg_template($tpl_type, $key, &$new, $config_key, $vars)
 				$step = $min;
 			}
 
-			$tpl = '<input id="' . $key . '" type="number" maxlength="' . (( $maxlength != '' ) ? $maxlength : 255) . '"' . (( $min != '' ) ? ' min="' . $min . '"' : '') . (( $step != '' ) ? ' step="' . $step . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="' . $name . '" value="' . $new[$config_key] . '" />';
+			$tpl = '<input id="' . $key . '" type="number" maxlength="' . (( $maxlength != '' ) ? $maxlength : 255) . '"' . (( $min !== false ) ? ' min="' . $min . '"' : '') . (( $step != '' ) ? ' step="' . $step . '"' : '') . (( $max != '' ) ? ' max="' . $max . '"' : '') . ' name="' . $name . '" value="' . $new[$config_key] . '" />';
 		break;
 
 		case 'dimension':

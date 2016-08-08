@@ -536,9 +536,9 @@ class ucp_profile
 				}
 				else
 				{
-					$enable_bbcode	= ($this->config['allow_sig_bbcode']) ? (bool) $user->optionget('sig_bbcode') : false;
-					$enable_smilies	= ($this->config['allow_sig_smilies']) ? (bool) $user->optionget('sig_smilies') : false;
-					$enable_urls	= ($this->config['allow_sig_links']) ? (bool) $user->optionget('sig_links') : false;
+					$enable_bbcode	= ($config['allow_sig_bbcode']) ? (bool) $user->optionget('sig_bbcode') : false;
+					$enable_smilies	= ($config['allow_sig_smilies']) ? (bool) $user->optionget('sig_smilies') : false;
+					$enable_urls	= ($config['allow_sig_links']) ? (bool) $user->optionget('sig_links') : false;
 				}
 
 				$signature_preview = '';

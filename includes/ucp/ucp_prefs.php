@@ -384,7 +384,7 @@ class ucp_prefs
 							WHERE user_id = ' . $user->data['user_id'];
 						$db->sql_query($sql);
 
-						meta_refresh(999, $this->u_action);
+						meta_refresh(3, $this->u_action);
 						$message = $user->lang['PREFERENCES_UPDATED'] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
 						trigger_error($message);
 					}
