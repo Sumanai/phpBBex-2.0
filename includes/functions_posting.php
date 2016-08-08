@@ -1815,7 +1815,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 					'poll_max_options'	=> $poll['poll_max_options'],
 					'poll_length'		=> $poll_length,
 					'poll_vote_change'	=> $poll['poll_vote_change'],
-					'poll_show_voters'	=> $poll['poll_show_voters']
+					'poll_show_voters'	=> $poll['poll_show_voters'],
 				));
 			}
 

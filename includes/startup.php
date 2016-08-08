@@ -147,7 +147,7 @@ if (function_exists('date_default_timezone_set') && function_exists('date_defaul
 //    automatically used by phpBB. This is the default mode that phpBB
 //    will use when shipped.
 // 2. To disable composer autoloading, PHPBB_NO_COMPOSER_AUTOLOAD can be specified.
-// 	  Additionally specify PHPBB_AUTOLOAD=/path/to/autoload.php in the
+//    Additionally specify PHPBB_AUTOLOAD=/path/to/autoload.php in the
 //    environment. This is useful for running CLI scripts and tests.
 //    /path/to/autoload.php should define and register class loaders
 //    for all of phpBB's dependencies.

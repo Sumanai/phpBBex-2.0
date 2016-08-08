@@ -287,7 +287,7 @@ class plupload
 		$extensions = $cache->obtain_attach_extensions($forum_id);
 		unset($extensions['_allowed_']);
 		ksort($extensions);
-	
+
 		// Calc maximum allowed size
 		$all_max_size = !empty($forum_id) ? (int) $this->config['max_filesize'] : (int) $this->config['max_filesize_pm'];
 		$php_max_size = $this->get_upload_max_filesize();

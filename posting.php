@@ -884,7 +884,7 @@ if ($submit || $preview || $refresh)
 				'poll_last_vote'	=> 0,
 				'poll_max_options'	=> 0,
 				'poll_vote_change'	=> 0,
-				'poll_show_voters'	=> 0
+				'poll_show_voters'	=> 0,
 			);
 
 			$sql = 'UPDATE ' . TOPICS_TABLE . '

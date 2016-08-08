@@ -1635,7 +1635,7 @@ class session
 		* Read-only event
 		*
 		* @event core.update_session_after
-		* @var	array		session_data				Associative array of session keys to be updated
+		* @var	array		session_data			Associative array of session keys to be updated
 		* @var	string		session_id				current user's session_id
 		* @since 3.1.6-RC1
 		*/

@@ -2608,8 +2608,8 @@ class acp_users
 		// Assign general variables
 		$template->assign_vars(array(
 			'S_ERROR'			=> (sizeof($error)) ? true : false,
-			'ERROR_MSG'			=> (sizeof($error)) ? implode('<br />', $error) : '')
-		);
+			'ERROR_MSG'			=> (sizeof($error)) ? implode('<br />', $error) : '',
+		));
 	}
 
 	/**
