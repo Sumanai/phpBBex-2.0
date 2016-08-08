@@ -1062,7 +1062,6 @@ function parse_attachments($forum_id, &$message, &$attachments, &$update_count, 
 		// Some basics...
 		$attachment['extension'] = strtolower(trim($attachment['extension']));
 		$filename = $phpbb_root_path . $config['upload_path'] . '/' . utf8_basename($attachment['physical_filename']);
-		$thumbnail_filename = $phpbb_root_path . $config['upload_path'] . '/thumb_' . utf8_basename($attachment['physical_filename']);
 
 		$upload_icon = '';
 		if (isset($extensions[$attachment['extension']]) && $extensions[$attachment['extension']]['upload_icon'])
