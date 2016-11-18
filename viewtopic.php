@@ -1853,7 +1853,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		if (!sizeof($post_edit_list) && ($row['post_edit_reason'] || ($row['post_edit_user'] && !isset($user_cache[$row['post_edit_user']]))))
 		{
 			// Remove all post_ids already parsed (we do not have to check them)
-			$post_storage_list = (!$store_reverse) ? array_slice($post_list, $i) : array_slice(array_reverse($post_list), $i);
+			$post_storage_list = array_slice($post_list, $i);
 
 			$sql = 'SELECT DISTINCT u.user_id, u.username, u.user_colour
 				FROM ' . POSTS_TABLE . ' p, ' . USERS_TABLE . ' u
