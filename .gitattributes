@@ -1,0 +1,17 @@
+*.bat				linguist-vendored text eol=crlf
+*.cmd				linguist-vendored
+*.sh				linguist-vendored
+*.pro				linguist-vendored
+*.pri				linguist-vendored
+*.ini				linguist-vendored text eol=crlf
+*.lua				text eol=crlf
+*.txt				text eol=crlf
+*.php		        text eol=lf
+*.css		        text eol=lf
+*.htm		        text eol=lf
+*.html		        text eol=lf
+.htaccess		    text eol=lf
+*.png				binary
+*.gif				binary
+*.jpg				binary
+*.qm				binary
