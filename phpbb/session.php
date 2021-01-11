@@ -634,7 +634,7 @@ class session
 		$provider = $provider_collection->get_provider();
 		$this->data = $provider->autologin();
 
-		if ($user_id !== false && sizeof($this->data) && $this->data['user_id'] != $user_id)
+		if ($user_id !== false && $this->data != null && sizeof($this->data) && $this->data['user_id'] != $user_id)
 		{
 			$this->data = array();
 		}
@@ -667,7 +667,7 @@ class session
 			$db->sql_freeresult($result);
 		}
 
-		if ($user_id !== false && !sizeof($this->data))
+		if ($user_id !== false && ($this->data == null || !sizeof($this->data)))
 		{
 			$this->cookie_data['k'] = '';
 			$this->cookie_data['u'] = $user_id;
