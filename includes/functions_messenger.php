@@ -448,7 +448,7 @@ class messenger
 		$headers[] = 'X-MimeOLE: phpBB3';
 		$headers[] = 'X-phpBB-Origin: phpbb://' . str_replace(array('http://', 'https://'), array('', ''), generate_board_url());
 
-		if (sizeof($this->extra_headers))
+		if ($this->extra_headers && sizeof($this->extra_headers))
 		{
 			$headers = array_merge($headers, $this->extra_headers);
 		}
