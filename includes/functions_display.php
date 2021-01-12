@@ -407,6 +407,7 @@ function display_forums($root_data = '', $display_moderators = true, $return_mod
 
 	// Used to tell whatever we have to create a dummy category or not.
 	$last_catless = true;
+	$catless = null;
 	foreach ($forum_rows as $row)
 	{
 		// Category
