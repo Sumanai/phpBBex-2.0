@@ -1263,8 +1263,9 @@ if (function_exists('mb_get_info')) {
      */
     function twig_length_filter(Twig_Environment $env, $thing)
     {
-        if($thing == null)
+        if ($thing == null) {
             return 0;
+        }
         return is_scalar($thing) ? mb_strlen($thing, $env->getCharset()) : count($thing);
     }
 

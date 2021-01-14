@@ -189,9 +189,11 @@ class context
 			for ($i = 0; $i < $blockcount; $i++)
 			{
 				$str = &$str[$blocks[$i]];
-				if(!$str)
-    				continue; // WORKAROUND
-                $str = &$str[sizeof($str) - 1];
+				if (!$str)
+				{
+					continue; // WORKAROUND
+				}
+				$str = &$str[sizeof($str) - 1];
 			}
 
 			$s_row_count = isset($str[$blocks[$blockcount]]) ? sizeof($str[$blocks[$blockcount]]) : 0;
