@@ -131,14 +131,14 @@ class context
 	*/
 	protected function set_num_rows(&$loop_data)
 	{
-		$s_num_rows = sizeof($loop_data);
+		$s_num_rows = count($loop_data);
 		foreach ($loop_data as &$mod_block)
 		{
 			foreach ($mod_block as $sub_block_name => &$sub_block)
 			{
 				// If the key name is lowercase and the data is an array,
 				// it could be a template loop. So we set the S_NUM_ROWS there
-				// aswell.
+				// as well.
 				if ($sub_block_name === strtolower($sub_block_name) && is_array($sub_block))
 				{
 					$this->set_num_rows($sub_block);
@@ -189,7 +189,9 @@ class context
 			for ($i = 0; $i < $blockcount; $i++)
 			{
 				$str = &$str[$blocks[$i]];
-				$str = &$str[sizeof($str) - 1];
+				if(!$str)
+    				continue; // WORKAROUND
+                $str = &$str[sizeof($str) - 1];
 			}
 
 			$s_row_count = isset($str[$blocks[$blockcount]]) ? sizeof($str[$blocks[$blockcount]]) : 0;
@@ -398,7 +400,7 @@ class context
 		// Which block to change?
 		if ($mode == 'change')
 		{
-			if ($key == sizeof($block))
+			if ($key == count($block))
 			{
 				$key--;
 			}

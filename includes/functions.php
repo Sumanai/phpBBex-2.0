@@ -2675,7 +2675,7 @@ function confirm_box($check, $title = '', $hidden = '', $html_body = 'confirm_bo
 
 	// Delete old confirm keys
 
-	$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . " 
+	$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . "
 		WHERE confirm_time < " . (time() - 900);
 	$db->sql_query($sql);
 
@@ -2698,7 +2698,7 @@ function confirm_box($check, $title = '', $hidden = '', $html_body = 'confirm_bo
 		}
 
 		// Checking confirm key
-		$sql = "SELECT * FROM " . USER_CONFIRM_KEYS_TABLE . " 
+		$sql = "SELECT * FROM " . USER_CONFIRM_KEYS_TABLE . "
 			WHERE user_id = " . $user->data['user_id'] . " AND confirm_key = '" . $db->sql_escape($confirm_key) . "'";
 		$result = $db->sql_query($sql);
 		if(!$db->sql_fetchrow($result))
@@ -2707,7 +2707,7 @@ function confirm_box($check, $title = '', $hidden = '', $html_body = 'confirm_bo
 		}
 
 		// Delete used confirm key
-		$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . " 
+		$sql = "DELETE FROM " . USER_CONFIRM_KEYS_TABLE . "
 			WHERE user_id = " . $user->data['user_id'] . " AND confirm_key = '" . $db->sql_escape($confirm_key) . "'";
 		$db->sql_query($sql);
 
@@ -5519,6 +5519,8 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 	{
 		$copyright = str_replace('{POWERED_BY}', $powered_by, $copyright);
 	}
+
+	$copyright = str_replace('{YEAR}', date("Y"), $copyright);
 
 	$template->assign_vars(array(
 		'DEBUG_OUTPUT'			=> phpbb_generate_debug_output($db, $config, $auth, $user, $phpbb_dispatcher),

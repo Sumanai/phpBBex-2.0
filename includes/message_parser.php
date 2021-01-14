@@ -81,13 +81,23 @@ class bbcode_firstpass extends bbcode
 				{
 					// The pattern gets compiled and cached by the PCRE extension,
 					// it should not demand recompilation
-					if (preg_match($regexp, $this->message))
+
+					$regexp_c = $regexp;
+					$regexp_modifiers = preg_replace('/!(.*)!([a-z]*)/', '$2', $regexp_c);
+					if (strpos($regexp_modifiers, 'e') !== false && strlen($regexp_modifiers) < 4)
+					{
+    					$regexp_c = preg_replace('/!(.*)!([a-z]*)/', '!$1!', $regexp_c);
+    					// printf("ex: %s, mod: %s<br/>", $regexp, $regexp_modifiers);
+    					$regexp_c .= str_replace('e', '', $regexp_modifiers);
+					}
+
+					if (preg_match($regexp_c, $this->message))
 					{
 						if (is_callable($replacement))
 						{
 							$this->message = preg_replace_callback($regexp, $replacement, $this->message);
 						}
-						// @todo REMOVE for 3.2.0 
+						// @todo REMOVE for 3.2.0
 						else if (version_compare(PHP_VERSION, '7.0.0', '>='))
 						{
 							$regexp_modifiers = preg_replace('/!(.*)!([a-z]*)/', '$2', $regexp);
@@ -2192,7 +2202,7 @@ class parse_message extends bbcode_firstpass
 /**
 * Transform some characters in valid bbcodes
 * Called from preg_replace_callback function
-* @todo REMOVE for 3.2.0 
+* @todo REMOVE for 3.2.0
 */
 function bbcode_specialchars($text)
 {
@@ -2204,7 +2214,7 @@ function bbcode_specialchars($text)
 
 /**
 * Caching for create_function
-* @todo REMOVE for 3.2.0 
+* @todo REMOVE for 3.2.0
 */
 function create_lambda($args, $code) {
 	static $func;

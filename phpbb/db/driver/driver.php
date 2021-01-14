@@ -528,7 +528,7 @@ abstract class driver implements driver_interface
 	*/
 	function sql_in_set($field, $array, $negate = false, $allow_empty_set = false)
 	{
-		if (!sizeof($array))
+		if (is_array($array) && !sizeof($array))
 		{
 			if (!$allow_empty_set)
 			{
