@@ -6,12 +6,14 @@
 *.ini				linguist-vendored text eol=crlf
 *.lua				text eol=crlf
 *.txt				text eol=crlf
-*.php		        text eol=lf
-*.css		        text eol=lf
-*.htm		        text eol=lf
-*.html		        text eol=lf
-.htaccess		    text eol=lf
+*.php				text eol=lf
+*.css				text eol=lf
+*.htm				text eol=lf
+*.html				text eol=lf
+.htaccess			text eol=lf
 *.png				binary
 *.gif				binary
 *.jpg				binary
 *.qm				binary
+language/*/email/*.txt			text eol=lf
+language/*/email/short/*.txt	text eol=lf

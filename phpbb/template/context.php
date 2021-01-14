@@ -190,8 +190,8 @@ class context
 			{
 				$str = &$str[$blocks[$i]];
 				if(!$str)
-    				continue; // WORKAROUND
-                $str = &$str[sizeof($str) - 1];
+					continue; // WORKAROUND
+				$str = &$str[sizeof($str) - 1];
 			}
 
 			$s_row_count = isset($str[$blocks[$blockcount]]) ? sizeof($str[$blocks[$blockcount]]) : 0;

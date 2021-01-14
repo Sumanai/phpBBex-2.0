@@ -86,9 +86,9 @@ class bbcode_firstpass extends bbcode
 					$regexp_modifiers = preg_replace('/!(.*)!([a-z]*)/', '$2', $regexp_c);
 					if (strpos($regexp_modifiers, 'e') !== false && strlen($regexp_modifiers) < 4)
 					{
-    					$regexp_c = preg_replace('/!(.*)!([a-z]*)/', '!$1!', $regexp_c);
-    					// printf("ex: %s, mod: %s<br/>", $regexp, $regexp_modifiers);
-    					$regexp_c .= str_replace('e', '', $regexp_modifiers);
+						$regexp_c = preg_replace('/!(.*)!([a-z]*)/', '!$1!', $regexp_c);
+						// printf("ex: %s, mod: %s<br/>", $regexp, $regexp_modifiers);
+						$regexp_c .= str_replace('e', '', $regexp_modifiers);
 					}
 
 					if (preg_match($regexp_c, $this->message))
