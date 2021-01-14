@@ -189,8 +189,10 @@ class context
 			for ($i = 0; $i < $blockcount; $i++)
 			{
 				$str = &$str[$blocks[$i]];
-				if(!$str)
+				if (!$str)
+				{
 					continue; // WORKAROUND
+				}
 				$str = &$str[sizeof($str) - 1];
 			}
 
